@@ -1,0 +1,147 @@
+{
+  "municipalities": [
+    {
+      "id": 1,
+      "name": "Palma de Mallorca",
+      "shortName": "Palma",
+      "description": "Capital de Mallorca, rica en patrimonio arquitectónico y cultural",
+      "latitude": 39.5696,
+      "longitude": 2.6502,
+      "population": 423000,
+      "founded": "123 (época romana)",
+      "website": "https://www.palmademallorca.es",
+      "phone": "+34 971 225 000",
+      "email": "info@palmademallorca.es",
+      "patrimonio": [
+        "Catedral-Basílica de Santa María",
+        "La Lonja de Palma",
+        "Palacio Real de La Almudaina",
+        "Castillo de Bellver"
+      ],
+      "servicios": ["Turismo", "Cultura", "Patrimonio", "Gastronomía"],
+      "eventos": ["Festival de San Sebastián", "Feria Medieval", "Noche de la Música"],
+      "clima": "Mediterráneo",
+      "imagenes": []
+    },
+    {
+      "id": 2,
+      "name": "Manacor",
+      "shortName": "Manacor",
+      "description": "Centro económico del este de Mallorca, conocido por sus industrias artesanales",
+      "latitude": 39.2094,
+      "longitude": 3.2051,
+      "population": 38000,
+      "founded": "1300 (aprox)",
+      "website": "https://www.manacor.es",
+      "phone": "+34 971 553 000",
+      "email": "info@manacor.es",
+      "patrimonio": [
+        "Iglesia de los Dominicos",
+        "Convento de San Vicente Ferrer",
+        "Casa de Cultura"
+      ],
+      "servicios": ["Artesanía", "Cultura", "Comercio", "Industria"],
+      "eventos": ["Fiesta de San Jaime", "Feria del Mueble", "Mercado Medieval"],
+      "clima": "Mediterráneo",
+      "imagenes": []
+    },
+    {
+      "id": 3,
+      "name": "Inca",
+      "shortName": "Inca",
+      "description": "Capital del cuero en Mallorca, famosa por su producción artesanal",
+      "latitude": 39.3006,
+      "longitude": 2.9076,
+      "population": 30000,
+      "founded": "1300 (aprox)",
+      "website": "https://www.inca.es",
+      "phone": "+34 971 505 000",
+      "email": "info@inca.es",
+      "patrimonio": [
+        "Iglesia de Santa María la Mayor",
+        "Convento de San Domingo",
+        "Plaza Mayor"
+      ],
+      "servicios": ["Artesanía de Cuero", "Cultura", "Comercio", "Industria Tradicional"],
+      "eventos": ["Dijous Bou (Jueves de Buey)", "Feria del Calzado", "Feria de Inca"],
+      "clima": "Mediterráneo",
+      "imagenes": []
+    },
+    {
+      "id": 4,
+      "name": "Sóller",
+      "shortName": "Soller",
+      "description": "Pueblo de montaña con arquitectura singular en la Serra de Tramuntana",
+      "latitude": 39.7698,
+      "longitude": 2.7293,
+      "population": 13000,
+      "founded": "1200 (aprox)",
+      "website": "https://www.soller.es",
+      "phone": "+34 971 638 000",
+      "email": "info@soller.es",
+      "patrimonio": [
+        "Iglesia Parroquial de Santa María",
+        "Jardines de Alfabia",
+        "Port de Sóller",
+        "Sierra de Tramuntana"
+      ],
+      "servicios": ["Turismo", "Naturaleza", "Gastronomía", "Patrimonio"],
+      "eventos": ["Fiesta de la Vila", "Festival de Sóller", "Feria de Flors"],
+      "clima": "Mediterráneo Montañoso",
+      "imagenes": []
+    },
+    {
+      "id": 5,
+      "name": "Alcúdia",
+      "shortName": "Alcudia",
+      "description": "Destino turístico con murallas históricas y playas paradisíacas",
+      "latitude": 39.8468,
+      "longitude": 3.1130,
+      "population": 20000,
+      "founded": "123 (época romana)",
+      "website": "https://www.alcudia.es",
+      "phone": "+34 971 892 000",
+      "email": "info@alcudia.es",
+      "patrimonio": [
+        "Murallas Medievales",
+        "Iglesia de Sant Jaume",
+        "Puerto de Alcúdia",
+        "Bahía de Alcúdia"
+      ],
+      "servicios": ["Turismo", "Playas", "Deportes Acuáticos", "Gastronomía"],
+      "eventos": ["Fiesta Mayor", "Festival de Mar", "Mercado Medieval"],
+      "clima": "Mediterráneo",
+      "imagenes": []
+    },
+    {
+      "id": 6,
+      "name": "Llucmayor",
+      "shortName": "Llucmayor",
+      "description": "Municipio histórico con tradiciones culturales profundas",
+      "latitude": 39.3631,
+      "longitude": 2.8434,
+      "population": 15000,
+      "founded": "1200 (aprox)",
+      "website": "https://www.llucmayor.es",
+      "phone": "+34 971 662 000",
+      "email": "info@llucmayor.es",
+      "patrimonio": [
+        "Iglesia de San Miguel",
+        "Convento de San Domingo",
+        "Plaza del Pueblo"
+      ],
+      "servicios": ["Agricultura", "Cultura", "Comercio", "Patrimonio"],
+      "eventos": ["Feria de Llucmayor", "Procesión del Corpus", "Feria de Mercancías"],
+      "clima": "Mediterráneo",
+      "imagenes": []
+    }
+  ],
+  "metadata": {
+    "title": "Ayuntamientos de Mallorca",
+    "description": "Dataset de información sobre los municipios de Mallorca",
+    "version": "1.0",
+    "authors": ["Roberto García Martínez", "Rupak Guni Thapaliya"],
+    "license": "CC BY-SA 4.0",
+    "lastUpdated": "2024-03-09"
+  }
+}
