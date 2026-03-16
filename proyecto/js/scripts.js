@@ -51,11 +51,50 @@ function initializeApp() {
         });
     });
 
+    // Listener para el buscador
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            filtrarMunicipios(e.target.value.toLowerCase());
+        });
+    }
+
+    addMunicipalityCardListeners();
+
     // Load favorites from localStorage
     loadFavorites();
 
     // Add event listeners to municipality cards
     addMunicipalityCardListeners();
+}
+
+function filtrarMunicipios(termino) {
+    const cards = document.querySelectorAll('.municipality-card');
+    const feedback = document.getElementById('search-feedback');
+    let encontrados = 0;
+
+    cards.forEach(card => {
+        const nombre = card.getAttribute('data-municipality').toLowerCase();
+        if (nombre.includes(termino)) {
+            card.closest('.col-md-6').style.display = 'block';
+            encontrados++;
+        } else {
+            card.closest('.col-md-6').style.display = 'none';
+        }
+    });
+
+    // Gestión del mensaje de error explicativo 
+    if (encontrados === 0) {
+        feedback.innerHTML = `
+            <div class="alert alert-warning small py-2">
+                <i class="bi bi-exclamation-triangle"></i> 
+                No hay resultados para "<strong>${termino}</strong>". <br>
+                <span class="mt-2 d-block">Sugerencia: Intenta buscar municipios de Mallorca como <strong>Palma, Inca o Manacor</strong>.</span>
+            </div>`;
+        feedback.classList.remove('d-none');
+    } else {
+        feedback.classList.add('d-none');
+    }
 }
 
 // Load favorites from localStorage
