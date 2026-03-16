@@ -223,7 +223,7 @@ function getMunicipalityData(municipality) {
         },
         'Inca': {
             name: 'Inca',
-            description: 'Capital del cuero en Madrid, famosa por su producción artesanal de marroquinería. Centro industrial importante en Mallorca.',
+            description: 'Capital del cuero en Mallorca, famosa por su producción artesanal de marroquinería. Centro industrial importante en Mallorca.',
             contact: 'Tel: +34 971 505 000\nEmail: info@inca.es',
             location: 'Latitud: 39.3006° N\nLongitud: 2.9076° E\nPoblación: ~30,000 habitantes',
             events: 'Dijous Bou (Jueves de Buey), Feria del Calzado'
