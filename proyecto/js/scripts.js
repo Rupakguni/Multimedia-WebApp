@@ -242,12 +242,12 @@ function getMunicipalityData(municipality) {
             location: 'Latitud: 39.8468° N\nLongitud: 3.1130° E\nPoblación: ~20,000 habitantes',
             events: 'Fiesta Mayor, Festival de Mar'
         },
-        'Llucmayor': {
-            name: 'Llucmayor',
+        'Llucmajor': {
+            name: 'Llucmajor',
             description: 'Municipio histórico situado en el centro-sur de Mallorca, con tradiciones culturales profundas y patrimonio arquitectónico relevante.',
-            contact: 'Tel: +34 971 662 000\nEmail: info@llucmayor.es',
+            contact: 'Tel: +34 971 660 050\nEmail: oacllucmajor@llucmajor.org',
             location: 'Latitud: 39.3631° N\nLongitud: 2.8434° E\nPoblación: ~15,000 habitantes',
-            events: 'Feria de Llucmayor, Procesión del Corpus'
+            events: 'Feria de Llucmajor, Procesión del Corpus'
         }
     };
     
