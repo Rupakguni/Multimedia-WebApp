@@ -2,7 +2,7 @@
   "municipalities": [
     {
       "id": 1,
-      "name": "Palma de Mallorca",
+      "name": "Palma",
       "shortName": "Palma",
       "description": "Capital de Mallorca, rica en patrimonio arquitectónico y cultural",
       "latitude": 39.5696,
@@ -10,8 +10,8 @@
       "population": 423000,
       "founded": "123 (época romana)",
       "website": "https://www.palmademallorca.es",
-      "phone": "+34 971 225 000",
-      "email": "info@palmademallorca.es",
+      "phone": "+34 971 225 900",
+      "email": "ajuntament@palma.es",
       "patrimonio": [
         "Catedral-Basílica de Santa María",
         "La Lonja de Palma",
