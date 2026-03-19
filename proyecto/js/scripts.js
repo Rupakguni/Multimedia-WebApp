@@ -208,9 +208,9 @@ function loadMunicipalityDetails(municipalityName) {
 function getMunicipalityData(municipality) {
     const data = {
         'Palma': {
-            name: 'Palma de Mallorca',
+            name: 'Palma',
             description: 'Capital de Mallorca, rica en patrimonio arquitectónico y cultural. Hogar de la majestuosa Catedral-Basílica de Santa María, la Lonja de Palma y el Palacio Real.',
-            contact: 'Tel: +34 971 225 000\nEmail: info@palmademallorca.es',
+            contact: 'Tel: +34 971 225 900\nEmail: ajuntament@palma.es',
             location: 'Latitud: 39.5696° N\nLongitud: 2.6502° E\nPoblación: ~423,000 habitantes',
             events: 'Festival de San Sebastián, Feria Medieval'
         },
