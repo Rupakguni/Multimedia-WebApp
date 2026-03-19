@@ -11171,3 +11171,24 @@ header.masthead h1, header.masthead .h1 {
 #portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption, #portfolio .container-sm .portfolio-box:hover .portfolio-box-caption, #portfolio .container-md .portfolio-box:hover .portfolio-box-caption, #portfolio .container-lg .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xl .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xxl .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
 }
+
+/* Estilo para los iconos de la introducción */
+#contexto .bi {
+    display: block;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+#contexto .lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+/* Mejora del botón de la sección primaria */
+.btn-xl {
+    padding: 1.25rem 2.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 10rem;
+}
