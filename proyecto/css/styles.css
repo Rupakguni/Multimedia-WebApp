@@ -101,19 +101,6 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Custom Styles for Ayuntamientos Project */
-.masthead {
-  min-height: 75vh;
-  width: 100%;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
-  background: linear-gradient(rgba(244, 98, 58, 0.8), rgba(244, 98, 58, 0.8)), url('https://source.unsplash.com/1200x800/?mallorca,spain');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
 .masthead h1, .masthead h2, .masthead h3 {
   font-weight: 700;
 }
@@ -250,10 +237,33 @@ body {
     padding-bottom: 8rem;
   }
 }
-  text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
+  
+html {
+  height: 100%;
+  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#map-container {
+    height: 500px;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.card-img-placeholder {
+    height: 150px;
+    border-radius: 0.375rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+#modal-image-placeholder {
+    height: 250px;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bs-light);
 }
 
 hr {
@@ -537,6 +547,7 @@ button,
 [type=reset],
 [type=submit] {
   -webkit-appearance: button;
+  appearance: button;
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
@@ -595,6 +606,7 @@ legend + * {
 [type=search] {
   outline-offset: -2px;
   -webkit-appearance: textfield;
+  appearance: textfield;
 }
 
 /* rtl:raw:
@@ -616,6 +628,7 @@ legend + * {
 ::file-selector-button {
   font: inherit;
   -webkit-appearance: button;
+  appearance: button;
 }
 
 output {
@@ -11081,7 +11094,7 @@ hr.divider-light {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
+  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/mallorca-masthead.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -11144,4 +11157,25 @@ header.masthead h1, header.masthead .h1 {
 }
 #portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption, #portfolio .container-sm .portfolio-box:hover .portfolio-box-caption, #portfolio .container-md .portfolio-box:hover .portfolio-box-caption, #portfolio .container-lg .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xl .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xxl .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
+}
+
+/* Estilo para los iconos de la introducción */
+#contexto .bi {
+    display: block;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+#contexto .lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+/* Mejora del botón de la sección primaria */
+.btn-xl {
+    padding: 1.25rem 2.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 10rem;
 }

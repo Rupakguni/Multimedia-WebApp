@@ -2,7 +2,7 @@
   "municipalities": [
     {
       "id": 1,
-      "name": "Palma de Mallorca",
+      "name": "Palma",
       "shortName": "Palma",
       "description": "Capital de Mallorca, rica en patrimonio arquitectónico y cultural",
       "latitude": 39.5696,
@@ -10,8 +10,8 @@
       "population": 423000,
       "founded": "123 (época romana)",
       "website": "https://www.palmademallorca.es",
-      "phone": "+34 971 225 000",
-      "email": "info@palmademallorca.es",
+      "phone": "+34 971 225 900",
+      "email": "ajuntament@palma.es",
       "patrimonio": [
         "Catedral-Basílica de Santa María",
         "La Lonja de Palma",
@@ -115,16 +115,16 @@
     },
     {
       "id": 6,
-      "name": "Llucmayor",
-      "shortName": "Llucmayor",
+      "name": "Llucmajor",
+      "shortName": "Llucmajor",
       "description": "Municipio histórico con tradiciones culturales profundas",
       "latitude": 39.3631,
       "longitude": 2.8434,
       "population": 15000,
       "founded": "1200 (aprox)",
-      "website": "https://www.llucmayor.es",
-      "phone": "+34 971 662 000",
-      "email": "info@llucmayor.es",
+      "website": "https://www.llucmajor.org",
+      "phone": "+34 971 660 050",
+      "email": "oacllucmajor@llucmajor.org",
       "patrimonio": [
         "Iglesia de San Miguel",
         "Convento de San Domingo",

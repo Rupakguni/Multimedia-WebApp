@@ -51,11 +51,50 @@ function initializeApp() {
         });
     });
 
+    // Listener para el buscador
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            filtrarMunicipios(e.target.value.toLowerCase());
+        });
+    }
+
+    addMunicipalityCardListeners();
+
     // Load favorites from localStorage
     loadFavorites();
 
     // Add event listeners to municipality cards
     addMunicipalityCardListeners();
+}
+
+function filtrarMunicipios(termino) {
+    const cards = document.querySelectorAll('.municipality-card');
+    const feedback = document.getElementById('search-feedback');
+    let encontrados = 0;
+
+    cards.forEach(card => {
+        const nombre = card.getAttribute('data-municipality').toLowerCase();
+        if (nombre.includes(termino)) {
+            card.closest('.col-md-6').style.display = 'block';
+            encontrados++;
+        } else {
+            card.closest('.col-md-6').style.display = 'none';
+        }
+    });
+
+    // Gestión del mensaje de error explicativo 
+    if (encontrados === 0) {
+        feedback.innerHTML = `
+            <div class="alert alert-warning small py-2">
+                <i class="bi bi-exclamation-triangle"></i> 
+                No hay resultados para "<strong>${termino}</strong>". <br>
+                <span class="mt-2 d-block">Sugerencia: Intenta buscar municipios de Mallorca como <strong>Palma, Inca o Manacor</strong>.</span>
+            </div>`;
+        feedback.classList.remove('d-none');
+    } else {
+        feedback.classList.add('d-none');
+    }
 }
 
 // Load favorites from localStorage
@@ -169,9 +208,9 @@ function loadMunicipalityDetails(municipalityName) {
 function getMunicipalityData(municipality) {
     const data = {
         'Palma': {
-            name: 'Palma de Mallorca',
+            name: 'Palma',
             description: 'Capital de Mallorca, rica en patrimonio arquitectónico y cultural. Hogar de la majestuosa Catedral-Basílica de Santa María, la Lonja de Palma y el Palacio Real.',
-            contact: 'Tel: +34 971 225 000\nEmail: info@palmademallorca.es',
+            contact: 'Tel: +34 971 225 900\nEmail: ajuntament@palma.es',
             location: 'Latitud: 39.5696° N\nLongitud: 2.6502° E\nPoblación: ~423,000 habitantes',
             events: 'Festival de San Sebastián, Feria Medieval'
         },
@@ -184,7 +223,7 @@ function getMunicipalityData(municipality) {
         },
         'Inca': {
             name: 'Inca',
-            description: 'Capital del cuero en Madrid, famosa por su producción artesanal de marroquinería. Centro industrial importante en Mallorca.',
+            description: 'Capital del cuero en Mallorca, famosa por su producción artesanal de marroquinería. Centro industrial importante en Mallorca.',
             contact: 'Tel: +34 971 505 000\nEmail: info@inca.es',
             location: 'Latitud: 39.3006° N\nLongitud: 2.9076° E\nPoblación: ~30,000 habitantes',
             events: 'Dijous Bou (Jueves de Buey), Feria del Calzado'
@@ -203,12 +242,12 @@ function getMunicipalityData(municipality) {
             location: 'Latitud: 39.8468° N\nLongitud: 3.1130° E\nPoblación: ~20,000 habitantes',
             events: 'Fiesta Mayor, Festival de Mar'
         },
-        'Llucmayor': {
-            name: 'Llucmayor',
+        'Llucmajor': {
+            name: 'Llucmajor',
             description: 'Municipio histórico situado en el centro-sur de Mallorca, con tradiciones culturales profundas y patrimonio arquitectónico relevante.',
-            contact: 'Tel: +34 971 662 000\nEmail: info@llucmayor.es',
+            contact: 'Tel: +34 971 660 050\nEmail: oacllucmajor@llucmajor.org',
             location: 'Latitud: 39.3631° N\nLongitud: 2.8434° E\nPoblación: ~15,000 habitantes',
-            events: 'Feria de Llucmayor, Procesión del Corpus'
+            events: 'Feria de Llucmajor, Procesión del Corpus'
         }
     };
     
