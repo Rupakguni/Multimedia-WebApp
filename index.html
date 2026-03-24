@@ -28,10 +28,11 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#contexto">Contexto</a></li>
                         <li class="nav-item"><a class="nav-link" href="#mapa">Mapa</a></li>
                         <li class="nav-item"><a class="nav-link" href="#ayuntamientos">Municipios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contexto">Contexto</a></li>
                         <li class="nav-item"><a class="nav-link" href="#favoritos" aria-label="Ir a mi lista de municipios favoritos"><i class="bi bi-heart"></i> Favoritos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
             </div>
@@ -232,6 +233,44 @@
             </div>
         </section>
 
+        <section class="page-section" id="contacto">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6 text-center">
+                        <h2 class="mt-0">¿Tienes dudas sobre un municipio?</h2>
+                        <hr class="divider" />
+                        <p class="text-muted mb-5">Envíanos un mensaje y te ayudaremos con información actualizada sobre los ayuntamientos de Mallorca.</p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+                    <div class="col-lg-6">
+                        <form id="contactForm">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="name" type="text" placeholder="Introduce tu nombre..." required />
+                                <label for="name">Nombre completo</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="email" type="email" placeholder="nombre@ejemplo.com" required />
+                                <label for="email">Correo electrónico</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="message" type="text" placeholder="Escribe tu mensaje aquí..." style="height: 10rem" required></textarea>
+                                <label for="message">Mensaje</label>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Enviar Mensaje</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <div id="form-feedback" class="d-none alert" role="alert"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Municipality Modal-->
         <div class="modal fade" id="municipalityModal" tabindex="-1" aria-labelledby="municipalityModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -295,7 +334,7 @@
         <!-- Footer-->
         <footer class="bg-light py-5">
             <div class="container px-4 px-lg-5">
-                <div class="small text-center text-muted">Copyright &copy; 2024 - Ayuntamientos de Mallorca | Roberto García & Rupak Guni</div>
+                <div class="small text-center text-muted">Copyright &copy; 2026 - Ayuntamientos de Mallorca | Roberto García & Rupak Guni</div>
             </div>
         </footer>
 

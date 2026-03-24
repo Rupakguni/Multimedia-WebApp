@@ -11179,3 +11179,18 @@ header.masthead h1, header.masthead .h1 {
     text-transform: uppercase;
     border-radius: 10rem;
 }
+
+/* Contact Form Styling */
+#contacto .form-floating > .form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.25rem rgba(244, 98, 58, 0.25);
+}
+
+#contacto .btn-xl {
+    transition: background-color 0.3s ease;
+}
+
+#contacto .alert {
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+}
