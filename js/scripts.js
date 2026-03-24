@@ -1,7 +1,17 @@
 /*!
 * Ayuntamientos de Mallorca - Main JavaScript Functions
 * Roberto García Martínez & Rupak Guni Thapaliya
+* 
+* AJAX/Fetch con JSON, gestión de estados y render dinámico
 */
+
+// Estado global de la aplicación
+const appState = {
+    municipalities: [],
+    loading: false,
+    error: null,
+    status: 'idle' // idle | loading | success | error
+};
 
 // Initialize when DOM is loaded
 window.addEventListener('DOMContentLoaded', event => {
@@ -9,7 +19,7 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 // Main initialization function
-function initializeApp() {
+async function initializeApp() {
     // Navbar shrink function
     const navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
@@ -59,15 +69,216 @@ function initializeApp() {
         });
     }
 
-    addMunicipalityCardListeners();
+    // CAMBIO IMPORTANTE: Cargar datos dinámicamente desde JSON
+    // Los favoritos se rehidratarán después de que carguen los datos
+    await cargarMunicipiosDesdeJSON();
+}
 
-    // Load favorites from localStorage
-    loadFavorites();
+/**
+ * AJAX/FETCH: Cargar municípios desde el archivo JSON
+ * Implementa async/await, try/catch y gestión de estados
+ */
+async function cargarMunicipiosDesdeJSON() {
+    try {
+        // Estado: loading
+        appState.status = 'loading';
+        appState.loading = true;
+        mostrarLoadingState();
 
-    // Add event listeners to municipality cards
+        // Fetch del JSON con validación HTTP
+        const respuesta = await fetch('./data/ayuntamiento.json', {
+            headers: { 'Accept': 'application/json' }
+        });
+
+        // Validar response.ok (no asumimos 200 automáticamente)
+        if (!respuesta.ok) {
+            throw new Error(`Error HTTP ${respuesta.status} - ${respuesta.statusText}`);
+        }
+
+        // Parsear JSON a objeto JavaScript
+        const datos = await respuesta.json();
+
+        // Validación del contrato de datos
+        if (!datos.municipalities || !Array.isArray(datos.municipalities)) {
+            throw new Error('Formato JSON inválido: se espera un array "municipalities"');
+        }
+
+        if (datos.municipalities.length === 0) {
+            appState.status = 'empty';
+            mostrarEmptyState();
+            return;
+        }
+
+        // Éxito: guardar datos y renderizar
+        appState.municipalities = datos.municipalities;
+        appState.status = 'success';
+        appState.error = null;
+
+        // Renderizar tarjetas dinámicamente
+        renderizarMunicipios(appState.municipalities);
+
+        // Rehidratar favoritos en las tarjetas nuevas
+        rehidratarFavoritos();
+
+    } catch (error) {
+        // Gestión de errores
+        appState.status = 'error';
+        appState.loading = false;
+        appState.error = error.message;
+
+        console.error('Error al cargar municipios:', error);
+        mostrarErrorState(error);
+    } finally {
+        appState.loading = false;
+    }
+}
+
+/**
+ * Renderizar municipios dinámicamente en el DOM
+ * Usa DocumentFragment para una sola inserción en el DOM
+ */
+function renderizarMunicipios(municipios) {
+    const container = document.querySelector('[data-municipalities-container]') 
+        || document.querySelector('.col-lg-9 .row');  // Fallback al contenedor de tarjetas
+    
+    if (!container) {
+        console.error('Contenedor de municipios no encontrado');
+        return;
+    }
+
+    // Limpiar contenedor
+    container.innerHTML = '';
+
+    // Usar DocumentFragment para evitar múltiples reflows
+    const fragment = document.createDocumentFragment();
+
+    municipios.forEach(municipio => {
+        const colDiv = document.createElement('div');
+        colDiv.className = 'col-md-6 col-lg-4 mb-4';
+
+        const card = document.createElement('div');
+        card.className = 'card h-100 municipality-card';
+        card.setAttribute('data-municipality', municipio.name);
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+
+        // Construir el contenido de la tarjeta
+        card.innerHTML = `
+            <div class="card-body">
+                <div class="card-img-placeholder bg-light mb-3"></div>
+                <h5 class="card-title">${municipio.name}</h5>
+                <p class="card-text text-muted small">${municipio.description}</p>
+                <button class="btn btn-primary btn-sm" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#municipalityModal" 
+                        onclick="loadMunicipalityDetails('${municipio.name}')">
+                    Ver Detalles
+                </button>
+                <button class="btn btn-outline-primary btn-sm ms-2" 
+                        onclick="toggleFavorite('${municipio.name}')" 
+                        aria-label="Añadir ${municipio.name} a favoritos">
+                    <i class="bi bi-heart"></i>
+                </button>
+            </div>
+        `;
+
+        colDiv.appendChild(card);
+        fragment.appendChild(colDiv);
+    });
+
+    // Una sola inserción en el DOM
+    container.appendChild(fragment);
+
+    // Re-asignar listeners (necesario porque se creó nuevo HTML)
     addMunicipalityCardListeners();
 }
 
+/**
+ * Estados de UI - Loading
+ */
+function mostrarLoadingState() {
+    const container = document.querySelector('[data-municipalities-container]') 
+        || document.querySelector('.col-lg-9 .row');
+    
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="col-12 text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando municipios...</span>
+            </div>
+            <p class="mt-3 text-muted">Cargando datos de municipios...</p>
+        </div>
+    `;
+}
+
+/**
+ * Estados de UI - Error
+ */
+function mostrarErrorState(error) {
+    const container = document.querySelector('[data-municipalities-container]') 
+        || document.querySelector('.col-lg-9 .row');
+    
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="col-12">
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading"><i class="bi bi-exclamation-circle"></i> Error al cargar los datos</h4>
+                <p class="mb-2"><strong>Detalles:</strong> ${error.message}</p>
+                <hr>
+                <p class="mb-0">
+                    Por favor, verifica tu conexión a internet e intenta de nuevo.
+                    <button class="btn btn-danger btn-sm ms-2" onclick="cargarMunicipiosDesdeJSON()">
+                        <i class="bi bi-arrow-clockwise"></i> Reintentar
+                    </button>
+                </p>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * Estados de UI - Empty
+ */
+function mostrarEmptyState() {
+    const container = document.querySelector('[data-municipalities-container]') 
+        || document.querySelector('.col-lg-9 .row');
+    
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="col-12 text-center py-5">
+            <i class="bi bi-inbox fs-1 text-muted mb-3"></i>
+            <p class="text-muted">No hay municipios disponibles en este momento.</p>
+        </div>
+    `;
+}
+
+/**
+ * Rehidratar favoritos después de renderizar
+ */
+function rehidratarFavoritos() {
+    const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
+    
+    favorites.forEach(favName => {
+        const card = document.querySelector(`[data-municipality="${favName}"]`);
+        if (card) {
+            const btn = card.querySelector('.btn-outline-primary');
+            if (btn) {
+                btn.classList.add('active');
+                btn.style.backgroundColor = 'var(--bs-primary)';
+                btn.style.color = 'white';
+            }
+        }
+    });
+
+    updateFavoritesDisplay();
+}
+
+/**
+ * Filtrar municipios por nombre
+ */
 function filtrarMunicipios(termino) {
     const cards = document.querySelectorAll('.municipality-card');
     const feedback = document.getElementById('search-feedback');
@@ -84,37 +295,17 @@ function filtrarMunicipios(termino) {
     });
 
     // Gestión del mensaje de error explicativo 
-    if (encontrados === 0) {
+    if (encontrados === 0 && termino) {
         feedback.innerHTML = `
             <div class="alert alert-warning small py-2">
                 <i class="bi bi-exclamation-triangle"></i> 
                 No hay resultados para "<strong>${termino}</strong>". <br>
-                <span class="mt-2 d-block">Sugerencia: Intenta buscar municipios de Mallorca como <strong>Palma, Inca o Manacor</strong>.</span>
+                <span class="mt-2 d-block">Sugerencia: Intenta buscar municipios como <strong>Palma, Inca o Manacor</strong>.</span>
             </div>`;
         feedback.classList.remove('d-none');
     } else {
         feedback.classList.add('d-none');
     }
-}
-
-// Load favorites from localStorage
-function loadFavorites() {
-    const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
-    console.log('Favoritos cargados:', favorites);
-    
-    favorites.forEach(favName => {
-        const card = document.querySelector(`[data-municipality="${favName}"]`);
-        if (card) {
-            const btn = card.querySelector('.btn-outline-primary');
-            if (btn) {
-                btn.classList.add('active');
-                btn.style.backgroundColor = 'var(--bs-primary)';
-                btn.style.color = 'white';
-            }
-        }
-    });
-
-    updateFavoritesDisplay();
 }
 
 // Toggle favorite status
@@ -193,70 +384,60 @@ function removeFavorite(municipalityName) {
     toggleFavorite(municipalityName);
 }
 
-// Load municipality details into modal
+/**
+ * Cargar detalles del municipio en el modal
+ * Busca en los datos cargados desde JSON
+ */
 function loadMunicipalityDetails(municipalityName) {
     const municipalityData = getMunicipalityData(municipalityName);
     
+    if (!municipalityData) {
+        console.warn(`Municipio ${municipalityName} no encontrado`);
+        return;
+    }
+
+    // Rellenar modal con datos del JSON
     document.getElementById('modal-title').textContent = municipalityData.name;
     document.getElementById('modal-description').textContent = municipalityData.description;
-    document.getElementById('modal-contact').textContent = municipalityData.contact;
-    document.getElementById('modal-location').textContent = municipalityData.location;
-    document.getElementById('modal-events').textContent = municipalityData.events || 'No hay eventos registrados';
+    
+    // Información de contacto formateada
+    const contact = `
+        <strong>Teléfono:</strong> ${municipalityData.phone}<br>
+        <strong>Email:</strong> <a href="mailto:${municipalityData.email}">${municipalityData.email}</a><br>
+        <strong>Web:</strong> <a href="${municipalityData.website}" target="_blank" rel="noopener">${municipalityData.website}</a>
+    `;
+    document.getElementById('modal-contact').innerHTML = contact;
+    
+    // Información geográfica
+    const location = `
+        <strong>Coordinates:</strong> ${municipalityData.latitude}° N, ${municipalityData.longitude}° E<br>
+        <strong>Población:</strong> ${municipalityData.population.toLocaleString('es-ES')} habitantes<br>
+        <strong>Fundación:</strong> ${municipalityData.founded}
+    `;
+    document.getElementById('modal-location').innerHTML = location;
+    
+    // Servicios como badges
+    const servicesContainer = document.getElementById('modal-services');
+    if (municipalityData.servicios && Array.isArray(municipalityData.servicios)) {
+        const badges = municipalityData.servicios
+            .map(servicio => `<span class="badge bg-primary me-2">${servicio}</span>`)
+            .join('');
+        servicesContainer.innerHTML = badges;
+    }
+    
+    // Eventos
+    const eventsList = municipalityData.eventos && municipalityData.eventos.length > 0
+        ? '<ul class="small mb-0">' + municipalityData.eventos.map(e => `<li>${e}</li>`).join('') + '</ul>'
+        : '<p class="small text-muted mb-0">No hay eventos registrados</p>';
+    document.getElementById('modal-events').innerHTML = eventsList;
 }
 
-// Get municipality data
-function getMunicipalityData(municipality) {
-    const data = {
-        'Palma': {
-            name: 'Palma',
-            description: 'Capital de Mallorca, rica en patrimonio arquitectónico y cultural. Hogar de la majestuosa Catedral-Basílica de Santa María, la Lonja de Palma y el Palacio Real.',
-            contact: 'Tel: +34 971 225 900\nEmail: ajuntament@palma.es',
-            location: 'Latitud: 39.5696° N\nLongitud: 2.6502° E\nPoblación: ~423,000 habitantes',
-            events: 'Festival de San Sebastián, Feria Medieval'
-        },
-        'Manacor': {
-            name: 'Manacor',
-            description: 'Centro económico del este de Mallorca, conocido por sus industrias artesanales de perlas y muebles. Ubicado en el Pla de Mallorca.',
-            contact: 'Tel: +34 971 553 000\nEmail: info@manacor.es',
-            location: 'Latitud: 39.2094° N\nLongitud: 3.2051° E\nPoblación: ~38,000 habitantes',
-            events: 'Fiesta de San Jaime, Feria del Mueble'
-        },
-        'Inca': {
-            name: 'Inca',
-            description: 'Capital del cuero en Mallorca, famosa por su producción artesanal de marroquinería. Centro industrial importante en Mallorca.',
-            contact: 'Tel: +34 971 505 000\nEmail: info@inca.es',
-            location: 'Latitud: 39.3006° N\nLongitud: 2.9076° E\nPoblación: ~30,000 habitantes',
-            events: 'Dijous Bou (Jueves de Buey), Feria del Calzado'
-        },
-        'Soller': {
-            name: 'Sóller',
-            description: 'Pueblo de montaña con arquitectura singular en la Serra de Tramuntana. Localidad costera con vistas espectaculares al mar Mediterráneo.',
-            contact: 'Tel: +34 971 638 000\nEmail: info@soller.es',
-            location: 'Latitud: 39.7698° N\nLongitud: 2.7293° E\nPoblación: ~13,000 habitantes',
-            events: 'Fiesta de la Vila, Festival de Sóller'
-        },
-        'Alcudia': {
-            name: 'Alcúdia',
-            description: 'Destino turístico con murallas históricas bien conservadas y playas paradisíacas. Ubicado en el norte de Mallorca en la Bahía de Alcúdia.',
-            contact: 'Tel: +34 971 892 000\nEmail: info@alcudia.es',
-            location: 'Latitud: 39.8468° N\nLongitud: 3.1130° E\nPoblación: ~20,000 habitantes',
-            events: 'Fiesta Mayor, Festival de Mar'
-        },
-        'Llucmajor': {
-            name: 'Llucmajor',
-            description: 'Municipio histórico situado en el centro-sur de Mallorca, con tradiciones culturales profundas y patrimonio arquitectónico relevante.',
-            contact: 'Tel: +34 971 660 050\nEmail: oacllucmajor@llucmajor.org',
-            location: 'Latitud: 39.3631° N\nLongitud: 2.8434° E\nPoblación: ~15,000 habitantes',
-            events: 'Feria de Llucmajor, Procesión del Corpus'
-        }
-    };
-    
-    return data[municipality] || {
-        name: municipality,
-        description: 'Información del municipio de ' + municipality,
-        contact: 'Información de contacto disponible',
-        location: 'Ubicación geográfica disponible'
-    };
+/**
+ * Obtener datos del municipio desde appState.municipalities
+ * Busca por nombre en los datos cargados desde JSON
+ */
+function getMunicipalityData(municipalityName) {
+    return appState.municipalities.find(m => m.name === municipalityName);
 }
 
 // Add event listeners to municipality cards for keyboard accessibility
