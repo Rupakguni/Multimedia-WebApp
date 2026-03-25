@@ -21,7 +21,13 @@
       "servicios": ["Turismo", "Cultura", "Patrimonio", "Gastronomía"],
       "eventos": ["Festival de San Sebastián", "Feria Medieval", "Noche de la Música"],
       "clima": "Mediterráneo",
-      "imagenes": []
+      "imagenes": [
+        {
+          "@type": "ImageObject",
+          "url": "/assets/img/Palma.jpg",
+          "caption": "Imagen de Palma de Mallorca"
+        }
+      ]
     },
     {
       "id": 2,
@@ -43,7 +49,13 @@
       "servicios": ["Artesanía", "Cultura", "Comercio", "Industria"],
       "eventos": ["Fiesta de San Jaime", "Feria del Mueble", "Mercado Medieval"],
       "clima": "Mediterráneo",
-      "imagenes": []
+      "imagenes": [
+        {
+          "@type": "ImageObject",
+          "url": "/assets/img/Manacor.jpg",
+          "caption": "Imagen de Manacor"
+        }
+      ]
     },
     {
       "id": 3,
@@ -65,7 +77,13 @@
       "servicios": ["Artesanía de Cuero", "Cultura", "Comercio", "Industria Tradicional"],
       "eventos": ["Dijous Bou (Jueves de Buey)", "Feria del Calzado", "Feria de Inca"],
       "clima": "Mediterráneo",
-      "imagenes": []
+      "imagenes": [
+        {
+          "@type": "ImageObject",
+          "url": "/assets/img/Soller.jpg",
+          "caption": "Imagen de Sóller"
+        }
+      ]
     },
     {
       "id": 4,
@@ -88,7 +106,13 @@
       "servicios": ["Turismo", "Naturaleza", "Gastronomía", "Patrimonio"],
       "eventos": ["Fiesta de la Vila", "Festival de Sóller", "Feria de Flors"],
       "clima": "Mediterráneo Montañoso",
-      "imagenes": []
+      "imagenes": [
+        {
+          "@type": "ImageObject",
+          "url": "/assets/img/Soller.jpg",
+          "caption": "Imagen de Sóller"
+        }
+      ]
     },
     {
       "id": 5,
@@ -111,7 +135,13 @@
       "servicios": ["Turismo", "Playas", "Deportes Acuáticos", "Gastronomía"],
       "eventos": ["Fiesta Mayor", "Festival de Mar", "Mercado Medieval"],
       "clima": "Mediterráneo",
-      "imagenes": []
+      "imagenes": [
+        {
+          "@type": "ImageObject",
+          "url": "/assets/img/Alcudia.jpg",
+          "caption": "Imagen de Alcúdia"
+        }
+      ]
     },
     {
       "id": 6,
@@ -133,7 +163,13 @@
       "servicios": ["Agricultura", "Cultura", "Comercio", "Patrimonio"],
       "eventos": ["Feria de Llucmayor", "Procesión del Corpus", "Feria de Mercancías"],
       "clima": "Mediterráneo",
-      "imagenes": []
+      "imagenes": [
+        {
+          "@type": "ImageObject",
+          "url": "/assets/img/Llucmajor.jpg",
+          "caption": "Imagen de Llucmajor"
+        }
+      ]
     }
   ],
   "metadata": {

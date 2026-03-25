@@ -153,9 +153,12 @@ body {
   outline-offset: 2px;
 }
 
-.card-img-placeholder {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  border-radius: 0.375rem;
+.municipality-card {
+  background-color: white !important;
+}
+
+.card-body {
+  background-color: transparent !important;
 }
 
 .btn-primary:hover, .btn-primary:focus {
@@ -249,21 +252,6 @@ html {
     height: 500px;
     width: 100%;
     margin-bottom: 3rem;
-}
-
-.card-img-placeholder {
-    height: 150px;
-    border-radius: 0.375rem;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-}
-
-#modal-image-placeholder {
-    height: 250px;
-    border-radius: 0.375rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bs-light);
 }
 
 hr {

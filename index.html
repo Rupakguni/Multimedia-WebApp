@@ -146,7 +146,6 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card h-100 municipality-card" data-municipality="Palma" role="button" tabindex="0">
                                     <div class="card-body">
-                                        <div class="card-img-placeholder bg-light mb-3"></div>
                                         <h5 class="card-title">Palma</h5>
                                         <p class="card-text text-muted small">Capital de Mallorca, rica en patrimonio arquitectónico y cultural.</p>
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Palma')">Ver Detalles</button>
@@ -158,7 +157,6 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card h-100 municipality-card" data-municipality="Manacor" role="button" tabindex="0">
                                     <div class="card-body">
-                                        <div class="card-img-placeholder bg-light mb-3"></div>
                                         <h5 class="card-title">Manacor</h5>
                                         <p class="card-text text-muted small">Centro económico del este de Mallorca, conocido por sus industrias artesanales.</p>
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Manacor')">Ver Detalles</button>
@@ -170,7 +168,6 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card h-100 municipality-card" data-municipality="Inca" role="button" tabindex="0">
                                     <div class="card-body">
-                                        <div class="card-img-placeholder bg-light mb-3"></div>
                                         <h5 class="card-title">Inca</h5>
                                         <p class="card-text text-muted small">Capital del cuero, famosa por su producción artesanal y eventos tradicionales.</p>
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Inca')">Ver Detalles</button>
@@ -182,7 +179,6 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card h-100 municipality-card" data-municipality="Soller" role="button" tabindex="0">
                                     <div class="card-body">
-                                        <div class="card-img-placeholder bg-light mb-3"></div>
                                         <h5 class="card-title">Sóller</h5>
                                         <p class="card-text text-muted small">Pueblo de montaña con arquitectura singular y vistas al mar.</p>
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Soller')">Ver Detalles</button>
@@ -194,7 +190,6 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card h-100 municipality-card" data-municipality="Alcudia" role="button" tabindex="0">
                                     <div class="card-body">
-                                        <div class="card-img-placeholder bg-light mb-3"></div>
                                         <h5 class="card-title">Alcúdia</h5>
                                         <p class="card-text text-muted small">Destino turístico con murallas históricas y playas paradisíacas.</p>
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Alcudia')">Ver Detalles</button>
@@ -206,7 +201,6 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="card h-100 municipality-card" data-municipality="Llucmajor" role="button" tabindex="0">
                                     <div class="card-body">
-                                        <div class="card-img-placeholder bg-light mb-3"></div>
                                         <h5 class="card-title">Llucmajor</h5>
                                         <p class="card-text text-muted small">Municipio histórico con tradiciones culturales profundas.</p>
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Llucmajor')">Ver Detalles</button>
@@ -280,8 +274,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar detalles del municipio"></button>
                     </div>
                     <div class="modal-body">
-                        <div id="modal-image-placeholder" class="bg-light mb-3">
-                            <p class="text-muted">Imagen del Municipio</p>
+                        <div class="mb-3">
+                            <img id="modal-img" src="" class="img-fluid rounded shadow-sm" alt="Municipio" style="width: 100%; height: 300px; object-fit: cover;">
                         </div>
                         <h4 id="modal-title"></h4>
                         <p id="modal-description" class="text-muted"></p>

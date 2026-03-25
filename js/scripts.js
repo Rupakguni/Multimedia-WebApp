@@ -162,10 +162,13 @@ function renderizarMunicipios(municipios) {
         card.setAttribute('role', 'button');
         card.setAttribute('tabindex', '0');
 
+        const imageUrl = municipio.imagenes && municipio.imagenes[0] ? municipio.imagenes[0].url : '/assets/img/default.jpg'; 
+
         // Construir el contenido de la tarjeta
         card.innerHTML = `
+            <img src="${imageUrl}" class="card-img-top" alt="Imagen de ${municipio.name}" 
+                    style="height: 200px; object-fit: cover;">
             <div class="card-body">
-                <div class="card-img-placeholder bg-light mb-3"></div>
                 <h5 class="card-title">${municipio.name}</h5>
                 <p class="card-text text-muted small">${municipio.description}</p>
                 <button class="btn btn-primary btn-sm" 
@@ -394,6 +397,12 @@ function loadMunicipalityDetails(municipalityName) {
     if (!municipalityData) {
         console.warn(`Municipio ${municipalityName} no encontrado`);
         return;
+    }
+
+    const modalImg = document.getElementById('modal-img');
+    if (modalImg && municipalityData.imagenes && municipalityData.imagenes[0]) {
+        modalImg.src = municipalityData.imagenes[0].url;
+        modalImg.alt = municipalityData.name;
     }
 
     // Rellenar modal con datos del JSON
