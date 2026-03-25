@@ -132,73 +132,8 @@
 
                     <!-- Municipalities List-->
                     <div class="col-lg-9">
-                        <div class="row gx-4 gx-lg-5">
-                            <!-- Example municipalities cards -->
-                            <div class="col-md-6 col-lg-4 mb-4">
-                                <div class="card h-100 municipality-card" data-municipality="Palma" role="button" tabindex="0">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Palma</h5>
-                                        <p class="card-text text-muted small">Capital de Mallorca, rica en patrimonio arquitectónico y cultural.</p>
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Palma')">Ver Detalles</button>
-                                        <button class="btn btn-outline-primary btn-sm ms-2" onclick="toggleFavorite('Palma')" aria-label="Añadir Palma a favoritos"><i class="bi bi-heart"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4 mb-4">
-                                <div class="card h-100 municipality-card" data-municipality="Manacor" role="button" tabindex="0">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Manacor</h5>
-                                        <p class="card-text text-muted small">Centro económico del este de Mallorca, conocido por sus industrias artesanales.</p>
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Manacor')">Ver Detalles</button>
-                                        <button class="btn btn-outline-primary btn-sm ms-2" onclick="toggleFavorite('Manacor')" aria-label="Añadir Manacor a favoritos"><i class="bi bi-heart"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4 mb-4">
-                                <div class="card h-100 municipality-card" data-municipality="Inca" role="button" tabindex="0">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Inca</h5>
-                                        <p class="card-text text-muted small">Capital del cuero, famosa por su producción artesanal y eventos tradicionales.</p>
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Inca')">Ver Detalles</button>
-                                        <button class="btn btn-outline-primary btn-sm ms-2" onclick="toggleFavorite('Inca')" aria-label="Añadir Inca a favoritos"><i class="bi bi-heart"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4 mb-4">
-                                <div class="card h-100 municipality-card" data-municipality="Soller" role="button" tabindex="0">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Sóller</h5>
-                                        <p class="card-text text-muted small">Pueblo de montaña con arquitectura singular y vistas al mar.</p>
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Soller')">Ver Detalles</button>
-                                        <button class="btn btn-outline-primary btn-sm ms-2" onclick="toggleFavorite('Soller')" aria-label="Añadir Soller a favoritos"><i class="bi bi-heart"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4 mb-4">
-                                <div class="card h-100 municipality-card" data-municipality="Alcudia" role="button" tabindex="0">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alcúdia</h5>
-                                        <p class="card-text text-muted small">Destino turístico con murallas históricas y playas paradisíacas.</p>
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Alcudia')">Ver Detalles</button>
-                                        <button class="btn btn-outline-primary btn-sm ms-2" onclick="toggleFavorite('Alcudia')" aria-label="Añadir Alcudia a favoritos"><i class="bi bi-heart"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-lg-4 mb-4">
-                                <div class="card h-100 municipality-card" data-municipality="Llucmajor" role="button" tabindex="0">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Llucmajor</h5>
-                                        <p class="card-text text-muted small">Municipio histórico con tradiciones culturales profundas.</p>
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#municipalityModal" onclick="loadMunicipalityDetails('Llucmajor')">Ver Detalles</button>
-                                        <button class="btn btn-outline-primary btn-sm ms-2" onclick="toggleFavorite('Llucmajor')" aria-label="Añadir Llucmajor a favoritos"><i class="bi bi-heart"></i></button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="municipalities-container" class="row gx-4 gx-lg-5">
+                            <!-- Las tarjetas se cargarán dinámicamente desde el JSON -->
                         </div>
                     </div>
                 </div>

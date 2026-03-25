@@ -64,8 +64,8 @@ async function initializeApp() {
     // Listener para el buscador
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            filtrarMunicipios(e.target.value.toLowerCase());
+        searchInput.addEventListener('input', () => {
+            filtrarMunicipios();
         });
     }
 
@@ -140,11 +140,10 @@ async function cargarMunicipiosDesdeJSON() {
  * Usa DocumentFragment para una sola inserción en el DOM
  */
 function renderizarMunicipios(municipios) {
-    const container = document.querySelector('[data-municipalities-container]') 
-        || document.querySelector('.col-lg-9 .row');  // Fallback al contenedor de tarjetas
+    const container = document.getElementById('municipalities-container');
     
     if (!container) {
-        console.error('Contenedor de municipios no encontrado');
+        console.error('Contenedor de municipios no encontrado (ID: municipalities-container)');
         return;
     }
 
@@ -164,7 +163,7 @@ function renderizarMunicipios(municipios) {
         card.setAttribute('role', 'button');
         card.setAttribute('tabindex', '0');
 
-        const imageUrl = municipio.imagenes && municipio.imagenes[0] ? municipio.imagenes[0].url : '/assets/img/default.jpg'; 
+        const imageUrl = municipio.imagenes && municipio.imagenes[0] ? municipio.imagenes[0].url : './assets/img/default.jpg'; 
 
         // Construir el contenido de la tarjeta
         card.innerHTML = `
@@ -202,8 +201,7 @@ function renderizarMunicipios(municipios) {
  * Estados de UI - Loading
  */
 function mostrarLoadingState() {
-    const container = document.querySelector('[data-municipalities-container]') 
-        || document.querySelector('.col-lg-9 .row');
+    const container = document.getElementById('municipalities-container');
     
     if (!container) return;
 
@@ -221,8 +219,7 @@ function mostrarLoadingState() {
  * Estados de UI - Error
  */
 function mostrarErrorState(error) {
-    const container = document.querySelector('[data-municipalities-container]') 
-        || document.querySelector('.col-lg-9 .row');
+    const container = document.getElementById('municipalities-container');
     
     if (!container) return;
 
@@ -247,9 +244,7 @@ function mostrarErrorState(error) {
  * Estados de UI - Empty
  */
 function mostrarEmptyState() {
-    const container = document.querySelector('[data-municipalities-container]') 
-        || document.querySelector('.col-lg-9 .row');
-    
+    const container = document.getElementById('municipalities-container');
     if (!container) return;
 
     container.innerHTML = `

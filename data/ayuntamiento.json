@@ -24,7 +24,7 @@
       "imagenes": [
         {
           "@type": "ImageObject",
-          "url": "/assets/img/Palma.jpg",
+          "url": "./assets/img/Palma.jpg",
           "caption": "Imagen de Palma de Mallorca"
         }
       ]
@@ -52,7 +52,7 @@
       "imagenes": [
         {
           "@type": "ImageObject",
-          "url": "/assets/img/Manacor.jpg",
+          "url": "./assets/img/Manacor.jpg",
           "caption": "Imagen de Manacor"
         }
       ]
@@ -80,8 +80,8 @@
       "imagenes": [
         {
           "@type": "ImageObject",
-          "url": "/assets/img/Soller.jpg",
-          "caption": "Imagen de Sóller"
+          "url": "./assets/img/Inca.jpg",
+          "caption": "Imagen de Inca"
         }
       ]
     },
@@ -109,7 +109,7 @@
       "imagenes": [
         {
           "@type": "ImageObject",
-          "url": "/assets/img/Soller.jpg",
+          "url": "./assets/img/Soller.jpg",
           "caption": "Imagen de Sóller"
         }
       ]
@@ -138,7 +138,7 @@
       "imagenes": [
         {
           "@type": "ImageObject",
-          "url": "/assets/img/Alcudia.jpg",
+          "url": "./assets/img/Alcudia.jpg",
           "caption": "Imagen de Alcúdia"
         }
       ]
@@ -166,7 +166,7 @@
       "imagenes": [
         {
           "@type": "ImageObject",
-          "url": "/assets/img/Llucmajor.jpg",
+          "url": "./assets/img/Llucmajor.jpg",
           "caption": "Imagen de Llucmajor"
         }
       ]
