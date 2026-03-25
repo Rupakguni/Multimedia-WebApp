@@ -11185,3 +11185,20 @@ header.masthead h1, header.masthead .h1 {
     margin-top: 1rem;
     border-radius: 0.5rem;
 }
+
+/* ===== ESTILOS DE SEGURIDAD PARA ELIMINAR CUADRADOS GRISES ===== */
+/* Anula completamente los placeholders fantasma */
+.card-img-placeholder, 
+#modal-image-placeholder {
+    display: none !important;
+    height: 0 !important;
+    visibility: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Asegura que las tarjetas tengan fondo blanco limpio */
+.municipality-card {
+    background-color: #fff !important;
+    overflow: hidden;
+}

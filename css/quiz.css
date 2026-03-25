@@ -1,0 +1,133 @@
+/*!
+* Estilos para el Quiz de Ayuntamientos
+*/
+
+/* Contenedor del quiz */
+#quiz-section {
+    padding: 60px 0;
+}
+
+/* Botón de opción */
+.option-btn {
+    border: 2px solid var(--bs-primary);
+    color: #212529;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+}
+
+.option-btn:hover:not(:disabled) {
+    background-color: var(--bs-primary);
+    color: white;
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(212, 178, 125, 0.3);
+}
+
+.option-btn:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+/* Resultado correcto */
+.option-btn.btn-success {
+    background-color: #198754;
+    border-color: #198754;
+    color: white;
+}
+
+/* Resultado incorrecto */
+.option-btn.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+/* Barra de progreso */
+#progress-bar {
+    background-color: var(--bs-primary);
+    transition: width 0.5s ease;
+}
+
+/* Pantalla de inicio del quiz */
+#quiz-start {
+    padding: 40px 0;
+}
+
+#quiz-start .lead {
+    font-size: 1.25rem;
+    color: #6c757d;
+}
+
+/* Contenedor de preguntas */
+#quiz-content {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Contenedor de resultados */
+#quiz-result {
+    animation: fadeIn 0.5s ease-in;
+}
+
+#quiz-result .display-4 {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+#result-message {
+    color: #6c757d;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+/* Animación de fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Texto de preguntas */
+#question-text {
+    color: #212529;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Número de pregunta */
+#question-number {
+    color: var(--bs-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Estilo de tarjeta de resultados */
+#quiz-result .card {
+    border-top: 4px solid var(--bs-primary);
+}
+
+#quiz-result .card-body {
+    text-align: center;
+}
+
+/* Responsive para dispositivos móviles */
+@media (max-width: 768px) {
+    .option-btn {
+        font-size: 0.95rem;
+        padding: 0.75rem 1.25rem !important;
+    }
+    
+    #quiz-result .display-4 {
+        font-size: 3rem;
+    }
+    
+    #question-text {
+        font-size: 1.1rem;
+    }
+}

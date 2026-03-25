@@ -122,6 +122,9 @@ async function cargarMunicipiosDesdeJSON() {
         // Rehidratar favoritos en las tarjetas nuevas
         rehidratarFavoritos();
 
+        // Disparar evento para que el quiz pueda generar preguntas
+        window.dispatchEvent(new Event('quizReady'));
+
     } catch (error) {
         // Gestión de errores
         appState.status = 'error';
@@ -343,11 +346,18 @@ function toggleFavorite(municipalityName) {
     updateFavoritesDisplay();
 }
 
-// Toggle favorite from modal
+// Toggle favorite from modal — usa data-attribute del modal, no textContent.split()
 function toggleFavoriteFromModal() {
-    const title = document.querySelector('#modal-title').textContent.split(' ')[0];
-    toggleFavorite(title);
-    alert('Municipio añadido/eliminado de favoritos');
+    const modal = document.getElementById('municipalityModal');
+    const municipalityName = modal.dataset.currentMunicipality;
+    if (!municipalityName) return;
+    toggleFavorite(municipalityName);
+
+    // Feedback en UI (sin alert bloqueante)
+    const btn = document.getElementById('modal-favorite-btn');
+    const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
+    const esFavorito = favorites.includes(municipalityName);
+    btn.textContent = esFavorito ? '❤️ En Favoritos' : 'Añadir a Favoritos';
 }
 
 // Update favorites display section
@@ -400,6 +410,15 @@ function loadMunicipalityDetails(municipalityName) {
         console.warn(`Municipio ${municipalityName} no encontrado`);
         return;
     }
+
+    // Guardar el nombre en el modal para que toggleFavoriteFromModal lo use
+    const modal = document.getElementById('municipalityModal');
+    modal.dataset.currentMunicipality = municipalityName;
+
+    // Actualizar texto del botón favorito según estado actual
+    const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
+    const btnFav = document.getElementById('modal-favorite-btn');
+    btnFav.textContent = favorites.includes(municipalityName) ? '❤️ En Favoritos' : 'Añadir a Favoritos';
 
     const modalImg = document.getElementById('modal-img');
     if (modalImg && municipalityData.imagenes && municipalityData.imagenes[0]) {
@@ -500,3 +519,69 @@ function generarFiltrosDinamicos() {
         div.querySelector('input').addEventListener('change', filtrarMunicipios);
     });
 }
+
+/**
+ * FORMS API — Validación del formulario de contacto
+ * Usa Constraint Validation API: checkValidity, reportValidity, setCustomValidity
+ * novalidate en el HTML desactiva la UI nativa y la controlamos aquí
+ */
+(function inicializarFormularioContacto() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    const nameEl    = document.getElementById('name');
+    const emailEl   = document.getElementById('email');
+    const messageEl = document.getElementById('message');
+    const feedback  = document.getElementById('form-feedback');
+
+    // Feedback inmediato mientras escribe (input event)
+    [nameEl, emailEl, messageEl].forEach(el => {
+        el.addEventListener('input', () => {
+            // Limpiamos custom validity para que el navegador re-evalúe
+            el.setCustomValidity('');
+            if (el.validity.valid) {
+                el.classList.remove('is-invalid');
+                el.classList.add('is-valid');
+            } else {
+                el.classList.remove('is-valid');
+                el.classList.add('is-invalid');
+            }
+        });
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Validación extra: nombre no puede ser solo espacios
+        if (nameEl.value.trim().length < 2) {
+            nameEl.setCustomValidity('El nombre debe tener al menos 2 caracteres reales.');
+        } else {
+            nameEl.setCustomValidity('');
+        }
+
+        // reportValidity() muestra los mensajes .invalid-feedback y devuelve true/false
+        const esValido = form.reportValidity();
+
+        if (!esValido) {
+            feedback.textContent = '❌ Por favor, completa todos los campos correctamente.';
+            feedback.className = 'alert alert-danger';
+            feedback.removeAttribute('hidden');
+            feedback.classList.remove('d-none');
+            return;
+        }
+
+        // Formulario válido — mostrar confirmación en UI
+        feedback.textContent = `✅ Mensaje enviado correctamente. Gracias, ${nameEl.value.trim()}.`;
+        feedback.className = 'alert alert-success';
+        feedback.removeAttribute('hidden');
+        feedback.classList.remove('d-none');
+
+        form.reset();
+        [nameEl, emailEl, messageEl].forEach(el => el.classList.remove('is-valid', 'is-invalid'));
+
+        // Ocultar feedback tras 5 segundos
+        setTimeout(() => {
+            feedback.classList.add('d-none');
+        }, 5000);
+    });
+})();
