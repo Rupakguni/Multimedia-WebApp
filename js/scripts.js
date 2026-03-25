@@ -114,6 +114,8 @@ async function cargarMunicipiosDesdeJSON() {
         appState.status = 'success';
         appState.error = null;
 
+        generarFiltrosDinamicos();
+
         // Renderizar tarjetas dinámicamente
         renderizarMunicipios(appState.municipalities);
 
@@ -280,30 +282,35 @@ function rehidratarFavoritos() {
 }
 
 /**
- * Filtrar municipios por nombre
+ * Filtrar municipios combinando el buscador de texto y los checkboxes de servicios
  */
-function filtrarMunicipios(termino) {
-    const cards = document.querySelectorAll('.municipality-card');
+function filtrarMunicipios() {
+    const termino = document.getElementById('search-input').value.toLowerCase();
     const feedback = document.getElementById('search-feedback');
-    let encontrados = 0;
+    
+    // Obtener valores de todos los checkboxes marcados
+    const checkboxes = document.querySelectorAll('.service-filter-check:checked');
+    const filtrosActivos = Array.from(checkboxes).map(cb => cb.value);
 
-    cards.forEach(card => {
-        const nombre = card.getAttribute('data-municipality').toLowerCase();
-        if (nombre.includes(termino)) {
-            card.closest('.col-md-6').style.display = 'block';
-            encontrados++;
-        } else {
-            card.closest('.col-md-6').style.display = 'none';
-        }
+    const municipiosFiltrados = appState.municipalities.filter(municipio => {
+        const coincideNombre = municipio.name.toLowerCase().includes(termino);
+        
+        // El municipio debe tener TODOS los servicios seleccionados en los filtros
+        const tieneServicios = filtrosActivos.every(f => 
+            municipio.servicios && municipio.servicios.includes(f)
+        );
+
+        return coincideNombre && tieneServicios;
     });
 
-    // Gestión del mensaje de error explicativo 
-    if (encontrados === 0 && termino) {
+    renderizarMunicipios(municipiosFiltrados);
+
+    // 5. Mostrar mensaje si no hay resultados
+    if (municipiosFiltrados.length === 0 && (termino || filtrosActivos.length > 0)) {
         feedback.innerHTML = `
             <div class="alert alert-warning small py-2">
                 <i class="bi bi-exclamation-triangle"></i> 
-                No hay resultados para "<strong>${termino}</strong>". <br>
-                <span class="mt-2 d-block">Sugerencia: Intenta buscar municipios como <strong>Palma, Inca o Manacor</strong>.</span>
+                No hay municipios que coincidan con estos filtros.
             </div>`;
         feedback.classList.remove('d-none');
     } else {
@@ -461,5 +468,40 @@ function addMunicipalityCardListeners() {
                 if (btn) btn.click();
             }
         });
+    });
+}
+
+function generarFiltrosDinamicos() {
+    const container = document.getElementById('dynamic-service-filters');
+    if (!container) return;
+
+    // 1. Extraer todos los servicios únicos de todos los municipios
+    const todosLosServicios = [];
+    appState.municipalities.forEach(m => {
+        if (m.servicios) {
+            m.servicios.forEach(s => {
+                if (!todosLosServicios.includes(s)) todosLosServicios.push(s);
+            });
+        }
+    });
+
+    // Ordenar alfabéticamente
+    todosLosServicios.sort();
+
+    // 2. Crear el HTML de los checkboxes
+    container.innerHTML = ''; // Limpiar mensaje de carga
+    todosLosServicios.forEach((servicio, index) => {
+        const div = document.createElement('div');
+        div.className = 'form-check mb-2';
+        div.innerHTML = `
+            <input class="form-check-input service-filter-check" type="checkbox" value="${servicio}" id="service-${index}">
+            <label class="form-check-label small" for="service-${index}">
+                ${servicio}
+            </label>
+        `;
+        container.appendChild(div);
+        
+        // 3. Añadir el listener a cada nuevo checkbox
+        div.querySelector('input').addEventListener('change', filtrarMunicipios);
     });
 }
