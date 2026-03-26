@@ -64,8 +64,8 @@ async function initializeApp() {
     // Listener para el buscador
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            filtrarMunicipios(e.target.value.toLowerCase());
+        searchInput.addEventListener('input', () => {
+            filtrarMunicipios();
         });
     }
 
@@ -122,6 +122,9 @@ async function cargarMunicipiosDesdeJSON() {
         // Rehidratar favoritos en las tarjetas nuevas
         rehidratarFavoritos();
 
+        // Disparar evento para que el quiz pueda generar preguntas
+        window.dispatchEvent(new Event('quizReady'));
+
     } catch (error) {
         // Gestión de errores
         appState.status = 'error';
@@ -140,11 +143,10 @@ async function cargarMunicipiosDesdeJSON() {
  * Usa DocumentFragment para una sola inserción en el DOM
  */
 function renderizarMunicipios(municipios) {
-    const container = document.querySelector('[data-municipalities-container]') 
-        || document.querySelector('.col-lg-9 .row');  // Fallback al contenedor de tarjetas
+    const container = document.getElementById('municipalities-container');
     
     if (!container) {
-        console.error('Contenedor de municipios no encontrado');
+        console.error('Contenedor de municipios no encontrado (ID: municipalities-container)');
         return;
     }
 
@@ -164,10 +166,13 @@ function renderizarMunicipios(municipios) {
         card.setAttribute('role', 'button');
         card.setAttribute('tabindex', '0');
 
+        const imageUrl = municipio.imagenes && municipio.imagenes[0] ? municipio.imagenes[0].url : './assets/img/default.jpg'; 
+
         // Construir el contenido de la tarjeta
         card.innerHTML = `
+            <img src="${imageUrl}" class="card-img-top" alt="Imagen de ${municipio.name}" 
+                    style="height: 200px; object-fit: cover;">
             <div class="card-body">
-                <div class="card-img-placeholder bg-light mb-3"></div>
                 <h5 class="card-title">${municipio.name}</h5>
                 <p class="card-text text-muted small">${municipio.description}</p>
                 <button class="btn btn-primary btn-sm" 
@@ -199,8 +204,7 @@ function renderizarMunicipios(municipios) {
  * Estados de UI - Loading
  */
 function mostrarLoadingState() {
-    const container = document.querySelector('[data-municipalities-container]') 
-        || document.querySelector('.col-lg-9 .row');
+    const container = document.getElementById('municipalities-container');
     
     if (!container) return;
 
@@ -218,8 +222,7 @@ function mostrarLoadingState() {
  * Estados de UI - Error
  */
 function mostrarErrorState(error) {
-    const container = document.querySelector('[data-municipalities-container]') 
-        || document.querySelector('.col-lg-9 .row');
+    const container = document.getElementById('municipalities-container');
     
     if (!container) return;
 
@@ -244,9 +247,7 @@ function mostrarErrorState(error) {
  * Estados de UI - Empty
  */
 function mostrarEmptyState() {
-    const container = document.querySelector('[data-municipalities-container]') 
-        || document.querySelector('.col-lg-9 .row');
-    
+    const container = document.getElementById('municipalities-container');
     if (!container) return;
 
     container.innerHTML = `
@@ -345,11 +346,18 @@ function toggleFavorite(municipalityName) {
     updateFavoritesDisplay();
 }
 
-// Toggle favorite from modal
+// Toggle favorite from modal — usa data-attribute del modal, no textContent.split()
 function toggleFavoriteFromModal() {
-    const title = document.querySelector('#modal-title').textContent.split(' ')[0];
-    toggleFavorite(title);
-    alert('Municipio añadido/eliminado de favoritos');
+    const modal = document.getElementById('municipalityModal');
+    const municipalityName = modal.dataset.currentMunicipality;
+    if (!municipalityName) return;
+    toggleFavorite(municipalityName);
+
+    // Feedback en UI (sin alert bloqueante)
+    const btn = document.getElementById('modal-favorite-btn');
+    const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
+    const esFavorito = favorites.includes(municipalityName);
+    btn.textContent = esFavorito ? '❤️ En Favoritos' : 'Añadir a Favoritos';
 }
 
 // Update favorites display section
@@ -401,6 +409,21 @@ function loadMunicipalityDetails(municipalityName) {
     if (!municipalityData) {
         console.warn(`Municipio ${municipalityName} no encontrado`);
         return;
+    }
+
+    // Guardar el nombre en el modal para que toggleFavoriteFromModal lo use
+    const modal = document.getElementById('municipalityModal');
+    modal.dataset.currentMunicipality = municipalityName;
+
+    // Actualizar texto del botón favorito según estado actual
+    const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
+    const btnFav = document.getElementById('modal-favorite-btn');
+    btnFav.textContent = favorites.includes(municipalityName) ? '❤️ En Favoritos' : 'Añadir a Favoritos';
+
+    const modalImg = document.getElementById('modal-img');
+    if (modalImg && municipalityData.imagenes && municipalityData.imagenes[0]) {
+        modalImg.src = municipalityData.imagenes[0].url;
+        modalImg.alt = municipalityData.name;
     }
 
     // Rellenar modal con datos del JSON
@@ -496,3 +519,69 @@ function generarFiltrosDinamicos() {
         div.querySelector('input').addEventListener('change', filtrarMunicipios);
     });
 }
+
+/**
+ * FORMS API — Validación del formulario de contacto
+ * Usa Constraint Validation API: checkValidity, reportValidity, setCustomValidity
+ * novalidate en el HTML desactiva la UI nativa y la controlamos aquí
+ */
+(function inicializarFormularioContacto() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    const nameEl    = document.getElementById('name');
+    const emailEl   = document.getElementById('email');
+    const messageEl = document.getElementById('message');
+    const feedback  = document.getElementById('form-feedback');
+
+    // Feedback inmediato mientras escribe (input event)
+    [nameEl, emailEl, messageEl].forEach(el => {
+        el.addEventListener('input', () => {
+            // Limpiamos custom validity para que el navegador re-evalúe
+            el.setCustomValidity('');
+            if (el.validity.valid) {
+                el.classList.remove('is-invalid');
+                el.classList.add('is-valid');
+            } else {
+                el.classList.remove('is-valid');
+                el.classList.add('is-invalid');
+            }
+        });
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Validación extra: nombre no puede ser solo espacios
+        if (nameEl.value.trim().length < 2) {
+            nameEl.setCustomValidity('El nombre debe tener al menos 2 caracteres reales.');
+        } else {
+            nameEl.setCustomValidity('');
+        }
+
+        // reportValidity() muestra los mensajes .invalid-feedback y devuelve true/false
+        const esValido = form.reportValidity();
+
+        if (!esValido) {
+            feedback.textContent = '❌ Por favor, completa todos los campos correctamente.';
+            feedback.className = 'alert alert-danger';
+            feedback.removeAttribute('hidden');
+            feedback.classList.remove('d-none');
+            return;
+        }
+
+        // Formulario válido — mostrar confirmación en UI
+        feedback.textContent = `✅ Mensaje enviado correctamente. Gracias, ${nameEl.value.trim()}.`;
+        feedback.className = 'alert alert-success';
+        feedback.removeAttribute('hidden');
+        feedback.classList.remove('d-none');
+
+        form.reset();
+        [nameEl, emailEl, messageEl].forEach(el => el.classList.remove('is-valid', 'is-invalid'));
+
+        // Ocultar feedback tras 5 segundos
+        setTimeout(() => {
+            feedback.classList.add('d-none');
+        }, 5000);
+    });
+})();
