@@ -11202,3 +11202,41 @@ header.masthead h1, header.masthead .h1 {
     background-color: #fff !important;
     overflow: hidden;
 }
+
+/* Estilo para el botón de login en la navbar */
+#login-btn {
+    border-width: 2px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Cuando la navbar se encoge (navbar-shrink) el botón cambia a color Marés */
+.navbar-shrink #login-btn {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.navbar-shrink #login-btn:hover {
+    background-color: var(--bs-primary);
+    color: white;
+}
+
+/* Estilo base para el icono de login */
+.login-icon-link {
+    transition: all 0.3s ease;
+    opacity: 0.9;
+    text-decoration: none !important;
+}
+
+.login-icon-link:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Pequeño efecto de zoom al pasar el ratón */
+}
+
+.navbar-shrink .login-icon-link {
+    color: var(--bs-primary) !important;
+}
+
+.navbar-shrink .login-icon-link:hover {
+    color: var(--bs-primary-dark) !important;
+}
