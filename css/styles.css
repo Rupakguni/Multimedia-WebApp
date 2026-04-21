@@ -11240,3 +11240,27 @@ header.masthead h1, header.masthead .h1 {
 .navbar-shrink .login-icon-link:hover {
     color: var(--bs-primary-dark) !important;
 }
+
+/* Estilo para la sección Sobre Nosotros */
+#sobre-nosotros .card {
+    transition: transform 0.3s ease;
+}
+
+#sobre-nosotros .card:hover {
+    transform: translateY(-10px); /* Efecto de elevación */
+}
+
+#sobre-nosotros .bi-linkedin:hover {
+    color: #0077b5 !important;
+}
+
+#sobre-nosotros .bi-instagram:hover {
+    color: #e4405f !important;
+}
+
+/* Asegurar que el avatar sea circular y tenga un borde sutil */
+#sobre-nosotros img {
+    border: 4px solid var(--bs-primary);
+    padding: 5px;
+    background-color: white;
+}
