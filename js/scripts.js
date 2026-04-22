@@ -425,7 +425,7 @@ function loadMunicipalityDetails(municipalityName) {
     }
     
     /**
-     * NUEVA LÓGICA DE EVENTOS SEPARADOS
+     * LÓGICA DE EVENTOS SEPARADOS
      * Filtramos los eventos del appState.events usando el ID del municipio
      */
     const eventosRelacionados = appState.events.filter(e => e.municipalityId === municipalityData.id);
@@ -437,6 +437,8 @@ function loadMunicipalityDetails(municipalityName) {
         : '<p class="small text-muted mb-0">No hay eventos registrados para este municipio</p>';
     
     document.getElementById('modal-events').innerHTML = eventsList;
+
+    updateWeather(municipalityData.latitude, municipalityData.longitude); // Actualizar clima cada vez que se abre el modal con un municipio diferente
 }
 
 /**
@@ -495,6 +497,39 @@ function generarFiltrosDinamicos() {
         // 3. Añadir el listener a cada nuevo checkbox
         div.querySelector('input').addEventListener('change', filtrarMunicipios);
     });
+}
+
+const WEATHER_API_KEY = '9cdd88eda0cd75d0cc6e2c84f9de2c29';
+
+async function updateWeather(lat, lon) {
+    const weatherContainer = document.getElementById('modal-weather');
+    
+    try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric&lang=es`);
+        
+        if (!response.ok) throw new Error('Error al conectar con el servicio meteorológico');
+        
+        const data = await response.json();
+        
+        // Icono oficial de OpenWeather
+        const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+        
+        weatherContainer.innerHTML = `
+            <img src="${iconUrl}" alt="${data.weather[0].description}" style="width: 50px;">
+            <div class="ms-2">
+                <span class="fw-bold fs-5">${Math.round(data.main.temp)}°C</span> - 
+                <span class="text-capitalize">${data.weather[0].description}</span><br>
+                <small>Humedad: ${data.main.humidity}% | Viento: ${data.wind.speed} m/s</small>
+            </div>
+        `;
+        weatherContainer.className = "alert alert-warning d-flex align-items-center shadow-sm";
+
+    } catch (error) {
+        console.error("Weather Error:", error);
+        // En lugar de un error crítico, ponemos un mensaje de "próximamente" o lo ocultamos
+        weatherContainer.innerHTML = `<i class="bi bi-info-circle me-2"></i> El servicio meteorológico estará disponible en unos minutos.`;
+        weatherContainer.className = "alert alert-light border d-flex align-items-center small";
+    }
 }
 
 /**
