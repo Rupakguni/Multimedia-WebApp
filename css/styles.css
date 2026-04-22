@@ -11284,3 +11284,21 @@ header.masthead h1, header.masthead .h1 {
 .carousel-fade .carousel-item {
     transition-duration: 0.8s;
 }
+
+/* Eliminar espacios sobrantes en la sección del mapa */
+#mapa .divider {
+    margin-bottom: 2rem; /* Ajusta la distancia entre el título y el mapa */
+}
+
+#map-container {
+    height: 500px; /* Altura que definimos */
+    width: 100%;
+    margin-bottom: 0; /* Asegura que no haya margen inferior */
+    border-bottom: 1px solid rgba(0,0,0,0.1); /* Opcional: una línea fina para separar */
+}
+
+/* Eliminar el margen superior del título de la siguiente sección */
+#ayuntamientos {
+    margin-top: 0;
+    padding-top: 5rem; /* Ajusta según el diseño general */
+}

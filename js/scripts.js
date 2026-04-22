@@ -5,6 +5,8 @@
 * AJAX/Fetch con JSON, gestión de estados y render dinámico
 */
 
+let map; // Variable global para el mapa
+
 // Estado global de la aplicación
 const appState = {
     municipalities: [],
@@ -96,6 +98,9 @@ async function cargarDatosIniciales() {
 
         renderizarMunicipios(appState.municipalities);
         generarFiltrosDinamicos();
+        rehidratarFavoritos()
+
+        inicializarMapa();
     } catch (error) {
         console.error("Error cargando bases de datos:", error);
         appState.status = 'error';
@@ -530,6 +535,41 @@ async function updateWeather(lat, lon) {
         weatherContainer.innerHTML = `<i class="bi bi-info-circle me-2"></i> El servicio meteorológico estará disponible en unos minutos.`;
         weatherContainer.className = "alert alert-light border d-flex align-items-center small";
     }
+}
+
+function inicializarMapa() {
+    // 1. Crear el mapa centrado en Mallorca
+    map = L.map('map').setView([39.6, 2.9], 9);
+
+    // 2. Añadir la capa de diseño (OpenStreetMap)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // 3. Dibujar los marcadores de los municipios que ya tenemos en appState
+    dibujarMarcadores();
+}
+
+function dibujarMarcadores() {
+    if (!map || appState.municipalities.length === 0) return;
+
+    appState.municipalities.forEach(muni => {
+        // Crear el marcador
+        const marker = L.marker([muni.latitude, muni.longitude]).addTo(map);
+        
+        // Añadir popup con botón para abrir el modal
+        marker.bindPopup(`
+            <div class="text-center">
+                <h6 class="mb-1">${muni.name}</h6>
+                <button class="btn btn-primary btn-sm mt-1" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#municipalityModal" 
+                        onclick="loadMunicipalityDetails('${muni.name}')">
+                    Ver Detalles
+                </button>
+            </div>
+        `);
+    });
 }
 
 /**

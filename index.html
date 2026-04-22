@@ -148,14 +148,12 @@
         <main id="main-content" tabindex="-1">
 
         <!-- Mapa Interactivo-->
-        <section class="page-section" id="mapa">
+        <section class="page-section py-0" id="mapa">
             <div class="container-fluid px-0">
                 <h2 class="text-center mt-5 mb-0">Mapa Interactivo de Mallorca</h2>
                 <hr class="divider mx-auto" />
-                <div id="map-container">
-                    <div id="map-placeholder" class="d-flex align-items-center justify-content-center h-100 bg-light">
-                        <p class="text-muted">Mapa interactivo - Leaflet Map Integration</p>
-                    </div>
+                <div id="map-container" style="height: 500px; width: 100%; position: relative;">
+                    <div id="map" class="h-100 w-100"></div>
                 </div>
             </div>
         </section>
