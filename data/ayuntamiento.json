@@ -12,22 +12,10 @@
       "website": "https://www.palmademallorca.es",
       "phone": "+34 971 225 900",
       "email": "ajuntament@palma.es",
-      "patrimonio": [
-        "Catedral-Basílica de Santa María",
-        "La Lonja de Palma",
-        "Palacio Real de La Almudaina",
-        "Castillo de Bellver"
-      ],
+      "patrimonio": ["Catedral-Basílica de Santa María", "La Lonja de Palma", "Palacio Real de La Almudaina", "Castillo de Bellver"],
       "servicios": ["Turismo", "Cultura", "Patrimonio", "Gastronomía"],
-      "eventos": ["Festival de San Sebastián", "Feria Medieval", "Noche de la Música"],
       "clima": "Mediterráneo",
-      "imagenes": [
-        {
-          "@type": "ImageObject",
-          "url": "./assets/img/Palma.jpg",
-          "caption": "Imagen de Palma de Mallorca"
-        }
-      ]
+      "imagenes": [{"url": "./assets/img/Palma.jpg", "caption": "Imagen de Palma"}]
     },
     {
       "id": 2,
@@ -41,21 +29,10 @@
       "website": "https://www.manacor.es",
       "phone": "+34 971 553 000",
       "email": "info@manacor.es",
-      "patrimonio": [
-        "Iglesia de los Dominicos",
-        "Convento de San Vicente Ferrer",
-        "Casa de Cultura"
-      ],
+      "patrimonio": ["Iglesia de los Dominicos", "Convento de San Vicente Ferrer", "Casa de Cultura"],
       "servicios": ["Artesanía", "Cultura", "Comercio", "Industria"],
-      "eventos": ["Fiesta de San Jaime", "Feria del Mueble", "Mercado Medieval"],
       "clima": "Mediterráneo",
-      "imagenes": [
-        {
-          "@type": "ImageObject",
-          "url": "./assets/img/Manacor.jpg",
-          "caption": "Imagen de Manacor"
-        }
-      ]
+      "imagenes": [{"url": "./assets/img/Manacor.jpg", "caption": "Imagen de Manacor"}]
     },
     {
       "id": 3,
@@ -69,21 +46,10 @@
       "website": "https://www.inca.es",
       "phone": "+34 971 505 000",
       "email": "info@inca.es",
-      "patrimonio": [
-        "Iglesia de Santa María la Mayor",
-        "Convento de San Domingo",
-        "Plaza Mayor"
-      ],
+      "patrimonio": ["Iglesia de Santa María la Mayor", "Convento de San Domingo", "Plaza Mayor"],
       "servicios": ["Artesanía de Cuero", "Cultura", "Comercio", "Industria Tradicional"],
-      "eventos": ["Dijous Bou (Jueves de Buey)", "Feria del Calzado", "Feria de Inca"],
       "clima": "Mediterráneo",
-      "imagenes": [
-        {
-          "@type": "ImageObject",
-          "url": "./assets/img/Inca.jpg",
-          "caption": "Imagen de Inca"
-        }
-      ]
+      "imagenes": [{"url": "./assets/img/Inca.jpg", "caption": "Imagen de Inca"}]
     },
     {
       "id": 4,
@@ -97,22 +63,10 @@
       "website": "https://www.soller.es",
       "phone": "+34 971 638 000",
       "email": "info@soller.es",
-      "patrimonio": [
-        "Iglesia Parroquial de Santa María",
-        "Jardines de Alfabia",
-        "Port de Sóller",
-        "Sierra de Tramuntana"
-      ],
+      "patrimonio": ["Iglesia Parroquial de Santa María", "Jardines de Alfabia", "Port de Sóller", "Sierra de Tramuntana"],
       "servicios": ["Turismo", "Naturaleza", "Gastronomía", "Patrimonio"],
-      "eventos": ["Fiesta de la Vila", "Festival de Sóller", "Feria de Flors"],
       "clima": "Mediterráneo Montañoso",
-      "imagenes": [
-        {
-          "@type": "ImageObject",
-          "url": "./assets/img/Soller.jpg",
-          "caption": "Imagen de Sóller"
-        }
-      ]
+      "imagenes": [{"url": "./assets/img/Soller.jpg", "caption": "Imagen de Sóller"}]
     },
     {
       "id": 5,
@@ -126,22 +80,10 @@
       "website": "https://www.alcudia.es",
       "phone": "+34 971 892 000",
       "email": "info@alcudia.es",
-      "patrimonio": [
-        "Murallas Medievales",
-        "Iglesia de Sant Jaume",
-        "Puerto de Alcúdia",
-        "Bahía de Alcúdia"
-      ],
+      "patrimonio": ["Murallas Medievales", "Iglesia de Sant Jaume", "Puerto de Alcúdia", "Bahía de Alcúdia"],
       "servicios": ["Turismo", "Playas", "Deportes Acuáticos", "Gastronomía"],
-      "eventos": ["Fiesta Mayor", "Festival de Mar", "Mercado Medieval"],
       "clima": "Mediterráneo",
-      "imagenes": [
-        {
-          "@type": "ImageObject",
-          "url": "./assets/img/Alcudia.jpg",
-          "caption": "Imagen de Alcúdia"
-        }
-      ]
+      "imagenes": [{"url": "./assets/img/Alcudia.jpg", "caption": "Imagen de Alcúdia"}]
     },
     {
       "id": 6,
@@ -155,21 +97,10 @@
       "website": "https://www.llucmajor.org",
       "phone": "+34 971 660 050",
       "email": "oacllucmajor@llucmajor.org",
-      "patrimonio": [
-        "Iglesia de San Miguel",
-        "Convento de San Domingo",
-        "Plaza del Pueblo"
-      ],
+      "patrimonio": ["Iglesia de San Miguel", "Convento de San Domingo", "Plaza del Pueblo"],
       "servicios": ["Agricultura", "Cultura", "Comercio", "Patrimonio"],
-      "eventos": ["Feria de Llucmayor", "Procesión del Corpus", "Feria de Mercancías"],
       "clima": "Mediterráneo",
-      "imagenes": [
-        {
-          "@type": "ImageObject",
-          "url": "./assets/img/Llucmajor.jpg",
-          "caption": "Imagen de Llucmajor"
-        }
-      ]
+      "imagenes": [{"url": "./assets/img/Llucmajor.jpg", "caption": "Imagen de Llucmajor"}]
     }
   ],
   "metadata": {

@@ -8,9 +8,8 @@
 // Estado global de la aplicación
 const appState = {
     municipalities: [],
-    loading: false,
-    error: null,
-    status: 'idle' // idle | loading | success | error
+    events: [], // Nuevo: Almacén para los eventos del JSON externo
+    status: 'idle'
 };
 
 // Initialize when DOM is loaded
@@ -71,70 +70,35 @@ async function initializeApp() {
 
     // CAMBIO IMPORTANTE: Cargar datos dinámicamente desde JSON
     // Los favoritos se rehidratarán después de que carguen los datos
-    await cargarMunicipiosDesdeJSON();
+    await cargarDatosIniciales();
 }
 
-/**
- * AJAX/FETCH: Cargar municípios desde el archivo JSON
- * Implementa async/await, try/catch y gestión de estados
- */
-async function cargarMunicipiosDesdeJSON() {
+
+async function cargarDatosIniciales() {
     try {
-        // Estado: loading
         appState.status = 'loading';
-        appState.loading = true;
-        mostrarLoadingState();
+        
+        // Cargamos los 3 archivos en paralelo
+        const [resMunicipios, resEventos, resQuiz] = await Promise.all([
+            fetch('./data/ayuntamiento.json'),
+            fetch('./data/eventos.json'),
+            fetch('./data/quiz.json')
+        ]);
 
-        // Fetch del JSON con validación HTTP
-        const respuesta = await fetch('./data/ayuntamiento.json', {
-            headers: { 'Accept': 'application/json' }
-        });
+        const datosMunicipios = await resMunicipios.json();
+        const datosEventos = await resEventos.json();
+        // El quiz se gestiona en su propio script, pero lo cargamos aquí para asegurar sincronía
+        await cargarPreguntasQuiz(); 
 
-        // Validar response.ok (no asumimos 200 automáticamente)
-        if (!respuesta.ok) {
-            throw new Error(`Error HTTP ${respuesta.status} - ${respuesta.statusText}`);
-        }
-
-        // Parsear JSON a objeto JavaScript
-        const datos = await respuesta.json();
-
-        // Validación del contrato de datos
-        if (!datos.municipalities || !Array.isArray(datos.municipalities)) {
-            throw new Error('Formato JSON inválido: se espera un array "municipalities"');
-        }
-
-        if (datos.municipalities.length === 0) {
-            appState.status = 'empty';
-            mostrarEmptyState();
-            return;
-        }
-
-        // Éxito: guardar datos y renderizar
-        appState.municipalities = datos.municipalities;
+        appState.municipalities = datosMunicipios.municipalities;
+        appState.events = datosEventos.events; // Guardamos los eventos por separado
         appState.status = 'success';
-        appState.error = null;
 
-        generarFiltrosDinamicos();
-
-        // Renderizar tarjetas dinámicamente
         renderizarMunicipios(appState.municipalities);
-
-        // Rehidratar favoritos en las tarjetas nuevas
-        rehidratarFavoritos();
-
-        // Disparar evento para que el quiz pueda generar preguntas
-        window.dispatchEvent(new Event('quizReady'));
-
+        generarFiltrosDinamicos();
     } catch (error) {
-        // Gestión de errores
+        console.error("Error cargando bases de datos:", error);
         appState.status = 'error';
-        appState.loading = false;
-        appState.error = error.message;
-
-        console.error('Error al cargar municipios:', error);
-        mostrarErrorState(error);
-    } finally {
-        appState.loading = false;
     }
 }
 
@@ -403,6 +367,10 @@ function removeFavorite(municipalityName) {
  * Cargar detalles del municipio en el modal
  * Busca en los datos cargados desde JSON
  */
+/**
+ * Cargar detalles del municipio en el modal
+ * Busca en los datos cargados desde JSON (Municipios y Eventos separados)
+ */
 function loadMunicipalityDetails(municipalityName) {
     const municipalityData = getMunicipalityData(municipalityName);
     
@@ -420,13 +388,14 @@ function loadMunicipalityDetails(municipalityName) {
     const btnFav = document.getElementById('modal-favorite-btn');
     btnFav.textContent = favorites.includes(municipalityName) ? '❤️ En Favoritos' : 'Añadir a Favoritos';
 
+    // Actualizar imagen del modal
     const modalImg = document.getElementById('modal-img');
     if (modalImg && municipalityData.imagenes && municipalityData.imagenes[0]) {
         modalImg.src = municipalityData.imagenes[0].url;
         modalImg.alt = municipalityData.name;
     }
 
-    // Rellenar modal con datos del JSON
+    // Rellenar modal con datos básicos
     document.getElementById('modal-title').textContent = municipalityData.name;
     document.getElementById('modal-description').textContent = municipalityData.description;
     
@@ -440,7 +409,7 @@ function loadMunicipalityDetails(municipalityName) {
     
     // Información geográfica
     const location = `
-        <strong>Coordinates:</strong> ${municipalityData.latitude}° N, ${municipalityData.longitude}° E<br>
+        <strong>Coordenadas:</strong> ${municipalityData.latitude}° N, ${municipalityData.longitude}° E<br>
         <strong>Población:</strong> ${municipalityData.population.toLocaleString('es-ES')} habitantes<br>
         <strong>Fundación:</strong> ${municipalityData.founded}
     `;
@@ -455,10 +424,18 @@ function loadMunicipalityDetails(municipalityName) {
         servicesContainer.innerHTML = badges;
     }
     
-    // Eventos
-    const eventsList = municipalityData.eventos && municipalityData.eventos.length > 0
-        ? '<ul class="small mb-0">' + municipalityData.eventos.map(e => `<li>${e}</li>`).join('') + '</ul>'
-        : '<p class="small text-muted mb-0">No hay eventos registrados</p>';
+    /**
+     * NUEVA LÓGICA DE EVENTOS SEPARADOS
+     * Filtramos los eventos del appState.events usando el ID del municipio
+     */
+    const eventosRelacionados = appState.events.filter(e => e.municipalityId === municipalityData.id);
+    
+    const eventsList = eventosRelacionados.length > 0
+        ? '<ul class="small mb-0">' + 
+          eventosRelacionados.map(e => `<li><strong>${e.date}:</strong> ${e.name} (${e.type})</li>`).join('') + 
+          '</ul>'
+        : '<p class="small text-muted mb-0">No hay eventos registrados para este municipio</p>';
+    
     document.getElementById('modal-events').innerHTML = eventsList;
 }
 

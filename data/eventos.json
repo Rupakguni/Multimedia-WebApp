@@ -1,0 +1,16 @@
+{
+  "events": [
+    { "id": 101, "municipalityId": 1, "name": "Festival de San Sebastián", "date": "Enero", "type": "Cultura" },
+    { "id": 102, "municipalityId": 1, "name": "Feria Medieval", "date": "Mayo", "type": "Feria" },
+    { "id": 103, "municipalityId": 1, "name": "Noche de la Música", "date": "Agosto", "type": "Música" },
+    { "id": 201, "municipalityId": 2, "name": "Fiesta de San Jaime", "date": "Julio", "type": "Cultura" },
+    { "id": 202, "municipalityId": 2, "name": "Feria del Mueble", "date": "Septiembre", "type": "Industria" },
+    { "id": 203, "municipalityId": 2, "name": "Mercado Medieval", "date": "Octubre", "type": "Feria" },
+    { "id": 301, "municipalityId": 3, "name": "Dijous Bo (Jueves de Buey)", "date": "Noviembre", "type": "Feria" },
+    { "id": 302, "municipalityId": 3, "name": "Feria del Calzado", "date": "Mayo", "type": "Industria" },
+    { "id": 401, "municipalityId": 4, "name": "Fiesta de la Vila", "date": "Mayo", "type": "Cultura" },
+    { "id": 402, "municipalityId": 4, "name": "Festival de Sóller", "date": "Julio", "type": "Música" },
+    { "id": 501, "municipalityId": 5, "name": "Fiesta Mayor de Sant Jaume", "date": "Julio", "type": "Cultura" },
+    { "id": 601, "municipalityId": 6, "name": "Feria de Llucmajor", "date": "Octubre", "type": "Feria" }
+  ]
+}

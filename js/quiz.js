@@ -3,6 +3,11 @@
 * Roberto García Martínez & Rupak Guni Thapaliya
 */
 
+/*!
+* Quiz de Ayuntamientos - Lógica Dinámica
+* Roberto García Martínez & Rupak Guni Thapaliya
+*/
+
 // Estado global del quiz
 const quizState = {
     questions: [],
@@ -12,85 +17,25 @@ const quizState = {
     started: false
 };
 
-// Generar preguntas dinámicamente basadas en los municipios
-function generarPreguntasQuiz() {
-    const municipios = appState.municipalities;
-    
-    if (!municipios || municipios.length === 0) {
-        console.warn('No hay municipios cargados para generar preguntas');
-        return;
+/**
+ * Carga las preguntas desde el archivo JSON externo
+ */
+async function cargarPreguntasQuiz() {
+    try {
+        const respuesta = await fetch('./data/quiz.json');
+        if (!respuesta.ok) throw new Error('No se pudo cargar el JSON del quiz');
+        const datos = await respuesta.json();
+        
+        // Mezclar orden de preguntas y opciones
+        quizState.questions = shuffleArray(datos.questions).map(q => ({
+            ...q,
+            options: shuffleArray([...q.options])
+        }));
+        
+        console.log(`Quiz cargado con ${quizState.questions.length} preguntas.`);
+    } catch (error) {
+        console.error('Error al preparar el quiz:', error);
     }
-
-    quizState.questions = [
-        {
-            question: "¿Cuál es la capital de Mallorca?",
-            correct: "Palma",
-            options: ["Palma", "Inca", "Alcúdia", "Sóller"],
-            category: "Geográfico"
-        },
-        {
-            question: "¿Cuál es el municipio famoso por la industria del cuero?",
-            correct: "Inca",
-            options: ["Inca", "Manacor", "Llucmajor", "Sóller"],
-            category: "Economía"
-        },
-        {
-            question: "¿Cuál es el pueblo de montaña en la Serra de Tramuntana?",
-            correct: "Sóller",
-            options: ["Manacor", "Sóller", "Alcúdia", "Llucmajor"],
-            category: "Geografía"
-        },
-        {
-            question: "¿Cuál es el destino turístico con murallas históricas y playas paradisíacas?",
-            correct: "Alcúdia",
-            options: ["Palma", "Sóller", "Alcúdia", "Inca"],
-            category: "Turismo"
-        },
-        {
-            question: "¿Cuál es el centro económico del este de Mallorca, conocido por industrias artesanales?",
-            correct: "Manacor",
-            options: ["Llucmajor", "Inca", "Manacor", "Alcúdia"],
-            category: "Economía"
-        },
-        {
-            question: "¿Aproximadamente cuánta población tiene Palma?",
-            correct: "Más de 400,000 habitantes",
-            options: ["Menos de 30,000", "Entre 100,000 y 200,000", "Más de 400,000 habitantes", "Entre 50,000 y 100,000"],
-            category: "Población"
-        },
-        {
-            question: "¿En qué municipio encontramos los Jardines de Alfabia?",
-            correct: "Sóller",
-            options: ["Inca", "Sóller", "Manacor", "Llucmajor"],
-            category: "Patrimonio"
-        },
-        {
-            question: "¿Cuál es el municipio histórico con tradiciones culturales profundas?",
-            correct: "Llucmajor",
-            options: ["Manacor", "Alcúdia", "Llucmajor", "Inca"],
-            category: "Cultura"
-        },
-        {
-            question: "¿Cuál es la iglesia más importante de Palma?",
-            correct: "Catedral-Basílica de Santa María",
-            options: ["Iglesia de Santa María la Mayor", "Catedral-Basílica de Santa María", "Iglesia de San Miguel", "Iglesia Parroquial de Santa María"],
-            category: "Patrimonio"
-        },
-        {
-            question: "¿Cuál es el puerto natural más importante de Mallorca?",
-            correct: "Puerto de Alcúdia",
-            options: ["Puerto de Palma", "Puerto de Sóller", "Puerto de Alcúdia", "Puerto de Manacor"],
-            category: "Geografía"
-        }
-    ];
-
-    // Mezclar opciones de cada pregunta
-    quizState.questions.forEach(q => {
-        q.options = shuffleArray([...q.options]);
-    });
-
-    // Mezclar orden de preguntas
-    quizState.questions = shuffleArray(quizState.questions);
 }
 
 // Función auxiliar para mezclar arrays
@@ -105,22 +50,8 @@ function shuffleArray(array) {
 
 // Iniciar el quiz
 function iniciarQuiz() {
-    // Generar preguntas si no existen
     if (quizState.questions.length === 0) {
-        generarPreguntasQuiz();
-    }
-
-    // Validar que hay preguntas
-    if (quizState.questions.length === 0) {
-        console.error('No se pudieron generar preguntas del quiz');
-        // Feedback en UI sin alert bloqueante
-        const startSection = document.getElementById('quiz-start');
-        if (startSection) {
-            const err = document.createElement('p');
-            err.className = 'text-danger mt-3';
-            err.textContent = 'No se pudieron cargar las preguntas. Por favor, recarga la página.';
-            startSection.appendChild(err);
-        }
+        alert('Las preguntas aún se están cargando. Por favor, espera un momento.');
         return;
     }
 
@@ -129,7 +60,6 @@ function iniciarQuiz() {
     quizState.answered = false;
     quizState.started = true;
 
-    // Ocultar pantalla de inicio
     document.getElementById('quiz-start').classList.add('d-none');
     document.getElementById('quiz-content').classList.remove('d-none');
     document.getElementById('quiz-result').classList.add('d-none');

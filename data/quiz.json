@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "question": "¿Cuál es la capital de Mallorca?",
+      "correct": "Palma",
+      "options": ["Palma", "Inca", "Alcúdia", "Sóller"],
+      "category": "Geográfico"
+    },
+    {
+      "question": "¿Cuál es el municipio famoso por la industria del cuero?",
+      "correct": "Inca",
+      "options": ["Inca", "Manacor", "Llucmajor", "Sóller"],
+      "category": "Economía"
+    },
+    {
+      "question": "¿Cuál es el pueblo de montaña en la Serra de Tramuntana?",
+      "correct": "Sóller",
+      "options": ["Manacor", "Sóller", "Alcúdia", "Llucmajor"],
+      "category": "Geografía"
+    },
+    {
+      "question": "¿Cuál es el destino turístico con murallas históricas y playas paradisíacas?",
+      "correct": "Alcúdia",
+      "options": ["Palma", "Sóller", "Alcúdia", "Inca"],
+      "category": "Turismo"
+    },
+    {
+      "question": "¿Cuál es el centro económico del este de Mallorca, conocido por industrias artesanales?",
+      "correct": "Manacor",
+      "options": ["Llucmajor", "Inca", "Manacor", "Alcúdia"],
+      "category": "Economía"
+    },
+    {
+      "question": "¿Aproximadamente cuánta población tiene Palma?",
+      "correct": "Más de 400,000 habitantes",
+      "options": ["Menos de 30,000", "Entre 100,000 y 200,000", "Más de 400,000 habitantes", "Entre 50,000 y 100,000"],
+      "category": "Población"
+    },
+    {
+      "question": "¿En qué municipio encontramos los Jardines de Alfabia?",
+      "correct": "Sóller",
+      "options": ["Inca", "Sóller", "Manacor", "Llucmajor"],
+      "category": "Patrimonio"
+    },
+    {
+      "question": "¿Cuál es el municipio histórico con tradiciones culturales profundas?",
+      "correct": "Llucmajor",
+      "options": ["Manacor", "Alcúdia", "Llucmajor", "Inca"],
+      "category": "Cultura"
+    },
+    {
+      "question": "¿Cuál es la iglesia más importante de Palma?",
+      "correct": "Catedral-Basílica de Santa María",
+      "options": ["Iglesia de Santa María la Mayor", "Catedral-Basílica de Santa María", "Iglesia de San Miguel", "Iglesia Parroquial de Santa María"],
+      "category": "Patrimonio"
+    },
+    {
+      "question": "¿Cuál es el puerto natural más importante de Mallorca?",
+      "correct": "Puerto de Alcúdia",
+      "options": ["Puerto de Palma", "Puerto de Sóller", "Puerto de Alcúdia", "Puerto de Manacor"],
+      "category": "Geografía"
+    }
+  ]
+}
