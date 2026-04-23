@@ -38,7 +38,7 @@ async function initializeApp() {
     navbarShrink();
 
     // Shrink the navbar when page is scrolled
-    document.addEventListener('scroll', navbarShrink);
+    document.addEventListener('scroll', navbarShrink, { passive: true });
 
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
@@ -81,10 +81,9 @@ async function cargarDatosIniciales() {
         appState.status = 'loading';
         
         // Cargamos los 3 archivos en paralelo
-        const [resMunicipios, resEventos, resQuiz] = await Promise.all([
+        const [resMunicipios, resEventos] = await Promise.all([
             fetch('./data/ayuntamiento.json'),
-            fetch('./data/eventos.json'),
-            fetch('./data/quiz.json')
+            fetch('./data/eventos.json')
         ]);
 
         const datosMunicipios = await resMunicipios.json();
@@ -165,8 +164,6 @@ function renderizarMunicipios(municipios) {
     // Una sola inserción en el DOM
     container.appendChild(fragment);
 
-    // Re-asignar listeners (necesario porque se creó nuevo HTML)
-    addMunicipalityCardListeners();
 }
 
 /**
@@ -203,26 +200,11 @@ function mostrarErrorState(error) {
                 <hr>
                 <p class="mb-0">
                     Por favor, verifica tu conexión a internet e intenta de nuevo.
-                    <button class="btn btn-danger btn-sm ms-2" onclick="cargarMunicipiosDesdeJSON()">
+                    <button class="btn btn-danger btn-sm ms-2" onclick="cargarDatosIniciales()">
                         <i class="bi bi-arrow-clockwise"></i> Reintentar
                     </button>
                 </p>
             </div>
-        </div>
-    `;
-}
-
-/**
- * Estados de UI - Empty
- */
-function mostrarEmptyState() {
-    const container = document.getElementById('municipalities-container');
-    if (!container) return;
-
-    container.innerHTML = `
-        <div class="col-12 text-center py-5">
-            <i class="bi bi-inbox fs-1 text-muted mb-3"></i>
-            <p class="text-muted">No hay municipios disponibles en este momento.</p>
         </div>
     `;
 }
@@ -329,38 +311,41 @@ function toggleFavoriteFromModal() {
     btn.textContent = esFavorito ? '❤️ En Favoritos' : 'Añadir a Favoritos';
 }
 
-// Update favorites display section
+/**
+ * Actualiza la sección de visualización de favoritos
+ * Optimizada para rendimiento eliminando bucles de borrado manual
+ */
 function updateFavoritesDisplay() {
     const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
     const container = document.getElementById('favorites-container');
     
     if (!container) return;
     
-    // Clear existing favorites except the first message
-    const existingCards = container.querySelectorAll('.favorite-card');
-    existingCards.forEach(card => card.remove());
-    
+    // Si no hay favoritos, mostramos el mensaje inicial y salimos
     if (favorites.length === 0) {
-        container.innerHTML = '<div class="col-lg-10 text-center"><p class="text-white-75">Selecciona municipios para añadirlos a tu lista de favoritos</p></div>';
-    } else {
-        let html = '';
-        favorites.forEach(name => {
-            html += `
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card favorite-card favorite-active">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">${name}</h5>
-                            <button class="btn btn-sm btn-danger" onclick="removeFavorite('${name}')">
-                                <i class="bi bi-heart-fill"></i> Eliminar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-        
-        container.innerHTML = html;
+        container.innerHTML = `
+            <div class="col-lg-10 text-center">
+                <p class="text-white-75">Selecciona municipios para añadirlos a tu lista de favoritos</p>
+            </div>`;
+        return;
     }
+
+    // Generamos el HTML directamente. 
+    // Al asignar container.innerHTML, el navegador elimina automáticamente lo anterior.
+    const html = favorites.map(name => `
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card favorite-card favorite-active h-100">
+                <div class="card-body text-center d-flex flex-column justify-content-center">
+                    <h5 class="card-title">${name}</h5>
+                    <button class="btn btn-sm btn-danger mt-2" onclick="removeFavorite('${name}')">
+                        <i class="bi bi-heart-fill"></i> Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    container.innerHTML = html;
 }
 
 // Remove favorite
@@ -452,21 +437,6 @@ function loadMunicipalityDetails(municipalityName) {
  */
 function getMunicipalityData(municipalityName) {
     return appState.municipalities.find(m => m.name === municipalityName);
-}
-
-// Add event listeners to municipality cards for keyboard accessibility
-function addMunicipalityCardListeners() {
-    const cards = document.querySelectorAll('.municipality-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                const btn = card.querySelector('.btn-primary');
-                if (btn) btn.click();
-            }
-        });
-    });
 }
 
 function generarFiltrosDinamicos() {
