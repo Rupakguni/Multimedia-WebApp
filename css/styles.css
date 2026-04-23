@@ -1,131 +1,77 @@
 @charset "UTF-8";
-/*!
-* Start Bootstrap - Creative v7.0.7 (https://startbootstrap.com/theme/creative)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-creative/blob/master/LICENSE)
-*/
-/*!
- * Bootstrap  v5.2.3 (https://getbootstrap.com/)
- * Copyright 2011-2022 The Bootstrap Authors
- * Copyright 2011-2022 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
+/* ============================================================
+   VARIABLES Y TEMA - Sobrescribimos las variables de Bootstrap
+   ============================================================ */
 :root {
-  --bs-blue: #0d6efd;
-  --bs-indigo: #6610f2;
-  --bs-purple: #6f42c1;
-  --bs-pink: #d63384;
-  --bs-red: #dc3545;
-  --bs-yellow: #ffc107;
-  --bs-green: #198754;
-  --bs-teal: #20c997;
-  --bs-cyan: #0dcaf0;
-  --bs-black: #000;
-  --bs-white: #fff;
-  --bs-gray: #6c757d;
-  --bs-gray-dark: #343a40;
-  --bs-gray-100: #f8f9fa;
-  --bs-gray-200: #e9ecef;
-  --bs-gray-300: #dee2e6;
-  --bs-gray-400: #ced4da;
-  --bs-gray-500: #adb5bd;
-  --bs-gray-600: #6c757d;
-  --bs-gray-700: #495057;
-  --bs-gray-800: #343a40;
-  --bs-gray-900: #212529;
-  /* Cambiamos el naranja por el tono Marés */
-  --bs-orange: #d4b27d; 
-  --bs-primary: #d4b27d; 
-  /* Un tono un poco más oscuro para cuando pasas el ratón (hover) */
+  --bs-orange: #d4b27d;
+  --bs-primary: #d4b27d;
   --bs-primary-dark: #b89662;
-  --bs-secondary: #6c757d;
-  --bs-success: #198754;
-  --bs-info: #0dcaf0;
-  --bs-warning: #ffc107;
-  --bs-danger: #dc3545;
-  --bs-light: #f8f9fa;
-  --bs-dark: #212529;
   --bs-primary-rgb: 212, 178, 125;
-  --bs-secondary-rgb: 108, 117, 125;
-  --bs-success-rgb: 25, 135, 84;
-  --bs-info-rgb: 13, 202, 240;
-  --bs-warning-rgb: 255, 193, 7;
-  --bs-danger-rgb: 220, 53, 69;
-  --bs-light-rgb: 248, 249, 250;
-  --bs-dark-rgb: 33, 37, 41;
-  --bs-white-rgb: 255, 255, 255;
-  --bs-black-rgb: 0, 0, 0;
-  --bs-body-color-rgb: 33, 37, 41;
-  --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  --bs-body-font-family: Merriweather, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  --bs-body-font-size: 1rem;
-  --bs-body-font-weight: 400;
-  --bs-body-line-height: 1.5;
-  --bs-body-color: #212529;
-  --bs-body-bg: #fff;
-  --bs-border-width: 1px;
-  --bs-border-style: solid;
-  --bs-border-color: #dee2e6;
-  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
-  --bs-border-radius: 0.375rem;
-  --bs-border-radius-sm: 0.25rem;
-  --bs-border-radius-lg: 0.5rem;
-  --bs-border-radius-xl: 1rem;
-  --bs-border-radius-2xl: 2rem;
-  --bs-border-radius-pill: 50rem;
   --bs-link-color: #d4b27d;
   --bs-link-hover-color: #d4b27d;
-  --bs-code-color: #d63384;
-  --bs-highlight-bg: #fff3cd;
+  --bs-font-sans-serif: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-body-font-family: Merriweather, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  :root {
-    scroll-behavior: smooth;
-  }
+/* ============================================================
+   BASE
+   ============================================================ */
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(4.5rem - 1px);
 }
 
 body {
-  margin: 0;
+  width: 100%;
+  height: 100%;
   font-family: var(--bs-body-font-family);
-  font-size: var(--bs-body-font-size);
-  font-weight: var(--bs-body-font-weight);
-  line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
+  scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  body {
-    scroll-behavior: smooth;
-  }
-}
-
-.masthead h1, .masthead h2, .masthead h3 {
+/* ============================================================
+   TIPOGRAFÍA
+   ============================================================ */
+.masthead h1,
+.masthead h2,
+.masthead h3 {
   font-weight: 700;
 }
 
-.masthead .h-100 {
-  height: 100vh;
-}
-
-.page-section {
-  padding: 8rem 0;
-}
-
-.page-section h2, .page-section h3 {
+.page-section h2,
+.page-section h3 {
   font-weight: 700;
   font-size: 2.5rem;
 }
 
+.text-white-75 {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* ============================================================
+   LAYOUT - SECCIONES
+   ============================================================ */
+.page-section {
+  padding: 8rem 0;
+}
+
+@media (max-width: 768px) {
+  .page-section {
+    padding: 5rem 0;
+  }
+  .page-section h2 {
+    font-size: 1.75rem;
+  }
+  .masthead {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* ============================================================
+   SEPARADORES
+   ============================================================ */
 .divider {
   max-width: 3.25rem;
   border-width: 0.2rem;
@@ -136,10 +82,15 @@ body {
   border-color: white;
 }
 
-.bg-light {
-  background-color: #f8f9fa;
+hr.divider {
+  height: 0.2rem;
+  max-width: 3.25rem;
+  margin: 1.5rem auto;
+  background-color: #d4b27d;
+  opacity: 1;
 }
 
+<<<<<<< HEAD
 .card {
   border: 1px solid #dee2e6;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
@@ -190,8 +141,15 @@ body {
   background-color: var(--bs-primary);
   border-color: var(--bs-primary);
   color: white;
+=======
+hr.divider-light {
+  background-color: #fff;
+>>>>>>> 6056c9d7d3395e24df188b59f30994e9a9668adc
 }
 
+/* ============================================================
+   NAVBAR
+   ============================================================ */
 .navbar {
   background-color: white;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
@@ -221,6 +179,7 @@ body {
   color: #212529;
 }
 
+<<<<<<< HEAD
 @media (prefers-reduced-motion: no-preference) {
   .nav-link {
     transition: color 0.3s ease;
@@ -11195,35 +11154,50 @@ hr.divider-light {
   background-color: #fff;
 }
 
+=======
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--bs-primary);
+}
+
+>>>>>>> 6056c9d7d3395e24df188b59f30994e9a9668adc
 #mainNav {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   background-color: #fff;
   transition: background-color 0.2s ease;
 }
+
 #mainNav .navbar-brand {
-  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   font-weight: 700;
   color: #212529;
 }
+
 #mainNav .navbar-nav .nav-item .nav-link {
   color: #6c757d;
-  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   padding: 0.75rem 0;
 }
-#mainNav .navbar-nav .nav-item .nav-link:hover, #mainNav .navbar-nav .nav-item .nav-link:active {
+
+#mainNav .navbar-nav .nav-item .nav-link:hover,
+#mainNav .navbar-nav .nav-item .nav-link:active {
   color: #d4b27d;
 }
+
 #mainNav .navbar-nav .nav-item .nav-link.active {
   color: #d4b27d !important;
 }
 
+<<<<<<< HEAD
 #dynamic-service-filters {
     display: flex;
     flex-direction: column;
 }
 
+=======
+>>>>>>> 6056c9d7d3395e24df188b59f30994e9a9668adc
 @media (min-width: 992px) {
   #mainNav {
     box-shadow: none;
@@ -11263,7 +11237,54 @@ hr.divider-light {
   }
 }
 
+<<<<<<< HEAD
 
+=======
+/* ============================================================
+   BOTÓN LOGIN / ICONO
+   ============================================================ */
+#login-btn {
+  border-width: 2px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.navbar-shrink #login-btn {
+  color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.navbar-shrink #login-btn:hover {
+  background-color: var(--bs-primary);
+  color: white;
+}
+
+.login-icon-link {
+  transition: all 0.3s ease;
+  opacity: 0.9;
+  text-decoration: none !important;
+}
+
+.login-icon-link:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.navbar-shrink .login-icon-link {
+  color: var(--bs-primary) !important;
+}
+
+.navbar-shrink .login-icon-link:hover {
+  color: var(--bs-primary-dark) !important;
+}
+
+/* ============================================================
+   MASTHEAD / CARRUSEL
+   ============================================================ */
+.masthead .h-100 {
+  height: 100vh;
+}
+>>>>>>> 6056c9d7d3395e24df188b59f30994e9a9668adc
 
 header.masthead {
   padding-top: 10rem;
@@ -11274,9 +11295,12 @@ header.masthead {
   background-attachment: scroll;
   background-size: cover;
 }
-header.masthead h1, header.masthead .h1 {
+
+header.masthead h1,
+header.masthead .h1 {
   font-size: 2.25rem;
 }
+
 @media (min-width: 992px) {
   header.masthead {
     height: 100vh;
@@ -11287,24 +11311,245 @@ header.masthead h1, header.masthead .h1 {
   header.masthead p {
     font-size: 1.15rem;
   }
-  header.masthead h1, header.masthead .h1 {
+  header.masthead h1,
+  header.masthead .h1 {
     font-size: 3rem;
   }
 }
+
 @media (min-width: 1200px) {
-  header.masthead h1, header.masthead .h1 {
+  header.masthead h1,
+  header.masthead .h1 {
     font-size: 3.5rem;
   }
 }
 
-#portfolio .container-fluid, #portfolio .container-sm, #portfolio .container-md, #portfolio .container-lg, #portfolio .container-xl, #portfolio .container-xxl {
-  max-width: 1920px;
+.carousel.masthead,
+.carousel-inner,
+.carousel-item {
+  height: 100vh;
+  min-height: 40rem;
 }
-#portfolio .container-fluid .portfolio-box, #portfolio .container-sm .portfolio-box, #portfolio .container-md .portfolio-box, #portfolio .container-lg .portfolio-box, #portfolio .container-xl .portfolio-box, #portfolio .container-xxl .portfolio-box {
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.carousel-fade .carousel-item {
+  transition-duration: 0.8s;
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn-xl {
+  padding: 1.25rem 2.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10rem;
+}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #d4b27d;
+  --bs-btn-border-color: #d4b27d;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #d4b27d;
+  --bs-btn-hover-border-color: #d4b27d;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #d4b27d;
+  --bs-btn-active-border-color: #d4b27d;
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #d4b27d;
+  --bs-btn-disabled-border-color: #d4b27d;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--bs-orange);
+  border-color: var(--bs-orange);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #d4b27d;
+  --bs-btn-border-color: #d4b27d;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #d4b27d;
+  --bs-btn-hover-border-color: #d4b27d;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #d4b27d;
+  --bs-btn-active-border-color: #d4b27d;
+  --bs-btn-disabled-color: #d4b27d;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #d4b27d;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: white;
+}
+
+/* ============================================================
+   TARJETAS
+   ============================================================ */
+.card {
+  border: 1px solid #dee2e6;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  background-color: transparent !important;
+}
+
+.municipality-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: white !important;
+  overflow: hidden;
+}
+
+.municipality-card:focus {
+  outline: 3px solid var(--bs-primary);
+  outline-offset: 2px;
+}
+
+/* Elimina placeholders fantasma */
+.card-img-placeholder,
+#modal-image-placeholder {
+  display: none !important;
+  height: 0 !important;
+  visibility: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal-content {
+  border-radius: 0.5rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+/* ============================================================
+   FAVORITOS
+   ============================================================ */
+#favorites-container {
+  min-height: 200px;
+}
+
+.favorite-card {
+  transition: all 0.3s ease;
+}
+
+.favorite-card.favorite-active {
+  border: 2px solid var(--bs-primary);
+  background-color: rgba(212, 178, 125, 0.05);
+}
+
+/* ============================================================
+   MAPA
+   ============================================================ */
+#map-container {
+  height: 500px;
+  width: 100%;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#mapa .divider {
+  margin-bottom: 2rem;
+}
+
+/* ============================================================
+   SECCIÓN AYUNTAMIENTOS
+   ============================================================ */
+#ayuntamientos {
+  margin-top: 0;
+  padding-top: 5rem;
+}
+
+/* ============================================================
+   SECCIÓN CONTEXTO - ICONOS
+   ============================================================ */
+#contexto .bi {
+  display: block;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+#contexto .lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+/* ============================================================
+   SECCIÓN CONTACTO
+   ============================================================ */
+#contacto .form-floating > .form-control:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.25rem rgba(212, 178, 125, 0.25);
+}
+
+#contacto .btn-xl {
+  transition: background-color 0.3s ease;
+}
+
+#contacto .alert {
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* ============================================================
+   SECCIÓN SOBRE NOSOTROS
+   ============================================================ */
+#sobre-nosotros .card {
+  transition: transform 0.3s ease;
+}
+
+#sobre-nosotros .card:hover {
+  transform: translateY(-10px);
+}
+
+#sobre-nosotros .bi-linkedin:hover {
+  color: #0077b5 !important;
+}
+
+#sobre-nosotros .bi-instagram:hover {
+  color: #e4405f !important;
+}
+
+#sobre-nosotros img {
+  border: 4px solid var(--bs-primary);
+  padding: 5px;
+  background-color: white;
+}
+
+/* ============================================================
+   PORTFOLIO (por si se usa en el futuro)
+   ============================================================ */
+#portfolio .container-fluid .portfolio-box,
+#portfolio .container-sm .portfolio-box,
+#portfolio .container-md .portfolio-box,
+#portfolio .container-lg .portfolio-box,
+#portfolio .container-xl .portfolio-box,
+#portfolio .container-xxl .portfolio-box {
   position: relative;
   display: block;
 }
-#portfolio .container-fluid .portfolio-box .portfolio-box-caption, #portfolio .container-sm .portfolio-box .portfolio-box-caption, #portfolio .container-md .portfolio-box .portfolio-box-caption, #portfolio .container-lg .portfolio-box .portfolio-box-caption, #portfolio .container-xl .portfolio-box .portfolio-box-caption, #portfolio .container-xxl .portfolio-box .portfolio-box-caption {
+
+#portfolio .container-fluid .portfolio-box .portfolio-box-caption {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11316,172 +11561,29 @@ header.masthead h1, header.masthead .h1 {
   text-align: center;
   opacity: 0;
   color: #fff;
-  background: rgba(244, 98, 58, 0.9);
+  background: rgba(212, 178, 125, 0.9);
   transition: opacity 0.25s ease;
-  text-align: center;
 }
-#portfolio .container-fluid .portfolio-box .portfolio-box-caption .project-category, #portfolio .container-sm .portfolio-box .portfolio-box-caption .project-category, #portfolio .container-md .portfolio-box .portfolio-box-caption .project-category, #portfolio .container-lg .portfolio-box .portfolio-box-caption .project-category, #portfolio .container-xl .portfolio-box .portfolio-box-caption .project-category, #portfolio .container-xxl .portfolio-box .portfolio-box-caption .project-category {
-  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+#portfolio .container-fluid .portfolio-box .portfolio-box-caption .project-category {
+  font-family: "Merriweather Sans", sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
 }
-#portfolio .container-fluid .portfolio-box .portfolio-box-caption .project-name, #portfolio .container-sm .portfolio-box .portfolio-box-caption .project-name, #portfolio .container-md .portfolio-box .portfolio-box-caption .project-name, #portfolio .container-lg .portfolio-box .portfolio-box-caption .project-name, #portfolio .container-xl .portfolio-box .portfolio-box-caption .project-name, #portfolio .container-xxl .portfolio-box .portfolio-box-caption .project-name {
+
+#portfolio .container-fluid .portfolio-box .portfolio-box-caption .project-name {
   font-size: 1.2rem;
 }
-#portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption, #portfolio .container-sm .portfolio-box:hover .portfolio-box-caption, #portfolio .container-md .portfolio-box:hover .portfolio-box-caption, #portfolio .container-lg .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xl .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xxl .portfolio-box:hover .portfolio-box-caption {
+
+#portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
 }
 
-/* Estilo para los iconos de la introducción */
-#contexto .bi {
-    display: block;
-    color: #fff;
-    margin-bottom: 1rem;
-}
-
-#contexto .lead {
-    font-size: 1.25rem;
-    font-weight: 300;
-}
-
-/* Mejora del botón de la sección primaria */
-.btn-xl {
-    padding: 1.25rem 2.25rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-radius: 10rem;
-}
-
-/* Contact Form Styling */
-#contacto .form-floating > .form-control:focus {
-    border-color: var(--bs-primary);
-    box-shadow: 0 0 0 0.25rem rgba(244, 98, 58, 0.25);
-}
-
-#contacto .btn-xl {
-    transition: background-color 0.3s ease;
-}
-
-#contacto .alert {
-    margin-top: 1rem;
-    border-radius: 0.5rem;
-}
-
-/* ===== ESTILOS DE SEGURIDAD PARA ELIMINAR CUADRADOS GRISES ===== */
-/* Anula completamente los placeholders fantasma */
-.card-img-placeholder, 
-#modal-image-placeholder {
-    display: none !important;
-    height: 0 !important;
-    visibility: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Asegura que las tarjetas tengan fondo blanco limpio */
-.municipality-card {
-    background-color: #fff !important;
-    overflow: hidden;
-}
-
-/* Estilo para el botón de login en la navbar */
-#login-btn {
-    border-width: 2px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-/* Cuando la navbar se encoge (navbar-shrink) el botón cambia a color Marés */
-.navbar-shrink #login-btn {
-    color: var(--bs-primary);
-    border-color: var(--bs-primary);
-}
-
-.navbar-shrink #login-btn:hover {
-    background-color: var(--bs-primary);
-    color: white;
-}
-
-/* Estilo base para el icono de login */
-.login-icon-link {
-    transition: all 0.3s ease;
-    opacity: 0.9;
-    text-decoration: none !important;
-}
-
-.login-icon-link:hover {
-    opacity: 1;
-    transform: scale(1.1); /* Pequeño efecto de zoom al pasar el ratón */
-}
-
-.navbar-shrink .login-icon-link {
-    color: var(--bs-primary) !important;
-}
-
-.navbar-shrink .login-icon-link:hover {
-    color: var(--bs-primary-dark) !important;
-}
-
-/* Estilo para la sección Sobre Nosotros */
-#sobre-nosotros .card {
-    transition: transform 0.3s ease;
-}
-
-#sobre-nosotros .card:hover {
-    transform: translateY(-10px); /* Efecto de elevación */
-}
-
-#sobre-nosotros .bi-linkedin:hover {
-    color: #0077b5 !important;
-}
-
-#sobre-nosotros .bi-instagram:hover {
-    color: #e4405f !important;
-}
-
-/* Asegurar que el avatar sea circular y tenga un borde sutil */
-#sobre-nosotros img {
-    border: 4px solid var(--bs-primary);
-    padding: 5px;
-    background-color: white;
-}
-
-/* Asegurar que el carrusel ocupe el 100% de la altura visible */
-.carousel.masthead, 
-.carousel-inner, 
-.carousel-item {
-    height: 100vh;
-    min-height: 40rem;
-}
-
-/* Estilo para las flechas del carrusel */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    width: 3rem;
-    height: 3rem;
-}
-
-/* Transición suave de desvanecimiento */
-.carousel-fade .carousel-item {
-    transition-duration: 0.8s;
-}
-
-/* Eliminar espacios sobrantes en la sección del mapa */
-#mapa .divider {
-    margin-bottom: 2rem; /* Ajusta la distancia entre el título y el mapa */
-}
-
-#map-container {
-    height: 500px; /* Altura que definimos */
-    width: 100%;
-    margin-bottom: 0; /* Asegura que no haya margen inferior */
-    border-bottom: 1px solid rgba(0,0,0,0.1); /* Opcional: una línea fina para separar */
-}
-
-/* Eliminar el margen superior del título de la siguiente sección */
-#ayuntamientos {
-    margin-top: 0;
-    padding-top: 5rem; /* Ajusta según el diseño general */
+/* ============================================================
+   ACCESIBILIDAD
+   ============================================================ */
+:focus-visible {
+  outline: 3px solid var(--bs-primary);
+  outline-offset: 2px;
 }
