@@ -48,56 +48,10 @@ function shuffleArray(array) {
     return shuffled;
 }
 
-// Mostrar estado vacío del quiz con mensaje amigable
-function mostrarQuizEmptyState(razon = 'datos') {
-    const container = document.getElementById('quiz-container');
-    if (!container) return;
-
-    const iconClass = razon === 'datos' ? 'bi-inbox' : 'bi-exclamation-circle';
-    const mensaje = razon === 'datos' 
-        ? 'No hay datos disponibles para el quiz.'
-        : 'Ocurrió un error al cargar el quiz.';
-    const submensaje = razon === 'datos'
-        ? 'Por favor, verifica que existan municipios cargados.'
-        : 'Por favor, recarga la página e intenta de nuevo.';
-
-    container.innerHTML = `
-        <div class="text-center py-5">
-            <i class="bi ${iconClass} fs-1 text-muted mb-3"></i>
-            <p class="text-muted">${mensaje}</p>
-            <small class="text-muted d-block mt-2">${submensaje}</small>
-        </div>
-    `;
-
-    // Anunciar en live region del quiz
-    const announcement = document.getElementById('quiz-announcement');
-    if (announcement) {
-        announcement.textContent = mensaje;
-    }
-}
-
 // Iniciar el quiz
 function iniciarQuiz() {
-<<<<<<< Updated upstream
     if (quizState.questions.length === 0) {
         alert('Las preguntas aún se están cargando. Por favor, espera un momento.');
-=======
-    // Validar que hay municipios cargados
-    if (!appState.municipalities || appState.municipalities.length === 0) {
-        mostrarQuizEmptyState('datos');
-        return;
-    }
-
-    // Generar preguntas si no existen
-    if (quizState.questions.length === 0) {
-        generarPreguntasQuiz();
-    }
-
-    // Validar que hay preguntas
-    if (quizState.questions.length === 0) {
-        console.error('No se pudieron generar preguntas del quiz');
-        mostrarQuizEmptyState('error');
->>>>>>> Stashed changes
         return;
     }
 

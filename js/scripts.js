@@ -99,22 +99,7 @@ async function cargarDatosIniciales() {
         generarFiltrosDinamicos();
         rehidratarFavoritos()
 
-<<<<<<< Updated upstream
         inicializarMapa();
-=======
-        // Rehidratar favoritos en las tarjetas nuevas
-        rehidratarFavoritos();
-
-        // Anunciar en live region
-        const announcement = document.getElementById('search-results-announcement');
-        if (announcement) {
-            announcement.textContent = `Se han cargado ${appState.municipalities.length} municipios. Puedes usar los filtros para buscar.`;
-        }
-
-        // Disparar evento para que el quiz pueda generar preguntas
-        window.dispatchEvent(new Event('quizReady'));
-
->>>>>>> Stashed changes
     } catch (error) {
         console.error("Error cargando bases de datos:", error);
         appState.status = 'error';
@@ -161,8 +146,7 @@ function renderizarMunicipios(municipios) {
                 <button class="btn btn-primary btn-sm" 
                         data-bs-toggle="modal" 
                         data-bs-target="#municipalityModal" 
-                        onclick="loadMunicipalityDetails('${municipio.name}')"
-                        aria-label="Ver detalles de ${municipio.name}">
+                        onclick="loadMunicipalityDetails('${municipio.name}')">
                     Ver Detalles
                 </button>
                 <button class="btn btn-outline-primary btn-sm ms-2" 
@@ -208,75 +192,24 @@ function mostrarErrorState(error) {
     
     if (!container) return;
 
-    // Generar mensaje amigable según tipo de error
-    let mensajeUsuario = 'No se pudo cargar la información de municipios.';
-    if (error.message && error.message.includes('HTTP 404')) {
-        mensajeUsuario = 'No se encontraron los datos. Por favor, intenta más tarde.';
-    } else if (error.message && error.message.includes('Failed to fetch')) {
-        mensajeUsuario = 'No se puede conectar. Verifica tu conexión a internet.';
-    } else if (error.message && error.message.includes('JSON')) {
-        mensajeUsuario = 'Hubo un problema al procesar los datos. Por favor, intenta de nuevo.';
-    }
-
     container.innerHTML = `
         <div class="col-12">
             <div class="alert alert-danger" role="alert">
-                <h4 class="alert-heading"><i class="bi bi-exclamation-circle"></i> No se pudieron cargar los municipios</h4>
-                <p class="mb-2">${mensajeUsuario}</p>
-                <p class="mb-3 small text-muted">
-                    <strong>Posibles soluciones:</strong><br>
-                    1) Verifica tu conexión a internet<br>
-                    2) Intenta recargar la página<br>
-                    3) Intenta más tarde
-                </p>
+                <h4 class="alert-heading"><i class="bi bi-exclamation-circle"></i> Error al cargar los datos</h4>
+                <p class="mb-2"><strong>Detalles:</strong> ${error.message}</p>
                 <hr>
                 <p class="mb-0">
-<<<<<<< HEAD
-                    <button class="btn btn-primary btn-sm" onclick="cargarMunicipiosDesdeJSON()">
-=======
                     Por favor, verifica tu conexión a internet e intenta de nuevo.
                     <button class="btn btn-danger btn-sm ms-2" onclick="cargarDatosIniciales()">
->>>>>>> 6056c9d7d3395e24df188b59f30994e9a9668adc
                         <i class="bi bi-arrow-clockwise"></i> Reintentar
                     </button>
                 </p>
             </div>
         </div>
     `;
-    
-    // Anunciar error en live region
-    const announcement = document.getElementById('search-results-announcement');
-    if (announcement) {
-        announcement.textContent = `Error: ${mensajeUsuario}`;
-    }
 }
 
 /**
-<<<<<<< HEAD
- * Estados de UI - Empty
- */
-function mostrarEmptyState() {
-    const container = document.getElementById('municipalities-container');
-    if (!container) return;
-
-    container.innerHTML = `
-        <div class="col-12 text-center py-5">
-            <i class="bi bi-inbox fs-1 text-muted mb-3"></i>
-            <p class="text-muted">No hay municipios disponibles en este momento.</p>
-            <small class="text-muted d-block mt-2">Por favor, intenta más tarde o contacta con el administrador.</small>
-        </div>
-    `;
-    
-    // Anunciar en live region
-    const announcement = document.getElementById('search-results-announcement');
-    if (announcement) {
-        announcement.textContent = 'No hay municipios disponibles en este momento.';
-    }
-}
-
-/**
-=======
->>>>>>> 6056c9d7d3395e24df188b59f30994e9a9668adc
  * Rehidratar favoritos después de renderizar
  */
 function rehidratarFavoritos() {
@@ -303,7 +236,6 @@ function rehidratarFavoritos() {
 function filtrarMunicipios() {
     const termino = document.getElementById('search-input').value.toLowerCase();
     const feedback = document.getElementById('search-feedback');
-    const announcement = document.getElementById('search-results-announcement');
     
     // Obtener valores de todos los checkboxes marcados
     const checkboxes = document.querySelectorAll('.service-filter-check:checked');
@@ -322,24 +254,12 @@ function filtrarMunicipios() {
 
     renderizarMunicipios(municipiosFiltrados);
 
-    // Anunciar resultados en live region
-    if (announcement) {
-        if (municipiosFiltrados.length === 0 && (termino || filtrosActivos.length > 0)) {
-            announcement.textContent = `No hay municipios que coincidan. Se encontraron 0 resultados.`;
-        } else if (municipiosFiltrados.length > 0) {
-            announcement.textContent = `Se encontraron ${municipiosFiltrados.length} municipio${municipiosFiltrados.length !== 1 ? 's' : ''}. Puedes hacer clic en "Ver Detalles" para más información.`;
-        }
-    }
-
-    // Mostrar mensaje si no hay resultados
+    // 5. Mostrar mensaje si no hay resultados
     if (municipiosFiltrados.length === 0 && (termino || filtrosActivos.length > 0)) {
         feedback.innerHTML = `
-            <div class="alert alert-info small py-2 mb-0">
-                <i class="bi bi-info-circle"></i> 
-                No hay municipios que coincidan con tu búsqueda.
-                <button class="btn btn-sm btn-link ms-2" onclick="document.getElementById('search-input').value=''; filtrarMunicipios();">
-                    Limpiar filtros
-                </button>
+            <div class="alert alert-warning small py-2">
+                <i class="bi bi-exclamation-triangle"></i> 
+                No hay municipios que coincidan con estos filtros.
             </div>`;
         feedback.classList.remove('d-none');
     } else {
@@ -350,9 +270,8 @@ function filtrarMunicipios() {
 // Toggle favorite status
 function toggleFavorite(municipalityName) {
     let favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
-    const esFavorito = favorites.includes(municipalityName);
     
-    if (esFavorito) {
+    if (favorites.includes(municipalityName)) {
         favorites = favorites.filter(name => name !== municipalityName);
     } else {
         favorites.push(municipalityName);
@@ -368,20 +287,11 @@ function toggleFavorite(municipalityName) {
             btn.classList.add('active');
             btn.style.backgroundColor = 'var(--bs-primary)';
             btn.style.color = 'white';
-            btn.setAttribute('aria-pressed', 'true');
         } else {
             btn.classList.remove('active');
             btn.style.backgroundColor = 'white';
             btn.style.color = 'var(--bs-primary)';
-            btn.setAttribute('aria-pressed', 'false');
         }
-    }
-    
-    // Anunciar cambio en live region
-    const announcement = document.getElementById('favs-announcement');
-    if (announcement) {
-        const accion = favorites.includes(municipalityName) ? 'añadido a' : 'eliminado de';
-        announcement.textContent = `${municipalityName} ha sido ${accion} tus favoritos.`;
     }
     
     updateFavoritesDisplay();
@@ -550,10 +460,10 @@ function generarFiltrosDinamicos() {
     container.innerHTML = ''; // Limpiar mensaje de carga
     todosLosServicios.forEach((servicio, index) => {
         const div = document.createElement('div');
-        div.className = 'form-check';
+        div.className = 'form-check mb-2';
         div.innerHTML = `
             <input class="form-check-input service-filter-check" type="checkbox" value="${servicio}" id="service-${index}">
-            <label class="form-check-label" for="service-${index}">
+            <label class="form-check-label small" for="service-${index}">
                 ${servicio}
             </label>
         `;

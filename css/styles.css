@@ -100,12 +100,7 @@ hr.divider-light {
 .navbar {
   background-color: white;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .navbar {
-    transition: all 0.3s ease;
-  }
+  transition: all 0.3s ease;
 }
 
 .navbar-shrink {
@@ -124,6 +119,7 @@ hr.divider-light {
   font-weight: 600;
   letter-spacing: 0.0625rem;
   color: #212529;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover,

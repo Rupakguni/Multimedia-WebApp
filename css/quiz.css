@@ -116,11 +116,6 @@
     text-align: center;
 }
 
-#dynamic-service-filters {
-    display: flex;
-    flex-direction: column;
-}
-
 /* Responsive para dispositivos móviles */
 @media (max-width: 768px) {
     .option-btn {
@@ -135,8 +130,4 @@
     #question-text {
         font-size: 1.1rem;
     }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #quiz-content, #quiz-result { animation: none; }
 }
