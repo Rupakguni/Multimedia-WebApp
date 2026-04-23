@@ -101,7 +101,12 @@ body {
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
-  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    scroll-behavior: smooth;
+  }
 }
 
 .masthead h1, .masthead h2, .masthead h3 {
@@ -138,7 +143,12 @@ body {
 .card {
   border: 1px solid #dee2e6;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 }
 
 .card:hover {
@@ -148,12 +158,19 @@ body {
 
 .municipality-card {
   cursor: pointer;
-  transition: all 0.3s ease;
+  min-height: auto;
 }
 
-.municipality-card:focus {
-  outline: 3px solid var(--bs-primary);
+@media (prefers-reduced-motion: no-preference) {
+  .municipality-card {
+    transition: all 0.3s ease;
+  }
+}
+
+.municipality-card:focus-visible {
+  outline: 3px solid #212529;
   outline-offset: 2px;
+  border-radius: 0.375rem;
 }
 
 .municipality-card {
@@ -178,7 +195,12 @@ body {
 .navbar {
   background-color: white;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .navbar {
+    transition: all 0.3s ease;
+  }
 }
 
 .navbar-shrink {
@@ -197,10 +219,22 @@ body {
   font-weight: 600;
   letter-spacing: 0.0625rem;
   color: #212529;
-  transition: color 0.3s ease;
 }
 
-.nav-link:hover, .nav-link:focus {
+@media (prefers-reduced-motion: no-preference) {
+  .nav-link {
+    transition: color 0.3s ease;
+  }
+}
+
+.nav-link:hover {
+  color: var(--bs-primary);
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid #212529;
+  outline-offset: 4px;
+  border-radius: 0.25rem;
   color: var(--bs-primary);
 }
 
@@ -214,18 +248,144 @@ body {
 }
 
 .favorite-card {
-  transition: all 0.3s ease;
+  min-height: 150px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .favorite-card {
+    transition: all 0.3s ease;
+  }
 }
 
 .favorite-card.favorite-active {
-  border: 2px solid var(--bs-primary);
-  background-color: rgba(244, 98, 58, 0.05);
+  border: 3px solid var(--bs-primary);
+  background-color: rgba(212, 178, 125, 0.1);
+  box-shadow: inset 0 0 0 1px var(--bs-primary), 0 0 0 3px rgba(212, 178, 125, 0.25);
+}
+
+.favorite-card.favorite-active::after {
+  content: " (Favorito)";
+  font-weight: 700;
+  color: var(--bs-primary);
 }
 
 /* Accessibility */
 :focus-visible {
-  outline: 3px solid var(--bs-primary);
+  outline: 3px solid #212529;
   outline-offset: 2px;
+  border-radius: 0.375rem;
+}
+
+/* Skip to main content link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #212529;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #ffc107;
+  outline-offset: 2px;
+}
+
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.visually-hidden-focusable:focus,
+.visually-hidden-focusable:focus-within {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+
+/* Touch target sizing for accessibility (min 24x24px) */
+button,
+.btn,
+[role="button"],
+input[type="checkbox"],
+input[type="radio"],
+a[role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  min-height: 44px;
+}
+
+.btn-sm {
+  min-height: 36px;
+  padding: 0.25rem 0.75rem;
+}
+
+.btn-xl {
+  min-height: 50px;
+  padding: 1rem 2rem;
+}
+
+/* Filtros de servicios - Checkboxes compactos */
+#dynamic-service-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+#dynamic-service-filters .form-check {
+  display: inline-flex;
+  align-items: center;
+  min-height: auto;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+#dynamic-service-filters .form-check-input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0.5rem 0 0;
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+#dynamic-service-filters .form-check-label {
+  margin-bottom: 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  #dynamic-service-filters {
+    gap: 0.5rem 0.75rem;
+  }
+
+  #dynamic-service-filters .form-check-label {
+    font-size: 0.9rem;
+  }
 }
 
 /* Responsive */
@@ -241,6 +401,16 @@ body {
   .masthead {
     padding-top: 8rem;
     padding-bottom: 8rem;
+  }
+
+  /* Increase touch targets on mobile */
+  .btn {
+    min-height: 48px;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .municipality-card {
+    min-height: 240px;
   }
 }
   
@@ -500,6 +670,11 @@ button {
 
 button:focus:not(:focus-visible) {
   outline: 0;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 input,
@@ -11043,6 +11218,12 @@ hr.divider-light {
 #mainNav .navbar-nav .nav-item .nav-link.active {
   color: #d4b27d !important;
 }
+
+#dynamic-service-filters {
+    display: flex;
+    flex-direction: column;
+}
+
 @media (min-width: 992px) {
   #mainNav {
     box-shadow: none;
@@ -11081,6 +11262,8 @@ hr.divider-light {
     color: #d4b27d;
   }
 }
+
+
 
 header.masthead {
   padding-top: 10rem;
