@@ -14,6 +14,31 @@ const appState = {
     status: 'idle'
 };
 
+/**
+ * Construye un bloque <picture> con fuentes AVIF, WebP y fallback JPG
+ * usando variantes responsive generadas con ImageMagick.
+ */
+function buildResponsivePicture(imageData, altText, isCard = false) {
+    const sourceUrl = imageData.url || './assets/img/default.jpg';
+    const baseName = sourceUrl.split('/').pop().replace(/\.(jpe?g|png|webp|avif)$/i, '');
+    const sourceDir = sourceUrl.replace(/\/[^\/]+$/, '');
+    const thumbBase = imageData.thumbnail
+        ? imageData.thumbnail.replace(/\.(avif|webp|jpe?g)$/i, '')
+        : `${sourceDir}/${baseName}-thumb`;
+    const imageBase = `${sourceDir}/${baseName}`;
+    const sizes = isCard
+        ? '(max-width: 480px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 25vw'
+        : '(max-width: 480px) 100vw, (max-width: 768px) 100vw, 900px';
+
+    return `
+        <picture class="${isCard ? 'card-picture' : 'modal-picture'}">
+            <source type="image/avif" srcset="${thumbBase}.avif 320w, ${imageBase}-640.avif 640w, ${imageBase}-1280.avif 1280w" sizes="${sizes}">
+            <source type="image/webp" srcset="${thumbBase}.webp 320w, ${imageBase}-640.webp 640w, ${imageBase}-1280.webp 1280w" sizes="${sizes}">
+            <img src="${thumbBase}.jpg" srcset="${thumbBase}.jpg 320w, ${imageBase}-640.jpg 640w, ${imageBase}-1280.jpg 1280w" sizes="${sizes}" alt="${altText}" loading="${isCard ? 'lazy' : 'eager'}" decoding="async" class="img-fluid rounded shadow-sm">
+        </picture>
+    `;
+}
+
 // Initialize when DOM is loaded
 window.addEventListener('DOMContentLoaded', event => {
     initializeApp();
@@ -134,12 +159,12 @@ function renderizarMunicipios(municipios) {
         card.setAttribute('role', 'button');
         card.setAttribute('tabindex', '0');
 
-        const imageUrl = municipio.imagenes && municipio.imagenes[0] ? municipio.imagenes[0].url : './assets/img/default.jpg'; 
+        const imageData = municipio.imagenes && municipio.imagenes[0] ? municipio.imagenes[0] : { url: './assets/img/default.jpg', alt: `Imagen de ${municipio.name}` };
+        const imageAlt = imageData.alt || `Imagen de ${municipio.name}`;
 
-        // Construir el contenido de la tarjeta
+        // Construir el contenido de la tarjeta con responsive picture y lazy loading
         card.innerHTML = `
-            <img src="${imageUrl}" class="card-img-top" alt="Imagen de ${municipio.name}" 
-                    style="height: 200px; object-fit: cover;">
+            ${buildResponsivePicture(imageData, imageAlt, true)}
             <div class="card-body">
                 <h5 class="card-title">${municipio.name}</h5>
                 <p class="card-text text-muted small">${municipio.description}</p>
@@ -378,11 +403,11 @@ function loadMunicipalityDetails(municipalityName) {
     const btnFav = document.getElementById('modal-favorite-btn');
     btnFav.textContent = favorites.includes(municipalityName) ? '❤️ En Favoritos' : 'Añadir a Favoritos';
 
-    // Actualizar imagen del modal
-    const modalImg = document.getElementById('modal-img');
-    if (modalImg && municipalityData.imagenes && municipalityData.imagenes[0]) {
-        modalImg.src = municipalityData.imagenes[0].url;
-        modalImg.alt = municipalityData.name;
+    // Actualizar imagen del modal con responsive <picture>
+    const modalImageWrapper = document.getElementById('modal-img-wrapper');
+    if (modalImageWrapper && municipalityData.imagenes && municipalityData.imagenes[0]) {
+        const imageAlt = municipalityData.imagenes[0].alt || municipalityData.name;
+        modalImageWrapper.innerHTML = buildResponsivePicture(municipalityData.imagenes[0], imageAlt, false);
     }
 
     // Rellenar modal con datos básicos

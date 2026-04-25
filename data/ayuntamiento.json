@@ -15,7 +15,11 @@
       "patrimonio": ["Catedral-Basílica de Santa María", "La Lonja de Palma", "Palacio Real de La Almudaina", "Castillo de Bellver"],
       "servicios": ["Turismo", "Cultura", "Patrimonio", "Gastronomía"],
       "clima": "Mediterráneo",
-      "imagenes": [{"url": "./assets/img/Palma.jpg", "caption": "Imagen de Palma"}]
+      "imagenes": [{
+        "url": "./assets/img/Palma.jpg",
+        "alt": "Vista panorámica de Palma de Mallorca",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Palma-thumb.avif"
+      }]
     },
     {
       "id": 2,
@@ -32,7 +36,11 @@
       "patrimonio": ["Iglesia de los Dominicos", "Convento de San Vicente Ferrer", "Casa de Cultura"],
       "servicios": ["Artesanía", "Cultura", "Comercio", "Industria"],
       "clima": "Mediterráneo",
-      "imagenes": [{"url": "./assets/img/Manacor.jpg", "caption": "Imagen de Manacor"}]
+      "imagenes": [{
+        "url": "./assets/img/Manacor.jpg",
+        "alt": "Plaza principal de Manacor con edificios tradicionales",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Manacor-thumb.avif"
+      }]
     },
     {
       "id": 3,
@@ -49,7 +57,11 @@
       "patrimonio": ["Iglesia de Santa María la Mayor", "Convento de San Domingo", "Plaza Mayor"],
       "servicios": ["Artesanía de Cuero", "Cultura", "Comercio", "Industria Tradicional"],
       "clima": "Mediterráneo",
-      "imagenes": [{"url": "./assets/img/Inca.jpg", "caption": "Imagen de Inca"}]
+      "imagenes": [{
+        "url": "./assets/img/Inca.jpg",
+        "alt": "Vista urbana de Inca con su ambiente artesanal",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Inca-thumb.avif"
+      }]
     },
     {
       "id": 4,
@@ -66,7 +78,11 @@
       "patrimonio": ["Iglesia Parroquial de Santa María", "Jardines de Alfabia", "Port de Sóller", "Sierra de Tramuntana"],
       "servicios": ["Turismo", "Naturaleza", "Gastronomía", "Patrimonio"],
       "clima": "Mediterráneo Montañoso",
-      "imagenes": [{"url": "./assets/img/Soller.jpg", "caption": "Imagen de Sóller"}]
+      "imagenes": [{
+        "url": "./assets/img/Soller.jpg",
+        "alt": "Calle típica de Sóller entre montañas",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Soller-thumb.avif"
+      }]
     },
     {
       "id": 5,
@@ -83,7 +99,11 @@
       "patrimonio": ["Murallas Medievales", "Iglesia de Sant Jaume", "Puerto de Alcúdia", "Bahía de Alcúdia"],
       "servicios": ["Turismo", "Playas", "Deportes Acuáticos", "Gastronomía"],
       "clima": "Mediterráneo",
-      "imagenes": [{"url": "./assets/img/Alcudia.jpg", "caption": "Imagen de Alcúdia"}]
+      "imagenes": [{
+        "url": "./assets/img/Alcudia.jpg",
+        "alt": "Murallas históricas y playa de Alcúdia",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Alcudia-thumb.avif"
+      }]
     },
     {
       "id": 6,
@@ -100,7 +120,11 @@
       "patrimonio": ["Iglesia de San Miguel", "Convento de San Domingo", "Plaza del Pueblo"],
       "servicios": ["Agricultura", "Cultura", "Comercio", "Patrimonio"],
       "clima": "Mediterráneo",
-      "imagenes": [{"url": "./assets/img/Llucmajor.jpg", "caption": "Imagen de Llucmajor"}]
+      "imagenes": [{
+        "url": "./assets/img/Llucmajor.jpg",
+        "alt": "Centro histórico de Llucmajor",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Llucmajor-thumb.avif"
+      }]
     }
   ],
   "metadata": {

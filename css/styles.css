@@ -30,6 +30,71 @@ body {
   scroll-behavior: smooth;
 }
 
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  padding: 0.75rem 1rem;
+  background: rgba(33, 37, 41, 0.95);
+  color: white;
+  transform: translateY(-120%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:active,
+.skip-link:hover {
+  transform: translateY(0);
+}
+
+.carousel-picture {
+  overflow: hidden;
+}
+
+.carousel-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-caption {
+  z-index: 2;
+}
+
+.video-figure iframe,
+.video-figure video {
+  border-radius: 0.75rem;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.audio-figure audio {
+  max-width: 100%;
+}
+
+.multimedia-section {
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(44, 62, 80, 0.95));
+}
+
+.card-picture {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card-picture img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .card-picture img {
+    height: 180px;
+  }
+}
+
 /* ============================================================
    TIPOGRAFÍA
    ============================================================ */
