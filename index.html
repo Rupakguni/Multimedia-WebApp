@@ -29,6 +29,8 @@
         <link href="css/styles.css" rel="stylesheet" />
         <!-- Quiz CSS-->
         <link href="css/quiz.css" rel="stylesheet" />
+        <!-- Google Sign-In -->
+        <script src="https://accounts.google.com/gsi/client" async defer onload="onGoogleLibraryLoad()"></script>
     </head>
     <body id="page-top">
         <!-- Skip link de accesibilidad -->
@@ -301,7 +303,7 @@
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-6">
-                        <form id="contactForm" novalidate>
+                        <form id="contactForm" action="https://formspree.io/f/mzdyqpng" method="POST" novalidate>
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="name" type="text" placeholder="Introduce tu nombre..." required minlength="2" maxlength="80" autocomplete="name" aria-describedby="name-error" />
                                 <label for="name">Nombre completo</label>
@@ -458,6 +460,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js" defer></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js" defer></script>
+        <!-- Google Authentication JS -->
+        <script src="js/google-auth.js" defer></script>
         <!-- Quiz JS-->
         <script src="js/quiz.js" defer></script>
     </body>

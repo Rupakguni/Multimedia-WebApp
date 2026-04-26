@@ -596,7 +596,7 @@ function dibujarMarcadores() {
         });
     });
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         // Validación extra: nombre no puede ser solo espacios
@@ -617,18 +617,58 @@ function dibujarMarcadores() {
             return;
         }
 
-        // Formulario válido — mostrar confirmación en UI
-        feedback.textContent = `✅ Mensaje enviado correctamente. Gracias, ${nameEl.value.trim()}.`;
-        feedback.className = 'alert alert-success';
-        feedback.removeAttribute('hidden');
-        feedback.classList.remove('d-none');
+        // Deshabilitar botón mientras se envía
+        const submitButton = document.getElementById('submitButton');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Enviando...';
 
-        form.reset();
-        [nameEl, emailEl, messageEl].forEach(el => el.classList.remove('is-valid', 'is-invalid'));
+        try {
+            // Enviar formulario usando Formspree API
+            const formData = new FormData(form);
+            console.log('Enviando datos:', Object.fromEntries(formData));
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            console.log('Respuesta:', response.status, response.statusText);
 
-        // Ocultar feedback tras 5 segundos
-        setTimeout(() => {
-            feedback.classList.add('d-none');
-        }, 5000);
+            if (response.ok) {
+                // Éxito
+                const result = await response.json();
+                console.log('Éxito:', result);
+                feedback.textContent = `✅ Mensaje enviado correctamente. Gracias, ${nameEl.value.trim()}.`;
+                feedback.className = 'alert alert-success';
+                feedback.removeAttribute('hidden');
+                feedback.classList.remove('d-none');
+
+                form.reset();
+                [nameEl, emailEl, messageEl].forEach(el => el.classList.remove('is-valid', 'is-invalid'));
+            } else {
+                // Error del servidor
+                const errorData = await response.json().catch(() => ({}));
+                console.error('Error del servidor:', errorData);
+                throw new Error(errorData.error || `Error ${response.status}: ${response.statusText}`);
+            }
+        } catch (error) {
+            console.error('Error sending form:', error);
+            feedback.textContent = '❌ Error al enviar el mensaje. Por favor, inténtalo de nuevo.';
+            feedback.className = 'alert alert-danger';
+            feedback.removeAttribute('hidden');
+            feedback.classList.remove('d-none');
+        } finally {
+            // Rehabilitar botón
+            submitButton.disabled = false;
+            submitButton.textContent = 'Enviar Mensaje';
+        }
+
+        // Ocultar feedback tras 5 segundos si fue exitoso
+        if (feedback.classList.contains('alert-success')) {
+            setTimeout(() => {
+                feedback.classList.add('d-none');
+            }, 5000);
+        }
     });
 })();
