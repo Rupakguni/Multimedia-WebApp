@@ -305,17 +305,17 @@
                     <div class="col-lg-6">
                         <form id="contactForm" action="https://formspree.io/f/mzdyqpng" method="POST" novalidate>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Introduce tu nombre..." required minlength="2" maxlength="80" autocomplete="name" aria-describedby="name-error" />
+                                <input class="form-control" id="name" name="name" type="text" placeholder="Introduce tu nombre..." required minlength="2" maxlength="80" autocomplete="name" aria-describedby="name-error" />
                                 <label for="name">Nombre completo</label>
                                 <div id="name-error" class="invalid-feedback">Por favor, introduce tu nombre (mínimo 2 caracteres).</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="nombre@ejemplo.com" required autocomplete="email" aria-describedby="email-error" />
+                                <input class="form-control" id="email" name="email" type="email" placeholder="nombre@ejemplo.com" required autocomplete="email" aria-describedby="email-error" />
                                 <label for="email">Correo electrónico</label>
                                 <div id="email-error" class="invalid-feedback">Por favor, introduce un correo electrónico válido.</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" placeholder="Escribe tu mensaje aquí..." style="height: 10rem" required minlength="10" aria-describedby="message-error"></textarea>
+                                <textarea class="form-control" id="message" name="message" placeholder="Escribe tu mensaje aquí..." style="height: 10rem" required minlength="10" aria-describedby="message-error"></textarea>
                                 <label for="message">Mensaje</label>
                                 <div id="message-error" class="invalid-feedback">El mensaje debe tener al menos 10 caracteres.</div>
                             </div>

@@ -98,6 +98,9 @@ async function initializeApp() {
     // CAMBIO IMPORTANTE: Cargar datos dinámicamente desde JSON
     // Los favoritos se rehidratarán después de que carguen los datos
     await cargarDatosIniciales();
+
+    // Inicializar formulario de contacto DESPUÉS de que el DOM esté listo
+    inicializarFormularioContacto();
 }
 
 
@@ -572,9 +575,12 @@ function dibujarMarcadores() {
  * Usa Constraint Validation API: checkValidity, reportValidity, setCustomValidity
  * novalidate en el HTML desactiva la UI nativa y la controlamos aquí
  */
-(function inicializarFormularioContacto() {
+function inicializarFormularioContacto() {
     const form = document.getElementById('contactForm');
-    if (!form) return;
+    if (!form) {
+        console.warn('contactForm no encontrado');
+        return;
+    }
 
     const nameEl    = document.getElementById('name');
     const emailEl   = document.getElementById('email');
@@ -637,8 +643,7 @@ function dibujarMarcadores() {
 
             if (response.ok) {
                 // Éxito
-                const result = await response.json();
-                console.log('Éxito:', result);
+                console.log('Formulario enviado correctamente a Formspree');
                 feedback.textContent = `✅ Mensaje enviado correctamente. Gracias, ${nameEl.value.trim()}.`;
                 feedback.className = 'alert alert-success';
                 feedback.removeAttribute('hidden');
@@ -648,9 +653,10 @@ function dibujarMarcadores() {
                 [nameEl, emailEl, messageEl].forEach(el => el.classList.remove('is-valid', 'is-invalid'));
             } else {
                 // Error del servidor
-                const errorData = await response.json().catch(() => ({}));
-                console.error('Error del servidor:', errorData);
-                throw new Error(errorData.error || `Error ${response.status}: ${response.statusText}`);
+                console.error('Error del servidor:', response.status);
+                const errorText = await response.text();
+                console.error('Detalles:', errorText);
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
             }
         } catch (error) {
             console.error('Error sending form:', error);
@@ -671,4 +677,4 @@ function dibujarMarcadores() {
             }, 5000);
         }
     });
-})();
+}
