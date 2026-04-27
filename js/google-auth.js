@@ -22,6 +22,9 @@ function handleCredentialResponse(response) {
     
     // Update UI to show logged in state
     updateAuthUI();
+
+    // Load user's favorites after signing in
+    rehidratarFavoritos();
     
     console.log('User signed in:', currentUser);
 }
@@ -100,6 +103,9 @@ function signOut(event) {
     
     // Update UI
     updateAuthUI();
+
+    // Clear favorites on sign out
+    rehidratarFavoritos();
     
     console.log('User signed out');
 }

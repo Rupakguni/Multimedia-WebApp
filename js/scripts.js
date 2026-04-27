@@ -241,8 +241,17 @@ function mostrarErrorState(error) {
  * Rehidratar favoritos después de renderizar
  */
 function rehidratarFavoritos() {
-    const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
+    const storageKey = getFavoritesKey();
+    const favorites = JSON.parse(localStorage.getItem(storageKey)) || [];
     
+    // Primero limpiamos todos los botones (importante al cerrar sesión)
+    document.querySelectorAll('.municipality-card .btn-outline-primary').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.backgroundColor = 'white';
+        btn.style.color = 'var(--bs-primary)';
+    });
+
+    // Luego marcamos los que correspondan a esta sesión
     favorites.forEach(favName => {
         const card = document.querySelector(`[data-municipality="${favName}"]`);
         if (card) {
@@ -295,9 +304,17 @@ function filtrarMunicipios() {
     }
 }
 
-// Toggle favorite status
+// Función auxiliar para obtener la llave de favoritos actual
+function getFavoritesKey() {
+    const user = JSON.parse(localStorage.getItem('googleUser'));
+    // Si hay usuario, la llave es 'favorites_ID', si no, es la genérica
+    return user ? `favoritesMallorca_${user.id}` : 'favoritesMallorca_guest';
+}
+
+// Función para alternar favorito desde la tarjeta o el modal
 function toggleFavorite(municipalityName) {
-    let favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
+    const storageKey = getFavoritesKey();
+    let favorites = JSON.parse(localStorage.getItem(storageKey)) || [];
     
     if (favorites.includes(municipalityName)) {
         favorites = favorites.filter(name => name !== municipalityName);
@@ -305,21 +322,16 @@ function toggleFavorite(municipalityName) {
         favorites.push(municipalityName);
     }
     
-    localStorage.setItem('favoritesMallorca', JSON.stringify(favorites));
+    localStorage.setItem(storageKey, JSON.stringify(favorites));
     
-    // Update button state
+    // Actualizar estado visual de los botones
     const card = document.querySelector(`[data-municipality="${municipalityName}"]`);
     if (card) {
         const btn = card.querySelector('.btn-outline-primary');
-        if (favorites.includes(municipalityName)) {
-            btn.classList.add('active');
-            btn.style.backgroundColor = 'var(--bs-primary)';
-            btn.style.color = 'white';
-        } else {
-            btn.classList.remove('active');
-            btn.style.backgroundColor = 'white';
-            btn.style.color = 'var(--bs-primary)';
-        }
+        const esFavorito = favorites.includes(municipalityName);
+        btn.classList.toggle('active', esFavorito);
+        btn.style.backgroundColor = esFavorito ? 'var(--bs-primary)' : 'white';
+        btn.style.color = esFavorito ? 'white' : 'var(--bs-primary)';
     }
     
     updateFavoritesDisplay();
@@ -344,36 +356,28 @@ function toggleFavoriteFromModal() {
  * Optimizada para rendimiento eliminando bucles de borrado manual
  */
 function updateFavoritesDisplay() {
-    const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
+    const storageKey = getFavoritesKey();
+    const favorites = JSON.parse(localStorage.getItem(storageKey)) || [];
     const container = document.getElementById('favorites-container');
     
     if (!container) return;
     
-    // Si no hay favoritos, mostramos el mensaje inicial y salimos
     if (favorites.length === 0) {
-        container.innerHTML = `
-            <div class="col-lg-10 text-center">
-                <p class="text-white-75">Selecciona municipios para añadirlos a tu lista de favoritos</p>
-            </div>`;
-        return;
-    }
-
-    // Generamos el HTML directamente. 
-    // Al asignar container.innerHTML, el navegador elimina automáticamente lo anterior.
-    const html = favorites.map(name => `
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card favorite-card favorite-active h-100">
-                <div class="card-body text-center d-flex flex-column justify-content-center">
-                    <h5 class="card-title">${name}</h5>
-                    <button class="btn btn-sm btn-danger mt-2" onclick="removeFavorite('${name}')">
-                        <i class="bi bi-heart-fill"></i> Eliminar
-                    </button>
+        container.innerHTML = '<div class="col-lg-10 text-center"><p class="text-white-75">Selecciona municipios para añadirlos a tu lista de favoritos</p></div>';
+    } else {
+        container.innerHTML = favorites.map(name => `
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card favorite-card favorite-active h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">${name}</h5>
+                        <button class="btn btn-sm btn-danger" onclick="removeFavorite('${name}')">
+                            <i class="bi bi-heart-fill"></i> Eliminar
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join('');
-    
-    container.innerHTML = html;
+        `).join('');
+    }
 }
 
 // Remove favorite
