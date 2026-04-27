@@ -456,6 +456,39 @@ function loadMunicipalityDetails(municipalityName) {
     
     document.getElementById('modal-events').innerHTML = eventsList;
 
+    // Rellenar sección de multimedia
+    const multimediaContainer = document.getElementById('modal-multimedia');
+    if (multimediaContainer && municipalityData.media) {
+        let multimediaHTML = '';
+        
+        // Mostrar vídeos
+        if (municipalityData.media.videos && municipalityData.media.videos.length > 0) {
+            multimediaHTML += '<div class="mb-3"><strong class="d-block mb-2"><i class="bi bi-play-circle"></i> Vídeos:</strong>';
+            multimediaHTML += '<ul class="list-unstyled ps-3">';
+            municipalityData.media.videos.forEach(video => {
+                multimediaHTML += `<li class="mb-2"><a href="${video.url}" target="_blank" rel="noopener" class="text-decoration-none">${video.titulo}</a></li>`;
+            });
+            multimediaHTML += '</ul></div>';
+        }
+        
+        // Mostrar audios
+        if (municipalityData.media.audios && municipalityData.media.audios.length > 0) {
+            multimediaHTML += '<div class="mb-3"><strong class="d-block mb-2"><i class="bi bi-music-note-list"></i> Audios/Podcasts:</strong>';
+            multimediaHTML += '<ul class="list-unstyled ps-3">';
+            municipalityData.media.audios.forEach(audio => {
+                const badge = audio.plataforma ? ` <span class="badge bg-secondary small">${audio.plataforma}</span>` : '';
+                multimediaHTML += `<li class="mb-2"><a href="${audio.url}" target="_blank" rel="noopener" class="text-decoration-none">${audio.titulo}</a>${badge}</li>`;
+            });
+            multimediaHTML += '</ul></div>';
+        }
+        
+        if (multimediaHTML) {
+            multimediaContainer.innerHTML = multimediaHTML;
+        } else {
+            multimediaContainer.innerHTML = '<p class="text-muted mb-0">No hay contenido multimedia disponible</p>';
+        }
+    }
+
     updateWeather(municipalityData.latitude, municipalityData.longitude); // Actualizar clima cada vez que se abre el modal con un municipio diferente
 }
 

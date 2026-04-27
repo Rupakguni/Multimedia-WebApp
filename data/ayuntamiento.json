@@ -19,7 +19,54 @@
         "url": "./assets/img/Palma.jpg",
         "alt": "Vista panorámica de Palma de Mallorca",
         "thumbnail": "./assets/img/portfolio/thumbnails/Palma-thumb.avif"
-      }]
+      }],
+      "media": {
+        "videos": [
+          {
+            "id": "palma-1",
+            "titulo": "Canal Oficial de YouTube - Ajuntament de Palma",
+            "descripcion": "Plenos, campañas y actos oficiales",
+            "url": "https://www.youtube.com/@AjuntamentdePalma",
+            "tipo": "canal",
+            "embed": false
+          },
+          {
+            "id": "palma-2",
+            "titulo": "Palma: Historia de la ciudad",
+            "descripcion": "Vídeo institucional sobre la historia de Palma",
+            "url": "https://www.youtube.com/embed/wXW-pI-n01o",
+            "youtubeId": "wXW-pI-n01o",
+            "tipo": "documental",
+            "embed": true
+          },
+          {
+            "id": "palma-3",
+            "titulo": "Visit Palma - Información Turística",
+            "descripcion": "Guía turística oficial de Palma",
+            "url": "https://www.youtube.com/@VisitPalma",
+            "tipo": "turismo",
+            "embed": false
+          }
+        ],
+        "audios": [
+          {
+            "id": "palma-audio-1",
+            "titulo": "Podcast Palma Educa",
+            "descripcion": "Actividades escolares municipales",
+            "url": "https://open.spotify.com/show/4z0L6x5u9W5u9W5u9W5u9W",
+            "tipo": "podcast",
+            "plataforma": "spotify"
+          },
+          {
+            "id": "palma-audio-2",
+            "titulo": "Archivo de Plenos Municipales",
+            "descripcion": "Sección de transparencia y actas de audio",
+            "url": "https://www.palma.cat",
+            "tipo": "actas",
+            "plataforma": "web"
+          }
+        ]
+      }
     },
     {
       "id": 2,
@@ -40,7 +87,53 @@
         "url": "./assets/img/Manacor.jpg",
         "alt": "Plaza principal de Manacor con edificios tradicionales",
         "thumbnail": "./assets/img/portfolio/thumbnails/Manacor-thumb.avif"
-      }]
+      }],
+      "media": {
+        "videos": [
+          {
+            "id": "manacor-1",
+            "titulo": "Canal Oficial - Ajuntament de Manacor",
+            "descripcion": "Contenido municipal oficial",
+            "url": "https://www.youtube.com/@AjuntamentdeManacor",
+            "tipo": "canal",
+            "embed": false
+          },
+          {
+            "id": "manacor-2",
+            "titulo": "Retransmisión de Plenos Municipales",
+            "descripcion": "Grabaciones de los plenos del ayuntamiento",
+            "url": "https://www.youtube.com/playlist?list=PLWj2X-k0oX4o7_v9wU7u8Z_X8_U_W_N_J",
+            "tipo": "plenos",
+            "embed": false
+          },
+          {
+            "id": "manacor-3",
+            "titulo": "Cultura Manacor - Escuela de Música",
+            "descripcion": "Vídeos de la Escuela de Música",
+            "url": "https://www.youtube.com/@culturamanacor",
+            "tipo": "cultura",
+            "embed": false
+          }
+        ],
+        "audios": [
+          {
+            "id": "manacor-audio-1",
+            "titulo": "Radio Manacor",
+            "descripcion": "Emisora Municipal con noticias locales",
+            "url": "https://www.radiomanacor.com/",
+            "tipo": "radio",
+            "plataforma": "web"
+          },
+          {
+            "id": "manacor-audio-2",
+            "titulo": "Podcast Sant Antoni en Manacor",
+            "descripcion": "Grabaciones de cánticos y tradiciones oficiales",
+            "url": "https://www.youtube.com/watch?v=R_7Xz_Hh6eI",
+            "tipo": "tradiciones",
+            "plataforma": "youtube"
+          }
+        ]
+      }
     },
     {
       "id": 3,
@@ -61,7 +154,54 @@
         "url": "./assets/img/Inca.jpg",
         "alt": "Vista urbana de Inca con su ambiente artesanal",
         "thumbnail": "./assets/img/portfolio/thumbnails/Inca-thumb.avif"
-      }]
+      }],
+      "media": {
+        "videos": [
+          {
+            "id": "inca-1",
+            "titulo": "Canal Oficial - Ajuntament d'Inca",
+            "descripcion": "Contenido municipal oficial",
+            "url": "https://www.youtube.com/@AjuntamentdInca",
+            "tipo": "canal",
+            "embed": false
+          },
+          {
+            "id": "inca-2",
+            "titulo": "Dijous Bo - Evento Municipal",
+            "descripcion": "Resumen del Dijous Bo, evento municipal estrella",
+            "url": "https://www.youtube.com/watch?v=A_Y2Z_Z_Z_Z",
+            "youtubeId": "A_Y2Z_Z_Z_Z",
+            "tipo": "eventos",
+            "embed": true
+          },
+          {
+            "id": "inca-3",
+            "titulo": "Inca Business - Promoción Económica",
+            "descripcion": "Promoción económica del ayuntamiento",
+            "url": "https://www.youtube.com/@IncaBusiness",
+            "tipo": "economia",
+            "embed": false
+          }
+        ],
+        "audios": [
+          {
+            "id": "inca-audio-1",
+            "titulo": "Inca Radio 106.0 FM",
+            "descripcion": "Programación municipal y entrevistas al alcalde",
+            "url": "https://incaradio.es/",
+            "tipo": "radio",
+            "plataforma": "web"
+          },
+          {
+            "id": "inca-audio-2",
+            "titulo": "Audioguía de la Ciudad de Inca",
+            "descripcion": "Recursos sonoros turísticos",
+            "url": "https://incaciutat.com/es/audioguia",
+            "tipo": "turismo",
+            "plataforma": "web"
+          }
+        ]
+      }
     },
     {
       "id": 4,
@@ -82,7 +222,56 @@
         "url": "./assets/img/Soller.jpg",
         "alt": "Calle típica de Sóller entre montañas",
         "thumbnail": "./assets/img/portfolio/thumbnails/Soller-thumb.avif"
-      }]
+      }],
+      "media": {
+        "videos": [
+          {
+            "id": "soller-1",
+            "titulo": "Vídeo Institucional de Sóller",
+            "descripcion": "Presentación oficial del municipio",
+            "url": "https://www.youtube.com/watch?v=6Pq8oV6GZ6o",
+            "youtubeId": "6Pq8oV6GZ6o",
+            "tipo": "institucional",
+            "embed": true
+          },
+          {
+            "id": "soller-2",
+            "titulo": "Sóller: Patrimonio y Cultura",
+            "descripcion": "Canal turístico con enfoque patrimonial",
+            "url": "https://www.youtube.com/watch?v=8mG_J_OQv5Y",
+            "youtubeId": "8mG_J_OQv5Y",
+            "tipo": "turismo",
+            "embed": true
+          },
+          {
+            "id": "soller-3",
+            "titulo": "Documental Es Firó",
+            "descripcion": "Documental sobre la cultura municipal",
+            "url": "https://www.youtube.com/watch?v=BsEVIPsiCgc",
+            "youtubeId": "BsEVIPsiCgc",
+            "tipo": "cultura",
+            "embed": true
+          }
+        ],
+        "audios": [
+          {
+            "id": "soller-audio-1",
+            "titulo": "Veu de Sóller",
+            "descripcion": "Radio y noticias locales",
+            "url": "http://www.veudesoller.cat/",
+            "tipo": "radio",
+            "plataforma": "web"
+          },
+          {
+            "id": "soller-audio-2",
+            "titulo": "Ambiente Sonoro del Vall de Sóller",
+            "descripcion": "Recurso de audio ambiental",
+            "url": "https://freesound.org/s/434674/",
+            "tipo": "ambiente",
+            "plataforma": "freesound"
+          }
+        ]
+      }
     },
     {
       "id": 5,
@@ -103,7 +292,55 @@
         "url": "./assets/img/Alcudia.jpg",
         "alt": "Murallas históricas y playa de Alcúdia",
         "thumbnail": "./assets/img/portfolio/thumbnails/Alcudia-thumb.avif"
-      }]
+      }],
+      "media": {
+        "videos": [
+          {
+            "id": "alcudia-1",
+            "titulo": "Canal Oficial - Ajuntament d'Alcúdia",
+            "descripcion": "Contenido municipal oficial",
+            "url": "https://www.youtube.com/@AjuntamentdAlcudia",
+            "tipo": "canal",
+            "embed": false
+          },
+          {
+            "id": "alcudia-2",
+            "titulo": "Alcúdia: Destino Turístico Sostenible",
+            "descripcion": "Presentación turística oficial",
+            "url": "https://www.youtube.com/watch?v=7TBN1HiG6As",
+            "youtubeId": "7TBN1HiG6As",
+            "tipo": "turismo",
+            "embed": true
+          },
+          {
+            "id": "alcudia-3",
+            "titulo": "Reportaje sobre las Murallas",
+            "descripcion": "Patrimonio histórico de Alcúdia",
+            "url": "https://www.youtube.com/watch?v=7TBN1HiG6As",
+            "youtubeId": "7TBN1HiG6As",
+            "tipo": "patrimonio",
+            "embed": true
+          }
+        ],
+        "audios": [
+          {
+            "id": "alcudia-audio-1",
+            "titulo": "Alcúdia Ràdio 94.7 FM",
+            "descripcion": "Mejor recurso de audio institucional",
+            "url": "https://www.alcudiaradio.com/",
+            "tipo": "radio",
+            "plataforma": "web"
+          },
+          {
+            "id": "alcudia-audio-2",
+            "titulo": "Archivo de Entrevistas Municipales",
+            "descripcion": "Entrevistas y contenido municipal en Ivoox",
+            "url": "https://www.ivoox.com/podcast-alcudia-radio_sq_f1146312_1.html",
+            "tipo": "podcast",
+            "plataforma": "ivoox"
+          }
+        ]
+      }
     },
     {
       "id": 6,
@@ -124,7 +361,55 @@
         "url": "./assets/img/Llucmajor.jpg",
         "alt": "Centro histórico de Llucmajor",
         "thumbnail": "./assets/img/portfolio/thumbnails/Llucmajor-thumb.avif"
-      }]
+      }],
+      "media": {
+        "videos": [
+          {
+            "id": "llucmajor-1",
+            "titulo": "Canal Oficial - Ajuntament de Llucmajor",
+            "descripcion": "Contenido municipal oficial",
+            "url": "https://www.youtube.com/@AjuntamentdeLlucmajor",
+            "tipo": "canal",
+            "embed": false
+          },
+          {
+            "id": "llucmajor-2",
+            "titulo": "Promoción Turística de Llucmajor",
+            "descripcion": "Guía turística del municipio",
+            "url": "https://www.youtube.com/watch?v=wH-ODgCCil4",
+            "youtubeId": "wH-ODgCCil4",
+            "tipo": "turismo",
+            "embed": true
+          },
+          {
+            "id": "llucmajor-3",
+            "titulo": "Fires de Llucmajor",
+            "descripcion": "Evento oficial del municipio",
+            "url": "https://www.youtube.com/watch?v=3kd4zMbT6PM",
+            "youtubeId": "3kd4zMbT6PM",
+            "tipo": "eventos",
+            "embed": true
+          }
+        ],
+        "audios": [
+          {
+            "id": "llucmajor-audio-1",
+            "titulo": "Llucmajor Radio",
+            "descripcion": "Emisora local con programas municipales",
+            "url": "https://llucmajor.org/",
+            "tipo": "radio",
+            "plataforma": "web"
+          },
+          {
+            "id": "llucmajor-audio-2",
+            "titulo": "Podcasts de Eventos Culturales",
+            "descripcion": "Serie de podcasts sobre eventos culturales",
+            "url": "https://www.youtube.com/playlist?list=PLWj2X-k0oX4o7_v9wU7u8Z_X8_U_W_N_J",
+            "tipo": "cultura",
+            "plataforma": "youtube"
+          }
+        ]
+      }
     }
   ],
   "metadata": {
