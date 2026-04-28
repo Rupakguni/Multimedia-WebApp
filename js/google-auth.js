@@ -19,6 +19,11 @@ function handleCredentialResponse(response) {
     
     // Store user info in localStorage
     localStorage.setItem('googleUser', JSON.stringify(currentUser));
+
+    // Pedir permiso de notificaciones solo al iniciar sesión
+    if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+        Notification.requestPermission();
+    }
     
     // Update UI to show logged in state
     updateAuthUI();
@@ -90,6 +95,32 @@ function updateAuthUI() {
                 size: 'medium'
             }
         );
+    }
+}
+
+// Notify user of upcoming events on the first day of each month
+function notifyMonthlyEvents() {
+    const today = new Date();
+    const isFirstDay = today.getDate() === 1; // Comprobar si es día 1
+    const user = JSON.parse(localStorage.getItem('googleUser')); // Verificar usuario
+    
+    // Solo actuar si es día 1, hay usuario logueado y tenemos permiso
+    if (!isFirstDay || !user || Notification.permission !== "granted") return;
+
+    const userFavs = JSON.parse(localStorage.getItem(getFavoritesKey())) || [];
+    const currentMonth = today.toLocaleString('es-ES', { month: 'long' }).toLowerCase();
+
+    // Filtrar eventos de ayuntamientos favoritos que ocurren este mes
+    const upcomingEvents = appState.events.filter(event => {
+        const muni = appState.municipalities.find(m => m.id === event.municipalityId);
+        return userFavs.includes(muni.name) && event.date.toLowerCase().includes(currentMonth);
+    });
+
+    if (upcomingEvents.length > 0) {
+        new Notification("Eventos de este mes", {
+            body: `Tienes ${upcomingEvents.length} eventos en tus municipios favoritos este mes. ¡No te los pierdas!`,
+            icon: "./assets/img/favicon.ico"
+        });
     }
 }
 

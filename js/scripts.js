@@ -95,12 +95,14 @@ async function initializeApp() {
         });
     }
 
-    // CAMBIO IMPORTANTE: Cargar datos dinámicamente desde JSON
+    // Cargar datos dinámicamente desde JSON
     // Los favoritos se rehidratarán después de que carguen los datos
     await cargarDatosIniciales();
 
     // Inicializar formulario de contacto DESPUÉS de que el DOM esté listo
     inicializarFormularioContacto();
+
+    notifyMonthlyEvents(); // Revisa si debe notificar al arrancar la App
 }
 
 
@@ -314,7 +316,9 @@ function getFavoritesKey() {
 // Función para alternar favorito desde la tarjeta o el modal
 function toggleFavorite(municipalityName) {
     const storageKey = getFavoritesKey();
+    const user = JSON.parse(localStorage.getItem('googleUser')); // Verificar si hay usuario
     let favorites = JSON.parse(localStorage.getItem(storageKey)) || [];
+    const esAdicion = !favorites.includes(municipalityName); // Detectamos si lo está añadiendo ahora
     
     if (favorites.includes(municipalityName)) {
         favorites = favorites.filter(name => name !== municipalityName);
@@ -324,17 +328,47 @@ function toggleFavorite(municipalityName) {
     
     localStorage.setItem(storageKey, JSON.stringify(favorites));
     
-    // Actualizar estado visual de los botones
+    // Actualizar estado visual
     const card = document.querySelector(`[data-municipality="${municipalityName}"]`);
     if (card) {
         const btn = card.querySelector('.btn-outline-primary');
-        const esFavorito = favorites.includes(municipalityName);
-        btn.classList.toggle('active', esFavorito);
-        btn.style.backgroundColor = esFavorito ? 'var(--bs-primary)' : 'white';
-        btn.style.color = esFavorito ? 'white' : 'var(--bs-primary)';
+        const activo = favorites.includes(municipalityName);
+        btn.classList.toggle('active', activo);
+        btn.style.backgroundColor = activo ? 'var(--bs-primary)' : 'white';
+        btn.style.color = activo ? 'white' : 'var(--bs-primary)';
+    }
+    
+    // Solo notificar si hay usuario logueado Y es una adición
+    if (user && esAdicion && Notification.permission === "granted") {
+        checkImmediateEvents(municipalityName);
     }
     
     updateFavoritesDisplay();
+}
+
+/**
+ * Comprueba y notifica eventos para un municipio recién añadido
+ */
+function checkImmediateEvents(municipalityName) {
+    const today = new Date();
+    const currentMonth = today.toLocaleString('es-ES', { month: 'long' }).toLowerCase();
+    
+    // Buscamos los datos del municipio para tener su ID
+    const muni = appState.municipalities.find(m => m.name === municipalityName);
+    if (!muni) return;
+
+    // Filtramos eventos de ESTE municipio para ESTE mes
+    const eventsThisMonth = appState.events.filter(event => 
+        event.municipalityId === muni.id && 
+        event.date.toLowerCase().includes(currentMonth)
+    );
+
+    if (eventsThisMonth.length > 0) {
+        new Notification(`¡Nuevo Favorito: ${municipalityName}!`, {
+            body: `Hay ${eventsThisMonth.length} eventos este mes en ${municipalityName}. ¡Échales un vistazo!`,
+            icon: muni.imagenes[0]?.url || "./assets/img/favicon.ico"
+        });
+    }
 }
 
 // Toggle favorite from modal — usa data-attribute del modal, no textContent.split()
