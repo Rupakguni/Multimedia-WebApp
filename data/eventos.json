@@ -11,6 +11,7 @@
     { "id": 401, "municipalityId": 4, "name": "Fiesta de la Vila", "date": "Mayo", "type": "Cultura" },
     { "id": 402, "municipalityId": 4, "name": "Festival de Sóller", "date": "Julio", "type": "Música" },
     { "id": 501, "municipalityId": 5, "name": "Fiesta Mayor de Sant Jaume", "date": "Julio", "type": "Cultura" },
+    { "id": 502, "municipalityId": 5, "name": "Fira de la Sepia", "date": "Abril", "type": "Cultura" },
     { "id": 601, "municipalityId": 6, "name": "Feria de Llucmajor", "date": "Octubre", "type": "Feria" }
   ]
 }
