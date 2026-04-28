@@ -371,16 +371,19 @@ function checkImmediateEvents(municipalityName) {
     }
 }
 
-// Toggle favorite from modal — usa data-attribute del modal, no textContent.split()
+// Actualizar la sección de autenticación en el navbar
 function toggleFavoriteFromModal() {
     const modal = document.getElementById('municipalityModal');
     const municipalityName = modal.dataset.currentMunicipality;
     if (!municipalityName) return;
+    
+    // Llamamos a la función principal que ya gestiona las llaves y las notificaciones
     toggleFavorite(municipalityName);
 
-    // Feedback en UI (sin alert bloqueante)
+    // Actualizar el texto del botón en el modal usando la lógica de llaves correcta
+    const storageKey = getFavoritesKey();
+    const favorites = JSON.parse(localStorage.getItem(storageKey)) || [];
     const btn = document.getElementById('modal-favorite-btn');
-    const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
     const esFavorito = favorites.includes(municipalityName);
     btn.textContent = esFavorito ? '❤️ En Favoritos' : 'Añadir a Favoritos';
 }

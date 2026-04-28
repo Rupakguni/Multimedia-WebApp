@@ -148,6 +148,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (user) {
         currentUser = user;
         updateAuthUI();
+        // Intentar rehidratar. Si los municipios aún no cargaron, 
+        // cargarDatosIniciales() lo hará después.
+        if (appState.municipalities.length > 0) {
+            rehidratarFavoritos();
+        }
     }
     // If Google library is already loaded, initialize
     if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
