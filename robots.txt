@@ -1,0 +1,67 @@
+# robots.txt - Optimizado para SEO y rastreo de bots
+# Ayuntamientos de Mallorca
+
+# Permitir acceso a todos los bots principales
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /data/
+
+# Permitir específicamente a los bots principales
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+
+# Bloquear bots conocidos como maliciosos o spam
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+User-agent: ScanAlert
+User-agent: ZyBorg
+Disallow: /
+
+# Bloquear scrapers genéricos
+User-agent: *bot
+Disallow: /
+
+User-agent: *crawler
+Disallow: /
+
+User-agent: *spider
+Disallow: /
+
+# Especificar ubicación del sitemap (cuando lo tengas)
+Sitemap: https://www.ayuntamientosmallorca.online/sitemap.xml
+
+# Permitir acceso al robots.txt
+User-agent: *
+Allow: /robots.txt
