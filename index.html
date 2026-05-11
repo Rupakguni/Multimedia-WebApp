@@ -32,6 +32,103 @@
         <link href="css/media.css" rel="stylesheet" />
         <!-- Google Sign-In -->
         <script src="https://accounts.google.com/gsi/client" async defer onload="onGoogleLibraryLoad()"></script>
+        
+        <!-- JSON-LD: Página general (WebPage) -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Ayuntamientos de Mallorca",
+            "url": "https://example.org",
+            "description": "Hub interactivo para explorar los ayuntamientos de Mallorca con información, eventos y patrimonio",
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "Hub Interactivo Ayuntamientos de Mallorca",
+                "url": "https://example.org"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Hub Interactivo Ayuntamientos de Mallorca",
+                "author": [
+                    {
+                        "@type": "Person",
+                        "name": "Roberto García Martínez"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Rupak Guni Thapaliya"
+                    }
+                ]
+            },
+            "mainEntity": {
+                "@type": "ItemList",
+                "name": "Municipios de Mallorca",
+                "numberOfItems": 53,
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "url": "https://example.org/municipios/palma",
+                        "name": "Palma"
+                    }
+                ]
+            }
+        }
+        </script>
+        
+        <!-- JSON-LD: Organización general del sitio -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Hub Interactivo Ayuntamientos de Mallorca",
+            "url": "https://example.org",
+            "description": "Hub interactivo para explorar los ayuntamientos de Mallorca con información, eventos y patrimonio",
+            "logo": "https://example.org/logo.png",
+            "author": [
+                {
+                    "@type": "Person",
+                    "name": "Roberto García Martínez"
+                },
+                {
+                    "@type": "Person",
+                    "name": "Rupak Guni Thapaliya"
+                }
+            ]
+        }
+        </script>
+        
+        <!-- JSON-LD: Municipio dinámico (se actualiza con JavaScript) -->
+        <script type="application/ld+json" id="jsonld-municipio">
+        {
+            "@context": "https://schema.org",
+            "@type": "TouristAttraction",
+            "@id": "https://example.org/municipios",
+            "name": "Ayuntamientos de Mallorca"
+        }
+        </script>
+        
+        <!-- JSON-LD: Breadcrumb dinámico para navegación semántica -->
+        <script type="application/ld+json" id="jsonld-breadcrumb">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Inicio",
+                    "item": "https://example.org"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Municipios",
+                    "item": "https://example.org#ayuntamientos"
+                }
+            ]
+        }
+        </script>
     </head>
     <body id="page-top">
         <!-- Skip link de accesibilidad -->

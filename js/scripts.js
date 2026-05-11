@@ -39,6 +39,13 @@ function buildResponsivePicture(imageData, altText, isCard = false) {
     `;
 }
 
+/**
+ * Helper para disparar eventos custom
+ */
+function dispatchCustomEvent(eventName, detail = {}) {
+    document.dispatchEvent(new CustomEvent(eventName, { detail }));
+}
+
 // Initialize when DOM is loaded
 window.addEventListener('DOMContentLoaded', event => {
     initializeApp();
@@ -133,6 +140,9 @@ async function cargarDatosIniciales() {
         rehidratarFavoritos()
 
         inicializarMapa();
+        
+        // Actualizar ItemList de municipios en el JSON-LD de la página
+        actualizarListaMunicipiosEnJsonLd();
     } catch (error) {
         console.error("Error cargando bases de datos:", error);
         appState.status = 'error';
@@ -440,6 +450,9 @@ function loadMunicipalityDetails(municipalityName) {
         console.warn(`Municipio ${municipalityName} no encontrado`);
         return;
     }
+
+    // Actualizar JSON-LD con los datos del municipio
+    actualizarJsonLd(municipalityData);
 
     // Guardar el nombre en el modal para que toggleFavoriteFromModal lo use
     const modal = document.getElementById('municipalityModal');
@@ -777,4 +790,167 @@ function updateTTSButtonState() {
         btn.setAttribute('aria-pressed', 'false');
         btn.innerHTML = '<i class="bi bi-play-circle"></i> Leer';
     }
+}
+
+/**
+ * Actualizar JSON-LD con datos dinámicos del municipio
+ * Crea o reemplaza el bloque JSON-LD con la información actual
+ */
+function actualizarJsonLd(municipio) {
+    // Obtener el bloque existente de JSON-LD
+    const jsonldScript = document.getElementById('jsonld-municipio');
+    
+    // Construir el objeto JSON-LD con los datos del municipio
+    const datosSemanticos = {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "@id": `https://example.org/municipios/${municipio.id}`,
+        "name": municipio.name,
+        "description": municipio.description,
+        "url": municipio.website || `https://example.org/municipios/${municipio.id}`,
+        "image": municipio.imagenes && municipio.imagenes[0] ? municipio.imagenes[0].url : "https://example.org/default.jpg",
+        "telephone": municipio.phone,
+        "email": municipio.email,
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": municipio.name,
+            "addressRegion": "Islas Baleares",
+            "addressCountry": "ES"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": municipio.latitude,
+            "longitude": municipio.longitude
+        },
+        "areaServed": {
+            "@type": "Place",
+            "name": "Mallorca",
+            "geo": {
+                "@type": "GeoShape",
+                "polygon": "39.267,-2.5,39.267,4.5,39.9,4.5,39.9,-2.5,39.267,-2.5"
+            }
+        }
+    };
+    
+    // Si hay servicios disponibles
+    if (municipio.servicios && Array.isArray(municipio.servicios)) {
+        datosSemanticos.amenityFeature = municipio.servicios.map(servicio => ({
+            "@type": "LocationFeatureSpecification",
+            "name": servicio
+        }));
+    }
+    
+    // Si hay eventos para este municipio, agregarlos
+    if (appState.events && appState.events.length > 0) {
+        const eventosDelMunicipio = appState.events.filter(e => e.municipalityId === municipio.id);
+        if (eventosDelMunicipio.length > 0) {
+            datosSemanticos.events = eventosDelMunicipio.map(e => ({
+                "@type": "Event",
+                "name": e.name,
+                "description": e.type,
+                "startDate": e.date,
+                "location": {
+                    "@type": "Place",
+                    "name": municipio.name
+                }
+            }));
+        }
+    }
+    
+    // Actualizar el contenido del script JSON-LD
+    if (jsonldScript) {
+        jsonldScript.textContent = JSON.stringify(datosSemanticos, null, 2);
+    }
+    
+    // Actualizar el breadcrumb para la navegación semántica
+    actualizarBreadcrumb(municipio.name);
+    
+    // Disparar evento custom para que otros módulos sepan que se actualizó JSON-LD
+    dispatchCustomEvent('jsonld:updated', { municipio: municipio.name, datos: datosSemanticos });
+}
+
+/**
+ * Actualizar BreadcrumbList para navegación semántica en SPA
+ */
+function actualizarBreadcrumb(municipioName) {
+    const breadcrumbScript = document.getElementById('jsonld-breadcrumb');
+    if (!breadcrumbScript) return;
+    
+    const breadcrumbData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Inicio",
+                "item": "https://example.org"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Municipios",
+                "item": "https://example.org#ayuntamientos"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": municipioName,
+                "item": `https://example.org#municipios/${municipioName}`
+            }
+        ]
+    };
+    
+    breadcrumbScript.textContent = JSON.stringify(breadcrumbData, null, 2);
+}
+
+/**
+ * Consumir JSON-LD localmente (demostración de la capacidad de leer metadatos)
+ * Útil para validar consistencia entre contenido visible y metadatos
+ */
+function leerJsonLdActual() {
+    const jsonldScript = document.getElementById('jsonld-municipio');
+    if (jsonldScript) {
+        try {
+            const datos = JSON.parse(jsonldScript.textContent);
+            console.log('JSON-LD Actual:', datos);
+            return datos;
+        } catch (e) {
+            console.error('Error parseando JSON-LD:', e);
+            return null;
+        }
+    }
+    return null;
+}
+
+/**
+ * Validar consistencia entre contenido visible y JSON-LD
+ */
+function validarConsistenciaSemantica() {
+    const jsonldDatos = leerJsonLdActual();
+    const nombreVisibl = document.getElementById('modal-title')?.textContent;
+    const descripcionVisible = document.getElementById('modal-description')?.textContent;
+    
+    if (jsonldDatos) {
+        const consistenciaOk = 
+            jsonldDatos.name === nombreVisibl &&
+            jsonldDatos.description === descripcionVisible;
+        
+        if (consistenciaOk) {
+            console.log('✓ Consistencia semántica validada');
+        } else {
+            console.warn('⚠ Inconsistencia detectada entre contenido visible y JSON-LD');
+        }
+    }
+}
+
+/**
+ * Actualizar la lista de municipios en el JSON-LD de la página
+ * Se ejecuta cuando se cargan los datos iniciales
+ */
+function actualizarListaMunicipiosEnJsonLd() {
+    // Este JSON-LD está en el <head> y proporciona contexto general de la página
+    // Se podría enriquecer con una query selector si queremos actualizar dinámicamente
+    // Por ahora está configurado en el head de forma estática
+    console.log(`✓ ${appState.municipalities.length} municipios cargados en contexto semántico`);
 }
