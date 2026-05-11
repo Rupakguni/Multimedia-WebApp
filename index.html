@@ -203,8 +203,18 @@
                             <div class="card-body">
                                 <h5 class="card-title">Filtros</h5>
                                 <div class="mb-3">
-                                    <label class="form-label" for="search-input">Buscar Municipio</label>
-                                    <input type="text" class="form-control" id="search-input" placeholder="Ej: Palma...">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <label class="form-label mb-0" for="search-input">Buscar Municipio</label>
+                                        <button class="btn btn-sm btn-outline-primary" 
+                                                id="stt-mic-button"
+                                                aria-label="Iniciar dictado por voz"
+                                                aria-pressed="false"
+                                                title="Pulsa para usar el micrófono">
+                                            <i class="bi bi-mic"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control" id="search-input" placeholder="Ej: Palma..." aria-describedby="stt-feedback">
+                                    <small id="stt-feedback" class="d-block mt-2"></small>
                                 </div>
                                 <div class="mb-3">
                                     <p class="form-label mb-1" id="servicios-label"><strong>Servicios</strong></p>
@@ -344,7 +354,17 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3" id="modal-img-wrapper"></div>
-                        <h4 id="modal-title"></h4>
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h4 id="modal-title"></h4>
+                            <button class="btn btn-sm btn-outline-success" 
+                                    id="modal-tts-button"
+                                    aria-label="Leer descripción del municipio"
+                                    aria-pressed="false"
+                                    title="Escuchar descripción"
+                                    onclick="speakModalDescription()">
+                                <i class="bi bi-play-circle"></i> Leer
+                            </button>
+                        </div>
                         <p id="modal-description" class="text-muted"></p>
                         
                         <div class="row mt-4">
@@ -463,6 +483,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js" defer></script>
         <!-- Media Module JS -->
         <script src="js/media.js" defer></script>
+        <!-- Voice Speech API Module -->
+        <script src="js/voice-speech.js" defer></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js" defer></script>
         <!-- Google Authentication JS -->

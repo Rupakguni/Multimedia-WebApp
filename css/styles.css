@@ -639,3 +639,145 @@ header.masthead .h1 {
   outline: 3px solid var(--bs-primary);
   outline-offset: 2px;
 }
+
+/* ============================================================================
+   CONTROLES DE VOZ - Web Speech API (TTS/STT)
+   ============================================================================ */
+
+/* Botón de micrófono (STT) */
+#stt-mic-button {
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  padding: 0.35rem 0.65rem;
+}
+
+#stt-mic-button:hover {
+  background-color: var(--bs-primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+#stt-mic-button[aria-pressed="true"] {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+  animation: pulse-voice 1.5s infinite;
+}
+
+#stt-mic-button[aria-pressed="true"]:hover {
+  background-color: #bb2d3b;
+  border-color: #bb2d3b;
+}
+
+@keyframes pulse-voice {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(220, 53, 69, 0);
+  }
+}
+
+/* Feedback de STT */
+#stt-feedback {
+  min-height: 1.5rem;
+  font-weight: 500;
+  animation: fade-in 0.3s ease;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botón TTS en modal (Leer) */
+#modal-tts-button {
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+#modal-tts-button[aria-pressed="true"] {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+  animation: pulse-tts 1.5s infinite;
+}
+
+@keyframes pulse-tts {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(40, 167, 69, 0);
+  }
+}
+
+/* Estados de elementos con TTS/STT */
+[data-tts-status="speaking"] {
+  opacity: 0.8;
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+[data-stt-status="listening"] {
+  background-color: rgba(220, 53, 69, 0.05);
+  border: 2px solid rgba(220, 53, 69, 0.3);
+}
+
+/* Accesibilidad mejorada para controles de voz */
+button[aria-label*="voz"],
+button[aria-label*="Dictar"],
+button[aria-label*="micrófono"],
+button[aria-label*="Leer"] {
+  position: relative;
+}
+
+button[aria-label*="voz"]:focus-visible,
+button[aria-label*="Dictar"]:focus-visible,
+button[aria-label*="micrófono"]:focus-visible,
+button[aria-label*="Leer"]:focus-visible {
+  outline: 3px solid var(--bs-primary);
+  outline-offset: 3px;
+}
+
+/* Estilo para atributos data de voz */
+[data-tts-read] {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+[data-tts-read]:hover {
+  background-color: rgba(212, 178, 125, 0.1);
+  border-radius: 0.25rem;
+}
+
+/* Indicador visual de lectura en progreso */
+.voice-reading {
+  position: relative;
+}
+
+.voice-reading::after {
+  content: '';
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-left: 0.5rem;
+  background: radial-gradient(circle, #28a745 0%, #28a745 40%, transparent 70%);
+  border-radius: 50%;
+  animation: dot-pulse 1s infinite;
+  vertical-align: middle;
+}
+
+@keyframes dot-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}

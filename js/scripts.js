@@ -102,6 +102,9 @@ async function initializeApp() {
     // Inicializar formulario de contacto DESPUÉS de que el DOM esté listo
     inicializarFormularioContacto();
 
+    // Inicializar controles de voz (TTS/STT)
+    initializeVoiceControls();
+
     notifyMonthlyEvents(); // Revisa si debe notificar al arrancar la App
 }
 
@@ -731,4 +734,47 @@ function inicializarFormularioContacto() {
             }, 5000);
         }
     });
+}
+
+/**
+ * Función para leer la descripción del municipio en el modal
+ * Utilizando TTS (Text-to-Speech)
+ */
+function speakModalDescription() {
+    const modal = document.getElementById('municipalityModal');
+    const title = document.getElementById('modal-title').textContent;
+    const description = document.getElementById('modal-description').textContent;
+    const contactText = document.getElementById('modal-contact').innerText;
+    const locationText = document.getElementById('modal-location').innerText;
+    
+    // Concatenar título, descripción e información relevante
+    const fullText = `${title}. ${description}. ${contactText}. ${locationText}`;
+    
+    // Si ya está leyendo, detener
+    if (TTSController.getState().speaking) {
+        TTSController.stop();
+        const btn = document.getElementById('modal-tts-button');
+        btn.setAttribute('aria-pressed', 'false');
+        btn.innerHTML = '<i class="bi bi-play-circle"></i> Leer';
+    } else {
+        // Iniciar lectura
+        TTSController.speak(fullText, { lang: 'es-ES' });
+        const btn = document.getElementById('modal-tts-button');
+        btn.setAttribute('aria-pressed', 'true');
+        btn.innerHTML = '<i class="bi bi-stop-circle"></i> Parar';
+        
+        // Actualizar botón cuando termine
+        document.addEventListener('tts:end', updateTTSButtonState);
+    }
+}
+
+/**
+ * Actualizar estado visual del botón TTS cuando termina de hablar
+ */
+function updateTTSButtonState() {
+    const btn = document.getElementById('modal-tts-button');
+    if (btn && !TTSController.getState().speaking) {
+        btn.setAttribute('aria-pressed', 'false');
+        btn.innerHTML = '<i class="bi bi-play-circle"></i> Leer';
+    }
 }
