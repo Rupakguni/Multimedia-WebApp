@@ -1,1 +1,0 @@
-Esta Web-App sobre los Ayuntamientos de Mallorca ha sido desarrollada por Roberto García Martínez y Rupak Guni Thapaliya. El proyecto centraliza información cultural y patrimonial mediante un mapa interactivo y un diseño accesible basado en Bootstrap. Actualmente se encuentra en su primera fase, enfocada en la estructura HTML/CSS y la navegación optimizada por teclado.

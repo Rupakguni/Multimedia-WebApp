@@ -497,31 +497,11 @@ function loadMunicipalityDetails(municipalityName) {
     
     document.getElementById('modal-events').innerHTML = eventsList;
 
-    // Rellenar sección de multimedia
+    // Rellenar sección de multimedia con HTML5 nativo
     const multimediaContainer = document.getElementById('modal-multimedia');
     if (multimediaContainer && municipalityData.media) {
-        let multimediaHTML = '';
-        
-        // Mostrar vídeos
-        if (municipalityData.media.videos && municipalityData.media.videos.length > 0) {
-            multimediaHTML += '<div class="mb-3"><strong class="d-block mb-2"><i class="bi bi-play-circle"></i> Vídeos:</strong>';
-            multimediaHTML += '<ul class="list-unstyled ps-3">';
-            municipalityData.media.videos.forEach(video => {
-                multimediaHTML += `<li class="mb-2"><a href="${video.url}" target="_blank" rel="noopener" class="text-decoration-none">${video.titulo}</a></li>`;
-            });
-            multimediaHTML += '</ul></div>';
-        }
-        
-        // Mostrar audios
-        if (municipalityData.media.audios && municipalityData.media.audios.length > 0) {
-            multimediaHTML += '<div class="mb-3"><strong class="d-block mb-2"><i class="bi bi-music-note-list"></i> Audios/Podcasts:</strong>';
-            multimediaHTML += '<ul class="list-unstyled ps-3">';
-            municipalityData.media.audios.forEach(audio => {
-                const badge = audio.plataforma ? ` <span class="badge bg-secondary small">${audio.plataforma}</span>` : '';
-                multimediaHTML += `<li class="mb-2"><a href="${audio.url}" target="_blank" rel="noopener" class="text-decoration-none">${audio.titulo}</a>${badge}</li>`;
-            });
-            multimediaHTML += '</ul></div>';
-        }
+        // Usar MediaModule para generar HTML multimedia
+        const multimediaHTML = MediaModule.createModalMedia(municipalityData.media, municipalityData.id);
         
         if (multimediaHTML) {
             multimediaContainer.innerHTML = multimediaHTML;

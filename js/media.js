@@ -82,7 +82,7 @@ const MediaModule = (() => {
   }
 
   /**
-   * Crea una tarjeta de vídeo individual
+   * Crea una tarjeta de vídeo individual con soporte HTML5 nativo y múltiples formatos
    * @param {Object} video - Objeto vídeo
    * @param {number} municipalityId - ID del municipio
    * @param {number} index - Índice del vídeo
@@ -105,29 +105,22 @@ const MediaModule = (() => {
         <div class="video-content">
     `;
 
-    // Si es embed (YouTube), mostrar iframe embebido
-    if (video.embed && video.youtubeId) {
-      html += `
-          <div class="video-embed mb-3">
-            <div class="youtube-container">
-              <iframe 
-                width="100%" 
-                height="315" 
-                src="https://www.youtube.com/embed/${video.youtubeId}" 
-                title="${video.titulo}"
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-                loading="lazy">
-              </iframe>
-            </div>
-          </div>
-      `;
+    // Si es video HTML5 nativo (con archivos locales/externos)
+    if (video.videoSources && Array.isArray(video.videoSources) && video.videoSources.length > 0) {
+      html += createHTML5VideoElement(video, videoId);
+    }
+    // Si es embed (YouTube), mostrar iframe responsive
+    else if (video.embed && video.youtubeId) {
+      html += createResponsiveYoutubeEmbed(video);
+    }
+    // Si es Vimeo
+    else if (video.vimeoId) {
+      html += createResponsiveVimeoEmbed(video);
     }
 
-    // Botón para acceder al contenido
+    // Botón para acceder al contenido original
     html += `
-          <a href="${video.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+          <a href="${video.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary mt-3">
             <i class="bi bi-box-arrow-up-right"></i> Ver en ${getVideoSource(video.url)}
           </a>
         </div>
@@ -135,6 +128,106 @@ const MediaModule = (() => {
     `;
 
     return html;
+  }
+
+  /**
+   * Crea un elemento <video> HTML5 nativo con múltiples formatos
+   * @param {Object} video - Objeto vídeo
+   * @param {string} videoId - ID único del video
+   * @returns {string} HTML string
+   */
+  function createHTML5VideoElement(video, videoId) {
+    let html = `
+      <div class="video-embed mb-3">
+        <video 
+          id="${videoId}"
+          class="w-100 rounded video-player"
+          controls
+          preload="metadata"
+          playsinline
+          ${video.poster ? `poster="${video.poster}"` : ''}
+          aria-label="${video.titulo}"
+          ${video.autoplay ? 'autoplay' : ''}
+          ${video.loop ? 'loop' : ''}
+          ${video.muted ? 'muted' : ''}>
+    `;
+
+    // Múltiples fuentes para compatibilidad entre navegadores
+    video.videoSources.forEach(source => {
+      const type = source.type || getVideoMimeType(source.src);
+      html += `
+          <source src="${source.src}" type="${type}">
+      `;
+    });
+
+    html += `
+          <p>Tu navegador no soporta videos HTML5. 
+            <a href="${video.url}" target="_blank" rel="noopener noreferrer">Descargar vídeo</a>
+          </p>
+        </video>
+      </div>
+    `;
+
+    return html;
+  }
+
+  /**
+   * Crea un iframe responsive de YouTube
+   * @param {Object} video - Objeto vídeo
+   * @returns {string} HTML string
+   */
+  function createResponsiveYoutubeEmbed(video) {
+    return `
+      <div class="video-embed mb-3">
+        <div class="youtube-container">
+          <iframe 
+            src="https://www.youtube.com/embed/${video.youtubeId}" 
+            title="${video.titulo}"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            loading="lazy"
+            aria-label="${video.titulo}">
+          </iframe>
+        </div>
+      </div>
+    `;
+  }
+
+  /**
+   * Crea un iframe responsive de Vimeo
+   * @param {Object} video - Objeto vídeo
+   * @returns {string} HTML string
+   */
+  function createResponsiveVimeoEmbed(video) {
+    return `
+      <div class="video-embed mb-3">
+        <div class="vimeo-container">
+          <iframe 
+            src="https://player.vimeo.com/video/${video.vimeoId}" 
+            title="${video.titulo}"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+            aria-label="${video.titulo}">
+          </iframe>
+        </div>
+      </div>
+    `;
+  }
+
+  /**
+   * Obtiene el MIME type basado en la extensión del archivo
+   * @param {string} filename - Nombre o URL del archivo
+   * @returns {string} MIME type
+   */
+  function getVideoMimeType(filename) {
+    if (filename.includes('.mp4')) return 'video/mp4';
+    if (filename.includes('.webm')) return 'video/webm';
+    if (filename.includes('.ogv') || filename.includes('.ogg')) return 'video/ogg';
+    if (filename.includes('.mov')) return 'video/quicktime';
+    return 'video/mp4';
   }
 
   /**
@@ -165,7 +258,7 @@ const MediaModule = (() => {
   }
 
   /**
-   * Crea una tarjeta de audio individual
+   * Crea una tarjeta de audio individual con soporte HTML5 nativo
    * @param {Object} audio - Objeto audio
    * @param {number} municipalityId - ID del municipio
    * @param {number} index - Índice del audio
@@ -174,6 +267,7 @@ const MediaModule = (() => {
   function createAudioCard(audio, municipalityId, index) {
     const typeIcon = getTypeIcon(audio.tipo);
     const platformBadge = getPlatformBadge(audio.plataforma);
+    const audioId = `audio-${municipalityId}-${index}`;
 
     let html = `
       <div class="audio-card mb-4 p-3 border rounded" data-audio-id="${audio.id}">
@@ -190,14 +284,83 @@ const MediaModule = (() => {
           </div>
         </div>
         <div class="audio-content mt-3">
+    `;
+
+    // Si es audio HTML5 nativo (con archivos locales/externos)
+    if (audio.audioSources && Array.isArray(audio.audioSources) && audio.audioSources.length > 0) {
+      html += createHTML5AudioElement(audio, audioId);
+    }
+    // Si es enlace a plataforma externa
+    else {
+      html += `
           <a href="${audio.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">
             <i class="bi bi-box-arrow-up-right"></i> Acceder
           </a>
+      `;
+    }
+
+    html += `
         </div>
       </div>
     `;
 
     return html;
+  }
+
+  /**
+   * Crea un elemento <audio> HTML5 nativo con múltiples formatos
+   * @param {Object} audio - Objeto audio
+   * @param {string} audioId - ID único del audio
+   * @returns {string} HTML string
+   */
+  function createHTML5AudioElement(audio, audioId) {
+    let html = `
+      <div class="audio-player-container mb-3">
+        <audio 
+          id="${audioId}"
+          class="w-100 audio-player"
+          controls
+          preload="metadata"
+          aria-label="${audio.titulo}"
+          ${audio.autoplay ? 'autoplay' : ''}
+          ${audio.loop ? 'loop' : ''}
+          ${audio.muted ? 'muted' : ''}>
+    `;
+
+    // Múltiples fuentes para compatibilidad entre navegadores
+    audio.audioSources.forEach(source => {
+      const type = source.type || getAudioMimeType(source.src);
+      html += `
+          <source src="${source.src}" type="${type}">
+      `;
+    });
+
+    html += `
+          Tu navegador no soporta audios HTML5. 
+          <a href="${audio.url}" target="_blank" rel="noopener noreferrer">Descargar audio</a>
+        </audio>
+      </div>
+      <a href="${audio.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary mt-2">
+        <i class="bi bi-box-arrow-up-right"></i> Ver en plataforma original
+      </a>
+    `;
+
+    return html;
+  }
+
+  /**
+   * Obtiene el MIME type basado en la extensión del archivo de audio
+   * @param {string} filename - Nombre o URL del archivo
+   * @returns {string} MIME type
+   */
+  function getAudioMimeType(filename) {
+    if (filename.includes('.mp3')) return 'audio/mpeg';
+    if (filename.includes('.ogg') || filename.includes('.oga')) return 'audio/ogg';
+    if (filename.includes('.wav')) return 'audio/wav';
+    if (filename.includes('.webm')) return 'audio/webm';
+    if (filename.includes('.m4a') || filename.includes('.aac')) return 'audio/mp4';
+    if (filename.includes('.flac')) return 'audio/flac';
+    return 'audio/mpeg';
   }
 
   /**
@@ -299,10 +462,110 @@ const MediaModule = (() => {
     });
   }
 
+  /**
+   * Crea HTML multimedia para mostrar en el modal del municipio
+   * Incluye video/audio HTML5 nativo + YouTube/Vimeo embeds
+   * @param {Object} media - Objeto con videos y audios
+   * @param {string} municipalityId - ID del municipio para atributos
+   * @returns {string} HTML para insertar en modal
+   */
+  function createModalMediaHTML(media, municipalityId = 0) {
+    if (!media) return '';
+    
+    let html = '';
+    
+    // Sección de Vídeos
+    if (media.videos && media.videos.length > 0) {
+      html += '<div class="mb-4">';
+      html += '<strong class="d-block mb-3"><i class="bi bi-play-circle"></i> Vídeos:</strong>';
+      
+      media.videos.forEach((video, index) => {
+        const videoId = `modal-video-${municipalityId}-${index}`;
+        const typeIcon = getTypeIcon(video.tipo);
+        
+        html += `<div class="mb-3 p-3 border rounded bg-light">`;
+        html += `<h6 class="mb-2"><i class="bi ${typeIcon}"></i> ${video.titulo}</h6>`;
+        html += `<p class="small text-muted mb-2">${video.descripcion}</p>`;
+        
+        // Video HTML5 nativo si tiene videoSources
+        if (video.videoSources && Array.isArray(video.videoSources) && video.videoSources.length > 0) {
+          html += `<video id="${videoId}" class="w-100 rounded mb-2" style="background: #000; max-height: 300px;" controls preload="metadata" playsinline ${video.poster ? `poster="${video.poster}"` : ''} aria-label="${video.titulo}">`;
+          video.videoSources.forEach(source => {
+            const type = source.type || getVideoMimeType(source.src);
+            html += `<source src="${source.src}" type="${type}">`;
+          });
+          html += `</video>`;
+        }
+        // YouTube embed
+        else if (video.youtubeId && video.embed) {
+          html += `<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 8px; border-radius: 6px;">`;
+          html += `<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/${video.youtubeId}" title="${video.titulo}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" aria-label="${video.titulo}"></iframe>`;
+          html += `</div>`;
+        }
+        // Vimeo embed
+        else if (video.vimeoId && video.embed) {
+          html += `<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 8px; border-radius: 6px;">`;
+          html += `<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://player.vimeo.com/video/${video.vimeoId}" title="${video.titulo}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" aria-label="${video.titulo}"></iframe>`;
+          html += `</div>`;
+        }
+        
+        // Botón para ir al original
+        html += `<a href="${video.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">`;
+        html += `<i class="bi bi-box-arrow-up-right"></i> Ver en ${getVideoSource(video.url)}`;
+        html += `</a>`;
+        
+        html += `</div>`;
+      });
+      
+      html += '</div>';
+    }
+    
+    // Sección de Audios
+    if (media.audios && media.audios.length > 0) {
+      html += '<div class="mb-4">';
+      html += '<strong class="d-block mb-3"><i class="bi bi-music-note-beamed"></i> Audios/Podcasts:</strong>';
+      
+      media.audios.forEach((audio, index) => {
+        const audioId = `modal-audio-${municipalityId}-${index}`;
+        const typeIcon = getTypeIcon(audio.tipo);
+        const platformBadge = getPlatformBadge(audio.plataforma);
+        
+        html += `<div class="mb-3 p-3 border rounded bg-light">`;
+        html += `<h6 class="mb-2"><i class="bi ${typeIcon}"></i> ${audio.titulo}</h6>`;
+        html += `<p class="small text-muted mb-2">${audio.descripcion}</p>`;
+        html += `<div class="mb-2"><span class="badge bg-info">${platformBadge}</span> <span class="badge bg-secondary">${capitalizeFirst(audio.tipo)}</span></div>`;
+        
+        // Audio HTML5 nativo si tiene audioSources
+        if (audio.audioSources && Array.isArray(audio.audioSources) && audio.audioSources.length > 0) {
+          html += `<div style="background: #f8f9fa; padding: 12px; border-radius: 6px; margin-bottom: 8px;">`;
+          html += `<audio id="${audioId}" class="w-100" style="height: 40px;" controls preload="metadata" aria-label="${audio.titulo}">`;
+          audio.audioSources.forEach(source => {
+            const type = source.type || getAudioMimeType(source.src);
+            html += `<source src="${source.src}" type="${type}">`;
+          });
+          html += `</audio>`;
+          html += `</div>`;
+        }
+        
+        // Botón para ir al original
+        html += `<a href="${audio.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">`;
+        html += `<i class="bi bi-box-arrow-up-right"></i> Acceder a ${platformBadge}`;
+        html += `</a>`;
+        
+        html += `</div>`;
+      });
+      
+      html += '</div>';
+    }
+    
+    return html;
+  }
+
   // Public API
   return {
     render: renderMediaSection,
-    renderAll: renderAllMedia
+    renderAll: renderAllMedia,
+    createModalMedia: createModalMediaHTML
   };
 })();
 

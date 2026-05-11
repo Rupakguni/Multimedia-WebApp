@@ -67,14 +67,47 @@ body {
 .video-figure video {
   border-radius: 0.75rem;
   box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
 }
 
 .audio-figure audio {
   max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .multimedia-section {
   background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(44, 62, 80, 0.95));
+}
+
+/* Multimedia Responsive */
+video, audio {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+iframe[src*="youtube"],
+iframe[src*="vimeo"] {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+/* Optimización de multimedia para pantallas pequeñas */
+@media (max-width: 768px) {
+  .video-figure video,
+  .video-figure iframe {
+    border-radius: 0.5rem;
+  }
+
+  .audio-figure audio {
+    border-radius: 0.5rem;
+  }
 }
 
 .card-picture {
