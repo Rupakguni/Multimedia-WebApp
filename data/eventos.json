@@ -1,17 +1,1021 @@
 {
   "events": [
-    { "id": 101, "municipalityId": 1, "name": "Festival de San Sebastián", "date": "Enero", "type": "Cultura" },
-    { "id": 102, "municipalityId": 1, "name": "Feria Medieval", "date": "Mayo", "type": "Feria" },
-    { "id": 103, "municipalityId": 1, "name": "Noche de la Música", "date": "Agosto", "type": "Música" },
-    { "id": 201, "municipalityId": 2, "name": "Fiesta de San Jaime", "date": "Julio", "type": "Cultura" },
-    { "id": 202, "municipalityId": 2, "name": "Feria del Mueble", "date": "Septiembre", "type": "Industria" },
-    { "id": 203, "municipalityId": 2, "name": "Mercado Medieval", "date": "Octubre", "type": "Feria" },
-    { "id": 301, "municipalityId": 3, "name": "Dijous Bo (Jueves de Buey)", "date": "Noviembre", "type": "Feria" },
-    { "id": 302, "municipalityId": 3, "name": "Feria del Calzado", "date": "Mayo", "type": "Industria" },
-    { "id": 401, "municipalityId": 4, "name": "Fiesta de la Vila", "date": "Mayo", "type": "Cultura" },
-    { "id": 402, "municipalityId": 4, "name": "Festival de Sóller", "date": "Julio", "type": "Música" },
-    { "id": 501, "municipalityId": 5, "name": "Fiesta Mayor de Sant Jaume", "date": "Julio", "type": "Cultura" },
-    { "id": 502, "municipalityId": 5, "name": "Fira de la Sepia", "date": "Abril", "type": "Cultura" },
-    { "id": 601, "municipalityId": 6, "name": "Feria de Llucmajor", "date": "Octubre", "type": "Feria" }
+
+    {
+      "id": 101,
+      "slug": "sant-sebastia",
+      "municipalityId": 1,
+      "municipality": "Palma",
+      "name": "Fiestas de Sant Sebastià",
+      "alternateName": "Festival de San Sebastián",
+      "date": "Enero",
+      "startDate": "2026-01-10",
+      "endDate": "2026-01-25",
+      "type": "Cultura",
+      "additionalType": "Fiesta patronal",
+      "isFree": true,
+      "description": "Las Fiestas de Sant Sebastià, patrón de Palma, se celebran cada mes de enero en torno al día 20. La ciudad vive una de sus celebraciones más emblemáticas, combinando tradición religiosa, cultura popular y actividades contemporáneas. Durante varios días el centro histórico se llena de hogueras, conciertos, actividades familiares y actos simbólicos que refuerzan la identidad cultural de Palma y su carácter mediterráneo.",
+      "keywords": ["fiesta patronal", "Palma", "Mallorca", "Sant Sebastià"],
+      "location": {
+        "name": "Centro histórico de Palma",
+        "postalCode": "07001",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.5696, "lng": 2.6502 }
+      },
+      "organizer": {
+        "name": "Ajuntament de Palma",
+        "url": "https://www.palma.cat"
+      },
+      "subEvents": [
+        {
+          "name": "Revetla de Sant Sebastià",
+          "startDate": "2026-01-19T20:00",
+          "description": "La noche previa al día del patrón, las plazas principales se llenan de hogueras, escenarios y música en directo."
+        },
+        {
+          "name": "Día de Sant Sebastià y procesión",
+          "startDate": "2026-01-20",
+          "description": "Jornada central dedicada al patrón de Palma. Se celebra una misa solemne y una procesión por calles emblemáticas."
+        },
+        {
+          "name": "Sant Sebastià Petit",
+          "startDate": "2026-01-18",
+          "description": "Actividades infantiles con teatro de calle, talleres creativos, pasacalles y propuestas lúdicas."
+        },
+        {
+          "name": "Trobada de Gegants",
+          "startDate": "2026-01-18",
+          "description": "Encuentro de gigantes de distintos municipios de Mallorca que desfilan por las calles del centro."
+        },
+        {
+          "name": "Volada de cometas y correfoc",
+          "startDate": "2026-01-26",
+          "description": "Acto de clausura con vuelo de cometas y un espectacular correfoc protagonizado por dimonis."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/SantSebastia/SantSebastia1.jpg", "caption": "Demonio en el correfoc de Sant Sebastià" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantSebastia/SantSebastia2.jpg.webp", "caption": "Gigantes en la celebración de Sant Sebastià" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantSebastia/SantSebastia3.jpg", "caption": "Día de la peste en Sant Sebastià" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantSebastia/SantSebastia4.jpg", "caption": "Cocodrilo en el correfoc de Sant Sebastià" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantSebastia/SantSebastia5.jpeg", "caption": "Sant Sebastià Petit" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantSebastia/SantSebastia6.jpeg", "caption": "Competición de vuelo de cometas en Sant Sebastià" }
+      ],
+      "videos": [
+        { "name": "Revetla de Sant Sebastià", "url": "https://www.youtube.com/watch?v=MgCqQVKkNBo", "embedUrl": "https://www.youtube.com/embed/MgCqQVKkNBo", "duration": "PT55S" },
+        { "name": "Trobada de Gegants", "url": "https://www.youtube.com/watch?v=KYCZUQszvRk", "embedUrl": "https://www.youtube.com/embed/KYCZUQszvRk", "duration": "PT5M51S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#sant-sebastia"
+    },
+
+    {
+      "id": 102,
+      "slug": "fira-medieval-capdepera",
+      "municipalityId": 1,
+      "municipality": "Palma",
+      "name": "Feria Medieval",
+      "alternateName": "Fira Medieval de Capdepera",
+      "date": "Mayo",
+      "startDate": "2026-05-15",
+      "endDate": "2026-05-17",
+      "type": "Feria",
+      "additionalType": "Feria medieval",
+      "isFree": true,
+      "description": "La Fira Medieval de Capdepera se celebra el tercer fin de semana de mayo y transforma el municipio en un escenario de la Edad Media. En torno al Castillo de Capdepera se instala un mercado medieval con puestos de artesanía, gastronomía y productos locales.",
+      "keywords": ["Capdepera", "feria medieval", "mercado medieval", "castillo", "artesanía", "recreación histórica"],
+      "location": {
+        "name": "Capdepera",
+        "postalCode": "07580",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.70235, "lng": 3.43103 }
+      },
+      "organizer": {
+        "name": "Ajuntament de Capdepera",
+        "url": "https://www.capdepera.es"
+      },
+      "subEvents": [
+        {
+          "name": "Mercado medieval",
+          "startDate": "2026-05-15T10:00",
+          "endDate": "2026-05-17T20:00",
+          "description": "Instalación de puestos de artesanía, gastronomía y productos locales en las calles cercanas al Castillo de Capdepera."
+        },
+        {
+          "name": "Recreaciones y espectáculos medievales",
+          "startDate": "2026-05-15T11:00",
+          "endDate": "2026-05-17T21:00",
+          "description": "Exhibiciones de lucha, música y danzas medievales, pasacalles y ambientación histórica."
+        },
+        {
+          "name": "Talleres y actividades infantiles",
+          "startDate": "2026-05-15T10:00",
+          "endDate": "2026-05-17T20:00",
+          "description": "Talleres artesanales y actividades participativas con temática medieval para todos los públicos."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/FiraMedieval/FiraMedieval1.webp", "caption": "Festival medieval en Capdepera" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FiraMedieval/FiraMedieval2.jpeg", "caption": "Soldados medievales en Capdepera luchando" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FiraMedieval/FiraMedieval3.webp", "caption": "Gigantes de Capdepera en la feria medieval" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FiraMedieval/FiraMedieval4.jpg", "caption": "Espectáculo de fuego en la feria medieval de Capdepera" }
+      ],
+      "videos": [
+        { "name": "Feria medieval Capdepera", "url": "https://www.youtube.com/watch?v=gl9tG0Wj6TY", "embedUrl": "https://www.youtube.com/embed/gl9tG0Wj6TY", "duration": "PT17M34S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#fira-medieval-capdepera"
+    },
+
+    {
+      "id": 103,
+      "slug": "noche-de-la-musica-palma",
+      "municipalityId": 1,
+      "municipality": "Palma",
+      "name": "Noche de la Música",
+      "date": "Agosto",
+      "type": "Música",
+      "additionalType": "Evento musical",
+      "isFree": null,
+      "description": "Evento musical nocturno en Palma de Mallorca.",
+      "keywords": ["música", "Palma", "Mallorca", "concierto"],
+      "location": {
+        "name": "Palma",
+        "postalCode": "07001",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.5696, "lng": 2.6502 }
+      },
+      "organizer": null,
+      "subEvents": [],
+      "images": [],
+      "videos": [],
+      "schemaUrl": null
+    },
+
+    {
+      "id": 201,
+      "slug": "fiesta-de-san-jaime",
+      "municipalityId": 2,
+      "municipality": "Alcúdia",
+      "name": "Fiesta de San Jaime",
+      "date": "Julio",
+      "type": "Cultura",
+      "additionalType": "Fiesta patronal",
+      "isFree": null,
+      "description": "Celebración en honor a San Jaime en Alcúdia.",
+      "keywords": ["San Jaime", "Alcúdia", "Mallorca", "fiesta patronal"],
+      "location": {
+        "name": "Alcúdia",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.8530, "lng": 3.1218 }
+      },
+      "organizer": null,
+      "subEvents": [],
+      "images": [],
+      "videos": [],
+      "schemaUrl": null
+    },
+
+    {
+      "id": 202,
+      "slug": "feria-del-mueble",
+      "municipalityId": 2,
+      "municipality": "Alcúdia",
+      "name": "Feria del Mueble",
+      "date": "Septiembre",
+      "type": "Industria",
+      "additionalType": "Feria industrial",
+      "isFree": null,
+      "description": "Feria comercial del sector del mueble en Alcúdia.",
+      "keywords": ["mueble", "feria", "Alcúdia", "Mallorca"],
+      "location": {
+        "name": "Alcúdia",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.8530, "lng": 3.1218 }
+      },
+      "organizer": null,
+      "subEvents": [],
+      "images": [],
+      "videos": [],
+      "schemaUrl": null
+    },
+
+    {
+      "id": 203,
+      "slug": "mercado-medieval-alcudia",
+      "municipalityId": 2,
+      "municipality": "Alcúdia",
+      "name": "Mercado Medieval",
+      "date": "Octubre",
+      "type": "Feria",
+      "additionalType": "Feria medieval",
+      "isFree": null,
+      "description": "Mercado de temática medieval en Alcúdia.",
+      "keywords": ["medieval", "mercado", "Alcúdia", "Mallorca"],
+      "location": {
+        "name": "Alcúdia",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.8530, "lng": 3.1218 }
+      },
+      "organizer": null,
+      "subEvents": [],
+      "images": [],
+      "videos": [],
+      "schemaUrl": null
+    },
+
+    {
+      "id": 301,
+      "slug": "dijous-bo",
+      "municipalityId": 3,
+      "municipality": "Inca",
+      "name": "Dijous Bo",
+      "alternateName": "Dijous Bo (Jueves de Buey)",
+      "date": "Noviembre",
+      "startDate": "2026-11-19",
+      "endDate": "2026-11-19",
+      "type": "Feria",
+      "additionalType": "Feria agrícola y ganadera",
+      "isFree": true,
+      "description": "El Dijous Bo es la feria más importante de Mallorca y se celebra el tercer jueves de noviembre en Inca. De origen medieval, nació como una feria agrícola y ganadera destinada al intercambio comercial entre pueblos. Actualmente combina mercado agrícola, exposición de ganado, artesanía, gastronomía local, maquinaria agrícola, feria del automóvil, conciertos y actividades culturales.",
+      "keywords": ["Inca", "Dijous Bo", "feria agrícola", "ganado", "artesanía", "Mallorca", "tradición rural"],
+      "location": {
+        "name": "Inca",
+        "postalCode": "07300",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.7310, "lng": 3.0150 }
+      },
+      "organizer": {
+        "name": "Ajuntament d'Inca",
+        "url": "https://www.inca.es"
+      },
+      "subEvents": [
+        {
+          "name": "Mercado agrícola y ganadero",
+          "startDate": "2026-11-19T09:00",
+          "endDate": "2026-11-19T20:00",
+          "description": "Exposición y venta de ganado, productos agrícolas y maquinaria tradicional."
+        },
+        {
+          "name": "Feria comercial y artesanal",
+          "startDate": "2026-11-19T09:00",
+          "endDate": "2026-11-19T20:00",
+          "description": "Instalación de puestos de artesanía, productos locales, industria y automoción."
+        },
+        {
+          "name": "Actividades culturales y conciertos",
+          "startDate": "2026-11-19T11:00",
+          "endDate": "2026-11-19T22:00",
+          "description": "Programación cultural paralela con música en vivo y actividades populares."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/DijousBo/DijousBo1.png", "caption": "Gigantes de Inca en el Dijous Bo" },
+        { "url": "https://www.fiestasmallorca.online/media/img/DijousBo/DijousBo2.jpg", "caption": "Estante de butifarras en el Dijous Bo de Inca" },
+        { "url": "https://www.fiestasmallorca.online/media/img/DijousBo/DijousBo3.jpg", "caption": "Estante de bolsas de paja en el Dijous Bo de Inca" },
+        { "url": "https://www.fiestasmallorca.online/media/img/DijousBo/DijousBo4.jpg", "caption": "Alcalde en la plaza del Dijous Bo de Inca" },
+        { "url": "https://www.fiestasmallorca.online/media/img/DijousBo/DijousBo5.jpg", "caption": "Estante de flores en el Dijous Bo de Inca" },
+        { "url": "https://www.fiestasmallorca.online/media/img/DijousBo/DijousBo6.jpg", "caption": "Estatua de burro en el Dijous Bo de Inca" }
+      ],
+      "videos": [
+        { "name": "Dijous Bo Inca", "url": "https://www.youtube.com/watch?v=wuKqgPvioXA", "embedUrl": "https://www.youtube.com/embed/wuKqgPvioXA", "duration": "PT1M32S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#dijous-bo-inca"
+    },
+
+    {
+      "id": 302,
+      "slug": "feria-del-calzado-inca",
+      "municipalityId": 3,
+      "municipality": "Inca",
+      "name": "Feria del Calzado",
+      "date": "Mayo",
+      "type": "Industria",
+      "additionalType": "Feria industrial",
+      "isFree": null,
+      "description": "Feria dedicada al sector del calzado en Inca, municipio históricamente ligado a esta industria artesanal.",
+      "keywords": ["calzado", "feria", "Inca", "Mallorca", "artesanía"],
+      "location": {
+        "name": "Inca",
+        "postalCode": "07300",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.7310, "lng": 3.0150 }
+      },
+      "organizer": null,
+      "subEvents": [],
+      "images": [],
+      "videos": [],
+      "schemaUrl": null
+    },
+
+    {
+      "id": 401,
+      "slug": "fiesta-de-la-vila-soller",
+      "municipalityId": 4,
+      "municipality": "Sóller",
+      "name": "Fiesta de la Vila",
+      "date": "Mayo",
+      "type": "Cultura",
+      "additionalType": "Fiesta popular",
+      "isFree": null,
+      "description": "Fiesta popular de Sóller que celebra la identidad local del municipio.",
+      "keywords": ["Sóller", "fiesta", "Mallorca", "cultura popular"],
+      "location": {
+        "name": "Sóller",
+        "postalCode": "07100",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.7671, "lng": 2.7156 }
+      },
+      "organizer": null,
+      "subEvents": [],
+      "images": [],
+      "videos": [],
+      "schemaUrl": null
+    },
+
+    {
+      "id": 402,
+      "slug": "es-firo-soller",
+      "municipalityId": 4,
+      "municipality": "Sóller",
+      "name": "Es Firó",
+      "alternateName": "Festival de Sóller",
+      "date": "Mayo",
+      "startDate": "2026-05-11",
+      "endDate": "2026-05-11",
+      "type": "Música",
+      "additionalType": "Fiesta histórica",
+      "isFree": true,
+      "description": "Es Firó en Sóller se celebra el segundo lunes de mayo y conmemora la defensa del pueblo frente al ataque de piratas argelinos en 1561. La fiesta recrea la batalla entre habitantes de Sóller y corsarios, con cientos de personas participando disfrazadas de campesinos, soldados y piratas.",
+      "keywords": ["Es Firó", "Sóller", "fiesta histórica", "recreación histórica", "ataque pirata", "Mallorca"],
+      "location": {
+        "name": "Sóller",
+        "postalCode": "07100",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.7671, "lng": 2.7156 }
+      },
+      "organizer": {
+        "name": "Ajuntament de Sóller",
+        "url": "https://www.soller.es"
+      },
+      "subEvents": [
+        {
+          "name": "Recreación de la batalla histórica",
+          "startDate": "2026-05-11T10:00",
+          "description": "Escenificación de la defensa del pueblo frente al ataque de piratas argelinos de 1561."
+        },
+        {
+          "name": "Actividades culturales y exposiciones",
+          "startDate": "2026-05-10",
+          "description": "Actividades paralelas durante la semana de Es Firó, como exposiciones y eventos culturales en el centro de Sóller."
+        },
+        {
+          "name": "Conciertos y eventos gastronómicos",
+          "startDate": "2026-05-10",
+          "description": "Conciertos y eventos gastronómicos relacionados con productos locales."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/EsFiro/EsFiro1.jpg.webp", "caption": "Acto inaugural de Es Firó" },
+        { "url": "https://www.fiestasmallorca.online/media/img/EsFiro/EsFiro2.jpg", "caption": "Personas disfrazadas en Es Firó" },
+        { "url": "https://www.fiestasmallorca.online/media/img/EsFiro/EsFiro3.jpg", "caption": "Gente corriendo disfrazada en Es Firó" },
+        { "url": "https://www.fiestasmallorca.online/media/img/EsFiro/EsFiro4.jpg", "caption": "Recreación de la batalla" },
+        { "url": "https://www.fiestasmallorca.online/media/img/EsFiro/EsFiro5.jpg", "caption": "Barcos llegando al puerto de Sóller durante Es Firó" },
+        { "url": "https://www.fiestasmallorca.online/media/img/EsFiro/EsFiro6.jpg", "caption": "Batalla final en la plaza" },
+        { "url": "https://www.fiestasmallorca.online/media/img/EsFiro/EsFiro7.jpg", "caption": "Música tradicional durante Es Firó" }
+      ],
+      "videos": [
+        { "name": "Recreación de la batalla histórica en Es Firó", "url": "https://www.youtube.com/watch?v=J9D9t61PzU8", "embedUrl": "https://www.youtube.com/embed/J9D9t61PzU8", "duration": "PT2M29S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#es-firo-soller"
+    },
+
+    {
+      "id": 501,
+      "slug": "fiesta-mayor-sant-jaume",
+      "municipalityId": 5,
+      "municipality": "Pollença",
+      "name": "Fiesta Mayor de Sant Jaume",
+      "date": "Julio",
+      "type": "Cultura",
+      "additionalType": "Fiesta patronal",
+      "isFree": null,
+      "description": "Fiesta mayor en honor a Sant Jaume en Pollença.",
+      "keywords": ["Sant Jaume", "Pollença", "Mallorca", "fiesta patronal"],
+      "location": {
+        "name": "Pollença",
+        "postalCode": "07460",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.87810, "lng": 3.01624 }
+      },
+      "organizer": null,
+      "subEvents": [],
+      "images": [],
+      "videos": [],
+      "schemaUrl": null
+    },
+
+    {
+      "id": 502,
+      "slug": "fira-de-la-sepia",
+      "municipalityId": 5,
+      "municipality": "Pollença",
+      "name": "Fira de la Sepia",
+      "date": "Abril",
+      "type": "Cultura",
+      "additionalType": "Feria gastronómica",
+      "isFree": null,
+      "description": "Feria gastronómica dedicada a la sepia en Pollença.",
+      "keywords": ["sepia", "gastronomía", "Pollença", "Mallorca"],
+      "location": {
+        "name": "Pollença",
+        "postalCode": "07460",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.87810, "lng": 3.01624 }
+      },
+      "organizer": null,
+      "subEvents": [],
+      "images": [],
+      "videos": [],
+      "schemaUrl": null
+    },
+
+    {
+      "id": 601,
+      "slug": "feria-de-llucmajor",
+      "municipalityId": 6,
+      "municipality": "Llucmajor",
+      "name": "Feria de Llucmajor",
+      "date": "Octubre",
+      "type": "Feria",
+      "additionalType": "Feria tradicional",
+      "isFree": null,
+      "description": "Feria tradicional de Llucmajor, uno de los mercados más populares de la Part Forana de Mallorca.",
+      "keywords": ["feria", "Llucmajor", "Mallorca", "mercado"],
+      "location": {
+        "name": "Llucmajor",
+        "postalCode": "07620",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.4872, "lng": 2.8906 }
+      },
+      "organizer": null,
+      "subEvents": [],
+      "images": [],
+      "videos": [],
+      "schemaUrl": null
+    },
+
+    {
+      "id": 701,
+      "slug": "feria-del-fang-marratxi",
+      "municipalityId": 7,
+      "municipality": "Marratxí",
+      "name": "Feria del Fang",
+      "alternateName": "Fira del Fang de Marratxí",
+      "date": "Marzo",
+      "startDate": "2026-03-07",
+      "endDate": "2026-03-15",
+      "type": "Feria",
+      "additionalType": "Feria artesanal",
+      "isFree": true,
+      "description": "La Feria del Fang de Marratxí es una de las ferias de cerámica más importantes de Mallorca, celebrada cada mes de marzo. Reúne a artesanos locales y nacionales que exponen y venden piezas de barro y cerámica, junto a talleres, demostraciones y actividades culturales para todas las edades.",
+      "keywords": ["Marratxí", "Fang", "cerámica", "feria", "artesanía", "Mallorca"],
+      "location": {
+        "name": "Marratxí",
+        "postalCode": "07141",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.6267, "lng": 2.7261 }
+      },
+      "organizer": {
+        "name": "Ajuntament de Marratxí",
+        "url": "https://www.marratxi.es"
+      },
+      "subEvents": [
+        {
+          "name": "Taller de cerámica para niños",
+          "startDate": "2026-03-08T11:00",
+          "endDate": "2026-03-08T13:00",
+          "description": "Taller práctico donde los más pequeños pueden modelar y pintar piezas de barro guiados por artesanos locales."
+        },
+        {
+          "name": "Demostración de torno alfarero",
+          "startDate": "2026-03-09T17:00",
+          "endDate": "2026-03-09T18:00",
+          "description": "Artesanos expertos muestran en directo cómo se trabaja el torno y se crean piezas tradicionales de barro."
+        },
+        {
+          "name": "Concurso de piezas de barro",
+          "startDate": "2026-03-12T16:00",
+          "endDate": "2026-03-12T18:00",
+          "description": "Concurso abierto a todos los participantes de la feria para premiar la mejor pieza de cerámica del año."
+        },
+        {
+          "name": "Visita guiada a la exposición de cerámica",
+          "startDate": "2026-03-10T12:00",
+          "endDate": "2026-03-10T13:00",
+          "description": "Recorrido guiado por la exposición de piezas históricas y contemporáneas de cerámica mallorquina."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/FeriaDelFang/FeriaDelFang1.jpg", "caption": "Puestos de cerámica en la Feria del Fang de Marratxí" }
+      ],
+      "videos": [],
+      "schemaUrl": "https://www.fiestasmallorca.online/#feria-del-fang-marratxi"
+    },
+
+    {
+      "id": 801,
+      "slug": "la-patrona-pollenca",
+      "municipalityId": 8,
+      "municipality": "Pollença",
+      "name": "La Patrona de Pollença",
+      "alternateName": "Festes de la Mare de Déu dels Àngels",
+      "date": "Agosto",
+      "startDate": "2026-07-26",
+      "endDate": "2026-08-02",
+      "type": "Cultura",
+      "additionalType": "Fiesta patronal",
+      "isFree": true,
+      "description": "La Patrona de Pollença se celebra el 2 de agosto en honor a la Mare de Déu dels Àngels. El acto central es la recreación histórica de la batalla de 1550 entre moros y cristianos, cuando el corsario Dragut intentó invadir la localidad.",
+      "keywords": ["Pollença", "La Patrona", "Mare de Déu dels Àngels", "batalla moros y cristianos", "Dragut", "tradición mallorquina"],
+      "location": {
+        "name": "Pollença",
+        "postalCode": "07460",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.87810, "lng": 3.01624 }
+      },
+      "organizer": {
+        "name": "Ajuntament de Pollença",
+        "url": "https://www.pollenca.es"
+      },
+      "subEvents": [
+        {
+          "name": "Desfile de moros y cristianos",
+          "startDate": "2026-08-02T10:00",
+          "endDate": "2026-08-02T12:00",
+          "description": "Los participantes divididos en bando moro y cristiano recorren las calles vestidos con trajes de época."
+        },
+        {
+          "name": "Recreación de la batalla de 1550",
+          "startDate": "2026-08-02T12:30",
+          "endDate": "2026-08-02T14:00",
+          "description": "Representación simbólica de la batalla entre los habitantes de Pollença y los corsarios liderados por Dragut."
+        },
+        {
+          "name": "Actividades culturales y religiosas",
+          "startDate": "2026-08-02T15:00",
+          "endDate": "2026-08-02T18:00",
+          "description": "Conciertos, bailes tradicionales, música de xeremiers y actos religiosos en honor a la Mare de Déu dels Àngels."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/SaPatrona/SaPatrona1.jpeg", "caption": "Recreación histórica de la batalla de 1550" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SaPatrona/SaPatrona2.jpg", "caption": "Bailes tradicionales durante la celebración de Sa Patrona" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SaPatrona/SaPatrona3.jpg", "caption": "Corsarios yendo a luchar a la batalla de 1550" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SaPatrona/SaPatrona4.jpg", "caption": "Misa solemne en Sa Patrona de Pollença" }
+      ],
+      "videos": [
+        { "name": "Recreación de la batalla de moros y cristianos en Sa Patrona de Pollença", "url": "https://www.youtube.com/watch?v=Ra_u2goFAcc", "embedUrl": "https://www.youtube.com/embed/Ra_u2goFAcc", "duration": "PT1M51S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#la-patrona-pollenca"
+    },
+
+    {
+      "id": 901,
+      "slug": "sant-roc-alaro",
+      "municipalityId": 9,
+      "municipality": "Alaró",
+      "name": "Fiestas de Sant Roc",
+      "alternateName": "Fiestas Patronales de Sant Roc de Alaró",
+      "date": "Agosto",
+      "startDate": "2026-08-05",
+      "endDate": "2026-08-17",
+      "type": "Cultura",
+      "additionalType": "Fiesta patronal",
+      "isFree": true,
+      "description": "Las Fiestas de Sant Roc son la celebración patronal de Alaró y tienen lugar a principios y mediados de agosto. Sant Roque intercedió para liberar al pueblo de la peste en el siglo XVII y desde entonces se renovó la promesa de honrarlo con celebraciones que combinan lo religioso con lo popular.",
+      "keywords": ["Sant Roc", "Alaró", "fiestas patronales", "agosto"],
+      "location": {
+        "name": "Alaró",
+        "postalCode": "07340",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.70599, "lng": 2.78876 }
+      },
+      "organizer": {
+        "name": "Ajuntament d'Alaró",
+        "url": "https://www.alaro.es"
+      },
+      "subEvents": [
+        {
+          "name": "Baile de los Cossiers",
+          "startDate": "2026-08-16",
+          "description": "Danza tradicional formada por seis cossiers, la Dama y el demonio, recorriendo las calles al ritmo del flabiol, tamborí y xeremies."
+        },
+        {
+          "name": "Desfile de Carrozas",
+          "startDate": "2026-08-15T18:00",
+          "endDate": "2026-08-15T21:00",
+          "description": "Desfile con carrozas decoradas y participantes disfrazados llenando las calles de color, música y diversión."
+        },
+        {
+          "name": "Carreras de Joyas",
+          "startDate": "2026-08-16",
+          "description": "Carrera tradicional donde los participantes compiten por alcanzar las joyas colgadas, combinando deporte, humor y tradición."
+        },
+        {
+          "name": "Gigantes Cabrit y Bassa",
+          "startDate": "2026-08-05T18:00",
+          "endDate": "2026-08-05T20:00",
+          "description": "Dos gigantes históricos bailan acompañados por músicos tradicionales."
+        },
+        {
+          "name": "Correfuego con los Demonios de Alaró",
+          "startDate": "2026-08-16T22:00",
+          "endDate": "2026-08-16T23:30",
+          "description": "Demostración de fuego y sonido con dimonis recorriendo las calles, creando un espectáculo visual impresionante."
+        },
+        {
+          "name": "Globotada",
+          "startDate": "2026-08-02",
+          "description": "Fiesta de apertura donde los niños sueltan globos rojos llenando la plaza de alegría y ruido."
+        },
+        {
+          "name": "Actos culturales y artísticos",
+          "startDate": "2026-08-07",
+          "endDate": "2026-08-16",
+          "description": "Poesía, recitales musicales, exposiciones, teatro al aire libre, concursos de dibujo, talleres familiares y presentaciones de libros."
+        },
+        {
+          "name": "Verbenes y Noche Joven",
+          "startDate": "2026-08-08",
+          "endDate": "2026-08-16",
+          "description": "Verbenas con música en vivo, sesiones de DJ, cenas al aire libre y encuentros populares durante la Noche Joven."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/SantRocAlaro/SantRoc1.jpeg", "caption": "Cossiers en las Fiestas de Sant Roc de Alaró" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantRocAlaro/SantRoc2.jpg", "caption": "Músicos en las carrozas de las Fiestas de Sant Roc de Alaró" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantRocAlaro/SantRoc3.jpeg", "caption": "Barco vikingo en las carrozas de Alaró" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantRocAlaro/SantRoc4.jpg", "caption": "Correfuego final de las Fiestas de Sant Roc de Alaró" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantRocAlaro/SantRoc5.jpeg", "caption": "Gigantes de Alaró" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantRocAlaro/SantRoc6.jpeg", "caption": "Globotada de Alaró" }
+      ],
+      "videos": [
+        { "name": "Globotada de Alaró", "url": "https://www.youtube.com/watch?v=k3EjRcUVd3A", "embedUrl": "https://www.youtube.com/embed/k3EjRcUVd3A", "duration": "PT2M38S" },
+        { "name": "Cossiers de Alaró", "url": "https://www.youtube.com/watch?v=01gGeqoUzAo", "embedUrl": "https://www.youtube.com/embed/01gGeqoUzAo", "duration": "PT51S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#sant-roc-alaro"
+    },
+
+    {
+      "id": 1001,
+      "slug": "festa-des-vermar-binissalem",
+      "municipalityId": 10,
+      "municipality": "Binissalem",
+      "name": "Fiesta del Vermar",
+      "alternateName": "Fiesta de la Vendimia de Binissalem",
+      "date": "Septiembre",
+      "startDate": "2026-09-15",
+      "endDate": "2026-09-27",
+      "type": "Cultura",
+      "additionalType": "Fiesta agrícola y cultural",
+      "isFree": true,
+      "description": "La Festa des Vermar se celebra en septiembre en Binissalem y conmemora la vendimia, uno de los momentos clave del ciclo agrícola. Durante varios días el municipio se transforma en una celebración dedicada al vino y a la tradición vitivinícola.",
+      "keywords": ["Binissalem", "vendimia", "vino", "vermar", "batalla del raïm", "tradición vitivinícola", "Mallorca"],
+      "location": {
+        "name": "Binissalem",
+        "postalCode": "07350",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.68873, "lng": 2.84207 }
+      },
+      "organizer": {
+        "name": "Ajuntament de Binissalem",
+        "url": "https://www.binissalem.es"
+      },
+      "subEvents": [
+        {
+          "name": "Desfile de carrozas vinícolas",
+          "startDate": "2026-09-15T11:00",
+          "endDate": "2026-09-15T14:00",
+          "description": "Carrozas decoradas con racimos, barricas y escenas tradicionales de la vendimia recorren las calles del municipio."
+        },
+        {
+          "name": "Pisado tradicional de la uva",
+          "startDate": "2026-09-16T10:00",
+          "description": "Recreación del método tradicional de pisado de uva para la elaboración del vino."
+        },
+        {
+          "name": "Batalla del raïm",
+          "startDate": "2026-09-17T12:00",
+          "description": "Actividad festiva popular donde los participantes se lanzan uvas en un ambiente lúdico y comunitario."
+        },
+        {
+          "name": "Degustaciones y actividades culturales",
+          "startDate": "2026-09-15T11:00",
+          "endDate": "2026-09-27T18:00",
+          "description": "Catas de vino local, muestras gastronómicas, música y bailes tradicionales mallorquines."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/FestaDesVermar/EsVermar1.jpg", "caption": "Carroza de la vendimia con niños en Binissalem" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FestaDesVermar/EsVermar2.jpg", "caption": "Batalla de las uvas en Binissalem" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FestaDesVermar/EsVermar3.jpg", "caption": "Músicos tocando música tradicional en la fiesta de la vendimia" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FestaDesVermar/EsVermar4.png.webp", "caption": "Carroza de la vendimia en Binissalem" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FestaDesVermar/EsVermar5.webp", "caption": "Pisado tradicional de la uva en Binissalem" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FestaDesVermar/EsVermar6.jpg", "caption": "Protagonistas pages y payesas en la fiesta de la vendimia de Binissalem" }
+      ],
+      "videos": [
+        { "name": "Historia de la fiesta de la vendimia de Binissalem", "url": "https://www.youtube.com/watch?v=O7iRFT9YaB4", "embedUrl": "https://www.youtube.com/embed/O7iRFT9YaB4", "duration": "PT13M37S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#festa-des-vermar-binissalem"
+    },
+
+    {
+      "id": 1101,
+      "slug": "cant-de-la-sibilla",
+      "municipalityId": null,
+      "municipality": "Mallorca (isla)",
+      "name": "Cant de la Sibil·la",
+      "date": "Diciembre",
+      "startDate": "2026-12-24T23:00",
+      "endDate": "2026-12-25T00:30",
+      "type": "Cultura",
+      "additionalType": "Tradición religiosa",
+      "isFree": true,
+      "description": "El Cant de la Sibil·la se interpreta cada 24 de diciembre durante la Misa del Gallo en numerosas iglesias de Mallorca. Es un canto de origen medieval que anuncia el Juicio Final. Declarado Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO en 2010.",
+      "keywords": ["Cant de la Sibil·la", "Mallorca", "Navidad", "tradición medieval", "patrimonio UNESCO"],
+      "location": {
+        "name": "Iglesias de Mallorca",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.6950, "lng": 3.0176 }
+      },
+      "organizer": {
+        "name": "Parroquias de Mallorca",
+        "url": null
+      },
+      "subEvents": [
+        {
+          "name": "Interpretación del Cant de la Sibil·la",
+          "startDate": "2026-12-24T23:00",
+          "description": "Canto solemne interpretado durante la Misa del Gallo por un niño o niña vestido con túnica y espada simbólica."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/ElCantDeLaSibilla/CantSibila1.jpeg", "caption": "Protagonista del canto de la Sibil·la" },
+        { "url": "https://www.fiestasmallorca.online/media/img/ElCantDeLaSibilla/CantSibila2.jpg", "caption": "Coro de la iglesia durante la Misa del Gallo" },
+        { "url": "https://www.fiestasmallorca.online/media/img/ElCantDeLaSibilla/CantSibila3.jpg", "caption": "Protagonista del canto con túnica y espada" }
+      ],
+      "videos": [
+        { "name": "Protagonista cantando el Cant de la Sibil·la", "url": "https://www.youtube.com/watch?v=f3P2f2rjQMw", "embedUrl": "https://www.youtube.com/embed/f3P2f2rjQMw", "duration": "PT11M39S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#cant-sibilla"
+    },
+
+    {
+      "id": 1201,
+      "slug": "fira-esclatasang-mancor",
+      "municipalityId": 11,
+      "municipality": "Mancor de la Vall",
+      "name": "Feria del Esclatasang",
+      "date": "Noviembre",
+      "startDate": "2026-11-21",
+      "endDate": "2026-11-22",
+      "type": "Cultura",
+      "additionalType": "Gastronomía y cultura local",
+      "isFree": true,
+      "description": "La Feria del Esclatasang en Mancor de la Vall es una feria tradicional que celebra la cultura y gastronomía local en torno al esclatasang, un hongo típico de la región, con actividades para toda la familia, música en directo y puestos de artesanía.",
+      "keywords": ["Feria", "Mallorca", "Gastronomía", "Artesanía", "esclatasang", "Mancor de la Vall"],
+      "location": {
+        "name": "Mancor de la Vall",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.7020, "lng": 3.0300 }
+      },
+      "organizer": {
+        "name": "Ayuntamiento de Mancor de la Vall",
+        "url": "https://www.mancordelavall.es"
+      },
+      "subEvents": [
+        {
+          "name": "Demostración de cocina tradicional con esclatasang",
+          "startDate": "2026-11-21",
+          "description": "Cocineros locales muestran cómo preparar platos tradicionales utilizando el esclatasang."
+        },
+        {
+          "name": "Concurso de recetas con esclatasangs",
+          "startDate": "2026-11-21",
+          "description": "Concurso popular donde vecinos presentan platos elaborados con el producto estrella de la feria."
+        },
+        {
+          "name": "Actuación musical en directo",
+          "startDate": "2026-11-21",
+          "description": "Concierto de grupos locales en la plaza principal."
+        },
+        {
+          "name": "Actividades infantiles",
+          "startDate": "2026-11-22",
+          "description": "Talleres y juegos tradicionales para niños."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/FiraDeSEsclatasang/FiraDeSEsclatasang1.webp", "caption": "Esclatasang en la feria de Mancor de la Vall" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FiraDeSEsclatasang/FiraDeSEsclatasang2.jpg", "caption": "Puesto con esclatasangs en la feria de Mancor de la Vall" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FiraDeSEsclatasang/FiraDeSEsclatasang3.jpg", "caption": "Puesto de esclatasangs" },
+        { "url": "https://www.fiestasmallorca.online/media/img/FiraDeSEsclatasang/FiraDeSEsclatasang4.jpeg", "caption": "Dimonis en el correfuego final" }
+      ],
+      "videos": [
+        { "name": "Resumen feria esclatasang", "url": "https://www.youtube.com/watch?v=NIIa7qtLBR4", "embedUrl": "https://www.youtube.com/embed/NIIa7qtLBR4", "duration": "PT1M39S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#fira-esclatasang-mancor"
+    },
+
+    {
+      "id": 1301,
+      "slug": "festa-pi-sant-antoni-pollenca",
+      "municipalityId": 5,
+      "municipality": "Pollença",
+      "name": "Fiesta del Pi de Sant Antoni",
+      "date": "Enero",
+      "startDate": "2026-01-16",
+      "endDate": "2026-01-17",
+      "type": "Cultura",
+      "additionalType": "Fiesta tradicional",
+      "isFree": true,
+      "description": "La fiesta del Pi de Sant Antoni se celebra el 17 de enero en Pollença. Se corta un pino en la finca de Ternelles y se traslada al pueblo para plantarlo en la Plaça Vella. La fiesta combina tradición, esfuerzo colectivo y devoción a Sant Antoni, con cantos, foguerons y ambiente festivo.",
+      "keywords": ["Sant Antoni", "Mallorca", "Fiesta del pino", "Pollença", "tradición popular"],
+      "location": {
+        "name": "Plaça Vella de Pollença",
+        "postalCode": "07460",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.8770, "lng": 3.0165 }
+      },
+      "organizer": {
+        "name": "Ayuntamiento de Pollença",
+        "url": "https://www.pollenca.es"
+      },
+      "subEvents": [
+        {
+          "name": "Corte del Pi en Ternelles",
+          "startDate": "2026-01-16",
+          "description": "Corte del pino en la finca de Ternelles por parte de los vecinos."
+        },
+        {
+          "name": "Plantada del pino en la Plaça Vella",
+          "startDate": "2026-01-17",
+          "description": "Actividad de plantación del pino en la plaza principal de Pollença."
+        },
+        {
+          "name": "Concurso de escalada al pino",
+          "startDate": "2026-01-17",
+          "description": "Concurso donde los participantes escalan el pino y el primero en llegar a la cima deja caer los caramelos que cuelgan de las ramas."
+        },
+        {
+          "name": "Foguerons y cantos de Sant Antoni",
+          "startDate": "2026-01-17",
+          "description": "Foguerons y cantos tradicionales en honor a Sant Antoni."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/EsPiDeSantAntoni/EsPiDeSantAntoni1.jpeg", "caption": "Gente en la plaza viendo la escalada del pino" },
+        { "url": "https://www.fiestasmallorca.online/media/img/EsPiDeSantAntoni/EsPiDeSantAntoni2.jpg", "caption": "Recogida del pino" },
+        { "url": "https://www.fiestasmallorca.online/media/img/EsPiDeSantAntoni/EsPiDeSantAntoni3.jpg", "caption": "Persona escalando el pino" },
+        { "url": "https://www.fiestasmallorca.online/media/img/EsPiDeSantAntoni/EsPiDeSantAntoni4.jpeg", "caption": "Recogida del pino con carretilla" }
+      ],
+      "videos": [
+        { "name": "Resumen fiesta del Pi de Sant Antoni", "url": "https://www.youtube.com/watch?v=kx6nvrFHtOU", "embedUrl": "https://www.youtube.com/embed/kx6nvrFHtOU", "duration": "PT3M02S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#festa-pi-sant-antoni"
+    },
+
+    {
+      "id": 1401,
+      "slug": "festes-sant-antoni-arta",
+      "municipalityId": 12,
+      "municipality": "Artà",
+      "name": "Fiestas de Sant Antoni en Artà",
+      "date": "Enero",
+      "startDate": "2026-01-16",
+      "endDate": "2026-01-17",
+      "type": "Cultura",
+      "additionalType": "Fiesta tradicional",
+      "isFree": true,
+      "description": "La fiesta de Sant Antoni d'Artà se celebra el 17 de enero con la tradicional Encesa del Foc, donde se encienden hogueras en honor a Sant Antoni. La festividad incluye la bendición de animales, procesiones, música en vivo y actividades para toda la familia.",
+      "keywords": ["Sant Antoni", "Mallorca", "demonios", "Artà", "hogueras", "tradición popular", "bendicion de animales"],
+      "location": {
+        "name": "Artà",
+        "postalCode": "07570",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.7010, "lng": 3.4150 }
+      },
+      "organizer": {
+        "name": "Ayuntamiento de Artà",
+        "url": "https://www.arta.es"
+      },
+      "subEvents": [
+        {
+          "name": "Llegada de los dimonis a la plaza",
+          "startDate": "2026-01-16",
+          "description": "Los demonios aparecen en la plaza con sus trajes tradicionales para anunciar el inicio de las festividades."
+        },
+        {
+          "name": "Completes en la iglesia",
+          "startDate": "2026-01-16T19:30",
+          "description": "Completes en la iglesia de Artà, con cantos tradicionales y oraciones para honrar a Sant Antoni."
+        },
+        {
+          "name": "Foguerons y torrada popular",
+          "startDate": "2026-01-16T21:00",
+          "description": "Foguerons y torrada popular en honor a Sant Antoni."
+        },
+        {
+          "name": "Bendiciones de animales",
+          "startDate": "2026-01-17",
+          "description": "Bendiciones de animales en honor a Sant Antoni, con la participación de los vecinos que llevan a sus mascotas y animales de granja."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/SantAntoni/SantAntoni1.jpg", "caption": "Gente en la plaza con demonios" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantAntoni/SantAntoni2.jpg", "caption": "Carroza de ángeles y demonios" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantAntoni/SantAntoni3.jpg", "caption": "Vecinos disfrutando de la fiesta de Sant Antoni" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantAntoni/SantAntoni4.webp", "caption": "Demonio de Artà" },
+        { "url": "https://www.fiestasmallorca.online/media/img/SantAntoni/SantAntoni5.jpg", "caption": "Demonios en el correfuego" }
+      ],
+      "videos": [
+        { "name": "Baile de los demonios en la fiesta de Sant Antoni", "url": "https://www.youtube.com/watch?v=h544KJ2USow", "embedUrl": "https://www.youtube.com/embed/h544KJ2USow", "duration": "PT3M14S" }
+      ],
+      "schemaUrl": "https://www.fiestasmallorca.online/#festes-sant-antoni-arta"
+    },
+
+    {
+      "id": 1501,
+      "slug": "feria-del-libro-palma",
+      "municipalityId": 1,
+      "municipality": "Palma",
+      "name": "Feria del Libro de Palma",
+      "alternateName": "Fira del Llibre de Palma",
+      "date": "Abril",
+      "startDate": "2026-04-23",
+      "endDate": "2026-04-23",
+      "type": "Cultura",
+      "additionalType": "Feria cultural",
+      "isFree": true,
+      "description": "La Feria del Libro de Palma reúne cada mes de abril a librerías, editoriales y autores en el Passeig del Born. Durante varios días se celebran presentaciones, firmas de libros, actividades infantiles y encuentros literarios.",
+      "keywords": ["Palma", "libro", "feria", "literatura", "Mallorca"],
+      "location": {
+        "name": "Passeig del Born",
+        "postalCode": "07012",
+        "region": "Illes Balears",
+        "country": "ES",
+        "coordinates": { "lat": 39.5721, "lng": 2.6466 }
+      },
+      "organizer": {
+        "name": "Gremi de Llibreters de Mallorca",
+        "url": "https://www.llibretersmallorca.cat"
+      },
+      "subEvents": [
+        {
+          "name": "Firma de autores locales",
+          "startDate": "2026-04-19T11:00",
+          "endDate": "2026-04-19T14:00",
+          "description": "Sesiones de firmas con escritores mallorquines y nacionales."
+        },
+        {
+          "name": "Cuentacuentos infantil",
+          "startDate": "2026-04-20T17:00",
+          "endDate": "2026-04-20T18:00",
+          "description": "Actividad de animación lectora para los más pequeños."
+        },
+        {
+          "name": "Presentación de novedades editoriales",
+          "startDate": "2026-04-22T18:00",
+          "endDate": "2026-04-22T19:30",
+          "description": "Presentaciones de libros y charlas con autores y editores."
+        }
+      ],
+      "images": [
+        { "url": "https://www.fiestasmallorca.online/media/img/FeriaDelLibro/FeriaDelLibro1.jpg", "caption": "Puestos y ambiente en la Feria del Libro de Palma" }
+      ],
+      "videos": [],
+      "schemaUrl": "https://www.fiestasmallorca.online/#feria-del-libro-palma"
+    }
+
   ]
 }
