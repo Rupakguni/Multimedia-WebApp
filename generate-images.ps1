@@ -28,4 +28,23 @@ foreach ($name in $images) {
     magick $source -strip -quality 60 -resize 320 "assets/img/portfolio/thumbnails/$name-thumb.avif"
 }
 
+# Procesar imagen masthead por separado
+$mastheadSource = "assets/img/mallorca-masthead.jpg"
+if (Test-Path $mastheadSource) {
+    Write-Host "Procesando mallorca-masthead..."
+    magick $mastheadSource -strip -resize 640 "assets/img/mallorca-masthead-640.jpg"
+    magick $mastheadSource -strip -resize 1280 "assets/img/mallorca-masthead-1280.jpg"
+    magick $mastheadSource -strip -resize 1920 "assets/img/mallorca-masthead-1920.jpg"
+
+    magick $mastheadSource -strip -quality 80 -resize 640 "assets/img/mallorca-masthead-640.webp"
+    magick $mastheadSource -strip -quality 80 -resize 1280 "assets/img/mallorca-masthead-1280.webp"
+    magick $mastheadSource -strip -quality 80 -resize 1920 "assets/img/mallorca-masthead-1920.webp"
+
+    magick $mastheadSource -strip -quality 60 -resize 640 "assets/img/mallorca-masthead-640.avif"
+    magick $mastheadSource -strip -quality 60 -resize 1280 "assets/img/mallorca-masthead-1280.avif"
+    magick $mastheadSource -strip -quality 60 -resize 1920 "assets/img/mallorca-masthead-1920.avif"
+} else {
+    Write-Warning "Archivo no encontrado: $mastheadSource"
+}
+
 Write-Host "Procesamiento completado."
