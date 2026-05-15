@@ -16,22 +16,23 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap Icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"></noscript>
         <!-- Google fonts with font-display swap -->
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic&display=swap" rel="stylesheet" type="text/css" />
         <!-- Leaflet CSS for maps-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"></noscript>
         <!-- SimpleLightbox plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet"></noscript>
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <!-- Quiz CSS-->
         <link href="css/quiz.css" rel="stylesheet" />
         <!-- Media CSS-->
         <link href="css/media.css" rel="stylesheet" />
-        <!-- Google Sign-In -->
-        <script src="https://accounts.google.com/gsi/client" async defer onload="onGoogleLibraryLoad()"></script>
         
         <!-- JSON-LD: Página general (WebPage) -->
         <script type="application/ld+json">
@@ -151,11 +152,12 @@
                     </ul>
                     <div class="d-flex ms-lg-4 align-items-center auth-container">
                         <a id="login-icon" 
-                        class="text-white login-icon-link fs-4" 
-                        href="#" 
-                        role="button"
-                        aria-label="Iniciar sesión con Google o acceder a mi perfil">
-                            <i class="bi bi-person-circle"></i>
+                            class="text-white login-icon-link fs-4" 
+                            href="#" 
+                            role="button"
+                            aria-label="Iniciar sesión con Google o acceder a mi perfil"
+                            onclick="cargarGoogleAuth(event)">
+                                <i class="bi bi-person-circle"></i>
                         </a>
                     </div>
                 </div>
@@ -572,21 +574,15 @@
             </div>
         </footer>
 
-        <!-- Bootstrap core JS (deferred)-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
-        <!-- Leaflet JS (deferred) -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
-        <!-- SimpleLightbox plugin JS (deferred)-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js" defer></script>
         <!-- Media Module JS -->
-        <script src="js/media.js" defer></script>
+        <script src="js/media.min.js" defer></script>
         <!-- Voice Speech API Module -->
-        <script src="js/voice-speech.js" defer></script>
+        <script src="js/voice-speech.min.js" defer></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js" defer></script>
+        <script src="js/scripts.min.js" defer></script>
         <!-- Google Authentication JS -->
-        <script src="js/google-auth.js" defer></script>
+        <script src="js/google-auth.min.js" defer></script>
         <!-- Quiz JS-->
-        <script src="js/quiz.js" defer></script>
+        <script src="js/quiz.min.js" defer></script>
     </body>
 </html>

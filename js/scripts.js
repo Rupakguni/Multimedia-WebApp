@@ -139,7 +139,7 @@ async function cargarDatosIniciales() {
         generarFiltrosDinamicos();
         rehidratarFavoritos()
 
-        inicializarMapa();
+        configurarCargaDiferidaMapa();
         
         // Actualizar ItemList de municipios en el JSON-LD de la página
         actualizarListaMunicipiosEnJsonLd();
@@ -953,4 +953,33 @@ function actualizarListaMunicipiosEnJsonLd() {
     // Se podría enriquecer con una query selector si queremos actualizar dinámicamente
     // Por ahora está configurado en el head de forma estática
     console.log(`✓ ${appState.municipalities.length} municipios cargados en contexto semántico`);
+}
+
+// Añade estas dos funciones nuevas en scripts.js
+function configurarCargaDiferidaMapa() {
+    const mapaSection = document.getElementById('mapa');
+    if (!mapaSection) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            observer.disconnect();
+            cargarLeafletYInicializarMapa();
+        }
+    }, { rootMargin: '200px' });
+
+    observer.observe(mapaSection);
+}
+
+function cargarLeafletYInicializarMapa() {
+    if (!document.querySelector('link[href*="leaflet.min.css"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+        document.head.appendChild(link);
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+    script.onload = inicializarMapa;
+    document.head.appendChild(script);
 }

@@ -7,18 +7,18 @@
 <IfModule mod_expires.c>
   ExpiresActive On
   
-  # Images (7 days)
-  ExpiresByType image/jpeg "access plus 7 days"
-  ExpiresByType image/gif "access plus 7 days"
-  ExpiresByType image/png "access plus 7 days"
-  ExpiresByType image/webp "access plus 7 days"
-  ExpiresByType image/avif "access plus 7 days"
-  ExpiresByType image/svg+xml "access plus 7 days"
+  # Images (1 year)
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
   
-  # CSS & JS (7 days)
-  ExpiresByType text/css "access plus 7 days"
-  ExpiresByType application/javascript "access plus 7 days"
-  ExpiresByType text/javascript "access plus 7 days"
+  # CSS & JS (30 days)
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType text/javascript "access plus 30 days"
   
   # Fonts (30 days)
   ExpiresByType font/ttf "access plus 30 days"

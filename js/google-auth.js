@@ -3,6 +3,18 @@
  */
 let currentUser = null;
 
+function cargarGoogleAuth(event) {
+    event.preventDefault();
+    if (typeof google !== 'undefined') {
+        onGoogleLibraryLoad();
+        return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://accounts.google.com/gsi/client';
+    script.onload = onGoogleLibraryLoad;
+    document.head.appendChild(script);
+}
+
 // Handle Google Sign-In response
 function handleCredentialResponse(response) {
     // Decode the JWT token to get user info
@@ -143,20 +155,16 @@ function signOut(event) {
 
 // Initialize auth UI when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // If user is already logged in, show profile immediately
     const user = JSON.parse(localStorage.getItem('googleUser'));
     if (user) {
         currentUser = user;
+        // Si hay sesión guardada, cargar Google Auth automáticamente
+        const script = document.createElement('script');
+        script.src = 'https://accounts.google.com/gsi/client';
+        script.onload = onGoogleLibraryLoad;
+        document.head.appendChild(script);
+    } else {
+        // Sin sesión: mostrar solo el icono, no cargar Google
         updateAuthUI();
-        // Intentar rehidratar. Si los municipios aún no cargaron, 
-        // cargarDatosIniciales() lo hará después.
-        if (appState.municipalities.length > 0) {
-            rehidratarFavoritos();
-        }
     }
-    // If Google library is already loaded, initialize
-    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-        onGoogleLibraryLoad();
-    }
-    // Otherwise, onGoogleLibraryLoad will be called when script loads
 });
