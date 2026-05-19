@@ -804,11 +804,11 @@ function actualizarJsonLd(municipio) {
     const datosSemanticos = {
         "@context": "https://schema.org",
         "@type": "TouristAttraction",
-        "@id": `https://example.org/municipios/${municipio.id}`,
+        "@id": `https://www.ayuntamientosmallorca.online/#ayuntamientos/${municipio.id}`,
         "name": municipio.name,
         "description": municipio.description,
-        "url": municipio.website || `https://example.org/municipios/${municipio.id}`,
-        "image": municipio.imagenes && municipio.imagenes[0] ? municipio.imagenes[0].url : "https://example.org/default.jpg",
+        "url": municipio.website || `https://www.ayuntamientosmallorca.online/#ayuntamientos/${municipio.id}`,
+        "image": municipio.imagenes && municipio.imagenes[0] ? municipio.imagenes[0].url : "https://www.ayuntamientosmallorca.online/assets/img/default.jpg",
         "telephone": municipio.phone,
         "email": municipio.email,
         "address": {
@@ -884,19 +884,19 @@ function actualizarBreadcrumb(municipioName) {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Inicio",
-                "item": "https://example.org"
+                "item": "https://www.ayuntamientosmallorca.online"
             },
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Municipios",
-                "item": "https://example.org#ayuntamientos"
+                "item": "https://www.ayuntamientosmallorca.online/#ayuntamientos"
             },
             {
                 "@type": "ListItem",
                 "position": 3,
                 "name": municipioName,
-                "item": `https://example.org#municipios/${municipioName}`
+                "item": `https://www.ayuntamientosmallorca.online/#ayuntamientos/${municipioName}`
             }
         ]
     };

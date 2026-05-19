@@ -7,25 +7,25 @@
 <IfModule mod_expires.c>
   ExpiresActive On
   
-  # Images (7 days)
-  ExpiresByType image/jpeg "access plus 7 days"
-  ExpiresByType image/gif "access plus 7 days"
-  ExpiresByType image/png "access plus 7 days"
-  ExpiresByType image/webp "access plus 7 days"
-  ExpiresByType image/avif "access plus 7 days"
-  ExpiresByType image/svg+xml "access plus 7 days"
+  # Images (1 year)
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
   
-  # CSS & JS (7 days)
-  ExpiresByType text/css "access plus 7 days"
-  ExpiresByType application/javascript "access plus 7 days"
-  ExpiresByType text/javascript "access plus 7 days"
+  # CSS & JS (1 month)
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
   
-  # Fonts (30 days)
-  ExpiresByType font/ttf "access plus 30 days"
-  ExpiresByType font/otf "access plus 30 days"
-  ExpiresByType font/woff "access plus 30 days"
-  ExpiresByType font/woff2 "access plus 30 days"
-  ExpiresByType application/font-woff "access plus 30 days"
+  # Fonts (1 year)
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
 </IfModule>
 
 # Enable GZIP compression for specific file types
