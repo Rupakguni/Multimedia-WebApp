@@ -82,19 +82,31 @@ function updateAuthUI() {
             </div>
         `;
     } else {
-        // Show sign-in button with Google API
-        authContainer.innerHTML = `<div id="google-signin-btn"></div>`;
-        
-        // Render the button since Google is already initialized
-        google.accounts.id.renderButton(
-            document.getElementById('google-signin-btn'),
-            { 
-                type: 'icon',
-                shape: 'circle',
-                theme: 'outline',
-                size: 'medium'
-            }
-        );
+        // Show sign-in button if Google is initialized
+        if (typeof google !== 'undefined') {
+            authContainer.innerHTML = `<div id="google-signin-btn"></div>`;
+            google.accounts.id.renderButton(
+                document.getElementById('google-signin-btn'),
+                { 
+                    type: 'icon',
+                    shape: 'circle',
+                    theme: 'outline',
+                    size: 'medium'
+                }
+            );
+        } else {
+            // Keep the standard login icon
+            authContainer.innerHTML = `
+                <a id="login-icon" 
+                    class="text-white login-icon-link fs-4" 
+                    href="#" 
+                    role="button"
+                    aria-label="Iniciar sesión con Google o acceder a mi perfil"
+                    onclick="cargarGoogleAuth(event)">
+                        <i class="bi bi-person-circle"></i>
+                </a>
+            `;
+        }
     }
 }
 
