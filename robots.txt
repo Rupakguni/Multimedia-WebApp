@@ -49,17 +49,7 @@ User-agent: ScanAlert
 User-agent: ZyBorg
 Disallow: /
 
-# Bloquear scrapers genéricos
-User-agent: *bot
-Disallow: /
-
-User-agent: *crawler
-Disallow: /
-
-User-agent: *spider
-Disallow: /
-
-# Especificar ubicación del sitemap (cuando lo tengas)
+# Especificar ubicación del sitemap
 Sitemap: https://www.ayuntamientosmallorca.online/sitemap.xml
 
 # Permitir acceso al robots.txt

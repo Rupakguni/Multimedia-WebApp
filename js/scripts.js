@@ -14,6 +14,10 @@ const appState = {
     status: 'idle'
 };
 
+let lazyContentLoaded = false;
+let lazyContentLoading = null;
+let leafletAssetsLoading = null;
+
 /**
  * Construye un bloque <picture> con fuentes AVIF, WebP y fallback JPG
  * usando variantes responsive generadas con ImageMagick.
@@ -102,9 +106,13 @@ async function initializeApp() {
         });
     }
 
-    // Cargar datos dinámicamente desde JSON
-    // Los favoritos se rehidratarán después de que carguen los datos
-    await cargarDatosIniciales();
+    // Cargar datos dinámicamente solo cuando el usuario acceda a la sección de mapa/ayuntamientos
+    initializeLazyLoading();
+
+    // El quiz pesa poco y debe estar listo aunque el usuario salte directamente a esa sección
+    if (typeof cargarPreguntasQuiz === 'function') {
+        cargarPreguntasQuiz();
+    }
 
     // Inicializar formulario de contacto DESPUÉS de que el DOM esté listo
     inicializarFormularioContacto();
@@ -113,6 +121,111 @@ async function initializeApp() {
     initializeVoiceControls();
 
     notifyMonthlyEvents(); // Revisa si debe notificar al arrancar la App
+}
+
+function initializeLazyLoading() {
+    const lazyTriggers = document.querySelectorAll('#mapa, #ayuntamientos');
+    const lazyButtons = document.querySelectorAll('.load-lazy-content');
+
+    lazyButtons.forEach(button => {
+        button.addEventListener('click', loadMapAndAyuntamientos);
+    });
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadMapAndAyuntamientos();
+                    observer.disconnect();
+                }
+            });
+        }, {
+            rootMargin: '0px 0px 200px 0px',
+            threshold: 0.2
+        });
+
+        lazyTriggers.forEach(section => observer.observe(section));
+    } else {
+        const onScrollOrResize = () => {
+            if (lazyContentLoaded) return;
+            const section = document.querySelector('#mapa');
+            if (!section) return;
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight + 200) {
+                loadMapAndAyuntamientos();
+                window.removeEventListener('scroll', onScrollOrResize);
+                window.removeEventListener('resize', onScrollOrResize);
+            }
+        };
+
+        window.addEventListener('scroll', onScrollOrResize, { passive: true });
+        window.addEventListener('resize', onScrollOrResize);
+        onScrollOrResize();
+    }
+}
+
+async function loadMapAndAyuntamientos() {
+    if (lazyContentLoading) return lazyContentLoading;
+
+    lazyContentLoading = (async () => {
+        if (lazyContentLoaded) return;
+
+        const mapPlaceholder = document.getElementById('map-loading-placeholder');
+        const municipalitiesPlaceholder = document.getElementById('municipalities-not-loaded');
+        const mapContainer = document.getElementById('map-container');
+        const municipalitiesContainer = document.getElementById('municipalities-container');
+
+        if (mapPlaceholder) {
+            mapPlaceholder.classList.add('d-none');
+        }
+        if (municipalitiesPlaceholder) {
+            municipalitiesPlaceholder.classList.add('d-none');
+        }
+        if (mapContainer) {
+            mapContainer.classList.remove('d-none');
+        }
+        if (municipalitiesContainer) {
+            municipalitiesContainer.classList.remove('d-none');
+        }
+
+        await loadLeafletAssets();
+        await cargarDatosIniciales();
+
+        if (map) {
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 250);
+        }
+
+        lazyContentLoaded = true;
+    })();
+
+    return lazyContentLoading;
+}
+
+function loadLeafletAssets() {
+    if (window.L) {
+        return Promise.resolve();
+    }
+    if (leafletAssetsLoading) {
+        return leafletAssetsLoading;
+    }
+
+    leafletAssetsLoading = new Promise((resolve, reject) => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+        document.head.appendChild(link);
+
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+        script.async = true;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Error cargando Leaflet'));
+        document.body.appendChild(script);
+    });
+
+    return leafletAssetsLoading;
 }
 
 
@@ -184,7 +297,7 @@ function renderizarMunicipios(municipios) {
         card.innerHTML = `
             ${buildResponsivePicture(imageData, imageAlt, true)}
             <div class="card-body">
-                <h5 class="card-title">${municipio.name}</h5>
+                <h3 class="card-title h5">${municipio.name}</h3>
                 <p class="card-text text-muted small">${municipio.description}</p>
                 <button class="btn btn-primary btn-sm" 
                         data-bs-toggle="modal" 
@@ -286,6 +399,11 @@ function rehidratarFavoritos() {
  * Filtrar municipios combinando el buscador de texto y los checkboxes de servicios
  */
 function filtrarMunicipios() {
+    if (!lazyContentLoaded) {
+        loadMapAndAyuntamientos();
+        return;
+    }
+
     const termino = document.getElementById('search-input').value.toLowerCase();
     const feedback = document.getElementById('search-feedback');
     
@@ -419,7 +537,7 @@ function updateFavoritesDisplay() {
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card favorite-card favorite-active h-100">
                     <div class="card-body text-center">
-                        <h5 class="card-title">${name}</h5>
+                        <h3 class="card-title h5">${name}</h3>
                         <button class="btn btn-sm btn-danger" onclick="removeFavorite('${name}')">
                             <i class="bi bi-heart-fill"></i> Eliminar
                         </button>

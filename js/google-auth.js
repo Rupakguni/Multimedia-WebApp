@@ -2,6 +2,7 @@
  * Google Sign-In Authentication
  */
 let currentUser = null;
+let googleAuthLoading = null;
 
 // Handle Google Sign-In response
 function handleCredentialResponse(response) {
@@ -47,6 +48,10 @@ function decodeJwtResponse(token) {
 
 // Initialize Google Sign-In when library loads
 function onGoogleLibraryLoad() {
+    if (typeof google === 'undefined' || !google.accounts || !google.accounts.id) {
+        return;
+    }
+
     google.accounts.id.initialize({
         client_id: '971821874994-2ceikgaib4jb1t1lbniq4s8l983ofrq2.apps.googleusercontent.com',
         callback: handleCredentialResponse
@@ -56,10 +61,53 @@ function onGoogleLibraryLoad() {
     updateAuthUI();
 }
 
+function cargarGoogleAuth(event) {
+    if (event) event.preventDefault();
+
+    if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+        onGoogleLibraryLoad();
+        return Promise.resolve();
+    }
+
+    if (googleAuthLoading) {
+        return googleAuthLoading;
+    }
+
+    const authContainer = document.querySelector('.auth-container');
+    if (authContainer) {
+        authContainer.innerHTML = `
+            <button class="btn btn-link text-white text-decoration-none" type="button" aria-label="Cargando inicio de sesión con Google">
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+            </button>
+        `;
+    }
+
+    googleAuthLoading = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://accounts.google.com/gsi/client';
+        script.async = true;
+        script.defer = true;
+        script.onload = () => {
+            onGoogleLibraryLoad();
+            resolve();
+        };
+        script.onerror = () => {
+            googleAuthLoading = null;
+            updateAuthUI();
+            reject(new Error('No se pudo cargar Google Identity Services'));
+        };
+        document.head.appendChild(script);
+    });
+
+    return googleAuthLoading;
+}
+
 // Update authentication UI
 function updateAuthUI() {
     const authContainer = document.querySelector('.auth-container');
     const user = JSON.parse(localStorage.getItem('googleUser'));
+
+    if (!authContainer) return;
     
     if (user) {
         // Show user profile with dropdown
@@ -165,6 +213,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (appState.municipalities.length > 0) {
             rehidratarFavoritos();
         }
+    } else {
+        updateAuthUI();
     }
     // If Google library is already loaded, initialize
     if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {

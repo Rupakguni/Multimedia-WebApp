@@ -20,7 +20,11 @@ const quizState = {
 /**
  * Carga las preguntas desde el archivo JSON externo
  */
-async function cargarPreguntasQuiz() {
+async function cargarPreguntasQuiz({ force = false } = {}) {
+    if (!force && quizState.questions.length > 0) {
+        return;
+    }
+
     try {
         const respuesta = await fetch('./data/quiz.json');
         if (!respuesta.ok) throw new Error('No se pudo cargar el JSON del quiz');

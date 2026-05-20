@@ -54,6 +54,15 @@
 
 # Enable GZIP compression for specific file types
 <IfModule mod_headers.c>
+  <FilesMatch "\.(avif|webp|jpg|jpeg|png|gif|svg|ico|woff2?|ttf|otf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|json|xml)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(html?)$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
   <FilesMatch "\.(js|css|xml|gz|json)$">
     Header append Vary Accept-Encoding
   </FilesMatch>
