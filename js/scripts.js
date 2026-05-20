@@ -804,11 +804,11 @@ function actualizarJsonLd(municipio) {
     const datosSemanticos = {
         "@context": "https://schema.org",
         "@type": "TouristAttraction",
-        "@id": `https://www.ayuntamientosmallorca.online/#ayuntamientos/${municipio.id}`,
+        "@id": `https://www.ayuntamientosmallorca.online/#municipios/${municipio.name.toLowerCase()}`,
         "name": municipio.name,
         "description": municipio.description,
-        "url": municipio.website || `https://www.ayuntamientosmallorca.online/#ayuntamientos/${municipio.id}`,
-        "image": municipio.imagenes && municipio.imagenes[0] ? municipio.imagenes[0].url : "https://www.ayuntamientosmallorca.online/assets/img/default.jpg",
+        "url": municipio.website || `https://www.ayuntamientosmallorca.online/#municipios/${municipio.name.toLowerCase()}`,
+        "image": municipio.imagenes && municipio.imagenes[0] ? `https://www.ayuntamientosmallorca.online/${municipio.imagenes[0].url.replace(/^\.\//, '')}` : "https://www.ayuntamientosmallorca.online/assets/img/default.jpg",
         "telephone": municipio.phone,
         "email": municipio.email,
         "address": {
@@ -884,7 +884,7 @@ function actualizarBreadcrumb(municipioName) {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Inicio",
-                "item": "https://www.ayuntamientosmallorca.online"
+                "item": "https://www.ayuntamientosmallorca.online/"
             },
             {
                 "@type": "ListItem",
@@ -896,7 +896,7 @@ function actualizarBreadcrumb(municipioName) {
                 "@type": "ListItem",
                 "position": 3,
                 "name": municipioName,
-                "item": `https://www.ayuntamientosmallorca.online/#ayuntamientos/${municipioName}`
+                "item": `https://www.ayuntamientosmallorca.online/#municipios/${municipioName.toLowerCase()}`
             }
         ]
     };

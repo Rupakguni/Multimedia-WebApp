@@ -2,28 +2,53 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     
-    <!-- Página principal -->
+    <!-- Página principal única y canónica -->
     <url>
         <loc>https://www.ayuntamientosmallorca.online/</loc>
-        <lastmod>2026-05-19</lastmod>
+        <lastmod>2026-05-20</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        
+        <!-- Imagen Principal / Cabecera -->
         <image:image>
             <image:loc>https://www.ayuntamientosmallorca.online/assets/img/mallorca-masthead.avif</image:loc>
             <image:title>Mallorca Masthead</image:title>
         </image:image>
+        
+        <!-- Imagen: Palma -->
         <image:image>
             <image:loc>https://www.ayuntamientosmallorca.online/assets/img/Palma-1280.avif</image:loc>
-            <image:title>Palma</image:title>
+            <image:title>Palma de Mallorca</image:title>
         </image:image>
+        
+        <!-- Imagen: Sóller -->
         <image:image>
             <image:loc>https://www.ayuntamientosmallorca.online/assets/img/Soller-1280.avif</image:loc>
             <image:title>Sóller</image:title>
         </image:image>
+        
+        <!-- Imagen: Alcúdia -->
         <image:image>
             <image:loc>https://www.ayuntamientosmallorca.online/assets/img/Alcudia-1280.avif</image:loc>
             <image:title>Alcúdia</image:title>
         </image:image>
-    </url>
 
+        <!-- Imagen: Inca -->
+        <image:image>
+            <image:loc>https://www.ayuntamientosmallorca.online/assets/img/Inca-1280.avif</image:loc>
+            <image:title>Inca</image:title>
+        </image:image>
+
+        <!-- Imagen: Llucmajor -->
+        <image:image>
+            <image:loc>https://www.ayuntamientosmallorca.online/assets/img/Llucmajor-1280.avif</image:loc>
+            <image:title>Llucmajor</image:title>
+        </image:image>
+
+        <!-- Imagen: Manacor -->
+        <image:image>
+            <image:loc>https://www.ayuntamientosmallorca.online/assets/img/Manacor-1280.avif</image:loc>
+            <image:title>Manacor</image:title>
+        </image:image>
+    </url>
 </urlset>

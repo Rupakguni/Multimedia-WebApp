@@ -1,3 +1,24 @@
+# Enable Rewrite Engine for SEO 301 redirects
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirección 301 de HTTP a HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Redirección 301 de non-www a www
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteCond %{HTTP_HOST} !^localhost [NC]
+  RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Enable CORS for WebApp compliance
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+  Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+  Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
 # Enable compression
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
@@ -7,25 +28,28 @@
 <IfModule mod_expires.c>
   ExpiresActive On
   
-  # Images (1 year)
+  # Archivos de imagen: 1 año
+  ExpiresByType image/jpg "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/gif "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/avif "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
   
-  # CSS & JS (1 month)
+  # CSS y JavaScript: 1 mes
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
   ExpiresByType text/javascript "access plus 1 month"
   
-  # Fonts (1 year)
-  ExpiresByType font/ttf "access plus 1 year"
-  ExpiresByType font/otf "access plus 1 year"
-  ExpiresByType font/woff "access plus 1 year"
-  ExpiresByType font/woff2 "access plus 1 year"
-  ExpiresByType application/font-woff "access plus 1 year"
+  # HTML: 1 hora
+  ExpiresByType text/html "access plus 1 hour"
+  
+  # Fonts (30 days)
+  ExpiresByType font/ttf "access plus 30 days"
+  ExpiresByType font/otf "access plus 30 days"
+  ExpiresByType font/woff "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 30 days"
+  ExpiresByType application/font-woff "access plus 30 days"
 </IfModule>
 
 # Enable GZIP compression for specific file types

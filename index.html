@@ -30,8 +30,8 @@
         <link href="css/quiz.css" rel="stylesheet" />
         <!-- Media CSS-->
         <link href="css/media.css" rel="stylesheet" />
-        <!-- Google Sign-In -->
-        <script src="https://accounts.google.com/gsi/client" async defer onload="onGoogleLibraryLoad()"></script>
+        <!-- Google Sign-In (async strictly for SEO best practice) -->
+        <script src="https://accounts.google.com/gsi/client" async onload="onGoogleLibraryLoad()"></script>
         
         <!-- JSON-LD: Página general (WebPage) -->
         <script type="application/ld+json">
@@ -63,13 +63,43 @@
             "mainEntity": {
                 "@type": "ItemList",
                 "name": "Municipios de Mallorca",
-                "numberOfItems": 53,
+                "numberOfItems": 6,
                 "itemListElement": [
                     {
                         "@type": "ListItem",
                         "position": 1,
-                        "url": "https://www.ayuntamientosmallorca.online/#ayuntamientos",
+                        "url": "https://www.ayuntamientosmallorca.online/#municipios/palma",
                         "name": "Palma"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "url": "https://www.ayuntamientosmallorca.online/#municipios/manacor",
+                        "name": "Manacor"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "url": "https://www.ayuntamientosmallorca.online/#municipios/inca",
+                        "name": "Inca"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 4,
+                        "url": "https://www.ayuntamientosmallorca.online/#municipios/soller",
+                        "name": "Sóller"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 5,
+                        "url": "https://www.ayuntamientosmallorca.online/#municipios/alcudia",
+                        "name": "Alcúdia"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 6,
+                        "url": "https://www.ayuntamientosmallorca.online/#municipios/llucmajor",
+                        "name": "Llucmajor"
                     }
                 ]
             }
@@ -173,9 +203,14 @@
             <div class="carousel-inner h-100">
                 <div class="carousel-item active h-100 position-relative">
                     <picture class="carousel-picture position-absolute top-0 start-0 w-100 h-100">
-                        <source type="image/avif" srcset="./assets/img/Palma-640.avif 640w, ./assets/img/Palma-1280.avif 1280w, ./assets/img/Palma-1920.avif 1920w" sizes="100vw">
-                        <source type="image/webp" srcset="./assets/img/Palma-640.webp 640w, ./assets/img/Palma-1280.webp 1280w, ./assets/img/Palma-1920.webp 1920w" sizes="100vw">
-                        <img src="./assets/img/Palma-640.jpg" srcset="./assets/img/Palma-640.jpg 640w, ./assets/img/Palma-1280.jpg 1280w, ./assets/img/Palma-1920.jpg 1920w" sizes="100vw" alt="Panorámica de Palma" loading="eager" fetchpriority="high" decoding="async">
+                        <!-- Mobile sources: force loading the lightweight -640 image to save significant bandwidth -->
+                        <source type="image/avif" media="(max-width: 768px)" srcset="./assets/img/Palma-640.avif">
+                        <source type="image/webp" media="(max-width: 768px)" srcset="./assets/img/Palma-640.webp">
+                        <!-- Desktop/Tablet sources: select standard responsive density versions -->
+                        <source type="image/avif" media="(min-width: 769px)" srcset="./assets/img/Palma-1280.avif 1280w, ./assets/img/Palma-1920.avif 1920w" sizes="100vw">
+                        <source type="image/webp" media="(min-width: 769px)" srcset="./assets/img/Palma-1280.webp 1280w, ./assets/img/Palma-1920.webp 1920w" sizes="100vw">
+                        <!-- Fallback image targeting correct size on mobile vs desktop -->
+                        <img src="./assets/img/Palma-640.jpg" srcset="./assets/img/Palma-640.jpg 640w, ./assets/img/Palma-1280.jpg 1280w, ./assets/img/Palma-1920.jpg 1920w" sizes="(max-width: 768px) 640px, 100vw" alt="Panorámica de Palma" loading="eager" fetchpriority="high" decoding="async">
                     </picture>
                     <div class="carousel-caption d-flex h-100 align-items-center justify-content-center text-center">
                         <div class="container px-4 px-lg-5">
@@ -191,9 +226,14 @@
 
                 <div class="carousel-item h-100 position-relative">
                     <picture class="carousel-picture position-absolute top-0 start-0 w-100 h-100">
-                        <source type="image/avif" srcset="./assets/img/Soller-640.avif 640w, ./assets/img/Soller-1280.avif 1280w, ./assets/img/Soller-1920.avif 1920w" sizes="100vw">
-                        <source type="image/webp" srcset="./assets/img/Soller-640.webp 640w, ./assets/img/Soller-1280.webp 1280w, ./assets/img/Soller-1920.webp 1920w" sizes="100vw">
-                        <img src="./assets/img/Soller-640.jpg" srcset="./assets/img/Soller-640.jpg 640w, ./assets/img/Soller-1280.jpg 1280w, ./assets/img/Soller-1920.jpg 1920w" sizes="100vw" alt="Panorámica de Sóller" loading="lazy" decoding="async">
+                        <!-- Mobile sources: force loading the lightweight -640 image to save significant bandwidth -->
+                        <source type="image/avif" media="(max-width: 768px)" srcset="./assets/img/Soller-640.avif">
+                        <source type="image/webp" media="(max-width: 768px)" srcset="./assets/img/Soller-640.webp">
+                        <!-- Desktop/Tablet sources: select standard responsive density versions -->
+                        <source type="image/avif" media="(min-width: 769px)" srcset="./assets/img/Soller-1280.avif 1280w, ./assets/img/Soller-1920.avif 1920w" sizes="100vw">
+                        <source type="image/webp" media="(min-width: 769px)" srcset="./assets/img/Soller-1280.webp 1280w, ./assets/img/Soller-1920.webp 1920w" sizes="100vw">
+                        <!-- Fallback image targeting correct size on mobile vs desktop -->
+                        <img src="./assets/img/Soller-640.jpg" srcset="./assets/img/Soller-640.jpg 640w, ./assets/img/Soller-1280.jpg 1280w, ./assets/img/Soller-1920.jpg 1920w" sizes="(max-width: 768px) 640px, 100vw" alt="Panorámica de Sóller" loading="lazy" decoding="async">
                     </picture>
                     <div class="carousel-caption d-flex h-100 align-items-center justify-content-center text-center">
                         <div class="container px-4 px-lg-5">
@@ -209,9 +249,14 @@
 
                 <div class="carousel-item h-100 position-relative">
                     <picture class="carousel-picture position-absolute top-0 start-0 w-100 h-100">
-                        <source type="image/avif" srcset="./assets/img/Alcudia-640.avif 640w, ./assets/img/Alcudia-1280.avif 1280w, ./assets/img/Alcudia-1920.avif 1920w" sizes="100vw">
-                        <source type="image/webp" srcset="./assets/img/Alcudia-640.webp 640w, ./assets/img/Alcudia-1280.webp 1280w, ./assets/img/Alcudia-1920.webp 1920w" sizes="100vw">
-                        <img src="./assets/img/Alcudia-640.jpg" srcset="./assets/img/Alcudia-640.jpg 640w, ./assets/img/Alcudia-1280.jpg 1280w, ./assets/img/Alcudia-1920.jpg 1920w" sizes="100vw" alt="Panorámica de Alcudia" loading="lazy" decoding="async">
+                        <!-- Mobile sources: force loading the lightweight -640 image to save significant bandwidth -->
+                        <source type="image/avif" media="(max-width: 768px)" srcset="./assets/img/Alcudia-640.avif">
+                        <source type="image/webp" media="(max-width: 768px)" srcset="./assets/img/Alcudia-640.webp">
+                        <!-- Desktop/Tablet sources: select standard responsive density versions -->
+                        <source type="image/avif" media="(min-width: 769px)" srcset="./assets/img/Alcudia-1280.avif 1280w, ./assets/img/Alcudia-1920.avif 1920w" sizes="100vw">
+                        <source type="image/webp" media="(min-width: 769px)" srcset="./assets/img/Alcudia-1280.webp 1280w, ./assets/img/Alcudia-1920.webp 1920w" sizes="100vw">
+                        <!-- Fallback image targeting correct size on mobile vs desktop -->
+                        <img src="./assets/img/Alcudia-640.jpg" srcset="./assets/img/Alcudia-640.jpg 640w, ./assets/img/Alcudia-1280.jpg 1280w, ./assets/img/Alcudia-1920.jpg 1920w" sizes="(max-width: 768px) 640px, 100vw" alt="Panorámica de Alcudia" loading="lazy" decoding="async">
                     </picture>
                     <div class="carousel-caption d-flex h-100 align-items-center justify-content-center text-center">
                         <div class="container px-4 px-lg-5">
