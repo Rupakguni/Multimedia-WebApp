@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "brand":        "Ayuntamientos Mallorca",
+    "contexto":     "Contexto",
+    "mapa":         "Mapa",
+    "municipios":   "Municipios",
+    "favoritos":    "Favoritos",
+    "quiz":         "Quiz",
+    "contacto":     "Contacto",
+    "sobre":        "Sobre Nosotros"
+  },
+
+  "hero": {
+    "carousel_prev": "Anterior",
+    "carousel_next": "Siguiente"
+  },
+
+  "contexto": {
+    "titulo":       "Explora la esencia de nuestra isla",
+    "intro":        "Bienvenido al hub informativo de los ayuntamientos de Mallorca. Descubre la riqueza cultural, el patrimonio arquitectónico y la agenda de eventos de cada rincón de nuestra geografía.",
+    "geo_titulo":   "Geolocalización",
+    "geo_texto":    "Encuentra cada ayuntamiento directamente sobre el mapa interactivo.",
+    "pat_titulo":   "Patrimonio",
+    "pat_texto":    "Explora edificios históricos y monumentos emblemáticos de Mallorca.",
+    "cul_titulo":   "Cultura Viva",
+    "cul_texto":    "Mantente al día con las festividades y eventos locales de cada municipio.",
+    "btn_explorar": "¡Empezar a explorar!"
+  },
+
+  "mapa": {
+    "titulo":         "Mapa Interactivo de Mallorca",
+    "placeholder":    "El mapa interactivo y el contenido de municipios se cargarán cuando accedas a esta sección.",
+    "btn_cargar":     "Cargar mapa y municipios"
+  },
+
+  "ayuntamientos": {
+    "titulo":         "Explorador de Ayuntamientos",
+    "filtros_titulo": "Filtros",
+    "buscar_label":   "Buscar Municipio",
+    "buscar_placeholder": "Ej: Palma...",
+    "mic_aria":       "Iniciar dictado por voz",
+    "mic_title":      "Pulsa para usar el micrófono",
+    "servicios_label":"Servicios",
+    "filtros_cargando":"Cargando filtros...",
+    "btn_filtros":    "Aplicar Filtros",
+    "lista_pendiente":"La lista de ayuntamientos está pendiente de carga.",
+    "btn_mostrar":    "Mostrar ayuntamientos",
+    "btn_ver_detalles": "Ver Detalles"
+  },
+
+  "favoritos": {
+    "titulo":         "Mis Favoritos",
+    "texto_vacio":    "Selecciona municipios para añadirlos a tu lista de favoritos",
+    "btn_eliminar":   "Eliminar"
+  },
+
+  "quiz": {
+    "titulo":         "Quiz de Ayuntamientos",
+    "intro":          "¿Cuánto sabes sobre los ayuntamientos de Mallorca? ¡Pon a prueba tus conocimientos!",
+    "btn_comenzar":   "Comenzar Quiz",
+    "btn_reintentar": "Intentar de Nuevo",
+    "completado":     "¡Quiz Completado!"
+  },
+
+  "contacto": {
+    "titulo":         "¿Tienes dudas sobre un municipio?",
+    "subtitulo":      "Envíanos un mensaje y te ayudaremos con información actualizada sobre los ayuntamientos de Mallorca.",
+    "nombre_label":   "Nombre completo",
+    "nombre_placeholder": "Introduce tu nombre...",
+    "nombre_error":   "Por favor, introduce tu nombre (mínimo 2 caracteres).",
+    "email_label":    "Correo electrónico",
+    "email_error":    "Por favor, introduce un correo electrónico válido.",
+    "mensaje_label":  "Mensaje",
+    "mensaje_placeholder": "Escribe tu mensaje aquí...",
+    "mensaje_error":  "El mensaje debe tener al menos 10 caracteres.",
+    "btn_enviar":     "Enviar Mensaje"
+  },
+
+  "modal": {
+    "titulo":         "Detalles del Municipio",
+    "cerrar_aria":    "Cerrar detalles del municipio",
+    "btn_leer_aria":  "Leer descripción del municipio",
+    "btn_leer_title": "Escuchar descripción",
+    "btn_leer":       "Leer",
+    "contacto_titulo":"Información de Contacto",
+    "geo_titulo":     "Datos Geográficos",
+    "servicios_titulo":"Servicios Disponibles",
+    "multimedia_titulo":"Multimedia",
+    "multimedia_cargando":"Cargando contenido multimedia...",
+    "clima_titulo":   "Clima Actual",
+    "clima_cargando": "Consultando tiempo actual...",
+    "eventos_titulo": "Eventos Cercanos",
+    "eventos_vacio":  "No hay eventos registrados",
+    "btn_favorito":   "Añadir a Favoritos",
+    "btn_cerrar":     "Cerrar",
+    "telefono":    "Teléfono",
+    "email":       "Email",
+    "web":         "Web",
+    "coordenadas": "Coordenadas",
+    "poblacion":   "Población",
+    "habitantes":  "habitantes",
+    "fundacion":   "Fundación",
+    "en_favoritos": "En Favoritos"
+  },
+
+  "sobre": {
+    "titulo":         "Sobre Nosotros",
+    "roberto_rol":    "Estudiante de Ingeniería Informática",
+    "rupak_rol":      "Estudiante de Ingeniería Informática"
+  },
+
+  "footer": {
+    "copyright":      "Copyright © 2026 - Ayuntamientos de Mallorca | Roberto García & Rupak Guni"
+  },
+
+  "accesibilidad": {
+    "skip_link":      "Saltar al contenido principal",
+    "login_aria":     "Iniciar sesión con Google o acceder a mi perfil"
+  },
+
+  "servicios": {
+    "Agricultura": "Agricultura",
+    "Artesanía": "Artesanía",
+    "Artesanía de Cuero": "Artesanía de Cuero",
+    "Comercio": "Comercio",
+    "Cultura": "Cultura",
+    "Deportes Acuáticos": "Deportes Acuáticos",
+    "Gastronomía": "Gastronomía",
+    "Industria": "Industria",
+    "Industria Tradicional": "Industria Tradicional",
+    "Naturaleza": "Naturaleza",
+    "Patrimonio": "Patrimonio",
+    "Playas": "Playas",
+    "Turismo": "Turismo"
+  },
+
+  "media": {
+    "ver_en":    "Ver en",
+    "acceder_a": "Acceder a"
+  }
+}

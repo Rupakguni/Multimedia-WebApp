@@ -40,6 +40,9 @@
             <link href="css/quiz.css" rel="stylesheet" />
             <link href="css/media.css" rel="stylesheet" />
         </noscript>
+        <!-- i18next: internacionalización -->
+        <script src="https://unpkg.com/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+        <script src="https://unpkg.com/i18next-http-backend@2.5.2/i18nextHttpBackend.min.js"></script>
         <!-- JSON-LD: Página general (WebPage) -->
         <script type="application/ld+json">
         {
@@ -174,17 +177,26 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Ayuntamientos Mallorca</a>
+                <a class="navbar-brand" href="#page-top" data-i18n="nav.brand">Ayuntamientos Mallorca</a>
+                <div class="d-flex align-items-center gap-2 ms-auto me-2 me-lg-0 order-lg-last">
+                    <select id="lang-selector" 
+                            class="form-select form-select-sm"
+                            aria-label="Seleccionar idioma">
+                        <option value="es">ES</option>
+                        <option value="ca">CA</option>
+                        <option value="en">EN</option>
+                    </select>
+                </div>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#contexto">Contexto</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#mapa">Mapa</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#ayuntamientos">Municipios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#favoritos" aria-label="Ir a mi lista de municipios favoritos">Favoritos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#quiz-section">Quiz</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#sobre-nosotros">Sobre Nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contexto" data-i18n="nav.contexto">Contexto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#mapa" data-i18n="nav.mapa">Mapa</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#ayuntamientos" data-i18n="nav.municipios">Municipios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#favoritos" data-i18n="nav.favoritos">Favoritos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#quiz-section" data-i18n="nav.quiz">Quiz</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#sobre-nosotros" data-i18n="nav.sobre">Sobre Nosotros</a></li>
                     </ul>
                     <div class="d-flex ms-lg-4 align-items-center auth-container">
                         <a id="login-icon" 
@@ -272,11 +284,11 @@
 
             <button class="carousel-control-prev" type="button" data-bs-target="#headerCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
+                <span class="visually-hidden" data-i18n="hero.carousel_prev">Anterior</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#headerCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
+                <span class="visually-hidden" data-i18n="hero.carousel_next">Siguiente</span>
             </button>
         </header>
 
@@ -285,10 +297,10 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center text-center">
                     <div class="col-lg-10 text-white">
-                        <h2 class="text-white mt-0">Explora la esencia de nuestra isla</h2>
+                        <h2 class="text-white mt-0" data-i18n="contexto.titulo">Explora la esencia de nuestra isla</h2>
                         <hr class="divider divider-light" />
                         
-                        <p class="lead mb-5 text-white-75">
+                        <p class="lead mb-5 text-white-75" data-i18n="contexto.intro">
                             Bienvenido al hub informativo de los ayuntamientos de Mallorca. Descubre la riqueza cultural, 
                             el patrimonio arquitectónico y la agenda de eventos de cada rincón de nuestra geografía.
                         </p>
@@ -296,22 +308,22 @@
                         <div class="row text-center mt-5">
                             <div class="col-md-4 mb-4">
                                 <i class="bi-geo-alt fs-1 mb-3"></i>
-                                <h3 class="h5">Geolocalización</h3>
-                                <p class="small text-white-75">Encuentra cada ayuntamiento directamente sobre el mapa interactivo.</p>
+                                <h3 class="h5" data-i18n="contexto.geo_titulo">Geolocalización</h3>
+                                <p class="small text-white-75" data-i18n="contexto.geo_texto">Encuentra cada ayuntamiento directamente sobre el mapa interactivo.</p>
                             </div>
                             <div class="col-md-4 mb-4">
                                 <i class="bi-bank fs-1 mb-3"></i>
-                                <h3 class="h5">Patrimonio</h3>
-                                <p class="small text-white-75">Explora edificios históricos y monumentos emblemáticos de Mallorca.</p>
+                                <h3 class="h5" data-i18n="contexto.pat_titulo">Patrimonio</h3>
+                                <p class="small text-white-75" data-i18n="contexto.pat_texto">Explora edificios históricos y monumentos emblemáticos de Mallorca.</p>
                             </div>
                             <div class="col-md-4 mb-4">
                                 <i class="bi-calendar-event fs-1 mb-3"></i>
-                                <h3 class="h5">Cultura Viva</h3>
-                                <p class="small text-white-75">Mantente al día con las festividades y eventos locales de cada municipio.</p>
+                                <h3 class="h5" data-i18n="contexto.cul_titulo">Cultura Viva</h3>
+                                <p class="small text-white-75" data-i18n="contexto.cul_texto">Mantente al día con las festividades y eventos locales de cada municipio.</p>
                             </div>
                         </div>
                         
-                        <a class="btn btn-light btn-xl mt-4" href="#mapa">¡Empezar a explorar!</a>
+                        <a class="btn btn-light btn-xl mt-4" href="#mapa" data-i18n="contexto.btn_explorar">¡Empezar a explorar!</a>
                     </div>
                 </div>
             </div>
@@ -323,11 +335,11 @@
         <!-- Mapa Interactivo-->
         <section class="page-section py-0" id="mapa">
             <div class="container-fluid px-0">
-                <h2 class="text-center mt-5 mb-0">Mapa Interactivo de Mallorca</h2>
+                <h2 class="text-center mt-5 mb-0" data-i18n="mapa.titulo">Mapa Interactivo de Mallorca</h2>
                 <hr class="divider mx-auto" />
                 <div id="map-loading-placeholder" class="text-center py-5 border rounded-4 bg-light">
-                    <p class="lead mb-3">El mapa interactivo y el contenido de municipios se cargarán cuando accedas a esta sección.</p>
-                    <button class="btn btn-primary btn-xl load-lazy-content" type="button">Cargar mapa y municipios</button>
+                    <p class="lead mb-3" data-i18n="mapa.placeholder">El mapa interactivo y el contenido de municipios se cargarán cuando accedas a esta sección.</p>
+                    <button class="btn btn-primary btn-xl load-lazy-content" type="button" data-i18n="mapa.btn_cargar">Cargar mapa y municipios</button>
                 </div>
                 <div id="map-container" class="d-none" style="height: 500px; width: 100%; position: relative;">
                     <div id="map" class="h-100 w-100"></div>
@@ -338,7 +350,7 @@
         <!-- Ayuntamientos List and Modals-->
         <section class="page-section bg-light" id="ayuntamientos">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Explorador de Ayuntamientos</h2>
+                <h2 class="text-center mt-0" data-i18n="ayuntamientos.titulo">Explorador de Ayuntamientos</h2>
                 <hr class="divider" />
                 
                 <div class="row gx-4 gx-lg-5">
@@ -346,10 +358,10 @@
                     <div class="col-lg-3 mb-5">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title h5">Filtros</h3>
+                                <h3 class="card-title h5" data-i18n="ayuntamientos.filtros_titulo">Filtros</h3>
                                 <div class="mb-3">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <label class="form-label mb-0" for="search-input">Buscar Municipio</label>
+                                        <label class="form-label mb-0" for="search-input" data-i18n="ayuntamientos.buscar_label">Buscar Municipio</label>
                                         <button class="btn btn-sm btn-outline-primary" 
                                                 id="stt-mic-button"
                                                 aria-label="Iniciar dictado por voz"
@@ -358,16 +370,16 @@
                                             <i class="bi bi-mic"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control" id="search-input" placeholder="Ej: Palma..." aria-describedby="stt-feedback">
+                                    <input type="text" class="form-control" id="search-input" data-i18n="[placeholder]ayuntamientos.buscar_placeholder" placeholder="Ej: Palma..." aria-describedby="stt-feedback">
                                     <small id="stt-feedback" class="d-block mt-2"></small>
                                 </div>
                                 <div class="mb-3">
-                                    <p class="form-label mb-1" id="servicios-label"><strong>Servicios</strong></p>
+                                    <p class="form-label mb-1" id="servicios-label"><strong data-i18n="ayuntamientos.servicios_label">Servicios</strong></p>
                                     <div id="dynamic-service-filters" role="group" aria-labelledby="servicios-label">
                                         <div class="text-muted small">Cargando filtros...</div>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary btn-sm w-100">Aplicar Filtros</button>
+                                <button class="btn btn-primary btn-sm w-100" data-i18n="ayuntamientos.btn_filtros">Aplicar Filtros</button>
                                 <div id="search-feedback" class="mt-3 d-none" role="alert"></div>
                             </div>
                         </div>
@@ -376,8 +388,8 @@
                     <!-- Municipalities List-->
                     <div class="col-lg-9">
                         <div id="municipalities-not-loaded" class="text-center py-5 border rounded-4 bg-light">
-                            <p class="lead mb-3">La lista de ayuntamientos está pendiente de carga.</p>
-                            <button class="btn btn-outline-primary btn-sm load-lazy-content" type="button">Mostrar ayuntamientos</button>
+                            <p class="lead mb-3" data-i18n="ayuntamientos.lista_pendiente">La lista de ayuntamientos está pendiente de carga.</p>
+                            <button class="btn btn-outline-primary btn-sm load-lazy-content" type="button" data-i18n="ayuntamientos.btn_mostrar">Mostrar ayuntamientos</button>
                         </div>
                         <div id="municipalities-container" class="row gx-4 gx-lg-5 d-none">
                             <!-- Los municipios se cargarán aquí mediante JavaScript -->
@@ -390,11 +402,11 @@
         <!-- Favoritos Section-->
         <section class="page-section bg-primary text-white" id="favoritos">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Mis Favoritos</h2>
+                <h2 class="text-center mt-0" data-i18n="favoritos.titulo">Mis Favoritos</h2>
                 <hr class="divider divider-light" />
                 <div id="favorites-container" class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-10 text-center">
-                        <p class="text-white-75">Selecciona municipios para añadirlos a tu lista de favoritos</p>
+                        <p class="text-white-75" data-i18n="favoritos.texto_vacio">Selecciona municipios para añadirlos a tu lista de favoritos</p>
                     </div>
                 </div>
             </div>
@@ -403,7 +415,7 @@
         <!-- Quiz Section-->
         <section class="page-section bg-light" id="quiz-section">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Quiz de Ayuntamientos</h2>
+                <h2 class="text-center mt-0" data-i18n="quiz.titulo">Quiz de Ayuntamientos</h2>
                 <hr class="divider" />
                 
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -412,8 +424,8 @@
                         <div id="quiz-container">
                             <!-- Estado inicial -->
                             <div id="quiz-start" class="text-center">
-                                <p class="lead mb-4">¿Cuánto sabes sobre los ayuntamientos de Mallorca? ¡Pon a prueba tus conocimientos!</p>
-                                <button class="btn btn-primary btn-xl" onclick="iniciarQuiz()">Comenzar Quiz</button>
+                                <p class="lead mb-4" data-i18n="quiz.intro">¿Cuánto sabes sobre los ayuntamientos de Mallorca? ¡Pon a prueba tus conocimientos!</p>
+                                <button class="btn btn-primary btn-xl" onclick="iniciarQuiz()" data-i18n="quiz.btn_comenzar">Comenzar Quiz</button>
                             </div>
 
                             <!-- Pregunta -->
@@ -437,12 +449,12 @@
                             <div id="quiz-result" class="d-none text-center">
                                 <div class="card shadow-lg border-0">
                                     <div class="card-body p-5">
-                                        <h3 class="mb-3">¡Quiz Completado!</h3>
+                                        <h3 class="mb-3" data-i18n="quiz.completado">¡Quiz Completado!</h3>
                                         <div class="display-4 mb-3">
                                             <span id="final-score" style="color: var(--bs-primary);">0</span>/<span>10</span>
                                         </div>
                                         <p class="lead mb-4" id="result-message"></p>
-                                        <button class="btn btn-primary btn-lg" onclick="reiniciarQuiz()">Intentar de Nuevo</button>
+                                        <button class="btn btn-primary btn-lg" onclick="reiniciarQuiz()" data-i18n="quiz.btn_reintentar">Intentar de Nuevo</button>
                                     </div>
                                 </div>
                             </div>
@@ -456,31 +468,31 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6 text-center">
-                        <h2 class="mt-0">¿Tienes dudas sobre un municipio?</h2>
+                        <h2 class="mt-0" data-i18n="contacto.titulo">¿Tienes dudas sobre un municipio?</h2>
                         <hr class="divider" />
-                        <p class="text-muted mb-5">Envíanos un mensaje y te ayudaremos con información actualizada sobre los ayuntamientos de Mallorca.</p>
+                        <p class="text-muted mb-5" data-i18n="contacto.subtitulo">Envíanos un mensaje y te ayudaremos con información actualizada sobre los ayuntamientos de Mallorca.</p>
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-6">
                         <form id="contactForm" action="https://formspree.io/f/mzdyqpng" method="POST" novalidate>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="name" name="name" type="text" placeholder="Introduce tu nombre..." required minlength="2" maxlength="80" autocomplete="name" aria-describedby="name-error" />
-                                <label for="name">Nombre completo</label>
-                                <div id="name-error" class="invalid-feedback">Por favor, introduce tu nombre (mínimo 2 caracteres).</div>
+                                <input class="form-control" id="name" name="name" type="text" data-i18n="[placeholder]contacto.nombre_placeholder" placeholder="Introduce tu nombre..." required minlength="2" maxlength="80" autocomplete="name" aria-describedby="name-error" />
+                                <label for="name" data-i18n="contacto.nombre_label">Nombre completo</label>
+                                <div id="name-error" class="invalid-feedback" data-i18n="contacto.nombre_error">Por favor, introduce tu nombre (mínimo 2 caracteres).</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="email" name="email" type="email" placeholder="nombre@ejemplo.com" required autocomplete="email" aria-describedby="email-error" />
-                                <label for="email">Correo electrónico</label>
-                                <div id="email-error" class="invalid-feedback">Por favor, introduce un correo electrónico válido.</div>
+                                <input class="form-control" id="email" name="email" type="email" data-i18n="[placeholder]contacto.email_placeholder" placeholder="nombre@ejemplo.com" required autocomplete="email" aria-describedby="email-error" />
+                                <label for="email" data-i18n="contacto.email_label">Correo electrónico</label>
+                                <div id="email-error" class="invalid-feedback" data-i18n="contacto.email_error">Por favor, introduce un correo electrónico válido.</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" name="message" placeholder="Escribe tu mensaje aquí..." style="height: 10rem" required minlength="10" aria-describedby="message-error"></textarea>
-                                <label for="message">Mensaje</label>
-                                <div id="message-error" class="invalid-feedback">El mensaje debe tener al menos 10 caracteres.</div>
+                                <textarea class="form-control" id="message" name="message" data-i18n="[placeholder]contacto.mensaje_placeholder" placeholder="Escribe tu mensaje aquí..." style="height: 10rem" required minlength="10" aria-describedby="message-error"></textarea>
+                                <label for="message" data-i18n="contacto.mensaje_label">Mensaje</label>
+                                <div id="message-error" class="invalid-feedback" data-i18n="contacto.mensaje_error">El mensaje debe tener al menos 10 caracteres.</div>
                             </div>
                             <div class="d-grid">
-                                <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Enviar Mensaje</button>
+                                <button class="btn btn-primary btn-xl" id="submitButton" type="submit" data-i18n="contacto.btn_enviar">Enviar Mensaje</button>
                             </div>
                         </form>
                     </div>
@@ -498,8 +510,8 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="municipalityModalLabel">Detalles del Municipio</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar detalles del municipio"></button>
+                        <h5 class="modal-title" id="municipalityModalLabel" data-i18n="modal.titulo">Detalles del Municipio</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-i18n="[aria-label]modal.cerrar_aria" aria-label="Cerrar detalles del municipio"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3" id="modal-img-wrapper"></div>
@@ -510,25 +522,25 @@
                                     aria-label="Leer descripción del municipio"
                                     aria-pressed="false"
                                     title="Escuchar descripción"
-                                    onclick="speakModalDescription()">
-                                <i class="bi bi-play-circle"></i> Leer
+                                    onclick="speakModalDescription()" >
+                                <i class="bi bi-play-circle"></i> <span data-i18n="modal.btn_leer">Leer</span>
                             </button>
                         </div>
                         <p id="modal-description" class="text-muted"></p>
                         
                         <div class="row mt-4">
                             <div class="col-md-6">
-                                <h6>Información de Contacto</h6>
+                                <h6 data-i18n="modal.contacto_titulo">Información de Contacto</h6>
                                 <p id="modal-contact" class="small"></p>
                             </div>
                             <div class="col-md-6">
-                                <h6>Datos Geográficos</h6>
+                                <h6 data-i18n="modal.geo_titulo">Datos Geográficos</h6>
                                 <p id="modal-location" class="small"></p>
                             </div>
                         </div>
 
                         <div class="mt-4">
-                            <h6>Servicios Disponibles</h6>
+                            <h6 data-i18n="modal.servicios_titulo">Servicios Disponibles</h6>
                             <div id="modal-services">
                                 <span class="badge bg-primary me-2">Turismo</span>
                                 <span class="badge bg-info me-2">Cultura</span>
@@ -537,27 +549,27 @@
                         </div>
 
                         <div class="mt-4">
-                            <h6>Multimedia</h6>
+                            <h6 data-i18n="modal.multimedia_titulo">Multimedia</h6>
                             <div id="modal-multimedia" class="small">
                                 <p class="text-muted">Cargando contenido multimedia...</p>
                             </div>
                         </div>
 
                         <div class="mt-4">
-                            <h6>Clima Actual</h6>
+                            <h6 data-i18n="modal.clima_titulo">Clima Actual</h6>
                             <div id="modal-weather" class="alert alert-info d-flex align-items-center" role="alert">
                                 <div class="spinner-border spinner-border-sm me-2" role="status"></div>
                                 Consultando tiempo actual...
                             </div>
                         </div>
                         <div class="mt-4">
-                            <h6>Eventos Cercanos</h6>
+                            <h6 data-i18n="modal.eventos_titulo">Eventos Cercanos</h6>
                             <p id="modal-events" class="text-muted small">No hay eventos registrados</p>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" id="modal-favorite-btn" onclick="toggleFavoriteFromModal()">Añadir a Favoritos</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-outline-primary" id="modal-favorite-btn" onclick="toggleFavoriteFromModal()" data-i18n="modal.btn_favorito">Añadir a Favoritos</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="modal.btn_cerrar">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -565,7 +577,7 @@
 
         <section class="page-section bg-light" id="sobre-nosotros">
             <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Sobre Nosotros</h2>
+                <h2 class="mb-4" data-i18n="sobre.titulo">Sobre Nosotros</h2>
                 <hr class="divider" />
                 <div class="row gx-4 gx-lg-5 justify-content-center mt-5">
                     
@@ -580,7 +592,7 @@
                                         style="width: 150px; height: 150px; object-fit: cover; border: 4px solid var(--bs-primary); padding: 5px; background: white;" width="150" height="150" loading="lazy" decoding="async">
                                 </picture>
                                 <h3 class="h5">Roberto García Martínez</h3>
-                                <p class="text-muted small">Estudiante de Ingeniería Informática</p>
+                                <p class="text-muted small" data-i18n="sobre.roberto_rol">Estudiante de Ingeniería Informática</p>
                                 <div class="mt-3">
                                     <a href="https://www.linkedin.com/in/roberto-garcía-martínez-1576312b5" target="_blank" class="text-primary fs-3" aria-label="LinkedIn de Roberto">
                                         <i class="bi bi-linkedin"></i>
@@ -601,7 +613,7 @@
                                         style="width: 150px; height: 150px; object-fit: cover; border: 4px solid var(--bs-primary); padding: 5px; background: white;" width="150" height="150" loading="lazy" decoding="async">
                                 </picture>
                                 <h3 class="h5">Rupak Guni Thapaliya</h3>
-                                <p class="text-muted small">Estudiante de Ingeniería Informática</p>
+                                <p class="text-muted small" data-i18n="sobre.rupak_rol">Estudiante de Ingeniería Informática</p>
                                 <div class="mt-3">
                                     <a href="https://linkedin.com/in/tu-perfil-rupak" target="_blank" class="text-primary fs-3" aria-label="LinkedIn de Rupak">
                                         <i class="bi bi-linkedin"></i>

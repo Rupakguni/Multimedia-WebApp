@@ -121,7 +121,7 @@ const MediaModule = (() => {
     // Botón para acceder al contenido original
     html += `
           <a href="${video.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary mt-3">
-            <i class="bi bi-box-arrow-up-right"></i> Ver en ${getVideoSource(video.url)}
+            <i class="bi bi-box-arrow-up-right"></i> ${i18next.t('media.ver_en')} ${getVideoSource(video.url)}
           </a>
         </div>
       </div>
@@ -511,7 +511,7 @@ const MediaModule = (() => {
         
         // Botón para ir al original
         html += `<a href="${video.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">`;
-        html += `<i class="bi bi-box-arrow-up-right"></i> Ver en ${getVideoSource(video.url)}`;
+        html += `<i class="bi bi-box-arrow-up-right"></i> ${i18next.t('media.ver_en')} ${getVideoSource(video.url)}`;
         html += `</a>`;
         
         html += `</div>`;
@@ -549,7 +549,7 @@ const MediaModule = (() => {
         
         // Botón para ir al original
         html += `<a href="${audio.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">`;
-        html += `<i class="bi bi-box-arrow-up-right"></i> Acceder a ${platformBadge}`;
+        html += `<i class="bi bi-box-arrow-up-right"></i> ${i18next.t('media.acceder_a')} ${platformBadge}`;
         html += `</a>`;
         
         html += `</div>`;

@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "brand":        "Mallorca Municipalities",
+    "contexto":     "Context",
+    "mapa":         "Map",
+    "municipios":   "Municipalities",
+    "favoritos":    "Favourites",
+    "quiz":         "Quiz",
+    "contacto":     "Contact",
+    "sobre":        "About Us"
+  },
+
+  "hero": {
+    "carousel_prev": "Previous",
+    "carousel_next": "Next"
+  },
+
+  "contexto": {
+    "titulo":       "Explore the essence of our island",
+    "intro":        "Welcome to the interactive hub for Mallorca's municipalities. Discover the cultural richness, architectural heritage and events calendar of every corner of our island.",
+    "geo_titulo":   "Geolocation",
+    "geo_texto":    "Find each municipality directly on the interactive map.",
+    "pat_titulo":   "Heritage",
+    "pat_texto":    "Explore historic buildings and iconic monuments of Mallorca.",
+    "cul_titulo":   "Living Culture",
+    "cul_texto":    "Stay up to date with local festivals and events in each municipality.",
+    "btn_explorar": "Start exploring!"
+  },
+
+  "mapa": {
+    "titulo":         "Interactive Map of Mallorca",
+    "placeholder":    "The interactive map and municipality content will load when you access this section.",
+    "btn_cargar":     "Load map and municipalities"
+  },
+
+  "ayuntamientos": {
+    "titulo":         "Municipality Explorer",
+    "filtros_titulo": "Filters",
+    "buscar_label":   "Search Municipality",
+    "buscar_placeholder": "E.g.: Palma...",
+    "mic_aria":       "Start voice dictation",
+    "mic_title":      "Press to use the microphone",
+    "servicios_label":"Services",
+    "filtros_cargando":"Loading filters...",
+    "btn_filtros":    "Apply Filters",
+    "lista_pendiente":"The list of municipalities is pending load.",
+    "btn_mostrar":    "Show municipalities",
+    "btn_ver_detalles": "View Details"
+  },
+
+  "favoritos": {
+    "titulo":         "My Favourites",
+    "texto_vacio":    "Select municipalities to add them to your favourites list",
+    "btn_eliminar":   "Remove"
+  },
+
+  "quiz": {
+    "titulo":         "Municipality Quiz",
+    "intro":          "How much do you know about the municipalities of Mallorca? Put your knowledge to the test!",
+    "btn_comenzar":   "Start Quiz",
+    "btn_reintentar": "Try Again",
+    "completado":     "Quiz Completed!"
+  },
+
+  "contacto": {
+    "titulo":         "Have questions about a municipality?",
+    "subtitulo":      "Send us a message and we will help you with up-to-date information about the municipalities of Mallorca.",
+    "nombre_label":   "Full name",
+    "nombre_placeholder": "Enter your name...",
+    "nombre_error":   "Please enter your name (minimum 2 characters).",
+    "email_label":    "Email address",
+    "email_error":    "Please enter a valid email address.",
+    "mensaje_label":  "Message",
+    "mensaje_placeholder": "Write your message here...",
+    "mensaje_error":  "The message must be at least 10 characters long.",
+    "btn_enviar":     "Send Message"
+  },
+
+  "modal": {
+    "titulo":         "Municipality Details",
+    "cerrar_aria":    "Close municipality details",
+    "btn_leer_aria":  "Read municipality description",
+    "btn_leer_title": "Listen to description",
+    "btn_leer":       "Listen",
+    "contacto_titulo":"Contact Information",
+    "geo_titulo":     "Geographic Data",
+    "servicios_titulo":"Available Services",
+    "multimedia_titulo":"Multimedia",
+    "multimedia_cargando":"Loading multimedia content...",
+    "clima_titulo":   "Current Weather",
+    "clima_cargando": "Fetching current weather...",
+    "eventos_titulo": "Nearby Events",
+    "eventos_vacio":  "No events registered",
+    "btn_favorito":   "Add to Favourites",
+    "btn_cerrar":     "Close",
+    "telefono":    "Phone",
+    "email":       "Email",
+    "web":         "Web",
+    "coordenadas": "Coordinates",
+    "poblacion":   "Population",
+    "habitantes":  "inhabitants",
+    "fundacion":   "Founded",
+    "en_favoritos": "In Favourites"
+  },
+
+  "sobre": {
+    "titulo":         "About Us",
+    "roberto_rol":    "Computer Engineering Student",
+    "rupak_rol":      "Computer Engineering Student"
+  },
+
+  "footer": {
+    "copyright":      "Copyright © 2026 - Mallorca Municipalities | Roberto García & Rupak Guni"
+  },
+
+  "accesibilidad": {
+    "skip_link":      "Skip to main content",
+    "login_aria":     "Sign in with Google or access my profile"
+  },
+
+  "servicios": {
+    "Agricultura": "Agriculture",
+    "Artesanía": "Crafts",
+    "Artesanía de Cuero": "Leather Crafts",
+    "Comercio": "Commerce",
+    "Cultura": "Culture",
+    "Deportes Acuáticos": "Water Sports",
+    "Gastronomía": "Gastronomy",
+    "Industria": "Industry",
+    "Industria Tradicional": "Traditional Industry",
+    "Naturaleza": "Nature",
+    "Patrimonio": "Heritage",
+    "Playas": "Beaches",
+    "Turismo": "Tourism"
+  },
+
+  "media": {
+    "ver_en":    "Watch on",
+    "acceder_a": "Access"
+  }
+}

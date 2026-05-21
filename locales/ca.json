@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "brand":        "Ajuntaments Mallorca",
+    "contexto":     "Context",
+    "mapa":         "Mapa",
+    "municipios":   "Municipis",
+    "favoritos":    "Favorits",
+    "quiz":         "Quiz",
+    "contacto":     "Contacte",
+    "sobre":        "Sobre Nosaltres"
+  },
+
+  "hero": {
+    "carousel_prev": "Anterior",
+    "carousel_next": "Següent"
+  },
+
+  "contexto": {
+    "titulo":       "Explora l'essència de la nostra illa",
+    "intro":        "Benvingut al hub informatiu dels ajuntaments de Mallorca. Descobreix la riquesa cultural, el patrimoni arquitectònic i l'agenda d'esdeveniments de cada racó de la nostra geografia.",
+    "geo_titulo":   "Geolocalització",
+    "geo_texto":    "Troba cada ajuntament directament sobre el mapa interactiu.",
+    "pat_titulo":   "Patrimoni",
+    "pat_texto":    "Explora edificis històrics i monuments emblemàtics de Mallorca.",
+    "cul_titulo":   "Cultura Viva",
+    "cul_texto":    "Mantén-te al dia amb les festivitats i esdeveniments locals de cada municipi.",
+    "btn_explorar": "Comença a explorar!"
+  },
+
+  "mapa": {
+    "titulo":         "Mapa Interactiu de Mallorca",
+    "placeholder":    "El mapa interactiu i el contingut de municipis es carregaran quan accedeixis a aquesta secció.",
+    "btn_cargar":     "Carregar mapa i municipis"
+  },
+
+  "ayuntamientos": {
+    "titulo":         "Explorador d'Ajuntaments",
+    "filtros_titulo": "Filtres",
+    "buscar_label":   "Cercar Municipi",
+    "buscar_placeholder": "Ex: Palma...",
+    "mic_aria":       "Iniciar dictat per veu",
+    "mic_title":      "Prem per usar el micròfon",
+    "servicios_label":"Serveis",
+    "filtros_cargando":"Carregant filtres...",
+    "btn_filtros":    "Aplicar Filtres",
+    "lista_pendiente":"La llista d'ajuntaments està pendent de càrrega.",
+    "btn_mostrar":    "Mostrar ajuntaments",
+    "btn_ver_detalles": "Veure Detalls"
+  },
+
+  "favoritos": {
+    "titulo":         "Els Meus Favorits",
+    "texto_vacio":    "Selecciona municipis per afegir-los a la teva llista de favorits",
+    "btn_eliminar":   "Eliminar"
+  },
+
+  "quiz": {
+    "titulo":         "Quiz d'Ajuntaments",
+    "intro":          "Quant saps sobre els ajuntaments de Mallorca? Posa a prova els teus coneixements!",
+    "btn_comenzar":   "Començar Quiz",
+    "btn_reintentar": "Tornar a intentar",
+    "completado":     "Quiz Completat!"
+  },
+
+  "contacto": {
+    "titulo":         "Tens dubtes sobre un municipi?",
+    "subtitulo":      "Envia'ns un missatge i t'ajudarem amb informació actualitzada sobre els ajuntaments de Mallorca.",
+    "nombre_label":   "Nom complet",
+    "nombre_placeholder": "Introdueix el teu nom...",
+    "nombre_error":   "Si us plau, introdueix el teu nom (mínim 2 caràcters).",
+    "email_label":    "Correu electrònic",
+    "email_error":    "Si us plau, introdueix un correu electrònic vàlid.",
+    "mensaje_label":  "Missatge",
+    "mensaje_placeholder": "Escriu el teu missatge aquí...",
+    "mensaje_error":  "El missatge ha de tenir almenys 10 caràcters.",
+    "btn_enviar":     "Enviar Missatge"
+  },
+
+  "modal": {
+    "titulo":         "Detalls del Municipi",
+    "cerrar_aria":    "Tancar detalls del municipi",
+    "btn_leer_aria":  "Llegir descripció del municipi",
+    "btn_leer_title": "Escoltar descripció",
+    "btn_leer":       "Llegir",
+    "contacto_titulo":"Informació de Contacte",
+    "geo_titulo":     "Dades Geogràfiques",
+    "servicios_titulo":"Serveis Disponibles",
+    "multimedia_titulo":"Multimèdia",
+    "multimedia_cargando":"Carregant contingut multimèdia...",
+    "clima_titulo":   "Clima Actual",
+    "clima_cargando": "Consultant el temps actual...",
+    "eventos_titulo": "Esdeveniments Propers",
+    "eventos_vacio":  "No hi ha esdeveniments registrats",
+    "btn_favorito":   "Afegir a Favorits",
+    "btn_cerrar":     "Tancar",
+    "telefono":    "Telèfon",
+    "email":       "Email",
+    "web":         "Web",
+    "coordenadas": "Coordenades",
+    "poblacion":   "Població",
+    "habitantes":  "habitants",
+    "fundacion":   "Fundació",
+    "en_favoritos": "En Favorits"
+  },
+
+  "sobre": {
+    "titulo":         "Sobre Nosaltres",
+    "roberto_rol":    "Estudiant d'Enginyeria Informàtica",
+    "rupak_rol":      "Estudiant d'Enginyeria Informàtica"
+  },
+
+  "footer": {
+    "copyright":      "Copyright © 2026 - Ajuntaments de Mallorca | Roberto García & Rupak Guni"
+  },
+
+  "accesibilidad": {
+    "skip_link":      "Saltar al contingut principal",
+    "login_aria":     "Iniciar sessió amb Google o accedir al meu perfil"
+  },
+
+  "servicios": {
+    "Agricultura": "Agricultura",
+    "Artesanía": "Artesania",
+    "Artesanía de Cuero": "Artesania de Cuir",
+    "Comercio": "Comerç",
+    "Cultura": "Cultura",
+    "Deportes Acuáticos": "Esports Aquàtics",
+    "Gastronomía": "Gastronomia",
+    "Industria": "Indústria",
+    "Industria Tradicional": "Indústria Tradicional",
+    "Naturaleza": "Natura",
+    "Patrimonio": "Patrimoni",
+    "Playas": "Platges",
+    "Turismo": "Turisme"
+  },
+
+  "media": {
+    "ver_en":    "Veure a",
+    "acceder_a": "Accedir a"
+  }
+}

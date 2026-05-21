@@ -298,12 +298,12 @@ function renderizarMunicipios(municipios) {
             ${buildResponsivePicture(imageData, imageAlt, true)}
             <div class="card-body">
                 <h3 class="card-title h5">${municipio.name}</h3>
-                <p class="card-text text-muted small">${municipio.description}</p>
+                <p class="card-text text-muted small">${municipio['description_' + i18next.language] || municipio.description}</p>
                 <button class="btn btn-primary btn-sm" 
                         data-bs-toggle="modal" 
                         data-bs-target="#municipalityModal" 
                         onclick="loadMunicipalityDetails('${municipio.name}')">
-                    Ver Detalles
+                    ${i18next.t('ayuntamientos.btn_ver_detalles')}
                 </button>
                 <button class="btn btn-outline-primary btn-sm ms-2" 
                         onclick="toggleFavorite('${municipio.name}')" 
@@ -516,7 +516,7 @@ function toggleFavoriteFromModal() {
     const favorites = JSON.parse(localStorage.getItem(storageKey)) || [];
     const btn = document.getElementById('modal-favorite-btn');
     const esFavorito = favorites.includes(municipalityName);
-    btn.textContent = esFavorito ? '❤️ En Favoritos' : 'Añadir a Favoritos';
+    btn.textContent = esFavorito ? '❤️ ' + i18next.t('modal.en_favoritos') : i18next.t('modal.btn_favorito');
 }
 
 /**
@@ -531,7 +531,7 @@ function updateFavoritesDisplay() {
     if (!container) return;
     
     if (favorites.length === 0) {
-        container.innerHTML = '<div class="col-lg-10 text-center"><p class="text-white-75">Selecciona municipios para añadirlos a tu lista de favoritos</p></div>';
+        container.innerHTML = `<div class="col-lg-10 text-center"><p class="text-white-75">${i18next.t('favoritos.texto_vacio')}</p></div>`;
     } else {
         container.innerHTML = favorites.map(name => `
             <div class="col-md-6 col-lg-4 mb-4">
@@ -539,7 +539,7 @@ function updateFavoritesDisplay() {
                     <div class="card-body text-center">
                         <h3 class="card-title h5">${name}</h3>
                         <button class="btn btn-sm btn-danger" onclick="removeFavorite('${name}')">
-                            <i class="bi bi-heart-fill"></i> Eliminar
+                            <i class="bi bi-heart-fill"></i> ${i18next.t('favoritos.btn_eliminar')}
                         </button>
                     </div>
                 </div>
@@ -579,7 +579,7 @@ function loadMunicipalityDetails(municipalityName) {
     // Actualizar texto del botón favorito según estado actual
     const favorites = JSON.parse(localStorage.getItem('favoritesMallorca')) || [];
     const btnFav = document.getElementById('modal-favorite-btn');
-    btnFav.textContent = favorites.includes(municipalityName) ? '❤️ En Favoritos' : 'Añadir a Favoritos';
+    btnFav.textContent = favorites.includes(municipalityName) ? '❤️ ' + i18next.t('modal.en_favoritos') : i18next.t('modal.btn_favorito');
 
     // Actualizar imagen del modal con responsive <picture>
     const modalImageWrapper = document.getElementById('modal-img-wrapper');
@@ -590,21 +590,21 @@ function loadMunicipalityDetails(municipalityName) {
 
     // Rellenar modal con datos básicos
     document.getElementById('modal-title').textContent = municipalityData.name;
-    document.getElementById('modal-description').textContent = municipalityData.description;
+    document.getElementById('modal-description').textContent = municipalityData['description_' + i18next.language] || municipalityData.description;
     
     // Información de contacto formateada
     const contact = `
-        <strong>Teléfono:</strong> ${municipalityData.phone}<br>
-        <strong>Email:</strong> <a href="mailto:${municipalityData.email}">${municipalityData.email}</a><br>
-        <strong>Web:</strong> <a href="${municipalityData.website}" target="_blank" rel="noopener">${municipalityData.website}</a>
+        <strong>${i18next.t('modal.telefono')}:</strong> ${municipalityData.phone}<br>
+        <strong>${i18next.t('modal.email')}:</strong> <a href="mailto:${municipalityData.email}">${municipalityData.email}</a><br>
+        <strong>${i18next.t('modal.web')}:</strong> <a href="${municipalityData.website}" target="_blank" rel="noopener">${municipalityData.website}</a>
     `;
     document.getElementById('modal-contact').innerHTML = contact;
     
     // Información geográfica
     const location = `
-        <strong>Coordenadas:</strong> ${municipalityData.latitude}° N, ${municipalityData.longitude}° E<br>
-        <strong>Población:</strong> ${municipalityData.population.toLocaleString('es-ES')} habitantes<br>
-        <strong>Fundación:</strong> ${municipalityData.founded}
+        <strong>${i18next.t('modal.coordenadas')}:</strong> ${municipalityData.latitude}° N, ${municipalityData.longitude}° E<br>
+        <strong>${i18next.t('modal.poblacion')}:</strong> ${municipalityData.population.toLocaleString('es-ES')} ${i18next.t('modal.habitantes')}<br>
+        <strong>${i18next.t('modal.fundacion')}:</strong> ${municipalityData.founded}
     `;
     document.getElementById('modal-location').innerHTML = location;
     
@@ -612,7 +612,7 @@ function loadMunicipalityDetails(municipalityName) {
     const servicesContainer = document.getElementById('modal-services');
     if (municipalityData.servicios && Array.isArray(municipalityData.servicios)) {
         const badges = municipalityData.servicios
-            .map(servicio => `<span class="badge bg-primary me-2">${servicio}</span>`)
+            .map(servicio => `<span class="badge bg-primary me-2">${i18next.t('servicios.' + servicio, {defaultValue: servicio})}</span>`)
             .join('');
         servicesContainer.innerHTML = badges;
     }
@@ -680,7 +680,7 @@ function generarFiltrosDinamicos() {
         div.innerHTML = `
             <input class="form-check-input service-filter-check" type="checkbox" value="${servicio}" id="service-${index}">
             <label class="form-check-label small" for="service-${index}">
-                ${servicio}
+                ${i18next.t('servicios.' + servicio, {defaultValue: servicio})}
             </label>
         `;
         container.appendChild(div);
@@ -751,7 +751,7 @@ function dibujarMarcadores() {
                         data-bs-toggle="modal" 
                         data-bs-target="#municipalityModal" 
                         onclick="loadMunicipalityDetails('${muni.name}')">
-                    Ver Detalles
+                    ${i18next.t('ayuntamientos.btn_ver_detalles')}
                 </button>
             </div>
         `);
@@ -1072,3 +1072,91 @@ function actualizarListaMunicipiosEnJsonLd() {
     // Por ahora está configurado en el head de forma estática
     console.log(`✓ ${appState.municipalities.length} municipios cargados en contexto semántico`);
 }
+
+// ============================================================================
+// i18n - INTERNACIONALIZACIÓN
+// ============================================================================
+
+/**
+ * Inicializa i18next y aplica las traducciones a la página
+ */
+function inicializarIdioma() {
+    i18next
+        .use(i18nextHttpBackend)
+        .init({
+            lng: localStorage.getItem('lang') || navigator.language.split('-')[0] || 'es',
+            fallbackLng: 'es',
+            supportedLngs: ['es', 'ca', 'en'],
+            backend: {
+                loadPath: './locales/{{lng}}.json'
+            }
+        }, function(err, t) {
+            if (err) {
+                console.error('Error cargando i18next:', err);
+                return;
+            }
+            aplicarTraducciones();
+            sincronizarSelector();
+        });
+}
+
+/**
+ * Recorre todos los elementos con data-i18n y aplica la traducción
+ */
+function aplicarTraducciones() {
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        const key = el.getAttribute('data-i18n');
+
+        if (key.startsWith('[placeholder]')) {
+            el.setAttribute('placeholder', i18next.t(key.replace('[placeholder]', '')));
+        } else if (key.startsWith('[aria-label]')) {
+            el.setAttribute('aria-label', i18next.t(key.replace('[aria-label]', '')));
+        } else if (key.startsWith('[title]')) {
+            el.setAttribute('title', i18next.t(key.replace('[title]', '')));
+        } else {
+            el.textContent = i18next.t(key);
+        }
+    });
+
+    // Actualizar el atributo lang del <html>
+    document.documentElement.lang = i18next.language;
+}
+
+/**
+ * Pone el selector en la opción correcta según el idioma activo
+ */
+function sincronizarSelector() {
+    const selector = document.getElementById('lang-selector');
+    if (selector) {
+        selector.value = i18next.language.split('-')[0];
+    }
+}
+
+/**
+ * Cambia el idioma al seleccionar en el desplegable
+ */
+function cambiarIdioma(lang) {
+    localStorage.setItem('lang', lang);
+    i18next.changeLanguage(lang, function() {
+        aplicarTraducciones();
+        if (typeof generarFiltrosDinamicos === 'function' && lazyContentLoaded) generarFiltrosDinamicos();
+        if (typeof renderizarMunicipios === 'function' && lazyContentLoaded) renderizarMunicipios(appState.municipalities);
+        // Sincronizar idioma con TTS y STT si están disponibles
+        const langMap = { es: 'es-ES', ca: 'ca-ES', en: 'en-GB' };
+        const langCode = langMap[lang] || 'es-ES';
+        if (typeof TTSController !== 'undefined') TTSController.setLanguage(langCode);
+        if (typeof STTController !== 'undefined') STTController.setLanguage(langCode);
+    });
+}
+
+// Arrancar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    inicializarIdioma();
+
+    const selector = document.getElementById('lang-selector');
+    if (selector) {
+        selector.addEventListener('change', function(e) {
+            cambiarIdioma(e.target.value);
+        });
+    }
+});
