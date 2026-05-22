@@ -1088,7 +1088,7 @@ function inicializarIdioma() {
             fallbackLng: 'es',
             supportedLngs: ['es', 'ca', 'en'],
             backend: {
-                loadPath: './locales/{{lng}}.json'
+                loadPath: './locales/{{lng}}.json?v=1.0'
             }
         }, function(err, t) {
             if (err) {
