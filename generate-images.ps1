@@ -1,7 +1,7 @@
 # Genera variantes responsive y formatos WebP/AVIF con ImageMagick
 # Ejecutar desde la raíz del proyecto: .\generate-images.ps1
 
-$images = @('Palma','Manacor','Inca','Soller','Alcudia','Llucmajor')
+$images = @('Palma','Manacor','Inca','Soller','Alcudia','Llucmajor','Pollenca')
 
 foreach ($name in $images) {
     $source = "assets/img/$name.jpg"
@@ -45,6 +45,25 @@ if (Test-Path $mastheadSource) {
     magick $mastheadSource -strip -quality 60 -resize 1920 "assets/img/mallorca-masthead-1920.avif"
 } else {
     Write-Warning "Archivo no encontrado: $mastheadSource"
+}
+
+# Procesar imágenes de galería (variantes de portfolio)
+$galleryImages = Get-ChildItem "assets/img/*-gallery-*.jpg" -ErrorAction SilentlyContinue
+foreach ($galleryFile in $galleryImages) {
+    $baseName = $galleryFile.BaseName
+    $source = $galleryFile.FullName
+    
+    Write-Host "Procesando galería: $baseName..."
+    
+    # Generar thumbnails (400px para cards)
+    magick "$source" -strip -resize 400 "assets/img/portfolio/thumbnails/$baseName-thumb.jpg"
+    magick "$source" -strip -quality 80 -resize 400 "assets/img/portfolio/thumbnails/$baseName-thumb.webp"
+    magick "$source" -strip -quality 60 -resize 400 "assets/img/portfolio/thumbnails/$baseName-thumb.avif"
+    
+    # Generar versiones medianas (800px para detalles)
+    magick "$source" -strip -resize 800 "assets/img/$baseName-800.jpg"
+    magick "$source" -strip -quality 80 -resize 800 "assets/img/$baseName-800.webp"
+    magick "$source" -strip -quality 60 -resize 800 "assets/img/$baseName-800.avif"
 }
 
 Write-Host "Procesamiento completado."

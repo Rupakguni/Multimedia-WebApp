@@ -258,6 +258,59 @@ const MediaModule = (() => {
   }
 
   /**
+   * Crea la sección de imágenes para el modal
+   * @param {Array} images - Array de objetos imagen
+   * @param {string} municipalityName - Nombre del municipio
+   * @returns {string} HTML string
+   */
+  function createImagesSection(images, municipalityName) {
+    let html = `
+      <div class="mb-4">
+        <strong class="d-block mb-3"><i class="bi bi-images"></i> Imágenes:</strong>
+        <div class="row gx-3 gy-3">
+    `;
+
+    images.forEach((image, index) => {
+      html += `
+        <div class="col-sm-6">
+          ${createImageCard(image, municipalityName, index)}
+        </div>
+      `;
+    });
+
+    html += `
+        </div>
+      </div>
+    `;
+
+    return html;
+  }
+
+  /**
+   * Crea una tarjeta de imagen responsiva para el modal
+   * @param {Object} image - Objeto imagen
+   * @param {string} municipalityName - Nombre del municipio
+   * @param {number} index - Índice
+   * @returns {string} HTML string
+   */
+  function createImageCard(image, municipalityName, index) {
+    const imageName = image.imageName || image.id || `image-${index + 1}`;
+    const basePrefix = municipalityName ? `${municipalityName}-${imageName}` : imageName;
+
+    return `
+      <div class="p-3 border rounded bg-light">
+        <picture>
+          <source type="image/avif" srcset="./assets/img/${basePrefix}-400.avif 400w, ./assets/img/${basePrefix}-800.avif 800w, ./assets/img/${basePrefix}-1280.avif 1280w" sizes="(max-width: 768px) 100vw, 50vw">
+          <source type="image/webp" srcset="./assets/img/${basePrefix}-400.webp 400w, ./assets/img/${basePrefix}-800.webp 800w, ./assets/img/${basePrefix}-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 50vw">
+          <img src="./assets/img/${basePrefix}-800.jpg" srcset="./assets/img/${basePrefix}-400.jpg 400w, ./assets/img/${basePrefix}-800.jpg 800w, ./assets/img/${basePrefix}-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 50vw" alt="${image.alt || image.titulo || municipalityName}" class="img-fluid rounded mb-3" loading="lazy" decoding="async">
+        </picture>
+        <strong class="d-block mb-1">${image.titulo}</strong>
+        <p class="small text-muted mb-0">${image.descripcion}</p>
+      </div>
+    `;
+  }
+
+  /**
    * Crea una tarjeta de audio individual con soporte HTML5 nativo
    * @param {Object} audio - Objeto audio
    * @param {number} municipalityId - ID del municipio
@@ -472,8 +525,14 @@ const MediaModule = (() => {
   function createModalMediaHTML(media, municipalityId = 0) {
     if (!media) return '';
     
+    const municipalityName = media.municipalityName || '';
     let html = '';
     
+    // Sección de Imágenes
+    if (media.images && media.images.length > 0) {
+      html += createImagesSection(media.images, municipalityName);
+    }
+
     // Sección de Vídeos
     if (media.videos && media.videos.length > 0) {
       html += '<div class="mb-4">';

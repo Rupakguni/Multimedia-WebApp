@@ -23,6 +23,7 @@
         "thumbnail": "./assets/img/portfolio/thumbnails/Palma-thumb.avif"
       }],
       "media": {
+        "municipalityName": "Palma",
         "videos": [
           {
             "id": "palma-1",
@@ -66,6 +67,19 @@
             "url": "https://www.palma.cat",
             "tipo": "actas",
             "plataforma": "web"
+          },
+          {
+            "id": "palma-audio-3",
+            "titulo": "Lectura: descripción de Palma",
+            "descripcion": "Grabación propia leyendo la descripción del municipio de Palma.",
+            "url": "./assets/audio/Palma-audio-192k.mp3",
+            "tipo": "lectura",
+            "plataforma": "local",
+            "audioSources": [
+              { "src": "./assets/audio/Palma-audio-128k.mp3", "type": "audio/mpeg" },
+              { "src": "./assets/audio/Palma-audio-192k.mp3", "type": "audio/mpeg" },
+              { "src": "./assets/audio/Palma-audio.ogg", "type": "audio/ogg" }
+            ]
           }
         ]
       }
@@ -304,6 +318,44 @@
         "thumbnail": "./assets/img/portfolio/thumbnails/Alcudia-thumb.avif"
       }],
       "media": {
+        "municipalityName": "Alcudia",
+        "images": [
+          {
+            "id": "alcudia-image-1",
+            "imageName": "alcudia1",
+            "titulo": "Ayuntamiento de Alcúdia — Fachada (vista 1)",
+            "descripcion": "Imagen generada mostrando la fachada del Ayuntamiento de Alcúdia (vista 1).",
+            "alt": "Ayuntamiento de Alcúdia fachada"
+          },
+          {
+            "id": "alcudia-image-2",
+            "imageName": "alcudia2",
+            "titulo": "Ayuntamiento de Alcúdia — Lateral (vista 2)",
+            "descripcion": "Imagen generada mostrando un lateral del Ayuntamiento de Alcúdia (vista 2).",
+            "alt": "Ayuntamiento de Alcúdia lateral"
+          },
+          {
+            "id": "alcudia-image-3",
+            "imageName": "alcudia3",
+            "titulo": "Ayuntamiento de Alcúdia — Detalle (vista 3)",
+            "descripcion": "Detalle generado del edificio del Ayuntamiento de Alcúdia (vista 3).",
+            "alt": "Ayuntamiento de Alcúdia detalle"
+          },
+          {
+            "id": "alcudia-image-4",
+            "imageName": "alcudia4",
+            "titulo": "Ayuntamiento de Alcúdia — Plaza (vista 4)",
+            "descripcion": "Imagen generada de la plaza frente al Ayuntamiento de Alcúdia (vista 4).",
+            "alt": "Ayuntamiento de Alcúdia plaza"
+          },
+          {
+            "id": "alcudia-image-5",
+            "imageName": "alcudia5",
+            "titulo": "Ayuntamiento de Alcúdia — Vista nocturna (vista 5)",
+            "descripcion": "Imagen generada del Ayuntamiento de Alcúdia iluminado en horario nocturno (vista 5).",
+            "alt": "Ayuntamiento de Alcúdia nocturno"
+          }
+        ],
         "videos": [
           {
             "id": "alcudia-1",
@@ -330,6 +382,54 @@
             "youtubeId": "7TBN1HiG6As",
             "tipo": "patrimonio",
             "embed": true
+          },
+          {
+            "id": "alcudia-4",
+            "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (fachada)",
+            "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia mostrando la fachada.",
+            "url": "./assets/videos/Alcudia-alcudia1-720p.mp4",
+            "tipo": "ayuntamiento",
+            "videoSources": [
+              { "src": "./assets/videos/Alcudia-alcudia1-480p.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/Alcudia-alcudia1-720p.mp4", "type": "video/mp4" }
+            ],
+            "embed": false
+          },
+          {
+            "id": "alcudia-5",
+            "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (lateral)",
+            "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia mostrando un lateral del edificio.",
+            "url": "./assets/videos/Alcudia-alcudia2-720p.mp4",
+            "tipo": "ayuntamiento",
+            "videoSources": [
+              { "src": "./assets/videos/Alcudia-alcudia2-480p.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/Alcudia-alcudia2-720p.mp4", "type": "video/mp4" }
+            ],
+            "embed": false
+          },
+          {
+            "id": "alcudia-6",
+            "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (detalle)",
+            "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia con planos detalle.",
+            "url": "./assets/videos/Alcudia-alcudia3-720p.mp4",
+            "tipo": "ayuntamiento",
+            "videoSources": [
+              { "src": "./assets/videos/Alcudia-alcudia3-480p.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/Alcudia-alcudia3-720p.mp4", "type": "video/mp4" }
+            ],
+            "embed": false
+          },
+          {
+            "id": "alcudia-7",
+            "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (plaza)",
+            "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia en su plaza principal.",
+            "url": "./assets/videos/Alcudia-alcudia4-720p.mp4",
+            "tipo": "ayuntamiento",
+            "videoSources": [
+              { "src": "./assets/videos/Alcudia-alcudia4-480p.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/Alcudia-alcudia4-720p.mp4", "type": "video/mp4" }
+            ],
+            "embed": false
           }
         ],
         "audios": [
@@ -348,6 +448,19 @@
             "url": "https://www.ivoox.com/podcast-alcudia-radio_sq_f1146312_1.html",
             "tipo": "podcast",
             "plataforma": "ivoox"
+          },
+          {
+            "id": "alcudia-audio-3",
+            "titulo": "Lectura: descripción de Alcúdia",
+            "descripcion": "Grabación propia leyendo la descripción del municipio de Alcúdia.",
+            "url": "./assets/audio/Alcudia-audio-192k.mp3",
+            "tipo": "lectura",
+            "plataforma": "local",
+            "audioSources": [
+              { "src": "./assets/audio/Alcudia-audio-128k.mp3", "type": "audio/mpeg" },
+              { "src": "./assets/audio/Alcudia-audio-192k.mp3", "type": "audio/mpeg" },
+              { "src": "./assets/audio/Alcudia-audio.ogg", "type": "audio/ogg" }
+            ]
           }
         ]
       }
