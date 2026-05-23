@@ -674,6 +674,48 @@ function removeFavorite(municipalityName) {
  * Cargar detalles del municipio en el modal
  * Busca en los datos cargados desde JSON (Municipios y Eventos separados)
  */
+function getReadingAudio(municipalityData) {
+    const audios = Array.isArray(municipalityData?.media?.audios) ? municipalityData.media.audios : [];
+
+    return audios.find(audio => audio?.tipo === 'lectura')
+        || audios.find(audio => /lectura/i.test(audio?.titulo || ''))
+        || null;
+}
+
+function renderMunicipalityReadingAudio(municipalityData) {
+    const audioContainer = document.getElementById('modal-reading-audio');
+
+    if (!audioContainer) {
+        return;
+    }
+
+    const readingAudio = getReadingAudio(municipalityData);
+
+    if (!readingAudio) {
+        audioContainer.hidden = true;
+        audioContainer.innerHTML = '';
+        return;
+    }
+
+    const sourcesHTML = Array.isArray(readingAudio.audioSources) && readingAudio.audioSources.length > 0
+        ? readingAudio.audioSources.map(source => `<source src="${source.src}" type="${source.type || 'audio/mpeg'}">`).join('')
+        : (readingAudio.url ? `<source src="${readingAudio.url}" type="audio/mpeg">` : '');
+
+    const badgeText = readingAudio.plataforma === 'local' ? 'Audio local' : (readingAudio.plataforma || 'Audio');
+
+    audioContainer.hidden = false;
+    audioContainer.innerHTML = `
+        <div class="d-flex justify-content-between align-items-start gap-2 flex-wrap">
+            <div>
+                <h6 class="mb-1">${readingAudio.titulo || 'Lectura del municipio'}</h6>
+                <p class="small text-muted mb-0">${readingAudio.descripcion || 'Escucha una lectura de la descripción del municipio.'}</p>
+            </div>
+            <span class="badge bg-primary">${badgeText}</span>
+        </div>
+        <audio class="w-100 mt-3" controls preload="metadata" aria-label="${readingAudio.titulo || 'Lectura del municipio'}">${sourcesHTML}</audio>
+    `;
+}
+
 function loadMunicipalityDetails(municipalityName) {
     const municipalityData = getMunicipalityData(municipalityName);
     
@@ -712,6 +754,7 @@ function loadMunicipalityDetails(municipalityName) {
     // Rellenar modal con datos básicos
     document.getElementById('modal-title').textContent = municipalityData.name;
     document.getElementById('modal-description').textContent = municipalityData['description_' + i18next.language] || municipalityData.description;
+    renderMunicipalityReadingAudio(municipalityData);
     
     // Información de contacto formateada
     const contact = `
