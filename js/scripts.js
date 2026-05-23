@@ -18,6 +18,61 @@ let lazyContentLoaded = false;
 let lazyContentLoading = null;
 let leafletAssetsLoading = null;
 
+function normalizarTexto(texto = '') {
+    return String(texto)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+}
+
+function obtenerNombreMunicipioEvento(evento = {}) {
+    const location = evento.location || {};
+    const localidad = location.address?.addressLocality || location.name || '';
+    return String(localidad).trim();
+}
+
+function formatearFechaEvento(startDate, endDate) {
+    if (!startDate) return 'Sin fecha';
+
+    const inicio = new Date(startDate);
+    if (Number.isNaN(inicio.getTime())) return String(startDate);
+
+    const fin = endDate ? new Date(endDate) : null;
+    if (fin && !Number.isNaN(fin.getTime()) && fin.toISOString().slice(0, 10) !== inicio.toISOString().slice(0, 10)) {
+        return `${inicio.toLocaleDateString('es-ES')} - ${fin.toLocaleDateString('es-ES')}`;
+    }
+
+    return inicio.toLocaleDateString('es-ES');
+}
+
+function normalizarEventosExternos(eventos = [], municipioIdPorNombre = new Map()) {
+    return (eventos || [])
+        .filter(evento => evento && evento['@type'] === 'Event')
+        .map((evento, index) => {
+            const nombreMunicipio = obtenerNombreMunicipioEvento(evento);
+            const tipo = Array.isArray(evento.additionalType) ? evento.additionalType[0] : evento.additionalType;
+
+            return {
+                id: evento['@id'] || `${nombreMunicipio || 'evento'}-${evento.startDate || 'sin-fecha'}-${index}`,
+                slug: normalizarTexto(evento.name || `evento-${index}`),
+                municipalityId: municipioIdPorNombre.get(normalizarTexto(nombreMunicipio)) ?? null,
+                municipality: nombreMunicipio || 'Mallorca',
+                name: evento.name || 'Evento sin nombre',
+                alternateName: evento.alternateName || evento.name || 'Evento sin nombre',
+                date: formatearFechaEvento(evento.startDate, evento.endDate),
+                startDate: evento.startDate || null,
+                endDate: evento.endDate || null,
+                type: tipo || 'Fiesta',
+                description: evento.description || '',
+                keywords: Array.isArray(evento.keywords) ? evento.keywords : [],
+                location: evento.location || null,
+                organizer: evento.organizer || null,
+                subEvents: Array.isArray(evento.subEvent) ? evento.subEvent : []
+            };
+        });
+}
+
 /**
  * Construye un bloque <picture> con fuentes AVIF, WebP y fallback JPG
  * usando variantes responsive generadas con ImageMagick.
@@ -273,13 +328,12 @@ async function cargarDatosIniciales() {
         
         // Cargamos municipios y datos externos en paralelo
         // Los eventos se obtienen del JSON externo de fiestasmallorca.online (con fallback local)
-        const EVENTOS_URL_EXTERNA = 'https://www.fiestasmallorca.online/eventos.json';
+        const EVENTOS_URL_EXTERNA = 'https://www.fiestasmallorca.online/json/fiestas.json';
         const EVENTOS_URL_LOCAL   = './data/eventos.json';
 
         const [resMunicipios, resEventos] = await Promise.all([
             fetch('./data/ayuntamiento.json'),
             fetch(EVENTOS_URL_EXTERNA).catch(() => fetch(EVENTOS_URL_LOCAL))
-            //fetch(EVENTOS_URL_EXTERNA)
         ]);
 
         if (!resMunicipios.ok) throw new Error(`HTTP ${resMunicipios.status} al cargar municipios`);
@@ -287,11 +341,18 @@ async function cargarDatosIniciales() {
 
         const datosMunicipios = await resMunicipios.json();
         const datosEventos    = await resEventos.json();
+        const municipios = datosMunicipios.municipalities || [];
+        const municipioIdPorNombre = new Map(
+            municipios.map(municipio => [normalizarTexto(municipio.name), municipio.id])
+        );
+
         // El quiz se gestiona en su propio script, pero lo cargamos aquí para asegurar sincronía
         await cargarPreguntasQuiz(); 
 
-        appState.municipalities = datosMunicipios.municipalities;
-        appState.events = datosEventos.events; // Guardamos los eventos por separado
+        appState.municipalities = municipios;
+        appState.events = Array.isArray(datosEventos.events)
+            ? datosEventos.events
+            : normalizarEventosExternos(datosEventos['@graph'] || [], municipioIdPorNombre);
         appState.status = 'success';
 
         renderizarMunicipios(appState.municipalities);
@@ -535,10 +596,16 @@ function checkImmediateEvents(municipalityName) {
     if (!muni) return;
 
     // Filtramos eventos de ESTE municipio para ESTE mes
-    const eventsThisMonth = appState.events.filter(event => 
-        event.municipalityId === muni.id && 
-        event.date.toLowerCase().includes(currentMonth)
-    );
+    const eventsThisMonth = appState.events.filter(event => {
+        if (event.municipalityId !== muni.id) return false;
+
+        if (event.startDate) {
+            const eventMonth = new Date(event.startDate).toLocaleString('es-ES', { month: 'long' }).toLowerCase();
+            return eventMonth === currentMonth;
+        }
+
+        return String(event.date || '').toLowerCase().includes(currentMonth);
+    });
 
     if (eventsThisMonth.length > 0) {
         new Notification(`¡Nuevo Favorito: ${municipalityName}!`, {
