@@ -56,9 +56,9 @@
             "id": "palma-audio-1",
             "titulo": "Podcast Palma Educa",
             "descripcion": "Actividades escolares municipales",
-            "url": "https://open.spotify.com/show/4z0L6x5u9W5u9W5u9W5u9W",
+            "url": "https://www.youtube.com/@AjuntamentdePalma",
             "tipo": "podcast",
-            "plataforma": "spotify"
+            "plataforma": "youtube"
           },
           {
             "id": "palma-audio-2",
@@ -186,15 +186,6 @@
             "embed": false
           },
           {
-            "id": "inca-2",
-            "titulo": "Dijous Bo - Evento Municipal",
-            "descripcion": "Resumen del Dijous Bo, evento municipal estrella",
-            "url": "https://www.youtube.com/watch?v=A_Y2Z_Z_Z_Z",
-            "youtubeId": "A_Y2Z_Z_Z_Z",
-            "tipo": "eventos",
-            "embed": true
-          },
-          {
             "id": "inca-3",
             "titulo": "Inca Business - Promoción Económica",
             "descripcion": "Promoción económica del ayuntamiento",
@@ -280,7 +271,7 @@
             "id": "soller-audio-1",
             "titulo": "Veu de Sóller",
             "descripcion": "Radio y noticias locales",
-            "url": "http://www.veudesoller.cat/",
+            "url": "https://www.veudesoller.cat/",
             "tipo": "radio",
             "plataforma": "web"
           },
@@ -387,11 +378,12 @@
             "id": "alcudia-4",
             "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (fachada)",
             "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia mostrando la fachada.",
-            "url": "./assets/videos/Alcudia-alcudia1-720p.mp4",
+            "url": "./assets/videos/alcudia1.mp4",
             "tipo": "ayuntamiento",
             "videoSources": [
-              { "src": "./assets/videos/Alcudia-alcudia1-480p.mp4", "type": "video/mp4" },
-              { "src": "./assets/videos/Alcudia-alcudia1-720p.mp4", "type": "video/mp4" }
+              { "src": "./assets/videos/alcudia1.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/alcudia1.webm", "type": "video/webm" },
+              { "src": "./assets/videos/alcudia1.ogv", "type": "video/ogg" }
             ],
             "embed": false
           },
@@ -399,11 +391,12 @@
             "id": "alcudia-5",
             "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (lateral)",
             "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia mostrando un lateral del edificio.",
-            "url": "./assets/videos/Alcudia-alcudia2-720p.mp4",
+            "url": "./assets/videos/alcudia2.mp4",
             "tipo": "ayuntamiento",
             "videoSources": [
-              { "src": "./assets/videos/Alcudia-alcudia2-480p.mp4", "type": "video/mp4" },
-              { "src": "./assets/videos/Alcudia-alcudia2-720p.mp4", "type": "video/mp4" }
+              { "src": "./assets/videos/alcudia2.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/alcudia2.webm", "type": "video/webm" },
+              { "src": "./assets/videos/alcudia2.ogv", "type": "video/ogg" }
             ],
             "embed": false
           },
@@ -411,11 +404,12 @@
             "id": "alcudia-6",
             "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (detalle)",
             "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia con planos detalle.",
-            "url": "./assets/videos/Alcudia-alcudia3-720p.mp4",
+            "url": "./assets/videos/alcudia3.mp4",
             "tipo": "ayuntamiento",
             "videoSources": [
-              { "src": "./assets/videos/Alcudia-alcudia3-480p.mp4", "type": "video/mp4" },
-              { "src": "./assets/videos/Alcudia-alcudia3-720p.mp4", "type": "video/mp4" }
+              { "src": "./assets/videos/alcudia3.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/alcudia3.webm", "type": "video/webm" },
+              { "src": "./assets/videos/alcudia3.ogv", "type": "video/ogg" }
             ],
             "embed": false
           },
@@ -423,11 +417,12 @@
             "id": "alcudia-7",
             "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (plaza)",
             "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia en su plaza principal.",
-            "url": "./assets/videos/Alcudia-alcudia4-720p.mp4",
+            "url": "./assets/videos/alcudia4.mp4",
             "tipo": "ayuntamiento",
             "videoSources": [
-              { "src": "./assets/videos/Alcudia-alcudia4-480p.mp4", "type": "video/mp4" },
-              { "src": "./assets/videos/Alcudia-alcudia4-720p.mp4", "type": "video/mp4" }
+              { "src": "./assets/videos/alcudia4.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/alcudia4.webm", "type": "video/webm" },
+              { "src": "./assets/videos/alcudia4.ogv", "type": "video/ogg" }
             ],
             "embed": false
           }
@@ -467,6 +462,100 @@
     },
     {
       "id": 6,
+      "name": "Pollenca",
+      "shortName": "Pollenca",
+      "description": "Municipio histórico de la Serra de Tramuntana con patrimonio, calas y tradiciones",
+      "description_ca": "Municipi històric de la Serra de Tramuntana amb patrimoni, cales i tradicions",
+      "description_en": "Historic municipality in the Serra de Tramuntana with heritage, coves and traditions",
+      "latitude": 39.8774,
+      "longitude": 3.0210,
+      "population": 17000,
+      "founded": "123 (época romana)",
+      "website": "https://www.pollenca.es",
+      "phone": "+34 971 53 00 00",
+      "email": "info@pollenca.es",
+      "patrimonio": ["Plaça Major", "Iglesia de Santa Maria Magdalena", "Santuari de la Mare de Déu dels Àngels", "Calas de Pollença"],
+      "servicios": ["Turismo", "Cultura", "Patrimonio", "Naturaleza"],
+      "clima": "Mediterráneo",
+      "imagenes": [{
+        "url": "./assets/img/Pollenca.jpg",
+        "alt": "Vista panorámica de Pollença",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Pollenca-thumb.avif"
+      }],
+      "media": {
+        "municipalityName": "Pollenca",
+        "images": [
+          {
+            "id": "pollenca-image-1",
+            "imageName": "pollenca1",
+            "titulo": "Pollença — Vista general",
+            "descripcion": "Imagen propia mostrando el entorno urbano y natural de Pollença.",
+            "alt": "Vista general de Pollença"
+          },
+          {
+            "id": "pollenca-image-2",
+            "imageName": "pollenca2",
+            "titulo": "Pollença — Centro histórico",
+            "descripcion": "Imagen propia del centro histórico y sus calles emblemáticas.",
+            "alt": "Centro histórico de Pollença"
+          },
+          {
+            "id": "pollenca-image-3",
+            "imageName": "pollenca3",
+            "titulo": "Pollença — Patrimonio local",
+            "descripcion": "Imagen propia de patrimonio y arquitectura tradicional de Pollença.",
+            "alt": "Patrimonio local de Pollença"
+          },
+          {
+            "id": "pollenca-image-4",
+            "imageName": "pollenca4",
+            "titulo": "Pollença — Entorno natural",
+            "descripcion": "Imagen propia del entorno natural y las calas cercanas a Pollença.",
+            "alt": "Entorno natural de Pollença"
+          },
+          {
+            "id": "pollenca-image-5",
+            "imageName": "pollenca5",
+            "titulo": "Pollença — Arquitectura tradicional",
+            "descripcion": "Imagen propia que recoge detalles arquitectónicos del casco antiguo.",
+            "alt": "Arquitectura tradicional de Pollença"
+          },
+          {
+            "id": "pollenca-image-6",
+            "imageName": "pollenca6",
+            "titulo": "Pollença — Paseo y entorno",
+            "descripcion": "Imagen propia del entorno urbano con detalle del paisaje de Pollença.",
+            "alt": "Paseo y entorno de Pollença"
+          },
+          {
+            "id": "pollenca-image-7",
+            "imageName": "pollenca7",
+            "titulo": "Pollença — Detalle del pueblo",
+            "descripcion": "Imagen propia con detalles del pueblo y su tradición visual.",
+            "alt": "Detalle del pueblo de Pollença"
+          },
+          {
+            "id": "pollenca-image-8",
+            "imageName": "pollenca8",
+            "titulo": "Pollença — Paisaje local",
+            "descripcion": "Imagen propia del paisaje local y su ligereza mediterránea.",
+            "alt": "Paisaje local de Pollença"
+          }
+        ],
+        "audios": [
+          {
+            "id": "pollenca-audio-1",
+            "titulo": "Pollença — Información municipal",
+            "descripcion": "Enlace web oficial del ayuntamiento para consultar información municipal y eventos.",
+            "url": "https://www.pollenca.es",
+            "tipo": "radio",
+            "plataforma": "web"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
       "name": "Llucmajor",
       "shortName": "Llucmajor",
       "description": "Municipio histórico con tradiciones culturales profundas",

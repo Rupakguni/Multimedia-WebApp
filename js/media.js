@@ -1,644 +1,629 @@
-/**
- * Media Module - Gestiona la visualización de vídeos y audios por municipio
- * Soporta: YouTube embeds, enlaces externos, y playlists
- */
-
-const MediaModule = (() => {
-  /**
-   * Renderiza la sección de media (vídeos y audios) para un municipio
-   * @param {Object} municipality - Objeto municipio con datos de media
-   * @param {string} containerId - ID del contenedor donde insertar
-   */
+﻿const MediaModule = (() => {
   function renderMediaSection(municipality, containerId) {
     const container = document.getElementById(containerId);
-    if (!container || !municipality.media) return;
-
-    const mediaHTML = createMediaHTML(municipality);
-    container.innerHTML = mediaHTML;
-    
-    // Inicializar event listeners para embeds interactivos
-    initializeMediaListeners(container, municipality);
-  }
-
-  /**
-   * Crea el HTML para la sección de media
-   * @param {Object} municipality
-   * @returns {string} HTML string
-   */
-  function createMediaHTML(municipality) {
-    const { name, media } = municipality;
-    let html = `
-      <section class="media-section" id="media-${municipality.id}">
-        <div class="container px-4 px-lg-5">
-          <h2 class="text-center mb-5">Contenido Multimedia de ${name}</h2>
-          
-          <div class="row gx-4 gx-lg-5">
-    `;
-
-    // Sección de Vídeos
-    if (media.videos && media.videos.length > 0) {
-      html += createVideosSection(media.videos, municipality.id);
+    if (!container || !municipality?.media) {
+      return;
     }
 
-    // Sección de Audios
-    if (media.audios && media.audios.length > 0) {
-      html += createAudiosSection(media.audios, municipality.id);
-    }
-
-    html += `
-          </div>
-        </div>
-      </section>
-    `;
-
-    return html;
+    container.replaceChildren(...createMediaSectionNodes(municipality));
   }
 
-  /**
-   * Crea la sección de vídeos
-   * @param {Array} videos - Array de objetos vídeo
-   * @param {number} municipalityId - ID del municipio
-   * @returns {string} HTML string
-   */
-  function createVideosSection(videos, municipalityId) {
-    let html = `
-      <div class="col-lg-6 mb-5">
-        <div class="media-container">
-          <h3 class="section-title"><i class="bi bi-play-circle"></i> Vídeos</h3>
-          <div class="videos-list">
-    `;
+  function createMediaSectionNodes(municipality) {
+    const section = createElement('section', 'media-section');
+    section.id = `media-${municipality.id}`;
 
+    const container = createElement('div', 'container px-4 px-lg-5');
+    const title = createElement('h2', 'text-center mb-5');
+    title.textContent = `Contenido Multimedia de ${municipality.name}`;
+
+    const row = createElement('div', 'row gx-4 gx-lg-5');
+    if (Array.isArray(municipality.media.videos) && municipality.media.videos.length > 0) {
+      row.appendChild(createVideosSectionNode(municipality.media.videos, municipality.id));
+    }
+
+    if (Array.isArray(municipality.media.audios) && municipality.media.audios.length > 0) {
+      row.appendChild(createAudiosSectionNode(municipality.media.audios, municipality.id));
+    }
+
+    container.append(title, row);
+    section.appendChild(container);
+    return [section];
+  }
+
+  function createVideosSectionNode(videos, municipalityId) {
+    const column = createElement('div', 'col-lg-6 mb-5');
+    const wrapper = createElement('div', 'media-container');
+    const heading = createElement('h3', 'section-title');
+    heading.appendChild(createIcon('bi-play-circle'));
+    heading.appendChild(document.createTextNode(' Vídeos'));
+
+    const list = createElement('div', 'videos-list');
     videos.forEach((video, index) => {
-      html += createVideoCard(video, municipalityId, index);
+      list.appendChild(createVideoCardNode(video, municipalityId, index));
     });
 
-    html += `
-          </div>
-        </div>
-      </div>
-    `;
-
-    return html;
+    wrapper.append(heading, list);
+    column.appendChild(wrapper);
+    return column;
   }
 
-  /**
-   * Crea una tarjeta de vídeo individual con soporte HTML5 nativo y múltiples formatos
-   * @param {Object} video - Objeto vídeo
-   * @param {number} municipalityId - ID del municipio
-   * @param {number} index - Índice del vídeo
-   * @returns {string} HTML string
-   */
-  function createVideoCard(video, municipalityId, index) {
-    const typeIcon = getTypeIcon(video.tipo);
+  function createAudiosSectionNode(audios, municipalityId) {
+    const column = createElement('div', 'col-lg-6 mb-5');
+    const wrapper = createElement('div', 'media-container');
+    const heading = createElement('h3', 'section-title');
+    heading.appendChild(createIcon('bi-music-note-beamed'));
+    heading.appendChild(document.createTextNode(' Audios y Podcasts'));
+
+    const list = createElement('div', 'audios-list');
+    audios.forEach((audio, index) => {
+      list.appendChild(createAudioCardNode(audio, municipalityId, index));
+    });
+
+    wrapper.append(heading, list);
+    column.appendChild(wrapper);
+    return column;
+  }
+
+  function createVideoCardNode(video, municipalityId, index) {
+    const card = createElement('div', 'video-card mb-4 p-3 border rounded');
+    card.dataset.videoId = video.id;
+
+    const header = createElement('div', 'video-header d-flex align-items-start justify-content-between');
+    const content = createElement('div', 'flex-grow-1');
+
+    const title = createElement('h5', 'video-title mb-2');
+    title.appendChild(createIcon(getTypeIcon(video.tipo)));
+    title.appendChild(document.createTextNode(` ${video.titulo}`));
+
+    const description = createElement('p', 'video-description text-muted small mb-3');
+    description.textContent = video.descripcion || '';
+
+    content.append(title, description);
+    header.appendChild(content);
+
+    const playerWrapper = createElement('div', 'video-content');
     const videoId = `video-${municipalityId}-${index}`;
 
-    let html = `
-      <div class="video-card mb-4 p-3 border rounded" data-video-id="${video.id}">
-        <div class="video-header d-flex align-items-start justify-content-between">
-          <div class="flex-grow-1">
-            <h5 class="video-title mb-2">
-              <i class="bi ${typeIcon}"></i> ${video.titulo}
-            </h5>
-            <p class="video-description text-muted small mb-3">${video.descripcion}</p>
-          </div>
-        </div>
-        <div class="video-content">
-    `;
-
-    // Si es video HTML5 nativo (con archivos locales/externos)
-    if (video.videoSources && Array.isArray(video.videoSources) && video.videoSources.length > 0) {
-      html += createHTML5VideoElement(video, videoId);
-    }
-    // Si es embed (YouTube), mostrar iframe responsive
-    else if (video.embed && video.youtubeId) {
-      html += createResponsiveYoutubeEmbed(video);
-    }
-    // Si es Vimeo
-    else if (video.vimeoId) {
-      html += createResponsiveVimeoEmbed(video);
+    if (Array.isArray(video.videoSources) && video.videoSources.length > 0) {
+      playerWrapper.appendChild(createHTML5VideoElement(video, videoId));
+    } else if (video.embed && video.youtubeId) {
+      playerWrapper.appendChild(createResponsiveYoutubeEmbed(video));
+    } else if (video.vimeoId) {
+      playerWrapper.appendChild(createResponsiveVimeoEmbed(video));
     }
 
-    // Botón para acceder al contenido original
-    html += `
-          <a href="${video.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary mt-3">
-            <i class="bi bi-box-arrow-up-right"></i> ${i18next.t('media.ver_en')} ${getVideoSource(video.url)}
-          </a>
-        </div>
-      </div>
-    `;
+    const link = createElement('a', 'btn btn-sm btn-primary mt-3');
+    link.href = video.url || '#';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.appendChild(createIcon('bi-box-arrow-up-right'));
+    link.appendChild(document.createTextNode(` ${i18next.t('media.ver_en')} ${getVideoSource(video.url)}`));
 
-    return html;
+    playerWrapper.appendChild(link);
+    card.append(header, playerWrapper);
+    return card;
   }
 
-  /**
-   * Crea un elemento <video> HTML5 nativo con múltiples formatos
-   * @param {Object} video - Objeto vídeo
-   * @param {string} videoId - ID único del video
-   * @returns {string} HTML string
-   */
   function createHTML5VideoElement(video, videoId) {
-    let html = `
-      <div class="video-embed mb-3">
-        <video 
-          id="${videoId}"
-          class="w-100 rounded video-player"
-          controls
-          preload="metadata"
-          playsinline
-          ${video.poster ? `poster="${video.poster}"` : ''}
-          aria-label="${video.titulo}"
-          ${video.autoplay ? 'autoplay' : ''}
-          ${video.loop ? 'loop' : ''}
-          ${video.muted ? 'muted' : ''}>
-    `;
+    const wrapper = createElement('div', 'video-embed mb-3');
+    const player = document.createElement('video');
+    player.id = videoId;
+    player.className = 'w-100 rounded video-player';
+    player.controls = true;
+    player.preload = 'metadata';
+    player.playsInline = true;
+    player.setAttribute('aria-label', video.titulo);
 
-    // Múltiples fuentes para compatibilidad entre navegadores
-    video.videoSources.forEach(source => {
-      const type = source.type || getVideoMimeType(source.src);
-      html += `
-          <source src="${source.src}" type="${type}">
-      `;
+    if (video.poster) {
+      player.poster = video.poster;
+    }
+
+    if (video.autoplay) {
+      player.autoplay = true;
+    }
+
+    if (video.loop) {
+      player.loop = true;
+    }
+
+    if (video.muted) {
+      player.muted = true;
+    }
+
+    video.videoSources.forEach((source) => {
+      const sourceNode = document.createElement('source');
+      sourceNode.src = source.src;
+      sourceNode.type = source.type || getVideoMimeType(source.src);
+      player.appendChild(sourceNode);
     });
 
-    html += `
-          <p>Tu navegador no soporta videos HTML5. 
-            <a href="${video.url}" target="_blank" rel="noopener noreferrer">Descargar vídeo</a>
-          </p>
-        </video>
-      </div>
-    `;
+    const fallback = document.createElement('p');
+    fallback.textContent = 'Tu navegador no soporta videos HTML5. ';
+    const fallbackLink = document.createElement('a');
+    fallbackLink.href = video.url || '#';
+    fallbackLink.target = '_blank';
+    fallbackLink.rel = 'noopener noreferrer';
+    fallbackLink.textContent = 'Descargar vídeo';
+    fallback.appendChild(fallbackLink);
 
-    return html;
+    wrapper.append(player, fallback);
+    return wrapper;
   }
 
-  /**
-   * Crea un iframe responsive de YouTube
-   * @param {Object} video - Objeto vídeo
-   * @returns {string} HTML string
-   */
   function createResponsiveYoutubeEmbed(video) {
-    return `
-      <div class="video-embed mb-3">
-        <div class="youtube-container">
-          <iframe 
-            src="https://www.youtube.com/embed/${video.youtubeId}" 
-            title="${video.titulo}"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-            loading="lazy"
-            aria-label="${video.titulo}">
-          </iframe>
-        </div>
-      </div>
-    `;
+    const wrapper = createElement('div', 'video-embed mb-3');
+    const container = createElement('div', 'youtube-container');
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${video.youtubeId}`;
+    iframe.title = video.titulo;
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.loading = 'lazy';
+    iframe.setAttribute('aria-label', video.titulo);
+
+    container.appendChild(iframe);
+    wrapper.appendChild(container);
+    return wrapper;
   }
 
-  /**
-   * Crea un iframe responsive de Vimeo
-   * @param {Object} video - Objeto vídeo
-   * @returns {string} HTML string
-   */
   function createResponsiveVimeoEmbed(video) {
-    return `
-      <div class="video-embed mb-3">
-        <div class="vimeo-container">
-          <iframe 
-            src="https://player.vimeo.com/video/${video.vimeoId}" 
-            title="${video.titulo}"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen
-            loading="lazy"
-            aria-label="${video.titulo}">
-          </iframe>
-        </div>
-      </div>
-    `;
+    const wrapper = createElement('div', 'video-embed mb-3');
+    const container = createElement('div', 'vimeo-container');
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://player.vimeo.com/video/${video.vimeoId}`;
+    iframe.title = video.titulo;
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.loading = 'lazy';
+    iframe.setAttribute('aria-label', video.titulo);
+
+    container.appendChild(iframe);
+    wrapper.appendChild(container);
+    return wrapper;
   }
 
-  /**
-   * Obtiene el MIME type basado en la extensión del archivo
-   * @param {string} filename - Nombre o URL del archivo
-   * @returns {string} MIME type
-   */
+  function createAudioCardNode(audio, municipalityId, index) {
+    const card = createElement('div', 'audio-card mb-4 p-3 border rounded');
+    card.dataset.audioId = audio.id;
+
+    const header = createElement('div', 'audio-header d-flex align-items-start justify-content-between');
+    const content = createElement('div', 'flex-grow-1');
+
+    const title = createElement('h5', 'audio-title mb-2');
+    title.appendChild(createIcon(getTypeIcon(audio.tipo)));
+    title.appendChild(document.createTextNode(` ${audio.titulo}`));
+
+    const description = createElement('p', 'audio-description text-muted small mb-3');
+    description.textContent = audio.descripcion || '';
+
+    const meta = createElement('div', 'audio-meta');
+    const platformBadge = createElement('span', 'badge bg-info');
+    platformBadge.textContent = getPlatformBadge(audio.plataforma);
+    const typeBadge = createElement('span', 'badge bg-secondary');
+    typeBadge.textContent = capitalizeFirst(audio.tipo);
+    meta.append(platformBadge, typeBadge);
+
+    content.append(title, description, meta);
+    header.appendChild(content);
+
+    const audioWrapper = createElement('div', 'audio-content mt-3');
+    const audioId = `audio-${municipalityId}-${index}`;
+
+    if (Array.isArray(audio.audioSources) && audio.audioSources.length > 0) {
+      audioWrapper.appendChild(createHTML5AudioElement(audio, audioId));
+    } else {
+      const link = createElement('a', 'btn btn-sm btn-outline-primary');
+      link.href = audio.url || '#';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.appendChild(createIcon('bi-box-arrow-up-right'));
+      link.appendChild(document.createTextNode(' Acceder'));
+      audioWrapper.appendChild(link);
+    }
+
+    card.append(header, audioWrapper);
+    return card;
+  }
+
+  function createHTML5AudioElement(audio, audioId) {
+    const wrapper = createElement('div', 'audio-player-container mb-3');
+    const player = document.createElement('audio');
+    player.id = audioId;
+    player.className = 'w-100 audio-player';
+    player.controls = true;
+    player.preload = 'metadata';
+    player.setAttribute('aria-label', audio.titulo);
+
+    if (audio.autoplay) {
+      player.autoplay = true;
+    }
+
+    if (audio.loop) {
+      player.loop = true;
+    }
+
+    if (audio.muted) {
+      player.muted = true;
+    }
+
+    audio.audioSources.forEach((source) => {
+      const sourceNode = document.createElement('source');
+      sourceNode.src = source.src;
+      sourceNode.type = source.type || getAudioMimeType(source.src);
+      player.appendChild(sourceNode);
+    });
+
+    const fallback = document.createTextNode('Tu navegador no soporta audios HTML5. ');
+    const fallbackLink = document.createElement('a');
+    fallbackLink.href = audio.url || '#';
+    fallbackLink.target = '_blank';
+    fallbackLink.rel = 'noopener noreferrer';
+    fallbackLink.textContent = 'Descargar audio';
+
+    wrapper.append(player, fallback, fallbackLink);
+
+    const originalLink = createElement('a', 'btn btn-sm btn-outline-primary mt-2');
+    originalLink.href = audio.url || '#';
+    originalLink.target = '_blank';
+    originalLink.rel = 'noopener noreferrer';
+    originalLink.appendChild(createIcon('bi-box-arrow-up-right'));
+    originalLink.appendChild(document.createTextNode(' Ver en plataforma original'));
+
+    wrapper.appendChild(originalLink);
+    return wrapper;
+  }
+
+  function createMediaCarouselNode(images, municipalityName, municipalityId) {
+    const section = createElement('div', 'modal-media-carousel-wrapper mb-4');
+    const heading = createElement('strong', 'd-block mb-3');
+    heading.appendChild(createIcon('bi-images'));
+    heading.appendChild(document.createTextNode(' Imágenes:'));
+
+    const carousel = createElement('div', 'carousel slide modal-media-carousel');
+    carousel.id = `modal-media-carousel-${municipalityId}`;
+    carousel.setAttribute('data-bs-ride', 'carousel');
+
+    const indicators = createElement('div', 'carousel-indicators modal-media-indicators');
+    const slides = createElement('div', 'carousel-inner rounded modal-media-inner');
+
+    images.forEach((image, index) => {
+      const indicator = createElement('button', '');
+      indicator.type = 'button';
+      indicator.setAttribute('data-bs-target', `#${carousel.id}`);
+      indicator.setAttribute('data-bs-slide-to', String(index));
+      indicator.setAttribute('aria-label', `Ver imagen ${index + 1}`);
+      if (index === 0) {
+        indicator.className = 'active';
+        indicator.setAttribute('aria-current', 'true');
+      }
+      indicators.appendChild(indicator);
+
+      const slide = createElement('div', index === 0 ? 'carousel-item active modal-media-item' : 'carousel-item modal-media-item');
+      const mediaFrame = createElement('div', 'modal-media-frame');
+      mediaFrame.appendChild(createPictureElement(image, municipalityName, image.alt || image.titulo || municipalityName));
+
+      const caption = createElement('div', 'carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded px-3 py-2');
+      const captionTitle = createElement('h5', '');
+      captionTitle.textContent = image.titulo || `Imagen ${index + 1}`;
+      const captionText = createElement('p', 'mb-0 small');
+      captionText.textContent = image.descripcion || '';
+      caption.append(captionTitle, captionText);
+
+      slide.append(mediaFrame, caption);
+      slides.appendChild(slide);
+    });
+
+    const prevButton = createElement('button', 'carousel-control-prev');
+    prevButton.type = 'button';
+    prevButton.setAttribute('data-bs-target', `#${carousel.id}`);
+    prevButton.setAttribute('data-bs-slide', 'prev');
+
+    const prevIcon = createElement('span', 'carousel-control-prev-icon');
+    prevIcon.setAttribute('aria-hidden', 'true');
+    const prevLabel = createElement('span', 'visually-hidden');
+    prevLabel.textContent = 'Anterior';
+    prevButton.append(prevIcon, prevLabel);
+
+    const nextButton = createElement('button', 'carousel-control-next');
+    nextButton.type = 'button';
+    nextButton.setAttribute('data-bs-target', `#${carousel.id}`);
+    nextButton.setAttribute('data-bs-slide', 'next');
+
+    const nextIcon = createElement('span', 'carousel-control-next-icon');
+    nextIcon.setAttribute('aria-hidden', 'true');
+    const nextLabel = createElement('span', 'visually-hidden');
+    nextLabel.textContent = 'Siguiente';
+    nextButton.append(nextIcon, nextLabel);
+
+    carousel.append(indicators, slides, prevButton, nextButton);
+    section.append(heading, carousel);
+    return section;
+  }
+
+  function createPictureElement(image, municipalityName, altText) {
+    const basePrefix = municipalityName
+      ? `${municipalityName}-${image.imageName || image.id}`
+      : image.imageName || image.id;
+    const picture = document.createElement('picture');
+    picture.className = 'modal-media-picture';
+
+    const avif = document.createElement('source');
+    avif.type = 'image/avif';
+    avif.srcset = `./assets/img/${basePrefix}-400.avif 400w, ./assets/img/${basePrefix}-800.avif 800w, ./assets/img/${basePrefix}-1280.avif 1280w`;
+    avif.sizes = '(max-width: 768px) 100vw, 50vw';
+
+    const webp = document.createElement('source');
+    webp.type = 'image/webp';
+    webp.srcset = `./assets/img/${basePrefix}-400.webp 400w, ./assets/img/${basePrefix}-800.webp 800w, ./assets/img/${basePrefix}-1280.webp 1280w`;
+    webp.sizes = '(max-width: 768px) 100vw, 50vw';
+
+    const img = document.createElement('img');
+    img.src = `./assets/img/${basePrefix}-800.jpg`;
+    img.srcset = `./assets/img/${basePrefix}-400.jpg 400w, ./assets/img/${basePrefix}-800.jpg 800w, ./assets/img/${basePrefix}-1280.jpg 1280w`;
+    img.sizes = '(max-width: 768px) 100vw, 50vw';
+    img.alt = altText;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.className = 'modal-media-image';
+
+    picture.append(avif, webp, img);
+    return picture;
+  }
+
+  function createVideosSectionBlock(videos, municipalityId) {
+    const block = createElement('div', 'mb-4');
+    const heading = createElement('strong', 'd-block mb-3');
+    heading.appendChild(createIcon('bi-play-circle'));
+    heading.appendChild(document.createTextNode(' Vídeos:'));
+    const list = createElement('div', '');
+
+    videos.forEach((video, index) => {
+      list.appendChild(createModalVideoCardNode(video, municipalityId, index));
+    });
+
+    block.append(heading, list);
+    return block;
+  }
+
+  function createModalVideoCardNode(video, municipalityId, index) {
+    const card = createElement('div', 'mb-3 p-3 border rounded bg-light');
+    const title = createElement('h6', 'mb-2');
+    title.appendChild(createIcon(getTypeIcon(video.tipo)));
+    title.appendChild(document.createTextNode(` ${video.titulo}`));
+
+    const description = createElement('p', 'small text-muted mb-2');
+    description.textContent = video.descripcion || '';
+
+    const player = createElement('div', '');
+    const videoId = `modal-video-${municipalityId}-${index}`;
+
+    if (Array.isArray(video.videoSources) && video.videoSources.length > 0) {
+      player.appendChild(createHTML5VideoElement(video, videoId));
+    } else if (video.embed && video.youtubeId) {
+      player.appendChild(createResponsiveYoutubeEmbed(video));
+    } else if (video.vimeoId) {
+      player.appendChild(createResponsiveVimeoEmbed(video));
+    }
+
+    const link = createElement('a', 'btn btn-sm btn-primary');
+    link.href = video.url || '#';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.appendChild(createIcon('bi-box-arrow-up-right'));
+    link.appendChild(document.createTextNode(` ${i18next.t('media.ver_en')} ${getVideoSource(video.url)}`));
+
+    card.append(title, description, player, link);
+    return card;
+  }
+
+  function createAudiosSectionBlock(audios, municipalityId) {
+    const block = createElement('div', 'mb-4');
+    const heading = createElement('strong', 'd-block mb-3');
+    heading.appendChild(createIcon('bi-music-note-beamed'));
+    heading.appendChild(document.createTextNode(' Audios/Podcasts:'));
+    const list = createElement('div', '');
+
+    audios.forEach((audio, index) => {
+      list.appendChild(createModalAudioCardNode(audio, municipalityId, index));
+    });
+
+    block.append(heading, list);
+    return block;
+  }
+
+  function createModalAudioCardNode(audio, municipalityId, index) {
+    const card = createElement('div', 'mb-3 p-3 border rounded bg-light');
+    const title = createElement('h6', 'mb-2');
+    title.appendChild(createIcon(getTypeIcon(audio.tipo)));
+    title.appendChild(document.createTextNode(` ${audio.titulo}`));
+
+    const description = createElement('p', 'small text-muted mb-2');
+    description.textContent = audio.descripcion || '';
+
+    const meta = createElement('div', 'mb-2');
+    const platformBadge = createElement('span', 'badge bg-info');
+    platformBadge.textContent = getPlatformBadge(audio.plataforma);
+    const typeBadge = createElement('span', 'badge bg-secondary');
+    typeBadge.textContent = capitalizeFirst(audio.tipo);
+    meta.append(platformBadge, typeBadge);
+
+    const audioContainer = createElement('div', '');
+    const audioId = `modal-audio-${municipalityId}-${index}`;
+
+    if (Array.isArray(audio.audioSources) && audio.audioSources.length > 0) {
+      const playerWrapper = createElement('div', '');
+      const player = document.createElement('audio');
+      player.id = audioId;
+      player.className = 'w-100';
+      player.controls = true;
+      player.preload = 'metadata';
+      player.setAttribute('aria-label', audio.titulo);
+
+      if (audio.autoplay) { player.autoplay = true; }
+      if (audio.loop) { player.loop = true; }
+      if (audio.muted) { player.muted = true; }
+
+      audio.audioSources.forEach((source) => {
+        const sourceNode = document.createElement('source');
+        sourceNode.src = source.src;
+        sourceNode.type = source.type || getAudioMimeType(source.src);
+        player.appendChild(sourceNode);
+      });
+
+      playerWrapper.appendChild(player);
+      audioContainer.appendChild(playerWrapper);
+    }
+
+    const link = createElement('a', 'btn btn-sm btn-outline-primary');
+    link.href = audio.url || '#';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.appendChild(createIcon('bi-box-arrow-up-right'));
+    link.appendChild(document.createTextNode(` ${i18next.t('media.acceder_a')} ${getPlatformBadge(audio.plataforma)}`));
+
+    card.append(title, description, meta, audioContainer, link);
+    return card;
+  }
+
+  function createElement(tag, className = '') {
+    const element = document.createElement(tag);
+    if (className) {
+      element.className = className;
+    }
+    return element;
+  }
+
+  function createIcon(iconClass) {
+    const icon = document.createElement('i');
+    icon.className = `bi ${iconClass}`;
+    return icon;
+  }
+
   function getVideoMimeType(filename) {
-    if (filename.includes('.mp4')) return 'video/mp4';
-    if (filename.includes('.webm')) return 'video/webm';
-    if (filename.includes('.ogv') || filename.includes('.ogg')) return 'video/ogg';
-    if (filename.includes('.mov')) return 'video/quicktime';
+    if (filename.includes('.mp4')) { return 'video/mp4'; }
+    if (filename.includes('.webm')) { return 'video/webm'; }
+    if (filename.includes('.ogv') || filename.includes('.ogg')) { return 'video/ogg'; }
+    if (filename.includes('.mov')) { return 'video/quicktime'; }
     return 'video/mp4';
   }
 
-  /**
-   * Crea la sección de audios
-   * @param {Array} audios - Array de objetos audio
-   * @param {number} municipalityId - ID del municipio
-   * @returns {string} HTML string
-   */
-  function createAudiosSection(audios, municipalityId) {
-    let html = `
-      <div class="col-lg-6 mb-5">
-        <div class="media-container">
-          <h3 class="section-title"><i class="bi bi-music-note-beamed"></i> Audios y Podcasts</h3>
-          <div class="audios-list">
-    `;
-
-    audios.forEach((audio, index) => {
-      html += createAudioCard(audio, municipalityId, index);
-    });
-
-    html += `
-          </div>
-        </div>
-      </div>
-    `;
-
-    return html;
-  }
-
-  /**
-   * Crea la sección de imágenes para el modal
-   * @param {Array} images - Array de objetos imagen
-   * @param {string} municipalityName - Nombre del municipio
-   * @returns {string} HTML string
-   */
-  function createImagesSection(images, municipalityName) {
-    let html = `
-      <div class="mb-4">
-        <strong class="d-block mb-3"><i class="bi bi-images"></i> Imágenes:</strong>
-        <div class="row gx-3 gy-3">
-    `;
-
-    images.forEach((image, index) => {
-      html += `
-        <div class="col-sm-6">
-          ${createImageCard(image, municipalityName, index)}
-        </div>
-      `;
-    });
-
-    html += `
-        </div>
-      </div>
-    `;
-
-    return html;
-  }
-
-  /**
-   * Crea una tarjeta de imagen responsiva para el modal
-   * @param {Object} image - Objeto imagen
-   * @param {string} municipalityName - Nombre del municipio
-   * @param {number} index - Índice
-   * @returns {string} HTML string
-   */
-  function createImageCard(image, municipalityName, index) {
-    const imageName = image.imageName || image.id || `image-${index + 1}`;
-    const basePrefix = municipalityName ? `${municipalityName}-${imageName}` : imageName;
-
-    return `
-      <div class="p-3 border rounded bg-light">
-        <picture>
-          <source type="image/avif" srcset="./assets/img/${basePrefix}-400.avif 400w, ./assets/img/${basePrefix}-800.avif 800w, ./assets/img/${basePrefix}-1280.avif 1280w" sizes="(max-width: 768px) 100vw, 50vw">
-          <source type="image/webp" srcset="./assets/img/${basePrefix}-400.webp 400w, ./assets/img/${basePrefix}-800.webp 800w, ./assets/img/${basePrefix}-1280.webp 1280w" sizes="(max-width: 768px) 100vw, 50vw">
-          <img src="./assets/img/${basePrefix}-800.jpg" srcset="./assets/img/${basePrefix}-400.jpg 400w, ./assets/img/${basePrefix}-800.jpg 800w, ./assets/img/${basePrefix}-1280.jpg 1280w" sizes="(max-width: 768px) 100vw, 50vw" alt="${image.alt || image.titulo || municipalityName}" class="img-fluid rounded mb-3" loading="lazy" decoding="async">
-        </picture>
-        <strong class="d-block mb-1">${image.titulo}</strong>
-        <p class="small text-muted mb-0">${image.descripcion}</p>
-      </div>
-    `;
-  }
-
-  /**
-   * Crea una tarjeta de audio individual con soporte HTML5 nativo
-   * @param {Object} audio - Objeto audio
-   * @param {number} municipalityId - ID del municipio
-   * @param {number} index - Índice del audio
-   * @returns {string} HTML string
-   */
-  function createAudioCard(audio, municipalityId, index) {
-    const typeIcon = getTypeIcon(audio.tipo);
-    const platformBadge = getPlatformBadge(audio.plataforma);
-    const audioId = `audio-${municipalityId}-${index}`;
-
-    let html = `
-      <div class="audio-card mb-4 p-3 border rounded" data-audio-id="${audio.id}">
-        <div class="audio-header d-flex align-items-start justify-content-between">
-          <div class="flex-grow-1">
-            <h5 class="audio-title mb-2">
-              <i class="bi ${typeIcon}"></i> ${audio.titulo}
-            </h5>
-            <p class="audio-description text-muted small mb-3">${audio.descripcion}</p>
-            <div class="audio-meta">
-              <span class="badge bg-info">${platformBadge}</span>
-              <span class="badge bg-secondary">${capitalizeFirst(audio.tipo)}</span>
-            </div>
-          </div>
-        </div>
-        <div class="audio-content mt-3">
-    `;
-
-    // Si es audio HTML5 nativo (con archivos locales/externos)
-    if (audio.audioSources && Array.isArray(audio.audioSources) && audio.audioSources.length > 0) {
-      html += createHTML5AudioElement(audio, audioId);
-    }
-    // Si es enlace a plataforma externa
-    else {
-      html += `
-          <a href="${audio.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">
-            <i class="bi bi-box-arrow-up-right"></i> Acceder
-          </a>
-      `;
-    }
-
-    html += `
-        </div>
-      </div>
-    `;
-
-    return html;
-  }
-
-  /**
-   * Crea un elemento <audio> HTML5 nativo con múltiples formatos
-   * @param {Object} audio - Objeto audio
-   * @param {string} audioId - ID único del audio
-   * @returns {string} HTML string
-   */
-  function createHTML5AudioElement(audio, audioId) {
-    let html = `
-      <div class="audio-player-container mb-3">
-        <audio 
-          id="${audioId}"
-          class="w-100 audio-player"
-          controls
-          preload="metadata"
-          aria-label="${audio.titulo}"
-          ${audio.autoplay ? 'autoplay' : ''}
-          ${audio.loop ? 'loop' : ''}
-          ${audio.muted ? 'muted' : ''}>
-    `;
-
-    // Múltiples fuentes para compatibilidad entre navegadores
-    audio.audioSources.forEach(source => {
-      const type = source.type || getAudioMimeType(source.src);
-      html += `
-          <source src="${source.src}" type="${type}">
-      `;
-    });
-
-    html += `
-          Tu navegador no soporta audios HTML5. 
-          <a href="${audio.url}" target="_blank" rel="noopener noreferrer">Descargar audio</a>
-        </audio>
-      </div>
-      <a href="${audio.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary mt-2">
-        <i class="bi bi-box-arrow-up-right"></i> Ver en plataforma original
-      </a>
-    `;
-
-    return html;
-  }
-
-  /**
-   * Obtiene el MIME type basado en la extensión del archivo de audio
-   * @param {string} filename - Nombre o URL del archivo
-   * @returns {string} MIME type
-   */
   function getAudioMimeType(filename) {
-    if (filename.includes('.mp3')) return 'audio/mpeg';
-    if (filename.includes('.ogg') || filename.includes('.oga')) return 'audio/ogg';
-    if (filename.includes('.wav')) return 'audio/wav';
-    if (filename.includes('.webm')) return 'audio/webm';
-    if (filename.includes('.m4a') || filename.includes('.aac')) return 'audio/mp4';
-    if (filename.includes('.flac')) return 'audio/flac';
+    if (filename.includes('.mp3')) { return 'audio/mpeg'; }
+    if (filename.includes('.ogg') || filename.includes('.oga')) { return 'audio/ogg'; }
+    if (filename.includes('.wav')) { return 'audio/wav'; }
+    if (filename.includes('.webm')) { return 'audio/webm'; }
+    if (filename.includes('.m4a') || filename.includes('.aac')) { return 'audio/mp4'; }
+    if (filename.includes('.flac')) { return 'audio/flac'; }
     return 'audio/mpeg';
   }
 
-  /**
-   * Obtiene el icono Bootstrap para un tipo de contenido
-   * @param {string} tipo - Tipo de contenido
-   * @returns {string} Clase de icono Bootstrap
-   */
   function getTypeIcon(tipo) {
     const iconMap = {
-      'canal': 'bi-youtube',
-      'documental': 'bi-film',
-      'turismo': 'bi-compass',
-      'eventos': 'bi-calendar-event',
-      'cultura': 'bi-palette',
-      'patrimonio': 'bi-building',
-      'radio': 'bi-broadcast',
-      'podcast': 'bi-mic-fill',
-      'actas': 'bi-file-text',
-      'plenos': 'bi-megaphone',
-      'economia': 'bi-graph-up',
-      'tradiciones': 'bi-music-note-beamed',
-      'ambiente': 'bi-sound'
+      canal: 'bi-youtube',
+      documental: 'bi-film',
+      turismo: 'bi-compass',
+      eventos: 'bi-calendar-event',
+      cultura: 'bi-palette',
+      patrimonio: 'bi-building',
+      radio: 'bi-broadcast',
+      podcast: 'bi-mic-fill',
+      actas: 'bi-file-text',
+      plenos: 'bi-megaphone',
+      economia: 'bi-graph-up',
+      tradiciones: 'bi-music-note-beamed',
+      ambiente: 'bi-sound',
+      ayuntamiento: 'bi-building'
     };
+
     return iconMap[tipo] || 'bi-play-circle';
   }
 
-  /**
-   * Obtiene el nombre de la plataforma para mostrar
-   * @param {string} plataforma - Identificador de plataforma
-   * @returns {string} Nombre de plataforma
-   */
   function getPlatformBadge(plataforma) {
     const platformMap = {
-      'spotify': 'Spotify',
-      'youtube': 'YouTube',
-      'ivoox': 'Ivoox',
-      'web': 'Web Oficial',
-      'freesound': 'FreeSound'
+      spotify: 'Spotify',
+      youtube: 'YouTube',
+      ivoox: 'Ivoox',
+      web: 'Web Oficial',
+      freesound: 'FreeSound'
     };
+
     return platformMap[plataforma] || 'Plataforma Externa';
   }
 
-  /**
-   * Obtiene el nombre del sitio desde una URL
-   * @param {string} url - URL
-   * @returns {string} Nombre del sitio
-   */
   function getVideoSource(url) {
-    if (url.includes('youtube.com')) return 'YouTube';
-    if (url.includes('vimeo.com')) return 'Vimeo';
+    if (url?.includes('youtube.com')) { return 'YouTube'; }
+    if (url?.includes('vimeo.com')) { return 'Vimeo'; }
     return 'Sitio Externo';
   }
 
-  /**
-   * Capitaliza la primera letra
-   * @param {string} str - String a capitalizar
-   * @returns {string} String capitalizado
-   */
   function capitalizeFirst(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  /**
-   * Inicializa event listeners para elementos de media
-   * @param {HTMLElement} container - Contenedor
-   * @param {Object} municipality - Datos del municipio
-   */
   function initializeMediaListeners(container, municipality) {
-    // Event delegation para clicks en vídeos/audios
-    container.addEventListener('click', (e) => {
-      const videoCard = e.target.closest('.video-card');
-      const audioCard = e.target.closest('.audio-card');
-      
+    container.addEventListener('click', (event) => {
+      const videoCard = event.target.closest('.video-card');
+      const audioCard = event.target.closest('.audio-card');
+
       if (videoCard) {
         const videoId = videoCard.dataset.videoId;
-        // Analytics o tracking si es necesario
         console.log('Video clicked:', videoId);
       }
-      
+
       if (audioCard) {
         const audioId = audioCard.dataset.audioId;
-        // Analytics o tracking si es necesario
         console.log('Audio clicked:', audioId);
       }
     });
   }
 
-  /**
-   * Renderiza media para todos los municipios en una página
-   * @param {Array} municipalities - Array de municipios
-   */
   function renderAllMedia(municipalities) {
     municipalities.forEach((municipality) => {
       const containerId = `media-container-${municipality.id}`;
-      // Solo renderizar si el contenedor existe
       if (document.getElementById(containerId)) {
         renderMediaSection(municipality, containerId);
       }
     });
   }
 
-  /**
-   * Crea HTML multimedia para mostrar en el modal del municipio
-   * Incluye video/audio HTML5 nativo + YouTube/Vimeo embeds
-   * @param {Object} media - Objeto con videos y audios
-   * @param {string} municipalityId - ID del municipio para atributos
-   * @returns {string} HTML para insertar en modal
-   */
-  function createModalMediaHTML(media, municipalityId = 0) {
-    if (!media) return '';
-    
-    const municipalityName = media.municipalityName || '';
-    let html = '';
-    
-    // Sección de Imágenes
-    if (media.images && media.images.length > 0) {
-      html += createImagesSection(media.images, municipalityName);
+  function createModalMedia(media, municipalityId = 0) {
+    const fragment = document.createDocumentFragment();
+    if (!media) {
+      return fragment;
     }
 
-    // Sección de Vídeos
-    if (media.videos && media.videos.length > 0) {
-      html += '<div class="mb-4">';
-      html += '<strong class="d-block mb-3"><i class="bi bi-play-circle"></i> Vídeos:</strong>';
-      
-      media.videos.forEach((video, index) => {
-        const videoId = `modal-video-${municipalityId}-${index}`;
-        const typeIcon = getTypeIcon(video.tipo);
-        
-        html += `<div class="mb-3 p-3 border rounded bg-light">`;
-        html += `<h6 class="mb-2"><i class="bi ${typeIcon}"></i> ${video.titulo}</h6>`;
-        html += `<p class="small text-muted mb-2">${video.descripcion}</p>`;
-        
-        // Video HTML5 nativo si tiene videoSources
-        if (video.videoSources && Array.isArray(video.videoSources) && video.videoSources.length > 0) {
-          html += `<video id="${videoId}" class="w-100 rounded mb-2" style="background: #000; max-height: 300px;" controls preload="metadata" playsinline ${video.poster ? `poster="${video.poster}"` : ''} aria-label="${video.titulo}">`;
-          video.videoSources.forEach(source => {
-            const type = source.type || getVideoMimeType(source.src);
-            html += `<source src="${source.src}" type="${type}">`;
-          });
-          html += `</video>`;
-        }
-        // YouTube embed
-        else if (video.youtubeId && video.embed) {
-          html += `<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 8px; border-radius: 6px;">`;
-          html += `<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/${video.youtubeId}" title="${video.titulo}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" aria-label="${video.titulo}"></iframe>`;
-          html += `</div>`;
-        }
-        // Vimeo embed
-        else if (video.vimeoId && video.embed) {
-          html += `<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 8px; border-radius: 6px;">`;
-          html += `<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://player.vimeo.com/video/${video.vimeoId}" title="${video.titulo}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" aria-label="${video.titulo}"></iframe>`;
-          html += `</div>`;
-        }
-        
-        // Botón para ir al original
-        html += `<a href="${video.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">`;
-        html += `<i class="bi bi-box-arrow-up-right"></i> ${i18next.t('media.ver_en')} ${getVideoSource(video.url)}`;
-        html += `</a>`;
-        
-        html += `</div>`;
-      });
-      
-      html += '</div>';
+    if (Array.isArray(media.images) && media.images.length > 0) {
+      fragment.appendChild(createMediaCarouselNode(media.images, media.municipalityName || '', municipalityId));
     }
-    
-    // Sección de Audios
-    if (media.audios && media.audios.length > 0) {
-      html += '<div class="mb-4">';
-      html += '<strong class="d-block mb-3"><i class="bi bi-music-note-beamed"></i> Audios/Podcasts:</strong>';
-      
-      media.audios.forEach((audio, index) => {
-        const audioId = `modal-audio-${municipalityId}-${index}`;
-        const typeIcon = getTypeIcon(audio.tipo);
-        const platformBadge = getPlatformBadge(audio.plataforma);
-        
-        html += `<div class="mb-3 p-3 border rounded bg-light">`;
-        html += `<h6 class="mb-2"><i class="bi ${typeIcon}"></i> ${audio.titulo}</h6>`;
-        html += `<p class="small text-muted mb-2">${audio.descripcion}</p>`;
-        html += `<div class="mb-2"><span class="badge bg-info">${platformBadge}</span> <span class="badge bg-secondary">${capitalizeFirst(audio.tipo)}</span></div>`;
-        
-        // Audio HTML5 nativo si tiene audioSources
-        if (audio.audioSources && Array.isArray(audio.audioSources) && audio.audioSources.length > 0) {
-          html += `<div style="background: #f8f9fa; padding: 12px; border-radius: 6px; margin-bottom: 8px;">`;
-          html += `<audio id="${audioId}" class="w-100" style="height: 40px;" controls preload="metadata" aria-label="${audio.titulo}">`;
-          audio.audioSources.forEach(source => {
-            const type = source.type || getAudioMimeType(source.src);
-            html += `<source src="${source.src}" type="${type}">`;
-          });
-          html += `</audio>`;
-          html += `</div>`;
-        }
-        
-        // Botón para ir al original
-        html += `<a href="${audio.url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">`;
-        html += `<i class="bi bi-box-arrow-up-right"></i> ${i18next.t('media.acceder_a')} ${platformBadge}`;
-        html += `</a>`;
-        
-        html += `</div>`;
-      });
-      
-      html += '</div>';
+
+    if (Array.isArray(media.videos) && media.videos.length > 0) {
+      fragment.appendChild(createVideosSectionBlock(media.videos, municipalityId));
     }
-    
-    return html;
+
+    if (Array.isArray(media.audios) && media.audios.length > 0) {
+      fragment.appendChild(createAudiosSectionBlock(media.audios, municipalityId));
+    }
+
+    return fragment;
   }
 
-  // Public API
   return {
     render: renderMediaSection,
     renderAll: renderAllMedia,
-    createModalMedia: createModalMediaHTML
+    createModalMedia
   };
 })();
 
-// Auto-inicialización si el DOM está cargado
 document.addEventListener('DOMContentLoaded', () => {
-  // Cargar municipios y renderizar media si existe el JSON
   fetch('./data/ayuntamiento.json')
-    .then(response => response.json())
-    .then(data => {
-      // Renderizar automáticamente si hay contenedores media en la página
+    .then((response) => response.json())
+    .then((data) => {
       const mediaContainers = document.querySelectorAll('[id^="media-container-"]');
       if (mediaContainers.length > 0) {
         MediaModule.renderAll(data.municipalities);
       }
     })
-    .catch(error => console.error('Error loading municipalities:', error));
+    .catch((error) => console.error('Error loading municipalities:', error));
 });

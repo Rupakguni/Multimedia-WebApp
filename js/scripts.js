@@ -43,6 +43,44 @@ function buildResponsivePicture(imageData, altText, isCard = false) {
     `;
 }
 
+function createResponsivePictureElement(imageData, altText, isCard = false) {
+    const sourceUrl = imageData.url || './assets/img/default.jpg';
+    const baseName = sourceUrl.split('/').pop().replace(/\.(jpe?g|png|webp|avif)$/i, '');
+    const sourceDir = sourceUrl.replace(/\/[^\/]+$/, '');
+    const thumbBase = imageData.thumbnail
+        ? imageData.thumbnail.replace(/\.(avif|webp|jpe?g)$/i, '')
+        : `${sourceDir}/${baseName}-thumb`;
+    const imageBase = `${sourceDir}/${baseName}`;
+    const sizes = isCard
+        ? '(max-width: 480px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 25vw'
+        : '(max-width: 480px) 100vw, (max-width: 768px) 100vw, 900px';
+
+    const picture = document.createElement('picture');
+    picture.className = isCard ? 'card-picture' : 'modal-picture';
+
+    const avif = document.createElement('source');
+    avif.type = 'image/avif';
+    avif.srcset = `${thumbBase}.avif 320w, ${imageBase}-640.avif 640w, ${imageBase}-1280.avif 1280w`;
+    avif.sizes = sizes;
+
+    const webp = document.createElement('source');
+    webp.type = 'image/webp';
+    webp.srcset = `${thumbBase}.webp 320w, ${imageBase}-640.webp 640w, ${imageBase}-1280.webp 1280w`;
+    webp.sizes = sizes;
+
+    const img = document.createElement('img');
+    img.src = `${thumbBase}.jpg`;
+    img.srcset = `${thumbBase}.jpg 320w, ${imageBase}-640.jpg 640w, ${imageBase}-1280.jpg 1280w`;
+    img.sizes = sizes;
+    img.alt = altText;
+    img.loading = isCard ? 'lazy' : 'eager';
+    img.decoding = 'async';
+    img.className = 'img-fluid rounded shadow-sm';
+
+    picture.append(avif, webp, img);
+    return picture;
+}
+
 /**
  * Helper para disparar eventos custom
  */
@@ -591,9 +629,17 @@ function loadMunicipalityDetails(municipalityName) {
 
     // Actualizar imagen del modal con responsive <picture>
     const modalImageWrapper = document.getElementById('modal-img-wrapper');
-    if (modalImageWrapper && municipalityData.imagenes && municipalityData.imagenes[0]) {
-        const imageAlt = municipalityData.imagenes[0].alt || municipalityData.name;
-        modalImageWrapper.innerHTML = buildResponsivePicture(municipalityData.imagenes[0], imageAlt, false);
+    if (modalImageWrapper) {
+        modalImageWrapper.replaceChildren();
+        const hasDedicatedMediaImages = Array.isArray(municipalityData.media?.images) && municipalityData.media.images.length > 0;
+
+        if (!hasDedicatedMediaImages && municipalityData.imagenes && municipalityData.imagenes[0]) {
+            modalImageWrapper.hidden = false;
+            const imageAlt = municipalityData.imagenes[0].alt || municipalityData.name;
+            modalImageWrapper.appendChild(createResponsivePictureElement(municipalityData.imagenes[0], imageAlt, false));
+        } else {
+            modalImageWrapper.hidden = true;
+        }
     }
 
     // Rellenar modal con datos básicos
@@ -639,16 +685,25 @@ function loadMunicipalityDetails(municipalityName) {
     
     document.getElementById('modal-events').innerHTML = eventsList;
 
-    // Rellenar sección de multimedia con HTML5 nativo
+    // Rellenar sección de multimedia con nodos DOM
     const multimediaContainer = document.getElementById('modal-multimedia');
-    if (multimediaContainer && municipalityData.media) {
-        // Usar MediaModule para generar HTML multimedia
-        const multimediaHTML = MediaModule.createModalMedia(municipalityData.media, municipalityData.id);
-        
-        if (multimediaHTML) {
-            multimediaContainer.innerHTML = multimediaHTML;
+    if (multimediaContainer) {
+        multimediaContainer.replaceChildren();
+        if (municipalityData.media) {
+            const mediaFragment = MediaModule.createModalMedia(municipalityData.media, municipalityData.id);
+            if (mediaFragment && mediaFragment.childNodes.length > 0) {
+                multimediaContainer.appendChild(mediaFragment);
+            } else {
+                const fallback = document.createElement('p');
+                fallback.className = 'text-muted mb-0';
+                fallback.textContent = 'No hay contenido multimedia disponible';
+                multimediaContainer.appendChild(fallback);
+            }
         } else {
-            multimediaContainer.innerHTML = '<p class="text-muted mb-0">No hay contenido multimedia disponible</p>';
+            const fallback = document.createElement('p');
+            fallback.className = 'text-muted mb-0';
+            fallback.textContent = 'No hay contenido multimedia disponible';
+            multimediaContainer.appendChild(fallback);
         }
     }
 
