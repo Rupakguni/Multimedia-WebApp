@@ -233,14 +233,22 @@ async function cargarDatosIniciales() {
     try {
         appState.status = 'loading';
         
-        // Cargamos los 3 archivos en paralelo
+        // Cargamos municipios y datos externos en paralelo
+        // Los eventos se obtienen del JSON externo de fiestasmallorca.online (con fallback local)
+        const EVENTOS_URL_EXTERNA = 'https://www.fiestasmallorca.online/eventos.json';
+        const EVENTOS_URL_LOCAL   = './data/eventos.json';
+
         const [resMunicipios, resEventos] = await Promise.all([
             fetch('./data/ayuntamiento.json'),
-            fetch('./data/eventos.json')
+            fetch(EVENTOS_URL_EXTERNA).catch(() => fetch(EVENTOS_URL_LOCAL))
+            //fetch(EVENTOS_URL_EXTERNA)
         ]);
 
+        if (!resMunicipios.ok) throw new Error(`HTTP ${resMunicipios.status} al cargar municipios`);
+        if (!resEventos.ok)    throw new Error(`HTTP ${resEventos.status} al cargar eventos`);
+
         const datosMunicipios = await resMunicipios.json();
-        const datosEventos = await resEventos.json();
+        const datosEventos    = await resEventos.json();
         // El quiz se gestiona en su propio script, pero lo cargamos aquí para asegurar sincronía
         await cargarPreguntasQuiz(); 
 
