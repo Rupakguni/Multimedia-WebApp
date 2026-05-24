@@ -11,7 +11,15 @@
         <link rel="preload" as="image" href="./assets/img/Palma-1280.avif" imagesrcset="./assets/img/Palma-1280.avif 1280w, ./assets/img/Palma-1920.avif 1920w" imagesizes="100vw" media="(min-width: 769px)" fetchpriority="high">
         
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
+        <!-- PWA Manifest -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#0d6efd">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="apple-mobile-web-app-title" content="Mallorca">
+        <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
         <!-- CSS base cargado desde el inicio para evitar saltos de layout en el hero móvil. -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/styles.css?v=202605231800" rel="stylesheet">
@@ -109,7 +117,7 @@
             "name": "Hub Interactivo Ayuntamientos de Mallorca",
             "url": "https://www.ayuntamientosmallorca.online/",
             "description": "Hub interactivo para explorar los ayuntamientos de Mallorca con información, eventos y patrimonio",
-            "logo": "https://www.ayuntamientosmallorca.online/assets/favicon.ico",
+            "logo": "https://www.ayuntamientosmallorca.online/assets/icons/favicon.ico",
             "author": [
                 {
                     "@type": "Person",
@@ -634,5 +642,19 @@
         <script src="js/google-auth.min.js" defer></script>
         <!-- Quiz JS-->
         <script src="js/quiz.min.js" defer></script>
+        <!-- PWA: Registro del Service Worker -->
+        <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function(reg) {
+                console.log('✅ Service Worker registrado:', reg.scope);
+                })
+                .catch(function(err) {
+                console.warn('❌ Error al registrar SW:', err);
+                });
+            });
+        }
+        </script>
     </body>
 </html>
