@@ -183,11 +183,15 @@ async function initializeApp() {
     const responsiveNavItems = [].slice.call(
         document.querySelectorAll('#navbarResponsive .nav-link')
     );
+    const isMobileViewport = () => window.matchMedia('(max-width: 991.98px)').matches;
+
     responsiveNavItems.map(function (responsiveNavItem) {
         responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
+            if (!navbarToggler || !isMobileViewport()) {
+                return;
             }
+
+            navbarToggler.click();
         });
     });
 
@@ -689,31 +693,59 @@ function renderMunicipalityReadingAudio(municipalityData) {
         return;
     }
 
+    audioContainer.replaceChildren();
+
     const readingAudio = getReadingAudio(municipalityData);
 
     if (!readingAudio) {
         audioContainer.hidden = true;
-        audioContainer.innerHTML = '';
         return;
     }
 
-    const sourcesHTML = Array.isArray(readingAudio.audioSources) && readingAudio.audioSources.length > 0
-        ? readingAudio.audioSources.map(source => `<source src="${source.src}" type="${source.type || 'audio/mpeg'}">`).join('')
-        : (readingAudio.url ? `<source src="${readingAudio.url}" type="audio/mpeg">` : '');
+    const sources = Array.isArray(readingAudio.audioSources) && readingAudio.audioSources.length > 0
+        ? readingAudio.audioSources
+        : (readingAudio.url ? [{ src: readingAudio.url, type: 'audio/mpeg' }] : []);
+
+    if (sources.length === 0) {
+        audioContainer.hidden = true;
+        return;
+    }
 
     const badgeText = readingAudio.plataforma === 'local' ? 'Audio local' : (readingAudio.plataforma || 'Audio');
 
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'd-flex justify-content-between align-items-start gap-2 flex-wrap';
+
+    const textWrapper = document.createElement('div');
+    const title = document.createElement('h6');
+    title.className = 'mb-1';
+    title.textContent = readingAudio.titulo || 'Lectura del municipio';
+
+    const description = document.createElement('p');
+    description.className = 'small text-muted mb-0';
+    description.textContent = readingAudio.descripcion || 'Escucha una lectura de la descripción del municipio.';
+
+    const badge = document.createElement('span');
+    badge.className = 'badge bg-primary';
+    badge.textContent = badgeText;
+
+    const audioElement = document.createElement('audio');
+    audioElement.className = 'w-100 mt-3';
+    audioElement.controls = true;
+    audioElement.preload = 'metadata';
+    audioElement.setAttribute('aria-label', readingAudio.titulo || 'Lectura del municipio');
+
+    sources.forEach(source => {
+        const sourceElement = document.createElement('source');
+        sourceElement.src = source.src;
+        sourceElement.type = source.type || 'audio/mpeg';
+        audioElement.appendChild(sourceElement);
+    });
+
+    textWrapper.append(title, description);
+    contentWrapper.append(textWrapper, badge);
+    audioContainer.append(contentWrapper, audioElement);
     audioContainer.hidden = false;
-    audioContainer.innerHTML = `
-        <div class="d-flex justify-content-between align-items-start gap-2 flex-wrap">
-            <div>
-                <h6 class="mb-1">${readingAudio.titulo || 'Lectura del municipio'}</h6>
-                <p class="small text-muted mb-0">${readingAudio.descripcion || 'Escucha una lectura de la descripción del municipio.'}</p>
-            </div>
-            <span class="badge bg-primary">${badgeText}</span>
-        </div>
-        <audio class="w-100 mt-3" controls preload="metadata" aria-label="${readingAudio.titulo || 'Lectura del municipio'}">${sourcesHTML}</audio>
-    `;
 }
 
 function loadMunicipalityDetails(municipalityName) {
