@@ -29,25 +29,25 @@
             "id": "palma-1",
             "titulo": "Canal Oficial de YouTube - Ajuntament de Palma",
             "descripcion": "Plenos, campañas y actos oficiales",
-            "url": "https://www.youtube.com/@AjuntamentdePalma",
+            "url": "https://www.youtube.com/@ajuntpalma",
             "tipo": "canal",
             "embed": false
           },
           {
             "id": "palma-2",
             "titulo": "Palma: Historia de la ciudad",
-            "descripcion": "Vídeo institucional sobre la historia de Palma",
-            "url": "https://www.youtube.com/embed/wXW-pI-n01o",
+            "descripcion": "Vídeo sobre la historia de Palma",
+            "url": "https://youtu.be/-luJM4uoxpc?si=iEeMXPY_bwnUGJ1M",
             "youtubeId": "wXW-pI-n01o",
             "tipo": "documental",
-            "embed": true
+            "embed": false
           },
           {
             "id": "palma-3",
             "titulo": "Visit Palma - Información Turística",
             "descripcion": "Guía turística oficial de Palma",
-            "url": "https://www.youtube.com/@VisitPalma",
-            "tipo": "turismo",
+            "url": "https://www.youtube.com/watch?v=UcyWQRQaFxY",
+            "tipo": "documental",
             "embed": false
           }
         ],
@@ -56,7 +56,7 @@
             "id": "palma-audio-1",
             "titulo": "Podcast Palma Educa",
             "descripcion": "Actividades escolares municipales",
-            "url": "https://www.youtube.com/@AjuntamentdePalma",
+            "url": "https://www.youtube.com/@ajuntpalma",
             "tipo": "podcast",
             "plataforma": "youtube"
           },
@@ -64,7 +64,7 @@
             "id": "palma-audio-2",
             "titulo": "Archivo de Plenos Municipales",
             "descripcion": "Sección de transparencia y actas de audio",
-            "url": "https://www.palma.cat",
+            "url": "https://palma.es/",
             "tipo": "actas",
             "plataforma": "web"
           },
@@ -112,7 +112,7 @@
             "id": "manacor-1",
             "titulo": "Canal Oficial - Ajuntament de Manacor",
             "descripcion": "Contenido municipal oficial",
-            "url": "https://www.youtube.com/@AjuntamentdeManacor",
+            "url": "https://www.youtube.com/@ajmanacor",
             "tipo": "canal",
             "embed": false
           },
@@ -120,7 +120,7 @@
             "id": "manacor-2",
             "titulo": "Retransmisión de Plenos Municipales",
             "descripcion": "Grabaciones de los plenos del ayuntamiento",
-            "url": "https://www.youtube.com/playlist?list=PLWj2X-k0oX4o7_v9wU7u8Z_X8_U_W_N_J",
+            "url": "https://manacor.org/es/node/10957",
             "tipo": "plenos",
             "embed": false
           },
@@ -136,17 +136,17 @@
         "audios": [
           {
             "id": "manacor-audio-1",
-            "titulo": "Radio Manacor",
-            "descripcion": "Emisora Municipal con noticias locales",
-            "url": "https://www.radiomanacor.com/",
-            "tipo": "radio",
+            "titulo": "Manacor - Portal Oficial",
+            "descripcion": "Información municipal y noticias locales",
+            "url": "https://manacor.org/es",
+            "tipo": "web",
             "plataforma": "web"
           },
           {
             "id": "manacor-audio-2",
             "titulo": "Podcast Sant Antoni en Manacor",
             "descripcion": "Grabaciones de cánticos y tradiciones oficiales",
-            "url": "https://www.youtube.com/watch?v=R_7Xz_Hh6eI",
+            "url": "https://www.youtube.com/watch?v=X2U2zh9fwXc",
             "tipo": "tradiciones",
             "plataforma": "youtube"
           }
@@ -164,7 +164,7 @@
       "longitude": 2.909920909116623,
       "population": 30000,
       "founded": "1300 (aprox)",
-      "website": "https://www.inca.es",
+      "website": "https://incaciutat.com",
       "phone": "+34 971 505 000",
       "email": "info@inca.es",
       "patrimonio": ["Iglesia de Santa María la Mayor", "Convento de San Domingo", "Plaza Mayor"],
@@ -181,33 +181,33 @@
             "id": "inca-1",
             "titulo": "Canal Oficial - Ajuntament d'Inca",
             "descripcion": "Contenido municipal oficial",
-            "url": "https://www.youtube.com/@AjuntamentdInca",
+            "url": "https://www.youtube.com/user/ajuntamentinca",
             "tipo": "canal",
             "embed": false
           },
           {
             "id": "inca-3",
-            "titulo": "Inca Business - Promoción Económica",
-            "descripcion": "Promoción económica del ayuntamiento",
-            "url": "https://www.youtube.com/@IncaBusiness",
-            "tipo": "economia",
+            "titulo": "Inca - Patrimonio y Tradición",
+            "descripcion": "Información oficial del municipio",
+            "url": "https://incaciutat.com",
+            "tipo": "institucional",
             "embed": false
           }
         ],
         "audios": [
           {
             "id": "inca-audio-1",
-            "titulo": "Inca Radio 106.0 FM",
-            "descripcion": "Programación municipal y entrevistas al alcalde",
-            "url": "https://incaradio.es/",
-            "tipo": "radio",
+            "titulo": "Ajuntament d'Inca - Información Municipal",
+            "descripcion": "Portal oficial con información del municipio",
+            "url": "https://incaciutat.com",
+            "tipo": "web",
             "plataforma": "web"
           },
           {
             "id": "inca-audio-2",
-            "titulo": "Audioguía de la Ciudad de Inca",
-            "descripcion": "Recursos sonoros turísticos",
-            "url": "https://incaciutat.com/es/audioguia",
+            "titulo": "Información Turística de Inca",
+            "descripcion": "Recursos turísticos del municipio",
+            "url": "https://incaturistica.es/",
             "tipo": "turismo",
             "plataforma": "web"
           }
@@ -240,25 +240,24 @@
         "videos": [
           {
             "id": "soller-1",
-            "titulo": "Vídeo Institucional de Sóller",
-            "descripcion": "Presentación oficial del municipio",
-            "url": "https://www.youtube.com/watch?v=6Pq8oV6GZ6o",
-            "youtubeId": "6Pq8oV6GZ6o",
+            "titulo": "Sóller - Información Oficial",
+            "descripcion": "Portal oficial del municipio de Sóller",
+            "url": "https://www.soller.es",
             "tipo": "institucional",
-            "embed": true
+            "embed": false
           },
           {
             "id": "soller-2",
-            "titulo": "Sóller: Patrimonio y Cultura",
-            "descripcion": "Canal turístico con enfoque patrimonial",
-            "url": "https://www.youtube.com/watch?v=8mG_J_OQv5Y",
-            "youtubeId": "8mG_J_OQv5Y",
+            "titulo": "Documental Sóller: Patrimonio y Naturaleza",
+            "descripcion": "Vídeo sobre el patrimonio de Sóller",
+            "url": "https://www.youtube.com/watch?v=PY_1dLVkKOw",
+            "youtubeId": "PY_1dLVkKOw",
             "tipo": "turismo",
-            "embed": true
+            "embed": false
           },
           {
             "id": "soller-3",
-            "titulo": "Documental Es Firó",
+            "titulo": "Increíble Sóller, España",
             "descripcion": "Documental sobre la cultura municipal",
             "url": "https://www.youtube.com/watch?v=BsEVIPsiCgc",
             "youtubeId": "BsEVIPsiCgc",
@@ -269,19 +268,19 @@
         "audios": [
           {
             "id": "soller-audio-1",
-            "titulo": "Veu de Sóller",
-            "descripcion": "Radio y noticias locales",
-            "url": "https://www.veudesoller.cat/",
-            "tipo": "radio",
+            "titulo": "Sóller - Portal Oficial",
+            "descripcion": "Información municipal de Sóller",
+            "url": "https://www.soller.es",
+            "tipo": "web",
             "plataforma": "web"
           },
           {
             "id": "soller-audio-2",
             "titulo": "Ambiente Sonoro del Vall de Sóller",
             "descripcion": "Recurso de audio ambiental",
-            "url": "https://freesound.org/s/434674/",
-            "tipo": "ambiente",
-            "plataforma": "freesound"
+            "url": "https://www.sollerweb.com/radioone.html",
+            "tipo": "radio",
+            "plataforma": "radio_online"
           }
         ]
       }
@@ -352,7 +351,7 @@
             "id": "alcudia-1",
             "titulo": "Canal Oficial - Ajuntament d'Alcúdia",
             "descripcion": "Contenido municipal oficial",
-            "url": "https://www.youtube.com/@AjuntamentdAlcudia",
+            "url": "https://www.youtube.com/@ajuntamentalcudia",
             "tipo": "canal",
             "embed": false
           },
@@ -440,7 +439,7 @@
             "id": "alcudia-audio-2",
             "titulo": "Archivo de Entrevistas Municipales",
             "descripcion": "Entrevistas y contenido municipal en Ivoox",
-            "url": "https://www.ivoox.com/podcast-alcudia-radio_sq_f1146312_1.html",
+            "url": "https://www.alcudiaradio.com/news/id/alcudiaradio_news_2171",
             "tipo": "podcast",
             "plataforma": "ivoox"
           },
@@ -471,7 +470,7 @@
       "longitude": 3.0210,
       "population": 17000,
       "founded": "123 (época romana)",
-      "website": "https://www.pollenca.es",
+      "website": "https://ajpollenca.net/es",
       "phone": "+34 971 53 00 00",
       "email": "info@pollenca.es",
       "patrimonio": ["Plaça Major", "Iglesia de Santa Maria Magdalena", "Santuari de la Mare de Déu dels Àngels", "Calas de Pollença"],
@@ -547,7 +546,7 @@
             "id": "pollenca-audio-1",
             "titulo": "Pollença — Información municipal",
             "descripcion": "Enlace web oficial del ayuntamiento para consultar información municipal y eventos.",
-            "url": "https://www.pollenca.es",
+            "url": "https://ajpollenca.net/es",
             "tipo": "radio",
             "plataforma": "web"
           }
@@ -582,7 +581,7 @@
             "id": "llucmajor-1",
             "titulo": "Canal Oficial - Ajuntament de Llucmajor",
             "descripcion": "Contenido municipal oficial",
-            "url": "https://www.youtube.com/@AjuntamentdeLlucmajor",
+            "url": "https://www.youtube.com/@AjuntamentLlucmajor",
             "tipo": "canal",
             "embed": false
           },
@@ -618,7 +617,7 @@
             "id": "llucmajor-audio-2",
             "titulo": "Podcasts de Eventos Culturales",
             "descripcion": "Serie de podcasts sobre eventos culturales",
-            "url": "https://www.youtube.com/playlist?list=PLWj2X-k0oX4o7_v9wU7u8Z_X8_U_W_N_J",
+            "url": "https://www.youtube.com/watch?v=3kd4zMbT6PM",
             "tipo": "cultura",
             "plataforma": "youtube"
           }
