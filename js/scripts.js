@@ -772,9 +772,8 @@ function loadMunicipalityDetails(municipalityName) {
     const modalImageWrapper = document.getElementById('modal-img-wrapper');
     if (modalImageWrapper) {
         modalImageWrapper.replaceChildren();
-        const hasDedicatedMediaImages = Array.isArray(municipalityData.media?.images) && municipalityData.media.images.length > 0;
 
-        if (!hasDedicatedMediaImages && municipalityData.imagenes && municipalityData.imagenes[0]) {
+        if (municipalityData.imagenes && municipalityData.imagenes[0]) {
             modalImageWrapper.hidden = false;
             const imageAlt = municipalityData.imagenes[0].alt || municipalityData.name;
             modalImageWrapper.appendChild(createResponsivePictureElement(municipalityData.imagenes[0], imageAlt, false));
