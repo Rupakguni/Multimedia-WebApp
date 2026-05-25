@@ -321,22 +321,27 @@ const STTController = (() => {
                     const result = STTController.processCommand(state.lastFinalTranscript);
                     
                     // Si no fue comando, decir "Buscando..."
+                    // IMPORTANTE: Se habla DESPUÉS de cerrar el micrófono para evitar bucle
                     if (!result.matched) {
                         TTSController.speak(`Buscando: ${state.lastFinalTranscript}`, { lang: 'es-ES' });
                     }
                 }
                 state.lastFinalTranscript = ''; // Limpiar después de procesar
-            }
-            
-            // Si está en modo de escucha continuo y terminó, reiniciar
-            if (state._continuous) {
-                try {
-                    recognition.start();
-                } catch (e) {
-                    console.warn('No se pudo reiniciar reconocimiento:', e);
-                }
-            } else {
+                
+                // NO reiniciar automáticamente después de procesar un resultado
+                // Esperar a que el usuario haga clic de nuevo o al TTS terminar
                 updateSTTUI('stopped');
+            } else {
+                // Solo reiniciar si NO hay un resultado para procesar
+                if (state._continuous) {
+                    try {
+                        recognition.start();
+                    } catch (e) {
+                        console.warn('No se pudo reiniciar reconocimiento:', e);
+                    }
+                } else {
+                    updateSTTUI('stopped');
+                }
             }
             dispatchCustomEvent('stt:end');
         };
