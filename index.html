@@ -36,7 +36,7 @@
         <!-- i18next: internacionalización -->
         <script src="https://unpkg.com/i18next@23.11.5/dist/umd/i18next.min.js" defer></script>
         <script src="https://unpkg.com/i18next-http-backend@2.5.2/i18nextHttpBackend.min.js" defer></script>
-        <!-- JSON-LD: Página general (WebPage) -->
+        <!-- JSON-LD: Página general (WebPage) - FIXED: author moved to WebPage level where it's valid -->
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -44,6 +44,16 @@
             "name": "Ayuntamientos de Mallorca",
             "url": "https://www.ayuntamientosmallorca.online/",
             "description": "Hub interactivo para explorar los ayuntamientos de Mallorca con información, eventos y patrimonio",
+            "author": [
+                {
+                    "@type": "Person",
+                    "name": "Roberto García Martínez"
+                },
+                {
+                    "@type": "Person",
+                    "name": "Rupak Guni Thapaliya"
+                }
+            ],
             "isPartOf": {
                 "@type": "WebSite",
                 "name": "Hub Interactivo Ayuntamientos de Mallorca",
@@ -51,21 +61,21 @@
             },
             "publisher": {
                 "@type": "Organization",
+                "@id": "https://www.ayuntamientosmallorca.online/#organization",
                 "name": "Hub Interactivo Ayuntamientos de Mallorca",
-                "author": [
-                    {
-                        "@type": "Person",
-                        "name": "Roberto García Martínez"
-                    },
-                    {
-                        "@type": "Person",
-                        "name": "Rupak Guni Thapaliya"
-                    }
-                ]
+                "url": "https://www.ayuntamientosmallorca.online/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.ayuntamientosmallorca.online/assets/icons/favicon.ico",
+                    "width": 96,
+                    "height": 96
+                }
             },
             "mainEntity": {
                 "@type": "ItemList",
+                "@id": "https://www.ayuntamientosmallorca.online/#municipios-list",
                 "name": "Municipios de Mallorca",
+                "description": "Lista de los municipios principales de Mallorca presentados en el hub interactivo",
                 "numberOfItems": 6,
                 "itemListElement": [
                     {
@@ -106,28 +116,6 @@
                     }
                 ]
             }
-        }
-        </script>
-        
-        <!-- JSON-LD: Organización general del sitio -->
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Hub Interactivo Ayuntamientos de Mallorca",
-            "url": "https://www.ayuntamientosmallorca.online/",
-            "description": "Hub interactivo para explorar los ayuntamientos de Mallorca con información, eventos y patrimonio",
-            "logo": "https://www.ayuntamientosmallorca.online/assets/icons/favicon.ico",
-            "author": [
-                {
-                    "@type": "Person",
-                    "name": "Roberto García Martínez"
-                },
-                {
-                    "@type": "Person",
-                    "name": "Rupak Guni Thapaliya"
-                }
-            ]
         }
         </script>
         

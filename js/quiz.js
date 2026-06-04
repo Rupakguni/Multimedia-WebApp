@@ -26,7 +26,7 @@ async function cargarPreguntasQuiz({ force = false } = {}) {
     }
 
     try {
-        const respuesta = await fetch('./data/quiz.json');
+        const respuesta = await fetch('./data/quiz.json?v=' + Date.now());
         if (!respuesta.ok) throw new Error('No se pudo cargar el JSON del quiz');
         const datos = await respuesta.json();
         

@@ -1,64 +1,385 @@
-{
-  "questions": [
-    {
-      "question": "¿Cuál es la capital de Mallorca?",
-      "correct": "Palma",
-      "options": ["Palma", "Inca", "Alcúdia", "Sóller"],
-      "category": "Geográfico"
-    },
-    {
-      "question": "¿Cuál es el municipio famoso por la industria del cuero?",
-      "correct": "Inca",
-      "options": ["Inca", "Manacor", "Llucmajor", "Sóller"],
-      "category": "Economía"
-    },
-    {
-      "question": "¿Cuál es el pueblo de montaña en la Serra de Tramuntana?",
-      "correct": "Sóller",
-      "options": ["Manacor", "Sóller", "Alcúdia", "Llucmajor"],
-      "category": "Geografía"
-    },
-    {
-      "question": "¿Cuál es el destino turístico con murallas históricas y playas paradisíacas?",
-      "correct": "Alcúdia",
-      "options": ["Palma", "Sóller", "Alcúdia", "Inca"],
-      "category": "Turismo"
-    },
-    {
-      "question": "¿Cuál es el centro económico del este de Mallorca, conocido por industrias artesanales?",
-      "correct": "Manacor",
-      "options": ["Llucmajor", "Inca", "Manacor", "Alcúdia"],
-      "category": "Economía"
-    },
-    {
-      "question": "¿Aproximadamente cuánta población tiene Palma?",
-      "correct": "Más de 400,000 habitantes",
-      "options": ["Menos de 30,000", "Entre 100,000 y 200,000", "Más de 400,000 habitantes", "Entre 50,000 y 100,000"],
-      "category": "Población"
-    },
-    {
-      "question": "¿En qué municipio encontramos los Jardines de Alfabia?",
-      "correct": "Sóller",
-      "options": ["Inca", "Sóller", "Manacor", "Llucmajor"],
-      "category": "Patrimonio"
-    },
-    {
-      "question": "¿Cuál es el municipio histórico con tradiciones culturales profundas?",
-      "correct": "Llucmajor",
-      "options": ["Manacor", "Alcúdia", "Llucmajor", "Inca"],
-      "category": "Cultura"
-    },
-    {
-      "question": "¿Cuál es la iglesia más importante de Palma?",
-      "correct": "Catedral-Basílica de Santa María",
-      "options": ["Iglesia de Santa María la Mayor", "Catedral-Basílica de Santa María", "Iglesia de San Miguel", "Iglesia Parroquial de Santa María"],
-      "category": "Patrimonio"
-    },
-    {
-      "question": "¿Cuál es el puerto natural más importante de Mallorca?",
-      "correct": "Puerto de Alcúdia",
-      "options": ["Puerto de Palma", "Puerto de Sóller", "Puerto de Alcúdia", "Puerto de Manacor"],
-      "category": "Geografía"
-    }
-  ]
+﻿{
+    "@context": "https://schema.org",
+    "questions": [
+        {
+            "@type": "Question",
+            "@id": "https://www.ayuntamientosmallorca.online/quiz/1",
+            "question": "¿Cuál es la capital de Mallorca?",
+            "name": "¿Cuál es la capital de Mallorca?",
+            "correct": "Palma",
+            "options": [
+                "Palma",
+                "Inca",
+                "Alcúdia",
+                "Sóller"
+            ],
+            "category": "Geográfico",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Palma"
+            },
+            "suggestedAnswer": [
+                {
+                    "@type": "Answer",
+                    "text": "Inca"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Alcúdia"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Sóller"
+                }
+            ],
+            "about": {
+                "@type": "AdministrativeArea",
+                "name": "Palma",
+                "url": "https://www.ayuntamientosmallorca.online/#municipios/palma"
+            },
+            "educationalLevel": "beginner"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://www.ayuntamientosmallorca.online/quiz/2",
+            "question": "¿Cuál es el municipio famoso por la industria del cuero?",
+            "name": "¿Cuál es el municipio famoso por la industria del cuero?",
+            "correct": "Inca",
+            "options": [
+                "Inca",
+                "Manacor",
+                "Llucmajor",
+                "Sóller"
+            ],
+            "category": "Economía",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Inca"
+            },
+            "suggestedAnswer": [
+                {
+                    "@type": "Answer",
+                    "text": "Manacor"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Llucmajor"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Sóller"
+                }
+            ],
+            "about": {
+                "@type": "AdministrativeArea",
+                "name": "Inca",
+                "url": "https://www.ayuntamientosmallorca.online/#municipios/inca"
+            },
+            "educationalLevel": "beginner"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://www.ayuntamientosmallorca.online/quiz/3",
+            "question": "¿Cuál es el pueblo de montaña en la Serra de Tramuntana?",
+            "name": "¿Cuál es el pueblo de montaña en la Serra de Tramuntana?",
+            "correct": "Sóller",
+            "options": [
+                "Manacor",
+                "Sóller",
+                "Alcúdia",
+                "Llucmajor"
+            ],
+            "category": "Geografía",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sóller"
+            },
+            "suggestedAnswer": [
+                {
+                    "@type": "Answer",
+                    "text": "Manacor"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Alcúdia"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Llucmajor"
+                }
+            ],
+            "about": {
+                "@type": "AdministrativeArea",
+                "name": "Sóller",
+                "url": "https://www.ayuntamientosmallorca.online/#municipios/soller"
+            },
+            "educationalLevel": "beginner"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://www.ayuntamientosmallorca.online/quiz/4",
+            "question": "¿Cuál es el destino turístico con murallas históricas y playas paradisíacas?",
+            "name": "¿Cuál es el destino turístico con murallas históricas y playas paradisíacas?",
+            "correct": "Alcúdia",
+            "options": [
+                "Palma",
+                "Sóller",
+                "Alcúdia",
+                "Inca"
+            ],
+            "category": "Turismo",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Alcúdia"
+            },
+            "suggestedAnswer": [
+                {
+                    "@type": "Answer",
+                    "text": "Palma"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Sóller"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Inca"
+                }
+            ],
+            "about": {
+                "@type": "AdministrativeArea",
+                "name": "Alcúdia",
+                "url": "https://www.ayuntamientosmallorca.online/#municipios/alcudia"
+            },
+            "educationalLevel": "beginner"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://www.ayuntamientosmallorca.online/quiz/5",
+            "question": "¿Cuál es el centro económico del este de Mallorca, conocido por industrias artesanales?",
+            "name": "¿Cuál es el centro económico del este de Mallorca, conocido por industrias artesanales?",
+            "correct": "Manacor",
+            "options": [
+                "Llucmajor",
+                "Inca",
+                "Manacor",
+                "Alcúdia"
+            ],
+            "category": "Economía",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Manacor"
+            },
+            "suggestedAnswer": [
+                {
+                    "@type": "Answer",
+                    "text": "Llucmajor"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Inca"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Alcúdia"
+                }
+            ],
+            "about": {
+                "@type": "AdministrativeArea",
+                "name": "Manacor",
+                "url": "https://www.ayuntamientosmallorca.online/#municipios/manacor"
+            },
+            "educationalLevel": "beginner"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://www.ayuntamientosmallorca.online/quiz/6",
+            "question": "¿Aproximadamente cuánta población tiene Palma?",
+            "name": "¿Aproximadamente cuánta población tiene Palma?",
+            "correct": "Más de 400,000 habitantes",
+            "options": [
+                "Menos de 30,000",
+                "Entre 100,000 y 200,000",
+                "Más de 400,000 habitantes",
+                "Entre 50,000 y 100,000"
+            ],
+            "category": "Población",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Más de 400,000 habitantes"
+            },
+            "suggestedAnswer": [
+                {
+                    "@type": "Answer",
+                    "text": "Menos de 30,000"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Entre 100,000 y 200,000"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Entre 50,000 y 100,000"
+                }
+            ],
+            "about": {
+                "@type": "AdministrativeArea",
+                "name": "Palma",
+                "url": "https://www.ayuntamientosmallorca.online/#municipios/palma"
+            },
+            "educationalLevel": "beginner"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://www.ayuntamientosmallorca.online/quiz/7",
+            "question": "¿En qué municipio encontramos los Jardines de Alfabia?",
+            "name": "¿En qué municipio encontramos los Jardines de Alfabia?",
+            "correct": "Sóller",
+            "options": [
+                "Inca",
+                "Sóller",
+                "Manacor",
+                "Llucmajor"
+            ],
+            "category": "Patrimonio",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sóller"
+            },
+            "suggestedAnswer": [
+                {
+                    "@type": "Answer",
+                    "text": "Inca"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Manacor"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Llucmajor"
+                }
+            ],
+            "about": {
+                "@type": "AdministrativeArea",
+                "name": "Sóller",
+                "url": "https://www.ayuntamientosmallorca.online/#municipios/soller"
+            },
+            "educationalLevel": "beginner"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://www.ayuntamientosmallorca.online/quiz/8",
+            "question": "¿Cuál es el municipio histórico con tradiciones culturales profundas?",
+            "name": "¿Cuál es el municipio histórico con tradiciones culturales profundas?",
+            "correct": "Llucmajor",
+            "options": [
+                "Manacor",
+                "Alcúdia",
+                "Llucmajor",
+                "Inca"
+            ],
+            "category": "Cultura",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Llucmajor"
+            },
+            "suggestedAnswer": [
+                {
+                    "@type": "Answer",
+                    "text": "Manacor"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Alcúdia"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Inca"
+                }
+            ],
+            "about": {
+                "@type": "AdministrativeArea",
+                "name": "Llucmajor",
+                "url": "https://www.ayuntamientosmallorca.online/#municipios/llucmajor"
+            },
+            "educationalLevel": "beginner"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://www.ayuntamientosmallorca.online/quiz/9",
+            "question": "¿Cuál es la iglesia más importante de Palma?",
+            "name": "¿Cuál es la iglesia más importante de Palma?",
+            "correct": "Catedral-Basílica de Santa María",
+            "options": [
+                "Iglesia de Santa María la Mayor",
+                "Catedral-Basílica de Santa María",
+                "Iglesia de San Miguel",
+                "Iglesia Parroquial de Santa María"
+            ],
+            "category": "Patrimonio",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Catedral-Basílica de Santa María"
+            },
+            "suggestedAnswer": [
+                {
+                    "@type": "Answer",
+                    "text": "Iglesia de Santa María la Mayor"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Iglesia de San Miguel"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Iglesia Parroquial de Santa María"
+                }
+            ],
+            "about": {
+                "@type": "AdministrativeArea",
+                "name": "Palma",
+                "url": "https://www.ayuntamientosmallorca.online/#municipios/palma"
+            },
+            "educationalLevel": "beginner"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://www.ayuntamientosmallorca.online/quiz/10",
+            "question": "¿Cuál es el puerto natural más importante de Mallorca?",
+            "name": "¿Cuál es el puerto natural más importante de Mallorca?",
+            "correct": "Puerto de Alcúdia",
+            "options": [
+                "Puerto de Palma",
+                "Puerto de Sóller",
+                "Puerto de Alcúdia",
+                "Puerto de Manacor"
+            ],
+            "category": "Geografía",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Puerto de Alcúdia"
+            },
+            "suggestedAnswer": [
+                {
+                    "@type": "Answer",
+                    "text": "Puerto de Palma"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Puerto de Sóller"
+                },
+                {
+                    "@type": "Answer",
+                    "text": "Puerto de Manacor"
+                }
+            ],
+            "about": {
+                "@type": "AdministrativeArea",
+                "name": "Alcúdia",
+                "url": "https://www.ayuntamientosmallorca.online/#municipios/alcudia"
+            },
+            "educationalLevel": "beginner"
+        }
+    ]
 }

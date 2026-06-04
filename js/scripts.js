@@ -336,8 +336,8 @@ async function cargarDatosIniciales() {
         const EVENTOS_URL_LOCAL   = './data/eventos.json';
 
         const [resMunicipios, resEventos] = await Promise.all([
-            fetch('./data/ayuntamiento.json'),
-            fetch(EVENTOS_URL_EXTERNA).catch(() => fetch(EVENTOS_URL_LOCAL))
+            fetch('./data/ayuntamiento.json?v=' + Date.now()),
+            fetch(EVENTOS_URL_EXTERNA).catch(() => fetch(EVENTOS_URL_LOCAL + '?v=' + Date.now()))
         ]);
 
         if (!resMunicipios.ok) throw new Error(`HTTP ${resMunicipios.status} al cargar municipios`);
@@ -1123,9 +1123,10 @@ function actualizarJsonLd(municipio) {
     const jsonldScript = document.getElementById('jsonld-municipio');
     
     // Construir el objeto JSON-LD con los datos del municipio
+    // CHANGED: Use GovernmentOrganization instead of TouristAttraction (more semantically accurate)
     const datosSemanticos = {
         "@context": "https://schema.org",
-        "@type": "TouristAttraction",
+        "@type": "GovernmentOrganization",
         "@id": `https://www.ayuntamientosmallorca.online/#municipios/${municipio.name.toLowerCase()}`,
         "name": municipio.name,
         "description": municipio.description,
@@ -1133,10 +1134,11 @@ function actualizarJsonLd(municipio) {
         "image": municipio.imagenes && municipio.imagenes[0] ? `https://www.ayuntamientosmallorca.online/${municipio.imagenes[0].url.replace(/^\.\//, '')}` : "https://www.ayuntamientosmallorca.online/assets/img/default.jpg",
         "telephone": municipio.phone,
         "email": municipio.email,
+        "foundingDate": municipio.founded ? municipio.founded.split('(')[0].trim() : undefined,
         "address": {
             "@type": "PostalAddress",
             "addressLocality": municipio.name,
-            "addressRegion": "Islas Baleares",
+            "addressRegion": "Illes Balears",
             "addressCountry": "ES"
         },
         "geo": {
@@ -1145,14 +1147,20 @@ function actualizarJsonLd(municipio) {
             "longitude": municipio.longitude
         },
         "areaServed": {
-            "@type": "Place",
-            "name": "Mallorca",
-            "geo": {
-                "@type": "GeoShape",
-                "polygon": "39.267,-2.5,39.267,4.5,39.9,4.5,39.9,-2.5,39.267,-2.5"
-            }
+            "@type": "AdministrativeArea",
+            "name": municipio.name
+        },
+        "parentOrganization": {
+            "@type": "GovernmentOrganization",
+            "name": "Consell Insular de Mallorca",
+            "url": "https://www.conselldemallorca.net/"
         }
     };
+    
+    // Remove undefined foundingDate if not available
+    if (datosSemanticos.foundingDate === undefined) {
+        delete datosSemanticos.foundingDate;
+    }
     
     // Si hay servicios disponibles
     if (municipio.servicios && Array.isArray(municipio.servicios)) {
@@ -1166,14 +1174,21 @@ function actualizarJsonLd(municipio) {
     if (appState.events && appState.events.length > 0) {
         const eventosDelMunicipio = appState.events.filter(e => e.municipalityId === municipio.id);
         if (eventosDelMunicipio.length > 0) {
-            datosSemanticos.events = eventosDelMunicipio.map(e => ({
+            datosSemanticos.event = eventosDelMunicipio.map(e => ({
                 "@type": "Event",
                 "name": e.name,
-                "description": e.type,
-                "startDate": e.date,
+                "description": e.description || e.type,
+                "startDate": e.startDate,
+                "endDate": e.endDate,
                 "location": {
                     "@type": "Place",
-                    "name": municipio.name
+                    "name": municipio.name,
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": municipio.name,
+                        "addressRegion": "Illes Balears",
+                        "addressCountry": "ES"
+                    }
                 }
             }));
         }
