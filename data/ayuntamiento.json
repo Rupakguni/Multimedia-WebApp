@@ -1,1412 +1,636 @@
 ﻿{
-    "@context": "https://schema.org",
-    "municipalities": [
-        {
-            "id": 1,
-            "name": "Palma",
-            "shortName": "Palma",
-            "description": "Capital de Mallorca, rica en patrimonio arquitectónico y cultural",
-            "description_ca": "Capital de Mallorca, rica en patrimoni arquitectònic i cultural",
-            "description_en": "Capital of Mallorca, rich in architectural and cultural heritage",
-            "latitude": 39.5696,
-            "longitude": 2.6502,
-            "population": 423000,
-            "founded": "123 (época romana)",
-            "website": "https://www.palmademallorca.es",
-            "email": "ajuntament@palma.es",
-            "@type": "GovernmentOrganization",
-            "foundingDate": "0123",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Palacio de la Almudaina",
-                "addressLocality": "Palma",
-                "addressRegion": "Illes Balears",
-                "postalCode": "07001",
-                "addressCountry": "ES"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 39.5696,
-                "longitude": 2.6502
-            },
-            "areaServed": {
-                "@type": "AdministrativeArea",
-                "name": "Palma"
-            },
-            "parentOrganization": {
-                "@type": "GovernmentOrganization",
-                "name": "Consell Insular de Mallorca",
-                "url": "https://www.conselldemallorca.net/"
-            },
-            "sameAs": [
-                "https://en.wikipedia.org/wiki/Palma,_Mallorca",
-                "https://www.wikidata.org/wiki/Q8818"
-            ],
-            "patrimonio": [
-                {
-                    "name": "Catedral-Basílica de Santa María",
-                    "isPartOf": {
-                        "url": "https://www.palmademallorca.es",
-                        "name": "Ajuntament de Palma",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Palma",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "La Lonja de Palma",
-                    "isPartOf": {
-                        "url": "https://www.palmademallorca.es",
-                        "name": "Ajuntament de Palma",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Palma",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Palacio Real de La Almudaina",
-                    "isPartOf": {
-                        "url": "https://www.palmademallorca.es",
-                        "name": "Ajuntament de Palma",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Palma",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Castillo de Bellver",
-                    "isPartOf": {
-                        "url": "https://www.palmademallorca.es",
-                        "name": "Ajuntament de Palma",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Palma",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                }
-            ],
-            "servicios": [
-                "Turismo",
-                "Cultura",
-                "Patrimonio",
-                "Gastronomía"
-            ],
-            "clima": "Mediterráneo",
-            "imagenes": [
-                {
-                    "url": "./assets/img/Palma.jpg",
-                    "alt": "Vista panorámica de Palma de Mallorca",
-                    "thumbnail": "./assets/img/portfolio/thumbnails/Palma-thumb.avif"
-                }
-            ],
-            "media": {
-                "municipalityName": "Palma",
-                "videos": [
-                    {
-                        "id": "palma-1",
-                        "titulo": "Canal Oficial de YouTube - Ajuntament de Palma",
-                        "descripcion": "Plenos, campañas y actos oficiales",
-                        "url": "https://www.youtube.com/@ajuntpalma",
-                        "tipo": "canal",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/@ajuntpalma"
-                    },
-                    {
-                        "id": "palma-2",
-                        "titulo": "Palma: Historia de la ciudad",
-                        "descripcion": "Vídeo sobre la historia de Palma",
-                        "url": "https://youtu.be/-luJM4uoxpc?si=iEeMXPY_bwnUGJ1M",
-                        "youtubeId": "wXW-pI-n01o",
-                        "tipo": "documental",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://youtu.be/-luJM4uoxpc?si=iEeMXPY_bwnUGJ1M"
-                    },
-                    {
-                        "id": "palma-3",
-                        "titulo": "Visit Palma - Información Turística",
-                        "descripcion": "Guía turística oficial de Palma",
-                        "url": "https://www.youtube.com/watch?v=UcyWQRQaFxY",
-                        "tipo": "documental",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/watch?v=UcyWQRQaFxY"
-                    }
-                ],
-                "audios": [
-                    {
-                        "id": "palma-audio-1",
-                        "titulo": "Podcast Palma Educa",
-                        "descripcion": "Actividades escolares municipales",
-                        "url": "https://www.youtube.com/@ajuntpalma",
-                        "tipo": "podcast",
-                        "plataforma": "youtube",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://www.youtube.com/@ajuntpalma"
-                    },
-                    {
-                        "id": "palma-audio-2",
-                        "titulo": "Archivo de Plenos Municipales",
-                        "descripcion": "Sección de transparencia y actas de audio",
-                        "url": "https://palma.es/",
-                        "tipo": "actas",
-                        "plataforma": "web",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://palma.es/"
-                    },
-                    {
-                        "id": "palma-audio-3",
-                        "titulo": "Lectura: descripción de Palma",
-                        "descripcion": "Grabación propia leyendo la descripción del municipio de Palma.",
-                        "url": "./assets/audio/Palma-audio-192k.mp3",
-                        "tipo": "lectura",
-                        "plataforma": "local",
-                        "audioSources": [
-                            {
-                                "src": "./assets/audio/Palma-audio-128k.mp3",
-                                "type": "audio/mpeg"
-                            },
-                            {
-                                "src": "./assets/audio/Palma-audio-192k.mp3",
-                                "type": "audio/mpeg"
-                            },
-                            {
-                                "src": "./assets/audio/Palma-audio.ogg",
-                                "type": "audio/ogg"
-                            }
-                        ],
-                        "@type": "AudioObject",
-                        "contentUrl": "./assets/audio/Palma-audio-192k.mp3",
-                        "encodingFormat": "audio/mpeg"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 2,
-            "name": "Manacor",
-            "shortName": "Manacor",
-            "description": "Centro económico del este de Mallorca, conocido por sus industrias artesanales",
-            "description_ca": "Segona ciutat de Mallorca, bressol de les perles i del futbol illenc",
-            "description_en": "Second city of Mallorca, birthplace of pearls and island football",
-            "latitude": 39.570489357394614,
-            "longitude": 3.206542231299592,
-            "population": 38000,
-            "founded": "1300 (aprox)",
-            "website": "https://www.manacor.es",
-            "email": "info@manacor.es",
-            "@type": "GovernmentOrganization",
-            "foundingDate": "1300",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Manacor",
-                "addressRegion": "Illes Balears",
-                "postalCode": "07500",
-                "addressCountry": "ES"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 39.570489357394614,
-                "longitude": 3.206542231299592
-            },
-            "areaServed": {
-                "@type": "AdministrativeArea",
-                "name": "Manacor"
-            },
-            "parentOrganization": {
-                "@type": "GovernmentOrganization",
-                "name": "Consell Insular de Mallorca",
-                "url": "https://www.conselldemallorca.net/"
-            },
-            "sameAs": [
-                "https://en.wikipedia.org/wiki/Manacor",
-                "https://www.wikidata.org/wiki/Q381313"
-            ],
-            "patrimonio": [
-                {
-                    "name": "Iglesia de los Dominicos",
-                    "isPartOf": {
-                        "url": "https://www.manacor.es",
-                        "name": "Ajuntament de Manacor",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Manacor",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Convento de San Vicente Ferrer",
-                    "isPartOf": {
-                        "url": "https://www.manacor.es",
-                        "name": "Ajuntament de Manacor",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Manacor",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Casa de Cultura",
-                    "isPartOf": {
-                        "url": "https://www.manacor.es",
-                        "name": "Ajuntament de Manacor",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Manacor",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                }
-            ],
-            "servicios": [
-                "Artesanía",
-                "Cultura",
-                "Comercio",
-                "Industria"
-            ],
-            "clima": "Mediterráneo",
-            "imagenes": [
-                {
-                    "url": "./assets/img/Manacor.jpg",
-                    "alt": "Plaza principal de Manacor con edificios tradicionales",
-                    "thumbnail": "./assets/img/portfolio/thumbnails/Manacor-thumb.avif"
-                }
-            ],
-            "media": {
-                "videos": [
-                    {
-                        "id": "manacor-1",
-                        "titulo": "Canal Oficial - Ajuntament de Manacor",
-                        "descripcion": "Contenido municipal oficial",
-                        "url": "https://www.youtube.com/@ajmanacor",
-                        "tipo": "canal",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/@ajmanacor"
-                    },
-                    {
-                        "id": "manacor-2",
-                        "titulo": "Retransmisión de Plenos Municipales",
-                        "descripcion": "Grabaciones de los plenos del ayuntamiento",
-                        "url": "https://manacor.org/es/node/10957",
-                        "tipo": "plenos",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://manacor.org/es/node/10957"
-                    },
-                    {
-                        "id": "manacor-3",
-                        "titulo": "Cultura Manacor - Escuela de Música",
-                        "descripcion": "Vídeos de la Escuela de Música",
-                        "url": "https://www.youtube.com/@culturamanacor",
-                        "tipo": "cultura",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/@culturamanacor"
-                    }
-                ],
-                "audios": [
-                    {
-                        "id": "manacor-audio-1",
-                        "titulo": "Manacor - Portal Oficial",
-                        "descripcion": "Información municipal y noticias locales",
-                        "url": "https://manacor.org/es",
-                        "tipo": "web",
-                        "plataforma": "web",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://manacor.org/es"
-                    },
-                    {
-                        "id": "manacor-audio-2",
-                        "titulo": "Podcast Sant Antoni en Manacor",
-                        "descripcion": "Grabaciones de cánticos y tradiciones oficiales",
-                        "url": "https://www.youtube.com/watch?v=X2U2zh9fwXc",
-                        "tipo": "tradiciones",
-                        "plataforma": "youtube",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://www.youtube.com/watch?v=X2U2zh9fwXc"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 3,
-            "name": "Inca",
-            "shortName": "Inca",
-            "description": "Capital del cuero en Mallorca, famosa por su producción artesanal",
-            "description_ca": "Capital del Raiguer, coneguda per la seva tradició en pell i calçat",
-            "description_en": "Capital of the Raiguer region, known for its leather and footwear tradition",
-            "latitude": 39.721365911416136,
-            "longitude": 2.909920909116623,
-            "population": 30000,
-            "founded": "1300 (aprox)",
-            "website": "https://incaciutat.com",
-            "email": "info@inca.es",
-            "@type": "GovernmentOrganization",
-            "foundingDate": "1300",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Inca",
-                "addressRegion": "Illes Balears",
-                "postalCode": "07300",
-                "addressCountry": "ES"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 39.721365911416136,
-                "longitude": 2.909920909116623
-            },
-            "areaServed": {
-                "@type": "AdministrativeArea",
-                "name": "Inca"
-            },
-            "parentOrganization": {
-                "@type": "GovernmentOrganization",
-                "name": "Consell Insular de Mallorca",
-                "url": "https://www.conselldemallorca.net/"
-            },
-            "sameAs": [
-                "https://en.wikipedia.org/wiki/Inca,_Mallorca",
-                "https://www.wikidata.org/wiki/Q381374"
-            ],
-            "patrimonio": [
-                {
-                    "name": "Iglesia de Santa María la Mayor",
-                    "isPartOf": {
-                        "url": "https://incaciutat.com",
-                        "name": "Ajuntament de Inca",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Inca",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Convento de San Domingo",
-                    "isPartOf": {
-                        "url": "https://incaciutat.com",
-                        "name": "Ajuntament de Inca",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Inca",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Plaza Mayor",
-                    "isPartOf": {
-                        "url": "https://incaciutat.com",
-                        "name": "Ajuntament de Inca",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Inca",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                }
-            ],
-            "servicios": [
-                "Artesanía de Cuero",
-                "Cultura",
-                "Comercio",
-                "Industria Tradicional"
-            ],
-            "clima": "Mediterráneo",
-            "imagenes": [
-                {
-                    "url": "./assets/img/Inca.jpg",
-                    "alt": "Vista urbana de Inca con su ambiente artesanal",
-                    "thumbnail": "./assets/img/portfolio/thumbnails/Inca-thumb.avif"
-                }
-            ],
-            "media": {
-                "videos": [
-                    {
-                        "id": "inca-1",
-                        "titulo": "Canal Oficial - Ajuntament d'Inca",
-                        "descripcion": "Contenido municipal oficial",
-                        "url": "https://www.youtube.com/user/ajuntamentinca",
-                        "tipo": "canal",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/user/ajuntamentinca"
-                    },
-                    {
-                        "id": "inca-3",
-                        "titulo": "Inca - Patrimonio y Tradición",
-                        "descripcion": "Información oficial del municipio",
-                        "url": "https://incaciutat.com",
-                        "tipo": "institucional",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://incaciutat.com"
-                    }
-                ],
-                "audios": [
-                    {
-                        "id": "inca-audio-1",
-                        "titulo": "Ajuntament d'Inca - Información Municipal",
-                        "descripcion": "Portal oficial con información del municipio",
-                        "url": "https://incaciutat.com",
-                        "tipo": "web",
-                        "plataforma": "web",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://incaciutat.com"
-                    },
-                    {
-                        "id": "inca-audio-2",
-                        "titulo": "Información Turística de Inca",
-                        "descripcion": "Recursos turísticos del municipio",
-                        "url": "https://incaturistica.es/",
-                        "tipo": "turismo",
-                        "plataforma": "web",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://incaturistica.es/"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 4,
-            "name": "Sóller",
-            "shortName": "Soller",
-            "description": "Pueblo de montaña con arquitectura singular en la Serra de Tramuntana",
-            "description_ca": "Poble de muntanya amb arquitectura singular a la Serra de Tramuntana",
-            "description_en": "Mountain village with singular architecture in the Serra de Tramuntana",
-            "latitude": 39.7698,
-            "longitude": 2.7293,
-            "population": 13000,
-            "founded": "1200 (aprox)",
-            "website": "https://www.soller.es",
-            "email": "info@soller.es",
-            "@type": "GovernmentOrganization",
-            "foundingDate": "1200",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Sóller",
-                "addressRegion": "Illes Balears",
-                "postalCode": "07100",
-                "addressCountry": "ES"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 39.7698,
-                "longitude": 2.7293
-            },
-            "areaServed": {
-                "@type": "AdministrativeArea",
-                "name": "Sóller"
-            },
-            "parentOrganization": {
-                "@type": "GovernmentOrganization",
-                "name": "Consell Insular de Mallorca",
-                "url": "https://www.conselldemallorca.net/"
-            },
-            "sameAs": [
-                "https://en.wikipedia.org/wiki/S%C3%B3ller",
-                "https://www.wikidata.org/wiki/Q381335"
-            ],
-            "patrimonio": [
-                {
-                    "name": "Iglesia Parroquial de Santa María",
-                    "isPartOf": {
-                        "url": "https://www.soller.es",
-                        "name": "Ajuntament de Sóller",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Sóller",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Jardines de Alfabia",
-                    "isPartOf": {
-                        "url": "https://www.soller.es",
-                        "name": "Ajuntament de Sóller",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Sóller",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Port de Sóller",
-                    "isPartOf": {
-                        "url": "https://www.soller.es",
-                        "name": "Ajuntament de Sóller",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Sóller",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Sierra de Tramuntana",
-                    "isPartOf": {
-                        "url": "https://www.soller.es",
-                        "name": "Ajuntament de Sóller",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Sóller",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                }
-            ],
-            "servicios": [
-                "Turismo",
-                "Naturaleza",
-                "Gastronomía",
-                "Patrimonio"
-            ],
-            "clima": "Mediterráneo Montañoso",
-            "imagenes": [
-                {
-                    "url": "./assets/img/Soller.jpg",
-                    "alt": "Calle típica de Sóller entre montañas",
-                    "thumbnail": "./assets/img/portfolio/thumbnails/Soller-thumb.avif"
-                }
-            ],
-            "media": {
-                "videos": [
-                    {
-                        "id": "soller-1",
-                        "titulo": "Sóller - Información Oficial",
-                        "descripcion": "Portal oficial del municipio de Sóller",
-                        "url": "https://www.soller.es",
-                        "tipo": "institucional",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.soller.es"
-                    },
-                    {
-                        "id": "soller-2",
-                        "titulo": "Documental Sóller: Patrimonio y Naturaleza",
-                        "descripcion": "Vídeo sobre el patrimonio de Sóller",
-                        "url": "https://www.youtube.com/watch?v=PY_1dLVkKOw",
-                        "youtubeId": "PY_1dLVkKOw",
-                        "tipo": "turismo",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/watch?v=PY_1dLVkKOw"
-                    },
-                    {
-                        "id": "soller-3",
-                        "titulo": "Increíble Sóller, España",
-                        "descripcion": "Documental sobre la cultura municipal",
-                        "url": "https://www.youtube.com/watch?v=BsEVIPsiCgc",
-                        "youtubeId": "BsEVIPsiCgc",
-                        "tipo": "cultura",
-                        "embed": true,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/watch?v=BsEVIPsiCgc"
-                    }
-                ],
-                "audios": [
-                    {
-                        "id": "soller-audio-1",
-                        "titulo": "Sóller - Portal Oficial",
-                        "descripcion": "Información municipal de Sóller",
-                        "url": "https://www.soller.es",
-                        "tipo": "web",
-                        "plataforma": "web",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://www.soller.es"
-                    },
-                    {
-                        "id": "soller-audio-2",
-                        "titulo": "Ambiente Sonoro del Vall de Sóller",
-                        "descripcion": "Recurso de audio ambiental",
-                        "url": "https://www.sollerweb.com/radioone.html",
-                        "tipo": "radio",
-                        "plataforma": "radio_online",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://www.sollerweb.com/radioone.html"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 5,
-            "name": "Alcúdia",
-            "shortName": "Alcudia",
-            "description": "Destino turístico con murallas históricas y playas paradisíacas",
-            "description_ca": "Municipi amb muralla medieval i importants jaciments romans",
-            "description_en": "Municipality with medieval walls and important Roman archaeological sites",
-            "latitude": 39.8468,
-            "longitude": 3.1130,
-            "population": 20000,
-            "founded": "123 (época romana)",
-            "website": "https://www.alcudia.es",
-            "email": "info@alcudia.es",
-            "@type": "GovernmentOrganization",
-            "foundingDate": "0123",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Alcúdia",
-                "addressRegion": "Illes Balears",
-                "postalCode": "07400",
-                "addressCountry": "ES"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 39.8468,
-                "longitude": 3.1130
-            },
-            "areaServed": {
-                "@type": "AdministrativeArea",
-                "name": "Alcúdia"
-            },
-            "parentOrganization": {
-                "@type": "GovernmentOrganization",
-                "name": "Consell Insular de Mallorca",
-                "url": "https://www.conselldemallorca.net/"
-            },
-            "sameAs": [
-                "https://en.wikipedia.org/wiki/Alc%C3%BAdia",
-                "https://www.wikidata.org/wiki/Q381219"
-            ],
-            "patrimonio": [
-                {
-                    "name": "Murallas Medievales",
-                    "isPartOf": {
-                        "url": "https://www.alcudia.es",
-                        "name": "Ajuntament de Alcúdia",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Alcúdia",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Iglesia de Sant Jaume",
-                    "isPartOf": {
-                        "url": "https://www.alcudia.es",
-                        "name": "Ajuntament de Alcúdia",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Alcúdia",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Puerto de Alcúdia",
-                    "isPartOf": {
-                        "url": "https://www.alcudia.es",
-                        "name": "Ajuntament de Alcúdia",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Alcúdia",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Bahía de Alcúdia",
-                    "isPartOf": {
-                        "url": "https://www.alcudia.es",
-                        "name": "Ajuntament de Alcúdia",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Alcúdia",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                }
-            ],
-            "servicios": [
-                "Turismo",
-                "Playas",
-                "Deportes Acuáticos",
-                "Gastronomía"
-            ],
-            "clima": "Mediterráneo",
-            "imagenes": [
-                {
-                    "url": "./assets/img/Alcudia.jpg",
-                    "alt": "Murallas históricas y playa de Alcúdia",
-                    "thumbnail": "./assets/img/portfolio/thumbnails/Alcudia-thumb.avif"
-                }
-            ],
-            "media": {
-                "municipalityName": "Alcudia",
-                "images": [
-                    {
-                        "id": "alcudia-image-1",
-                        "imageName": "alcudia1",
-                        "titulo": "Ayuntamiento de Alcúdia — Fachada (vista 1)",
-                        "descripcion": "Imagen generada mostrando la fachada del Ayuntamiento de Alcúdia (vista 1).",
-                        "alt": "Ayuntamiento de Alcúdia fachada",
-                        "@type": "ImageObject",
-                        "name": "Ayuntamiento de Alcúdia — Fachada (vista 1)"
-                    },
-                    {
-                        "id": "alcudia-image-2",
-                        "imageName": "alcudia2",
-                        "titulo": "Ayuntamiento de Alcúdia — Lateral (vista 2)",
-                        "descripcion": "Imagen generada mostrando un lateral del Ayuntamiento de Alcúdia (vista 2).",
-                        "alt": "Ayuntamiento de Alcúdia lateral",
-                        "@type": "ImageObject",
-                        "name": "Ayuntamiento de Alcúdia — Lateral (vista 2)"
-                    },
-                    {
-                        "id": "alcudia-image-3",
-                        "imageName": "alcudia3",
-                        "titulo": "Ayuntamiento de Alcúdia — Detalle (vista 3)",
-                        "descripcion": "Detalle generado del edificio del Ayuntamiento de Alcúdia (vista 3).",
-                        "alt": "Ayuntamiento de Alcúdia detalle",
-                        "@type": "ImageObject",
-                        "name": "Ayuntamiento de Alcúdia — Detalle (vista 3)"
-                    },
-                    {
-                        "id": "alcudia-image-4",
-                        "imageName": "alcudia4",
-                        "titulo": "Ayuntamiento de Alcúdia — Plaza (vista 4)",
-                        "descripcion": "Imagen generada de la plaza frente al Ayuntamiento de Alcúdia (vista 4).",
-                        "alt": "Ayuntamiento de Alcúdia plaza",
-                        "@type": "ImageObject",
-                        "name": "Ayuntamiento de Alcúdia — Plaza (vista 4)"
-                    },
-                    {
-                        "id": "alcudia-image-5",
-                        "imageName": "alcudia5",
-                        "titulo": "Ayuntamiento de Alcúdia — Vista nocturna (vista 5)",
-                        "descripcion": "Imagen generada del Ayuntamiento de Alcúdia iluminado en horario nocturno (vista 5).",
-                        "alt": "Ayuntamiento de Alcúdia nocturno",
-                        "@type": "ImageObject",
-                        "name": "Ayuntamiento de Alcúdia — Vista nocturna (vista 5)"
-                    }
-                ],
-                "videos": [
-                    {
-                        "id": "alcudia-1",
-                        "titulo": "Canal Oficial - Ajuntament d'Alcúdia",
-                        "descripcion": "Contenido municipal oficial",
-                        "url": "https://www.youtube.com/@ajuntamentalcudia",
-                        "tipo": "canal",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/@ajuntamentalcudia"
-                    },
-                    {
-                        "id": "alcudia-2",
-                        "titulo": "Alcúdia: Destino Turístico Sostenible",
-                        "descripcion": "Presentación turística oficial",
-                        "url": "https://www.youtube.com/watch?v=7TBN1HiG6As",
-                        "youtubeId": "7TBN1HiG6As",
-                        "tipo": "turismo",
-                        "embed": true,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/watch?v=7TBN1HiG6As"
-                    },
-                    {
-                        "id": "alcudia-3",
-                        "titulo": "Reportaje sobre las Murallas",
-                        "descripcion": "Patrimonio histórico de Alcúdia",
-                        "url": "https://www.youtube.com/watch?v=7TBN1HiG6As",
-                        "youtubeId": "7TBN1HiG6As",
-                        "tipo": "patrimonio",
-                        "embed": true,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/watch?v=7TBN1HiG6As"
-                    },
-                    {
-                        "id": "alcudia-4",
-                        "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (fachada)",
-                        "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia mostrando la fachada.",
-                        "url": "./assets/videos/alcudia1.mp4",
-                        "tipo": "ayuntamiento",
-                        "videoSources": [
-                            {
-                                "src": "./assets/videos/alcudia1.mp4",
-                                "type": "video/mp4"
-                            },
-                            {
-                                "src": "./assets/videos/alcudia1.webm",
-                                "type": "video/webm"
-                            },
-                            {
-                                "src": "./assets/videos/alcudia1.ogv",
-                                "type": "video/ogg"
-                            }
-                        ],
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "./assets/videos/alcudia1.mp4",
-                        "encodingFormat": "video/mp4"
-                    },
-                    {
-                        "id": "alcudia-5",
-                        "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (lateral)",
-                        "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia mostrando un lateral del edificio.",
-                        "url": "./assets/videos/alcudia2.mp4",
-                        "tipo": "ayuntamiento",
-                        "videoSources": [
-                            {
-                                "src": "./assets/videos/alcudia2.mp4",
-                                "type": "video/mp4"
-                            },
-                            {
-                                "src": "./assets/videos/alcudia2.webm",
-                                "type": "video/webm"
-                            },
-                            {
-                                "src": "./assets/videos/alcudia2.ogv",
-                                "type": "video/ogg"
-                            }
-                        ],
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "./assets/videos/alcudia2.mp4",
-                        "encodingFormat": "video/mp4"
-                    },
-                    {
-                        "id": "alcudia-6",
-                        "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (detalle)",
-                        "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia con planos detalle.",
-                        "url": "./assets/videos/alcudia3.mp4",
-                        "tipo": "ayuntamiento",
-                        "videoSources": [
-                            {
-                                "src": "./assets/videos/alcudia3.mp4",
-                                "type": "video/mp4"
-                            },
-                            {
-                                "src": "./assets/videos/alcudia3.webm",
-                                "type": "video/webm"
-                            },
-                            {
-                                "src": "./assets/videos/alcudia3.ogv",
-                                "type": "video/ogg"
-                            }
-                        ],
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "./assets/videos/alcudia3.mp4",
-                        "encodingFormat": "video/mp4"
-                    },
-                    {
-                        "id": "alcudia-7",
-                        "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (plaza)",
-                        "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia en su plaza principal.",
-                        "url": "./assets/videos/alcudia4.mp4",
-                        "tipo": "ayuntamiento",
-                        "videoSources": [
-                            {
-                                "src": "./assets/videos/alcudia4.mp4",
-                                "type": "video/mp4"
-                            },
-                            {
-                                "src": "./assets/videos/alcudia4.webm",
-                                "type": "video/webm"
-                            },
-                            {
-                                "src": "./assets/videos/alcudia4.ogv",
-                                "type": "video/ogg"
-                            }
-                        ],
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "./assets/videos/alcudia4.mp4",
-                        "encodingFormat": "video/mp4"
-                    }
-                ],
-                "audios": [
-                    {
-                        "id": "alcudia-audio-1",
-                        "titulo": "Alcúdia Ràdio 94.7 FM",
-                        "descripcion": "Mejor recurso de audio institucional",
-                        "url": "https://www.alcudiaradio.com/",
-                        "tipo": "radio",
-                        "plataforma": "web",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://www.alcudiaradio.com/"
-                    },
-                    {
-                        "id": "alcudia-audio-2",
-                        "titulo": "Archivo de Entrevistas Municipales",
-                        "descripcion": "Entrevistas y contenido municipal en Ivoox",
-                        "url": "https://www.alcudiaradio.com/news/id/alcudiaradio_news_2171",
-                        "tipo": "podcast",
-                        "plataforma": "ivoox",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://www.alcudiaradio.com/news/id/alcudiaradio_news_2171"
-                    },
-                    {
-                        "id": "alcudia-audio-3",
-                        "titulo": "Lectura: descripción de Alcúdia",
-                        "descripcion": "Grabación propia leyendo la descripción del municipio de Alcúdia.",
-                        "url": "./assets/audio/Alcudia-audio-192k.mp3",
-                        "tipo": "lectura",
-                        "plataforma": "local",
-                        "audioSources": [
-                            {
-                                "src": "./assets/audio/Alcudia-audio-128k.mp3",
-                                "type": "audio/mpeg"
-                            },
-                            {
-                                "src": "./assets/audio/Alcudia-audio-192k.mp3",
-                                "type": "audio/mpeg"
-                            },
-                            {
-                                "src": "./assets/audio/Alcudia-audio.ogg",
-                                "type": "audio/ogg"
-                            }
-                        ],
-                        "@type": "AudioObject",
-                        "contentUrl": "./assets/audio/Alcudia-audio-192k.mp3",
-                        "encodingFormat": "audio/mpeg"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 6,
-            "name": "Pollenca",
-            "shortName": "Pollenca",
-            "description": "Municipio histórico de la Serra de Tramuntana con patrimonio, calas y tradiciones",
-            "description_ca": "Municipi històric de la Serra de Tramuntana amb patrimoni, cales i tradicions",
-            "description_en": "Historic municipality in the Serra de Tramuntana with heritage, coves and traditions",
-            "latitude": 39.8774,
-            "longitude": 3.0210,
-            "population": 17000,
-            "founded": "123 (época romana)",
-            "website": "https://ajpollenca.net/es",
-            "email": "info@pollenca.es",
-            "@type": "GovernmentOrganization",
-            "foundingDate": "0123",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Pollenca",
-                "addressRegion": "Illes Balears",
-                "postalCode": "07460",
-                "addressCountry": "ES"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 39.8774,
-                "longitude": 3.0210
-            },
-            "areaServed": {
-                "@type": "AdministrativeArea",
-                "name": "Pollenca"
-            },
-            "parentOrganization": {
-                "@type": "GovernmentOrganization",
-                "name": "Consell Insular de Mallorca",
-                "url": "https://www.conselldemallorca.net/"
-            },
-            "sameAs": [
-                "https://en.wikipedia.org/wiki/PollenÃ§a",
-                "https://www.wikidata.org/wiki/Q381347"
-            ],
-            "patrimonio": [
-                {
-                    "name": "Plaça Major",
-                    "isPartOf": {
-                        "url": "https://ajpollenca.net/es",
-                        "name": "Ajuntament de Pollenca",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Pollenca",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Iglesia de Santa Maria Magdalena",
-                    "isPartOf": {
-                        "url": "https://ajpollenca.net/es",
-                        "name": "Ajuntament de Pollenca",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Pollenca",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Santuari de la Mare de Déu dels Àngels",
-                    "isPartOf": {
-                        "url": "https://ajpollenca.net/es",
-                        "name": "Ajuntament de Pollenca",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Pollenca",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Calas de Pollença",
-                    "isPartOf": {
-                        "url": "https://ajpollenca.net/es",
-                        "name": "Ajuntament de Pollenca",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Pollenca",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                }
-            ],
-            "servicios": [
-                "Turismo",
-                "Cultura",
-                "Patrimonio",
-                "Naturaleza"
-            ],
-            "clima": "Mediterráneo",
-            "imagenes": [
-                {
-                    "url": "./assets/img/Pollenca.jpg",
-                    "alt": "Vista panorámica de Pollença",
-                    "thumbnail": "./assets/img/portfolio/thumbnails/Pollenca-thumb.avif"
-                }
-            ],
-            "media": {
-                "municipalityName": "Pollenca",
-                "images": [
-                    {
-                        "id": "pollenca-image-1",
-                        "imageName": "pollenca1",
-                        "titulo": "Pollença — Vista general",
-                        "descripcion": "Imagen propia mostrando el entorno urbano y natural de Pollença.",
-                        "alt": "Vista general de Pollença",
-                        "@type": "ImageObject",
-                        "name": "Pollença — Vista general"
-                    },
-                    {
-                        "id": "pollenca-image-2",
-                        "imageName": "pollenca2",
-                        "titulo": "Pollença — Centro histórico",
-                        "descripcion": "Imagen propia del centro histórico y sus calles emblemáticas.",
-                        "alt": "Centro histórico de Pollença",
-                        "@type": "ImageObject",
-                        "name": "Pollença — Centro histórico"
-                    },
-                    {
-                        "id": "pollenca-image-3",
-                        "imageName": "pollenca3",
-                        "titulo": "Pollença — Patrimonio local",
-                        "descripcion": "Imagen propia de patrimonio y arquitectura tradicional de Pollença.",
-                        "alt": "Patrimonio local de Pollença",
-                        "@type": "ImageObject",
-                        "name": "Pollença — Patrimonio local"
-                    },
-                    {
-                        "id": "pollenca-image-4",
-                        "imageName": "pollenca4",
-                        "titulo": "Pollença — Entorno natural",
-                        "descripcion": "Imagen propia del entorno natural y las calas cercanas a Pollença.",
-                        "alt": "Entorno natural de Pollença",
-                        "@type": "ImageObject",
-                        "name": "Pollença — Entorno natural"
-                    },
-                    {
-                        "id": "pollenca-image-5",
-                        "imageName": "pollenca5",
-                        "titulo": "Pollença — Arquitectura tradicional",
-                        "descripcion": "Imagen propia que recoge detalles arquitectónicos del casco antiguo.",
-                        "alt": "Arquitectura tradicional de Pollença",
-                        "@type": "ImageObject",
-                        "name": "Pollença — Arquitectura tradicional"
-                    },
-                    {
-                        "id": "pollenca-image-6",
-                        "imageName": "pollenca6",
-                        "titulo": "Pollença — Paseo y entorno",
-                        "descripcion": "Imagen propia del entorno urbano con detalle del paisaje de Pollença.",
-                        "alt": "Paseo y entorno de Pollença",
-                        "@type": "ImageObject",
-                        "name": "Pollença — Paseo y entorno"
-                    },
-                    {
-                        "id": "pollenca-image-7",
-                        "imageName": "pollenca7",
-                        "titulo": "Pollença — Detalle del pueblo",
-                        "descripcion": "Imagen propia con detalles del pueblo y su tradición visual.",
-                        "alt": "Detalle del pueblo de Pollença",
-                        "@type": "ImageObject",
-                        "name": "Pollença — Detalle del pueblo"
-                    },
-                    {
-                        "id": "pollenca-image-8",
-                        "imageName": "pollenca8",
-                        "titulo": "Pollença — Paisaje local",
-                        "descripcion": "Imagen propia del paisaje local y su ligereza mediterránea.",
-                        "alt": "Paisaje local de Pollença",
-                        "@type": "ImageObject",
-                        "name": "Pollença — Paisaje local"
-                    }
-                ],
-                "audios": [
-                    {
-                        "id": "pollenca-audio-1",
-                        "titulo": "Pollença — Información municipal",
-                        "descripcion": "Enlace web oficial del ayuntamiento para consultar información municipal y eventos.",
-                        "url": "https://ajpollenca.net/es",
-                        "tipo": "radio",
-                        "plataforma": "web",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://ajpollenca.net/es"
-                    }
-                ]
-            }
-        },
-        {
-            "id": 7,
-            "name": "Llucmajor",
-            "shortName": "Llucmajor",
-            "description": "Municipio histórico con tradiciones culturales profundas",
-            "description_ca": "Municipi històric amb tradicions culturals profundes",
-            "description_en": "Historic municipality with deep cultural traditions",
-            "latitude": 39.49013940434323,
-            "longitude": 2.8910022780514324,
-            "population": 15000,
-            "founded": "1200 (aprox)",
-            "website": "https://www.llucmajor.org",
-            "email": "oacllucmajor@llucmajor.org",
-            "@type": "GovernmentOrganization",
-            "foundingDate": "1200",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Llucmajor",
-                "addressRegion": "Illes Balears",
-                "postalCode": "07620",
-                "addressCountry": "ES"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 39.49013940434323,
-                "longitude": 2.8910022780514324
-            },
-            "areaServed": {
-                "@type": "AdministrativeArea",
-                "name": "Llucmajor"
-            },
-            "parentOrganization": {
-                "@type": "GovernmentOrganization",
-                "name": "Consell Insular de Mallorca",
-                "url": "https://www.conselldemallorca.net/"
-            },
-            "sameAs": [
-                "https://en.wikipedia.org/wiki/Llucmajor",
-                "https://www.wikidata.org/wiki/Q381296"
-            ],
-            "patrimonio": [
-                {
-                    "name": "Iglesia de San Miguel",
-                    "isPartOf": {
-                        "url": "https://www.llucmajor.org",
-                        "name": "Ajuntament de Llucmajor",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Llucmajor",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Convento de San Domingo",
-                    "isPartOf": {
-                        "url": "https://www.llucmajor.org",
-                        "name": "Ajuntament de Llucmajor",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Llucmajor",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                },
-                {
-                    "name": "Plaza del Pueblo",
-                    "isPartOf": {
-                        "url": "https://www.llucmajor.org",
-                        "name": "Ajuntament de Llucmajor",
-                        "@type": "GovernmentOrganization"
-                    },
-                    "@type": "LandmarksOrHistoricalBuildings",
-                    "address": {
-                        "addressRegion": "Illes Balears",
-                        "addressLocality": "Llucmajor",
-                        "@type": "PostalAddress",
-                        "addressCountry": "ES"
-                    }
-                }
-            ],
-            "servicios": [
-                "Agricultura",
-                "Cultura",
-                "Comercio",
-                "Patrimonio"
-            ],
-            "clima": "Mediterráneo",
-            "imagenes": [
-                {
-                    "url": "./assets/img/Llucmajor.jpg",
-                    "alt": "Centro histórico de Llucmajor",
-                    "thumbnail": "./assets/img/portfolio/thumbnails/Llucmajor-thumb.avif"
-                }
-            ],
-            "media": {
-                "videos": [
-                    {
-                        "id": "llucmajor-1",
-                        "titulo": "Canal Oficial - Ajuntament de Llucmajor",
-                        "descripcion": "Contenido municipal oficial",
-                        "url": "https://www.youtube.com/@AjuntamentLlucmajor",
-                        "tipo": "canal",
-                        "embed": false,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/@AjuntamentLlucmajor"
-                    },
-                    {
-                        "id": "llucmajor-2",
-                        "titulo": "Promoción Turística de Llucmajor",
-                        "descripcion": "Guía turística del municipio",
-                        "url": "https://www.youtube.com/watch?v=wH-ODgCCil4",
-                        "youtubeId": "wH-ODgCCil4",
-                        "tipo": "turismo",
-                        "embed": true,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/watch?v=wH-ODgCCil4"
-                    },
-                    {
-                        "id": "llucmajor-3",
-                        "titulo": "Fires de Llucmajor",
-                        "descripcion": "Evento oficial del municipio",
-                        "url": "https://www.youtube.com/watch?v=3kd4zMbT6PM",
-                        "youtubeId": "3kd4zMbT6PM",
-                        "tipo": "eventos",
-                        "embed": true,
-                        "@type": "VideoObject",
-                        "contentUrl": "https://www.youtube.com/watch?v=3kd4zMbT6PM"
-                    }
-                ],
-                "audios": [
-                    {
-                        "id": "llucmajor-audio-1",
-                        "titulo": "Llucmajor Radio",
-                        "descripcion": "Emisora local con programas municipales",
-                        "url": "https://llucmajor.org/",
-                        "tipo": "radio",
-                        "plataforma": "web",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://llucmajor.org/"
-                    },
-                    {
-                        "id": "llucmajor-audio-2",
-                        "titulo": "Podcasts de Eventos Culturales",
-                        "descripcion": "Serie de podcasts sobre eventos culturales",
-                        "url": "https://www.youtube.com/watch?v=3kd4zMbT6PM",
-                        "tipo": "cultura",
-                        "plataforma": "youtube",
-                        "@type": "AudioObject",
-                        "contentUrl": "https://www.youtube.com/watch?v=3kd4zMbT6PM"
-                    }
-                ]
-            }
-        }
-    ],
-    "metadata": {
-        "title": "Ayuntamientos de Mallorca",
-        "description": "Dataset de información sobre los municipios de Mallorca",
-        "version": "1.0",
-        "authors": [
-            "Roberto García Martínez",
-            "Rupak Guni Thapaliya"
+  "municipalities": [
+    {
+      "id": 1,
+      "name": "Palma",
+      "shortName": "Palma",
+      "description": "Capital de Mallorca, rica en patrimonio arquitectónico y cultural",
+      "description_ca": "Capital de Mallorca, rica en patrimoni arquitectònic i cultural",
+      "description_en": "Capital of Mallorca, rich in architectural and cultural heritage",
+      "latitude": 39.5696,
+      "longitude": 2.6502,
+      "population": 423000,
+      "founded": "123 (época romana)",
+      "website": "https://www.palmademallorca.es",
+      "phone": "+34 971 225 900",
+      "email": "ajuntament@palma.es",
+      "patrimonio": ["Catedral-Basílica de Santa María", "La Lonja de Palma", "Palacio Real de La Almudaina", "Castillo de Bellver"],
+      "servicios": ["Turismo", "Cultura", "Patrimonio", "Gastronomía"],
+      "clima": "Mediterráneo",
+      "imagenes": [{
+        "url": "./assets/img/Palma.jpg",
+        "alt": "Vista panorámica de Palma de Mallorca",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Palma-thumb.avif"
+      }],
+      "media": {
+        "municipalityName": "Palma",
+        "videos": [
+          {
+            "id": "palma-1",
+            "titulo": "Canal Oficial de YouTube - Ajuntament de Palma",
+            "descripcion": "Plenos, campañas y actos oficiales",
+            "url": "https://www.youtube.com/@ajuntpalma",
+            "tipo": "canal",
+            "embed": false
+          },
+          {
+            "id": "palma-2",
+            "titulo": "Palma: Historia de la ciudad",
+            "descripcion": "Vídeo sobre la historia de Palma",
+            "url": "https://youtu.be/-luJM4uoxpc?si=iEeMXPY_bwnUGJ1M",
+            "youtubeId": "wXW-pI-n01o",
+            "tipo": "documental",
+            "embed": false
+          },
+          {
+            "id": "palma-3",
+            "titulo": "Visit Palma - Información Turística",
+            "descripcion": "Guía turística oficial de Palma",
+            "url": "https://www.youtube.com/watch?v=UcyWQRQaFxY",
+            "tipo": "documental",
+            "embed": false
+          }
         ],
-        "license": "CC BY-SA 4.0",
-        "lastUpdated": "2024-03-09"
+        "audios": [
+          {
+            "id": "palma-audio-1",
+            "titulo": "Podcast Palma Educa",
+            "descripcion": "Actividades escolares municipales",
+            "url": "https://www.youtube.com/@ajuntpalma",
+            "tipo": "podcast",
+            "plataforma": "youtube"
+          },
+          {
+            "id": "palma-audio-2",
+            "titulo": "Archivo de Plenos Municipales",
+            "descripcion": "Sección de transparencia y actas de audio",
+            "url": "https://palma.es/",
+            "tipo": "actas",
+            "plataforma": "web"
+          },
+          {
+            "id": "palma-audio-3",
+            "titulo": "Lectura: descripción de Palma",
+            "descripcion": "Grabación propia leyendo la descripción del municipio de Palma.",
+            "url": "./assets/audio/Palma-audio-192k.mp3",
+            "tipo": "lectura",
+            "plataforma": "local",
+            "audioSources": [
+              { "src": "./assets/audio/Palma-audio-128k.mp3", "type": "audio/mpeg" },
+              { "src": "./assets/audio/Palma-audio-192k.mp3", "type": "audio/mpeg" },
+              { "src": "./assets/audio/Palma-audio.ogg", "type": "audio/ogg" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Manacor",
+      "shortName": "Manacor",
+      "description": "Centro económico del este de Mallorca, conocido por sus industrias artesanales",
+      "description_ca": "Segona ciutat de Mallorca, bressol de les perles i del futbol illenc",
+      "description_en": "Second city of Mallorca, birthplace of pearls and island football",
+      "latitude": 39.570489357394614,
+      "longitude": 3.206542231299592,
+      "population": 38000,
+      "founded": "1300 (aprox)",
+      "website": "https://www.manacor.es",
+      "phone": "+34 971 553 000",
+      "email": "info@manacor.es",
+      "patrimonio": ["Iglesia de los Dominicos", "Convento de San Vicente Ferrer", "Casa de Cultura"],
+      "servicios": ["Artesanía", "Cultura", "Comercio", "Industria"],
+      "clima": "Mediterráneo",
+      "imagenes": [{
+        "url": "./assets/img/Manacor.jpg",
+        "alt": "Plaza principal de Manacor con edificios tradicionales",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Manacor-thumb.avif"
+      }],
+      "media": {
+        "videos": [
+          {
+            "id": "manacor-1",
+            "titulo": "Canal Oficial - Ajuntament de Manacor",
+            "descripcion": "Contenido municipal oficial",
+            "url": "https://www.youtube.com/@ajmanacor",
+            "tipo": "canal",
+            "embed": false
+          },
+          {
+            "id": "manacor-2",
+            "titulo": "Retransmisión de Plenos Municipales",
+            "descripcion": "Grabaciones de los plenos del ayuntamiento",
+            "url": "https://manacor.org/es/node/10957",
+            "tipo": "plenos",
+            "embed": false
+          },
+          {
+            "id": "manacor-3",
+            "titulo": "Cultura Manacor - Escuela de Música",
+            "descripcion": "Vídeos de la Escuela de Música",
+            "url": "https://www.youtube.com/@culturamanacor",
+            "tipo": "cultura",
+            "embed": false
+          }
+        ],
+        "audios": [
+          {
+            "id": "manacor-audio-1",
+            "titulo": "Manacor - Portal Oficial",
+            "descripcion": "Información municipal y noticias locales",
+            "url": "https://manacor.org/es",
+            "tipo": "web",
+            "plataforma": "web"
+          },
+          {
+            "id": "manacor-audio-2",
+            "titulo": "Podcast Sant Antoni en Manacor",
+            "descripcion": "Grabaciones de cánticos y tradiciones oficiales",
+            "url": "https://www.youtube.com/watch?v=X2U2zh9fwXc",
+            "tipo": "tradiciones",
+            "plataforma": "youtube"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Inca",
+      "shortName": "Inca",
+      "description": "Capital del cuero en Mallorca, famosa por su producción artesanal",
+      "description_ca": "Capital del Raiguer, coneguda per la seva tradició en pell i calçat",
+      "description_en": "Capital of the Raiguer region, known for its leather and footwear tradition",
+      "latitude": 39.721365911416136,
+      "longitude": 2.909920909116623,
+      "population": 30000,
+      "founded": "1300 (aprox)",
+      "website": "https://incaciutat.com",
+      "phone": "+34 971 505 000",
+      "email": "info@inca.es",
+      "patrimonio": ["Iglesia de Santa María la Mayor", "Convento de San Domingo", "Plaza Mayor"],
+      "servicios": ["Artesanía de Cuero", "Cultura", "Comercio", "Industria Tradicional"],
+      "clima": "Mediterráneo",
+      "imagenes": [{
+        "url": "./assets/img/Inca.jpg",
+        "alt": "Vista urbana de Inca con su ambiente artesanal",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Inca-thumb.avif"
+      }],
+      "media": {
+        "videos": [
+          {
+            "id": "inca-1",
+            "titulo": "Canal Oficial - Ajuntament d'Inca",
+            "descripcion": "Contenido municipal oficial",
+            "url": "https://www.youtube.com/user/ajuntamentinca",
+            "tipo": "canal",
+            "embed": false
+          },
+          {
+            "id": "inca-3",
+            "titulo": "Inca - Patrimonio y Tradición",
+            "descripcion": "Información oficial del municipio",
+            "url": "https://incaciutat.com",
+            "tipo": "institucional",
+            "embed": false
+          }
+        ],
+        "audios": [
+          {
+            "id": "inca-audio-1",
+            "titulo": "Ajuntament d'Inca - Información Municipal",
+            "descripcion": "Portal oficial con información del municipio",
+            "url": "https://incaciutat.com",
+            "tipo": "web",
+            "plataforma": "web"
+          },
+          {
+            "id": "inca-audio-2",
+            "titulo": "Información Turística de Inca",
+            "descripcion": "Recursos turísticos del municipio",
+            "url": "https://incaturistica.es/",
+            "tipo": "turismo",
+            "plataforma": "web"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "name": "Sóller",
+      "shortName": "Soller",
+      "description": "Pueblo de montaña con arquitectura singular en la Serra de Tramuntana",
+      "description_ca": "Poble de muntanya amb arquitectura singular a la Serra de Tramuntana",
+      "description_en": "Mountain village with singular architecture in the Serra de Tramuntana",
+      "latitude": 39.7698,
+      "longitude": 2.7293,
+      "population": 13000,
+      "founded": "1200 (aprox)",
+      "website": "https://www.soller.es",
+      "phone": "+34 971 638 000",
+      "email": "info@soller.es",
+      "patrimonio": ["Iglesia Parroquial de Santa María", "Jardines de Alfabia", "Port de Sóller", "Sierra de Tramuntana"],
+      "servicios": ["Turismo", "Naturaleza", "Gastronomía", "Patrimonio"],
+      "clima": "Mediterráneo Montañoso",
+      "imagenes": [{
+        "url": "./assets/img/Soller.jpg",
+        "alt": "Calle típica de Sóller entre montañas",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Soller-thumb.avif"
+      }],
+      "media": {
+        "videos": [
+          {
+            "id": "soller-1",
+            "titulo": "Sóller - Información Oficial",
+            "descripcion": "Portal oficial del municipio de Sóller",
+            "url": "https://www.soller.es",
+            "tipo": "institucional",
+            "embed": false
+          },
+          {
+            "id": "soller-2",
+            "titulo": "Documental Sóller: Patrimonio y Naturaleza",
+            "descripcion": "Vídeo sobre el patrimonio de Sóller",
+            "url": "https://www.youtube.com/watch?v=PY_1dLVkKOw",
+            "youtubeId": "PY_1dLVkKOw",
+            "tipo": "turismo",
+            "embed": false
+          },
+          {
+            "id": "soller-3",
+            "titulo": "Increíble Sóller, España",
+            "descripcion": "Documental sobre la cultura municipal",
+            "url": "https://www.youtube.com/watch?v=BsEVIPsiCgc",
+            "youtubeId": "BsEVIPsiCgc",
+            "tipo": "cultura",
+            "embed": true
+          }
+        ],
+        "audios": [
+          {
+            "id": "soller-audio-1",
+            "titulo": "Sóller - Portal Oficial",
+            "descripcion": "Información municipal de Sóller",
+            "url": "https://www.soller.es",
+            "tipo": "web",
+            "plataforma": "web"
+          },
+          {
+            "id": "soller-audio-2",
+            "titulo": "Ambiente Sonoro del Vall de Sóller",
+            "descripcion": "Recurso de audio ambiental",
+            "url": "https://www.sollerweb.com/radioone.html",
+            "tipo": "radio",
+            "plataforma": "radio_online"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "name": "Alcúdia",
+      "shortName": "Alcudia",
+      "description": "Destino turístico con murallas históricas y playas paradisíacas",
+      "description_ca": "Municipi amb muralla medieval i importants jaciments romans",
+      "description_en": "Municipality with medieval walls and important Roman archaeological sites",
+      "latitude": 39.8468,
+      "longitude": 3.1130,
+      "population": 20000,
+      "founded": "123 (época romana)",
+      "website": "https://www.alcudia.es",
+      "phone": "+34 971 892 000",
+      "email": "info@alcudia.es",
+      "patrimonio": ["Murallas Medievales", "Iglesia de Sant Jaume", "Puerto de Alcúdia", "Bahía de Alcúdia"],
+      "servicios": ["Turismo", "Playas", "Deportes Acuáticos", "Gastronomía"],
+      "clima": "Mediterráneo",
+      "imagenes": [{
+        "url": "./assets/img/Alcudia.jpg",
+        "alt": "Murallas históricas y playa de Alcúdia",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Alcudia-thumb.avif"
+      }],
+      "media": {
+        "municipalityName": "Alcudia",
+        "images": [
+          {
+            "id": "alcudia-image-1",
+            "imageName": "alcudia1",
+            "titulo": "Ayuntamiento de Alcúdia — Fachada (vista 1)",
+            "descripcion": "Imagen generada mostrando la fachada del Ayuntamiento de Alcúdia (vista 1).",
+            "alt": "Ayuntamiento de Alcúdia fachada"
+          },
+          {
+            "id": "alcudia-image-2",
+            "imageName": "alcudia2",
+            "titulo": "Ayuntamiento de Alcúdia — Lateral (vista 2)",
+            "descripcion": "Imagen generada mostrando un lateral del Ayuntamiento de Alcúdia (vista 2).",
+            "alt": "Ayuntamiento de Alcúdia lateral"
+          },
+          {
+            "id": "alcudia-image-3",
+            "imageName": "alcudia3",
+            "titulo": "Ayuntamiento de Alcúdia — Detalle (vista 3)",
+            "descripcion": "Detalle generado del edificio del Ayuntamiento de Alcúdia (vista 3).",
+            "alt": "Ayuntamiento de Alcúdia detalle"
+          },
+          {
+            "id": "alcudia-image-4",
+            "imageName": "alcudia4",
+            "titulo": "Ayuntamiento de Alcúdia — Plaza (vista 4)",
+            "descripcion": "Imagen generada de la plaza frente al Ayuntamiento de Alcúdia (vista 4).",
+            "alt": "Ayuntamiento de Alcúdia plaza"
+          },
+          {
+            "id": "alcudia-image-5",
+            "imageName": "alcudia5",
+            "titulo": "Ayuntamiento de Alcúdia — Vista nocturna (vista 5)",
+            "descripcion": "Imagen generada del Ayuntamiento de Alcúdia iluminado en horario nocturno (vista 5).",
+            "alt": "Ayuntamiento de Alcúdia nocturno"
+          }
+        ],
+        "videos": [
+          {
+            "id": "alcudia-1",
+            "titulo": "Canal Oficial - Ajuntament d'Alcúdia",
+            "descripcion": "Contenido municipal oficial",
+            "url": "https://www.youtube.com/@ajuntamentalcudia",
+            "tipo": "canal",
+            "embed": false
+          },
+          {
+            "id": "alcudia-2",
+            "titulo": "Alcúdia: Destino Turístico Sostenible",
+            "descripcion": "Presentación turística oficial",
+            "url": "https://www.youtube.com/watch?v=7TBN1HiG6As",
+            "youtubeId": "7TBN1HiG6As",
+            "tipo": "turismo",
+            "embed": true
+          },
+          {
+            "id": "alcudia-3",
+            "titulo": "Reportaje sobre las Murallas",
+            "descripcion": "Patrimonio histórico de Alcúdia",
+            "url": "https://www.youtube.com/watch?v=7TBN1HiG6As",
+            "youtubeId": "7TBN1HiG6As",
+            "tipo": "patrimonio",
+            "embed": true
+          },
+          {
+            "id": "alcudia-4",
+            "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (fachada)",
+            "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia mostrando la fachada.",
+            "url": "./assets/videos/alcudia1.mp4",
+            "tipo": "ayuntamiento",
+            "videoSources": [
+              { "src": "./assets/videos/alcudia1.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/alcudia1.webm", "type": "video/webm" },
+              { "src": "./assets/videos/alcudia1.ogv", "type": "video/ogg" }
+            ],
+            "embed": false
+          },
+          {
+            "id": "alcudia-5",
+            "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (lateral)",
+            "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia mostrando un lateral del edificio.",
+            "url": "./assets/videos/alcudia2.mp4",
+            "tipo": "ayuntamiento",
+            "videoSources": [
+              { "src": "./assets/videos/alcudia2.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/alcudia2.webm", "type": "video/webm" },
+              { "src": "./assets/videos/alcudia2.ogv", "type": "video/ogg" }
+            ],
+            "embed": false
+          },
+          {
+            "id": "alcudia-6",
+            "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (detalle)",
+            "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia con planos detalle.",
+            "url": "./assets/videos/alcudia3.mp4",
+            "tipo": "ayuntamiento",
+            "videoSources": [
+              { "src": "./assets/videos/alcudia3.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/alcudia3.webm", "type": "video/webm" },
+              { "src": "./assets/videos/alcudia3.ogv", "type": "video/ogg" }
+            ],
+            "embed": false
+          },
+          {
+            "id": "alcudia-7",
+            "titulo": "Vídeo institucional - Ayuntamiento de Alcúdia (plaza)",
+            "descripcion": "Grabación institucional del Ayuntamiento de Alcúdia en su plaza principal.",
+            "url": "./assets/videos/alcudia4.mp4",
+            "tipo": "ayuntamiento",
+            "videoSources": [
+              { "src": "./assets/videos/alcudia4.mp4", "type": "video/mp4" },
+              { "src": "./assets/videos/alcudia4.webm", "type": "video/webm" },
+              { "src": "./assets/videos/alcudia4.ogv", "type": "video/ogg" }
+            ],
+            "embed": false
+          }
+        ],
+        "audios": [
+          {
+            "id": "alcudia-audio-1",
+            "titulo": "Alcúdia Ràdio 94.7 FM",
+            "descripcion": "Mejor recurso de audio institucional",
+            "url": "https://www.alcudiaradio.com/",
+            "tipo": "radio",
+            "plataforma": "web"
+          },
+          {
+            "id": "alcudia-audio-2",
+            "titulo": "Archivo de Entrevistas Municipales",
+            "descripcion": "Entrevistas y contenido municipal en Ivoox",
+            "url": "https://www.alcudiaradio.com/news/id/alcudiaradio_news_2171",
+            "tipo": "podcast",
+            "plataforma": "ivoox"
+          },
+          {
+            "id": "alcudia-audio-3",
+            "titulo": "Lectura: descripción de Alcúdia",
+            "descripcion": "Grabación propia leyendo la descripción del municipio de Alcúdia.",
+            "url": "./assets/audio/Alcudia-audio-192k.mp3",
+            "tipo": "lectura",
+            "plataforma": "local",
+            "audioSources": [
+              { "src": "./assets/audio/Alcudia-audio-128k.mp3", "type": "audio/mpeg" },
+              { "src": "./assets/audio/Alcudia-audio-192k.mp3", "type": "audio/mpeg" },
+              { "src": "./assets/audio/Alcudia-audio.ogg", "type": "audio/ogg" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "name": "Pollenca",
+      "shortName": "Pollenca",
+      "description": "Municipio histórico de la Serra de Tramuntana con patrimonio, calas y tradiciones",
+      "description_ca": "Municipi històric de la Serra de Tramuntana amb patrimoni, cales i tradicions",
+      "description_en": "Historic municipality in the Serra de Tramuntana with heritage, coves and traditions",
+      "latitude": 39.8774,
+      "longitude": 3.0210,
+      "population": 17000,
+      "founded": "123 (época romana)",
+      "website": "https://ajpollenca.net/es",
+      "phone": "+34 971 53 00 00",
+      "email": "info@pollenca.es",
+      "patrimonio": ["Plaça Major", "Iglesia de Santa Maria Magdalena", "Santuari de la Mare de Déu dels Àngels", "Calas de Pollença"],
+      "servicios": ["Turismo", "Cultura", "Patrimonio", "Naturaleza"],
+      "clima": "Mediterráneo",
+      "imagenes": [{
+        "url": "./assets/img/Pollenca.jpg",
+        "alt": "Vista panorámica de Pollença",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Pollenca-thumb.avif"
+      }],
+      "media": {
+        "municipalityName": "Pollenca",
+        "images": [
+          {
+            "id": "pollenca-image-1",
+            "imageName": "pollenca1",
+            "titulo": "Pollença — Vista general",
+            "descripcion": "Imagen propia mostrando el entorno urbano y natural de Pollença.",
+            "alt": "Vista general de Pollença"
+          },
+          {
+            "id": "pollenca-image-2",
+            "imageName": "pollenca2",
+            "titulo": "Pollença — Centro histórico",
+            "descripcion": "Imagen propia del centro histórico y sus calles emblemáticas.",
+            "alt": "Centro histórico de Pollença"
+          },
+          {
+            "id": "pollenca-image-3",
+            "imageName": "pollenca3",
+            "titulo": "Pollença — Patrimonio local",
+            "descripcion": "Imagen propia de patrimonio y arquitectura tradicional de Pollença.",
+            "alt": "Patrimonio local de Pollença"
+          },
+          {
+            "id": "pollenca-image-4",
+            "imageName": "pollenca4",
+            "titulo": "Pollença — Entorno natural",
+            "descripcion": "Imagen propia del entorno natural y las calas cercanas a Pollença.",
+            "alt": "Entorno natural de Pollença"
+          },
+          {
+            "id": "pollenca-image-5",
+            "imageName": "pollenca5",
+            "titulo": "Pollença — Arquitectura tradicional",
+            "descripcion": "Imagen propia que recoge detalles arquitectónicos del casco antiguo.",
+            "alt": "Arquitectura tradicional de Pollença"
+          },
+          {
+            "id": "pollenca-image-6",
+            "imageName": "pollenca6",
+            "titulo": "Pollença — Paseo y entorno",
+            "descripcion": "Imagen propia del entorno urbano con detalle del paisaje de Pollença.",
+            "alt": "Paseo y entorno de Pollença"
+          },
+          {
+            "id": "pollenca-image-7",
+            "imageName": "pollenca7",
+            "titulo": "Pollença — Detalle del pueblo",
+            "descripcion": "Imagen propia con detalles del pueblo y su tradición visual.",
+            "alt": "Detalle del pueblo de Pollença"
+          },
+          {
+            "id": "pollenca-image-8",
+            "imageName": "pollenca8",
+            "titulo": "Pollença — Paisaje local",
+            "descripcion": "Imagen propia del paisaje local y su ligereza mediterránea.",
+            "alt": "Paisaje local de Pollença"
+          }
+        ],
+        "audios": [
+          {
+            "id": "pollenca-audio-1",
+            "titulo": "Pollença — Información municipal",
+            "descripcion": "Enlace web oficial del ayuntamiento para consultar información municipal y eventos.",
+            "url": "https://ajpollenca.net/es",
+            "tipo": "radio",
+            "plataforma": "web"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "name": "Llucmajor",
+      "shortName": "Llucmajor",
+      "description": "Municipio histórico con tradiciones culturales profundas",
+      "description_ca": "Municipi històric amb tradicions culturals profundes",
+      "description_en": "Historic municipality with deep cultural traditions",
+      "latitude": 39.49013940434323,
+      "longitude": 2.8910022780514324,
+      "population": 15000,
+      "founded": "1200 (aprox)",
+      "website": "https://www.llucmajor.org",
+      "phone": "+34 971 660 050",
+      "email": "oacllucmajor@llucmajor.org",
+      "patrimonio": ["Iglesia de San Miguel", "Convento de San Domingo", "Plaza del Pueblo"],
+      "servicios": ["Agricultura", "Cultura", "Comercio", "Patrimonio"],
+      "clima": "Mediterráneo",
+      "imagenes": [{
+        "url": "./assets/img/Llucmajor.jpg",
+        "alt": "Centro histórico de Llucmajor",
+        "thumbnail": "./assets/img/portfolio/thumbnails/Llucmajor-thumb.avif"
+      }],
+      "media": {
+        "videos": [
+          {
+            "id": "llucmajor-1",
+            "titulo": "Canal Oficial - Ajuntament de Llucmajor",
+            "descripcion": "Contenido municipal oficial",
+            "url": "https://www.youtube.com/@AjuntamentLlucmajor",
+            "tipo": "canal",
+            "embed": false
+          },
+          {
+            "id": "llucmajor-2",
+            "titulo": "Promoción Turística de Llucmajor",
+            "descripcion": "Guía turística del municipio",
+            "url": "https://www.youtube.com/watch?v=wH-ODgCCil4",
+            "youtubeId": "wH-ODgCCil4",
+            "tipo": "turismo",
+            "embed": true
+          },
+          {
+            "id": "llucmajor-3",
+            "titulo": "Fires de Llucmajor",
+            "descripcion": "Evento oficial del municipio",
+            "url": "https://www.youtube.com/watch?v=3kd4zMbT6PM",
+            "youtubeId": "3kd4zMbT6PM",
+            "tipo": "eventos",
+            "embed": true
+          }
+        ],
+        "audios": [
+          {
+            "id": "llucmajor-audio-1",
+            "titulo": "Llucmajor Radio",
+            "descripcion": "Emisora local con programas municipales",
+            "url": "https://llucmajor.org/",
+            "tipo": "radio",
+            "plataforma": "web"
+          },
+          {
+            "id": "llucmajor-audio-2",
+            "titulo": "Podcasts de Eventos Culturales",
+            "descripcion": "Serie de podcasts sobre eventos culturales",
+            "url": "https://www.youtube.com/watch?v=3kd4zMbT6PM",
+            "tipo": "cultura",
+            "plataforma": "youtube"
+          }
+        ]
+      }
     }
+  ],
+  "metadata": {
+    "title": "Ayuntamientos de Mallorca",
+    "description": "Dataset de información sobre los municipios de Mallorca",
+    "version": "1.0",
+    "authors": ["Roberto García Martínez", "Rupak Guni Thapaliya"],
+    "license": "CC BY-SA 4.0",
+    "lastUpdated": "2024-03-09"
+  }
 }
