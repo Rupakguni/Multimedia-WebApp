@@ -159,6 +159,7 @@ function updateAuthUI() {
 }
 
 // Notify user of upcoming events on the first day of each month
+// eslint-disable-next-line no-unused-vars
 function notifyMonthlyEvents() {
     const today = new Date();
     const isFirstDay = today.getDate() === 1; // Comprobar si es día 1

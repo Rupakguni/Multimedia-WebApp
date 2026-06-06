@@ -53,6 +53,7 @@ function shuffleArray(array) {
 }
 
 // Iniciar el quiz
+// eslint-disable-next-line no-unused-vars
 function iniciarQuiz() {
     if (quizState.questions.length === 0) {
         alert('Las preguntas aún se están cargando. Por favor, espera un momento.');
@@ -202,7 +203,7 @@ function mostrarResultados() {
     document.getElementById('final-score').textContent = quizState.score;
     
     // Generar mensaje personalizado
-    let mensaje = '';
+    let mensaje;
     if (porcentaje === 100) {
         mensaje = '¡Excelente! Eres un experto en los ayuntamientos de Mallorca 🏆';
     } else if (porcentaje >= 80) {
@@ -219,6 +220,7 @@ function mostrarResultados() {
         `${mensaje}\nObtuviste ${quizState.score} de ${totalPreguntas} respuestas correctas (${porcentaje}%)`;
 }
 
+// eslint-disable-next-line no-unused-vars
 function reiniciarQuiz() {
     quizState.currentQuestion = 0;
     quizState.score = 0;

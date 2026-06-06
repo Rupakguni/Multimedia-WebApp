@@ -80,7 +80,7 @@ function normalizarEventosExternos(eventos = [], municipioIdPorNombre = new Map(
 function buildResponsivePicture(imageData, altText, isCard = false) {
     const sourceUrl = imageData.url || './assets/img/default.jpg';
     const baseName = sourceUrl.split('/').pop().replace(/\.(jpe?g|png|webp|avif)$/i, '');
-    const sourceDir = sourceUrl.replace(/\/[^\/]+$/, '');
+    const sourceDir = sourceUrl.replace(/\/[^/]+$/, '');
     const thumbBase = imageData.thumbnail
         ? imageData.thumbnail.replace(/\.(avif|webp|jpe?g)$/i, '')
         : `${sourceDir}/${baseName}-thumb`;
@@ -101,7 +101,7 @@ function buildResponsivePicture(imageData, altText, isCard = false) {
 function createResponsivePictureElement(imageData, altText, isCard = false) {
     const sourceUrl = imageData.url || './assets/img/default.jpg';
     const baseName = sourceUrl.split('/').pop().replace(/\.(jpe?g|png|webp|avif)$/i, '');
-    const sourceDir = sourceUrl.replace(/\/[^\/]+$/, '');
+    const sourceDir = sourceUrl.replace(/\/[^/]+$/, '');
     const thumbBase = imageData.thumbnail
         ? imageData.thumbnail.replace(/\.(avif|webp|jpe?g)$/i, '')
         : `${sourceDir}/${baseName}-thumb`;
@@ -157,9 +157,9 @@ async function initializeApp() {
             return;
         }
         if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
+            navbarCollapsible.classList.remove('navbar-shrink');
         } else {
-            navbarCollapsible.classList.add('navbar-shrink')
+            navbarCollapsible.classList.add('navbar-shrink');
         }
     };
 
@@ -361,7 +361,7 @@ async function cargarDatosIniciales() {
 
         renderizarMunicipios(appState.municipalities);
         generarFiltrosDinamicos();
-        rehidratarFavoritos()
+        rehidratarFavoritos();
 
         inicializarMapa();
         
@@ -436,6 +436,7 @@ function renderizarMunicipios(municipios) {
 /**
  * Estados de UI - Loading
  */
+// eslint-disable-next-line no-unused-vars
 function mostrarLoadingState() {
     const container = document.getElementById('municipalities-container');
     
@@ -454,6 +455,7 @@ function mostrarLoadingState() {
 /**
  * Estados de UI - Error
  */
+// eslint-disable-next-line no-unused-vars
 function mostrarErrorState(error) {
     const container = document.getElementById('municipalities-container');
     
@@ -620,6 +622,7 @@ function checkImmediateEvents(municipalityName) {
 }
 
 // Actualizar la sección de autenticación en el navbar
+// eslint-disable-next-line no-unused-vars
 function toggleFavoriteFromModal() {
     const modal = document.getElementById('municipalityModal');
     const municipalityName = modal.dataset.currentMunicipality;
@@ -666,6 +669,7 @@ function updateFavoritesDisplay() {
 }
 
 // Remove favorite
+// eslint-disable-next-line no-unused-vars
 function removeFavorite(municipalityName) {
     toggleFavorite(municipalityName);
 }
@@ -748,6 +752,7 @@ function renderMunicipalityReadingAudio(municipalityData) {
     audioContainer.hidden = false;
 }
 
+// eslint-disable-next-line no-unused-vars
 function loadMunicipalityDetails(municipalityName) {
     const municipalityData = getMunicipalityData(municipalityName);
     
@@ -1075,6 +1080,7 @@ function inicializarFormularioContacto() {
  * Función para leer la descripción del municipio en el modal
  * Utilizando TTS (Text-to-Speech)
  */
+// eslint-disable-next-line no-unused-vars
 function speakModalDescription() {
     const modal = document.getElementById('municipalityModal');
     const title = document.getElementById('modal-title').textContent;
@@ -1263,6 +1269,7 @@ function leerJsonLdActual() {
 /**
  * Validar consistencia entre contenido visible y JSON-LD
  */
+// eslint-disable-next-line no-unused-vars
 function validarConsistenciaSemantica() {
     const jsonldDatos = leerJsonLdActual();
     const nombreVisibl = document.getElementById('modal-title')?.textContent;

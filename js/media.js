@@ -562,6 +562,7 @@
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
+  // eslint-disable-next-line no-unused-vars
   function initializeMediaListeners(container, municipality) {
     container.addEventListener('click', (event) => {
       const videoCard = event.target.closest('.video-card');
